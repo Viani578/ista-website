@@ -53,6 +53,8 @@
 
         html {
             scroll-behavior: smooth;
+            width: 100%;
+            overflow-x: hidden;
         }
 
         body {
@@ -61,6 +63,7 @@
             background: var(--cream);
             overflow-x: hidden;
             line-height: 1.6;
+            width: 100%;
         }
 
         /* Typographie améliorée */
@@ -86,16 +89,6 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
-        }
-
-        .full-bleed {
-            position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
-            width: 100vw;
-            box-sizing: border-box;
         }
 
         /* Navigation */
@@ -247,7 +240,7 @@
             cursor: pointer;
         }
 
-        /* CORRECTION IMPORTANTE : Section Hero Contact pour mobile */
+        /* CORRECTION RADICALE : Section Hero Contact */
         .contact-hero {
             position: relative;
             min-height: 60vh;
@@ -256,7 +249,18 @@
             background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
             padding: 120px 0 60px;
             overflow: hidden;
-            width: 100%;
+        }
+
+        /* FORCER la largeur totale */
+        .contact-hero,
+        .map-section,
+        .footer {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
         }
 
         .contact-hero::before {
@@ -546,18 +550,18 @@
             transform: translateY(-1px);
         }
 
-        /* CORRECTION IMPORTANTE : Section Carte pour mobile */
+        /* CORRECTION RADICALE : Section Carte */
         .map-section {
             padding: 4rem 0;
             background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
             position: relative;
-            width: 100%;
         }
 
         .map-container {
             max-width: 1400px;
             margin: 0 auto;
             width: 100%;
+            padding: 0 2rem;
         }
 
         .map-wrapper {
@@ -689,7 +693,6 @@
             background: var(--dark-navy);
             padding: 4rem 0 2rem;
             color: var(--soft-white);
-            width: 100%;
         }
 
         .footer-container {
@@ -699,6 +702,7 @@
             grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 4rem;
             margin-bottom: 3rem;
+            padding: 0 2rem;
         }
 
         .footer-about {
@@ -791,6 +795,7 @@
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.5);
+            padding: 2rem 2rem 0;
         }
 
         /* Animations */
@@ -816,39 +821,63 @@
             }
         }
 
-        /* CORRECTIONS RESPONSIVE SPÉCIALES POUR LES SECTIONS COLORÉES */
+        /* Message de confirmation */
+        .confirmation-message {
+            display: none;
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .confirmation-message i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #28a745;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* RESPONSIVE - CORRECTIONS CRITIQUES */
         @media (max-width: 768px) {
-            /* Assurer que les sections colorées remplissent l'écran */
+            /* Force les sections colorées à être pleine largeur */
             .contact-hero,
             .map-section,
             .footer {
-                padding-left: 0;
-                padding-right: 0;
+                width: 100vw;
+                position: relative;
+                left: 50%;
+                right: 50%;
+                margin-left: -50vw;
+                margin-right: -50vw;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
             }
-
-            /* Les conteneurs gardent leur padding */
+            
+            /* Les conteneurs à l'intérieur gardent leur padding */
             .contact-hero .container,
-            .map-section .container,
-            .footer .container {
+            .map-section .container {
                 padding-left: 2rem;
                 padding-right: 2rem;
-            }
-
-            /* Pour les sections avec background, supprimer les marges horizontales */
-            .contact-hero::before,
-            .map-section {
                 width: 100%;
-                left: 0;
-                right: 0;
+                max-width: 100%;
             }
-
-            /* Ajustements pour la carte */
+            
+            /* Supprime les bordures arrondies sur mobile */
             .map-wrapper {
                 border-radius: 0;
                 border-left: none;
                 border-right: none;
             }
-
+            
+            /* Ajuste l'overlay de la carte */
             .map-overlay {
                 position: relative;
                 top: 0;
@@ -858,26 +887,8 @@
                 border-radius: 0;
                 border-bottom: 1px solid rgba(0,0,0,0.1);
             }
-        }
-
-        /* Responsive Design standard */
-        @media (max-width: 1024px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
             
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
+            /* Ajustements du menu mobile */
             .mobile-toggle {
                 display: block;
             }
@@ -907,12 +918,24 @@
                 border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             }
             
+            /* Ajustements typographiques */
             .contact-hero h1 {
                 font-size: 2.5rem;
             }
             
             .contact-hero p {
                 font-size: 1.1rem;
+            }
+            
+            /* Layout responsive */
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
             
             .contact-form-container {
@@ -943,28 +966,17 @@
             }
         }
 
-        /* Message de confirmation */
-        .confirmation-message {
-            display: none;
-            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-            border: 2px solid #28a745;
-            color: #155724;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            margin-top: 2rem;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .confirmation-message i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #28a745;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Pour desktop, on remet les sections dans le flux normal */
+        @media (min-width: 769px) {
+            .contact-hero,
+            .map-section,
+            .footer {
+                width: 100%;
+                left: auto;
+                right: auto;
+                margin-left: 0;
+                margin-right: 0;
+            }
         }
     </style>
 </head>
@@ -1009,7 +1021,7 @@
     </nav>
 
     <!-- Section Hero Contact -->
-    <section class="contact-hero full-bleed" id="contact">
+    <section class="contact-hero" id="contact">
         <div class="container contact-hero-content">
             <h1>Contactez-nous</h1>
             <p>Notre équipe d'experts est à votre disposition pour répondre à toutes vos questions sur l'immigration, les visas et vos projets à l'étranger.</p>
@@ -1204,7 +1216,7 @@
     </section>
 
     <!-- Section Carte -->
-    <section class="map-section full-bleed">
+    <section class="map-section">
         <div class="map-container">
             <div class="map-wrapper">
                 <div id="contactMap"></div>
@@ -1284,7 +1296,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer full-bleed">
+    <footer class="footer">
         <div class="footer-container">
             <div class="footer-about">
                 <img src="assets/images/remove.png" alt="ISTA Logo" class="footer-logo">
