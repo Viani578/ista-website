@@ -88,6 +88,16 @@
             padding: 0 2rem;
         }
 
+        .full-bleed {
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            width: 100vw;
+            box-sizing: border-box;
+        }
+
         /* Navigation */
         .navbar {
             position: fixed;
@@ -999,7 +1009,7 @@
     </nav>
 
     <!-- Section Hero Contact -->
-    <section class="contact-hero" id="contact">
+    <section class="contact-hero full-bleed" id="contact">
         <div class="container contact-hero-content">
             <h1>Contactez-nous</h1>
             <p>Notre équipe d'experts est à votre disposition pour répondre à toutes vos questions sur l'immigration, les visas et vos projets à l'étranger.</p>
@@ -1194,7 +1204,7 @@
     </section>
 
     <!-- Section Carte -->
-    <section class="map-section">
+    <section class="map-section full-bleed">
         <div class="map-container">
             <div class="map-wrapper">
                 <div id="contactMap"></div>
@@ -1274,7 +1284,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer full-bleed">
         <div class="footer-container">
             <div class="footer-about">
                 <img src="assets/images/remove.png" alt="ISTA Logo" class="footer-logo">
