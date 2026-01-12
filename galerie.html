@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISTA - Galerie Photo & Vidéo | International Success Travel Agency</title>
+    <meta name="description" content="Galerie photo et vidéo d'ISTA - Découvrez nos succès, événements et témoignages en images">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/remove.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Lightbox CSS (pour les galeries) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+    
+    <style>
+        /* Réutilisez les mêmes variables CSS que index.html */
+        :root {
+            --primary-red: #DC143C;
+            --primary-blue: #1E40AF;
+            --gold: #D4AF37;
+            --dark-navy: #0A1929;
+            --cream: #FAF8F3;
+            --soft-white: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --text-light: #6B7280;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+            --transition: all 0.3s ease;
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            color: var(--text-dark);
+            background: var(--cream);
+            overflow-x: hidden;
+            line-height: 1.6;
+            width: 100%;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--soft-white);
+            box-shadow: var(--shadow-md);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 0.7rem 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo */
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .logo-text h1 {
+            font-size: 1.4rem;
+            margin: 0;
+            color: var(--dark-navy);
+        }
+
+        .logo-text p {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin: 0;
+            color: var(--dark-navy);
+        }
+
+        /* Menu de navigation */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu > li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            color: var(--dark-navy);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+        }
+
+        .nav-menu > li > a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu > li > a:hover::after,
+        .nav-menu > li > a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu > li > a:hover,
+        .nav-menu > li > a.active {
+            color: var(--gold);
+        }
+
+        /* Sous-menu */
+        .has-submenu {
+            position: relative;
+        }
+
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--soft-white);
+            min-width: 250px;
+            padding: 1rem 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            list-style: none;
+            z-index: 100;
+        }
+
+        .has-submenu:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .submenu li a {
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            display: block;
+            transition: var(--transition);
+        }
+
+        .submenu li a:hover {
+            background: var(--cream);
+            color: var(--primary-blue);
+            padding-left: 2rem;
+        }
+
+        /* Menu mobile */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-navy);
+            cursor: pointer;
+        }
+
+        /* Hero Section Galerie */
+        .galerie-hero {
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
+            padding: 120px 0 60px;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .galerie-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(196, 30, 58, 0.15) 0%, transparent 50%);
+        }
+
+        .galerie-hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--soft-white);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .galerie-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--soft-white) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .galerie-hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+
+        /* Galerie Section */
+        .galerie-section {
+            padding: 6rem 0;
+            background: var(--cream);
+        }
+
+        .galerie-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--dark-navy);
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+            color: var(--dark-navy);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Filtres Galerie */
+        .galerie-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--soft-white);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            color: var(--dark-navy);
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gold);
+            color: var(--dark-navy);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        /* Grille Galerie */
+        .galerie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .galerie-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            cursor: pointer;
+            aspect-ratio: 4/3;
+        }
+
+        .galerie-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .galerie-item img,
+        .galerie-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .galerie-item:hover img,
+        .galerie-item:hover video {
+            transform: scale(1.1);
+        }
+
+        .galerie-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(10, 25, 41, 0.9) 0%, transparent 100%);
+            padding: 1.5rem;
+            color: var(--soft-white);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .galerie-item:hover .galerie-overlay {
+            opacity: 1;
+        }
+
+        .galerie-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--gold);
+            color: var(--dark-navy);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .galerie-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Section Vidéos */
+        .videos-section {
+            padding: 4rem 0;
+            background: var(--soft-white);
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-right: 9rem;
+            justify-items: center; 
+            margin: 0 auto; 
+            max-width: 1400px; 
+        }
+
+        .video-item {
+            background: var(--soft-white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            max-width: 100%; 
+            width: 100%; 
+        }
+
+        .video-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 175, 55, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-navy);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .video-play-btn:hover {
+            background: var(--gold);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--dark-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .video-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-navy);
+            padding: 4rem 2rem 2rem;
+            color: var(--soft-white);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .footer-about h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .footer-about .footer-logo {
+            display: block;
+            max-width: 120px;
+            height: auto;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--soft-white);
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--dark-navy);
+            transform: translateY(-5px);
+        }
+
+        .footer-links h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 0.5rem;
+        }
+
+        .footer-links a i {
+            font-size: 0.8rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .galerie-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .videos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 85px;
+                flex-direction: column;
+                background: var(--soft-white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+                gap: 0;
+                box-shadow: var(--shadow-lg);
+                max-height: calc(100vh - 85px);
+                overflow-y: auto;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .galerie-hero {
+                padding: 100px 0 40px;
+                min-height: 50vh;
+                margin-top: 70px;
+            }
+            
+            .galerie-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .galerie-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+            
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .galerie-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .galerie-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-section">
+                <img src="assets/images/remove.png" alt="ISTA Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1>ISTA</h1>
+                    <p>International Success Travel Agency</p>
+                </div>
+            </a>
+
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li class="has-submenu">
+                    <a href="index.html#services"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="index.html#visas">Visa d'Etude</a></li>
+                        <li><a href="index.html#visas">Visa de Travail</a></li>
+                        <li><a href="index.html#visas">Visa Visiteur</a></li>
+                        <li><a href="index.html#immigration">Résidence Permanente</a></li>
+                        <li><a href="index.html#visas">Billets d'avion</a></li>
+                        <li><a href="index.html#traduction">Assistance Logement</a></li>
+                        <li><a href="index.html#traduction">Assistance Titre de Séjour</a></li>
+                        <li><a href="index.html#traduction">Admissions</a></li>
+                        <li><a href="galerie.html"></i> Galerie Photo/Video</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#universites"><i class="fas fa-university"></i> Envoyer/Recevoir un colis</a></li>
+                <li><a href="#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
+                <li><a href="index.html#equipe"><i class="fas fa-users"></i> Infos Paiement</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section Galerie -->
+    <section class="galerie-hero">
+        <div class="container galerie-hero-content">
+            <h1>Galerie Photo & Vidéo</h1>
+            <p>Découvrez nos succès, événements et moments forts en images et vidéos</p>
+        </div>
+    </section>
+
+    <!-- Section Galerie Photos -->
+    <section class="galerie-section">
+        <div class="container galerie-container">
+            <div class="section-header">
+                <span class="section-badge">Photos</span>
+                <h2>Notre Galerie Photo</h2>
+                <p>Explorez nos moments de réussite, événements et témoignages en images</p>
+            </div>
+
+            <!-- Filtres Galerie -->
+            <div class="galerie-filters">
+                <button class="filter-btn active" data-filter="all">Toutes</button>
+                <button class="filter-btn" data-filter="evenements">Événements</button>
+                <button class="filter-btn" data-filter="succes">Succès</button>
+                <button class="filter-btn" data-filter="equipe">Équipe</button>
+                <button class="filter-btn" data-filter="clients">Clients</button>
+            </div>
+
+            <!-- Grille Galerie -->
+            <div class="galerie-grid">
+                <!-- Photo 1 -->
+                <div class="galerie-item" data-category="evenements">
+                    <a href="assets/images/evenement1.jpg" data-lightbox="gallery" data-title="Cérémonie de remise de visas">
+                        <img src="assets/images/evenement1.jpg" alt="Cérémonie de remise de visas">
+                        <div class="galerie-overlay">
+                            <span class="galerie-category">Événements</span>
+                            <h3 class="galerie-title">Cérémonie de remise de visas</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="galerie-item" data-category="succes">
+                    <a href="assets/images/succes1.jpg" data-lightbox="gallery" data-title="Étudiant partant au Canada">
+                        <img src="assets/images/succes1.jpg" alt="Étudiant partant au Canada">
+                        <div class="galerie-overlay">
+                            <span class="galerie-category">Succès</span>
+                            <h3 class="galerie-title">Étudiant partant au Canada</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Photo 3 -->
+                <div class="galerie-item" data-category="equipe">
+                    <a href="assets/images/equipe1.jpg" data-lightbox="gallery" data-title="Réunion d'équipe">
+                        <img src="assets/images/equipe1.jpg" alt="Réunion d'équipe ISTA">
+                        <div class="galerie-overlay">
+                            <span class="galerie-category">Équipe</span>
+                            <h3 class="galerie-title">Réunion d'équipe ISTA</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Photo 4 -->
+                <div class="galerie-item" data-category="clients">
+                    <a href="assets/images/clients1.jpg" data-lightbox="gallery" data-title="Témoignage client">
+                        <img src="assets/images/clients1.jpg" alt="Témoignage client">
+                        <div class="galerie-overlay">
+                            <span class="galerie-category">Clients</span>
+                            <h3 class="galerie-title">Témoignage client satisfait</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Ajoutez plus de photos ici -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Vidéos -->
+    <section class="videos-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Vidéos</span>
+                <h2>Nos Vidéos</h2>
+                <p>Découvrez nos témoignages vidéo et moments forts</p>
+            </div>
+
+            <div class="videos-grid">
+                <!-- Vidéo 1 -->
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="assets/images/WhatsApp Image 2026-01-12 at 01.50.43.jpeg" alt="Témoignage étudiant">
+                        <div class="video-play-btn" data-video="assets/images/WhatsApp Video 2026-01-12 at 01.50.43.mp4">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Témoignage étudiant - Canada</h3>
+                        <p>Marie partage son expérience avec ISTA pour ses études au Canada</p>
+                    </div>
+                </div>
+
+                <!-- Vidéo 2 -->
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="assets/images/video-thumb2.jpg" alt="Présentation ISTA">
+                        <div class="video-play-btn" data-video="https://www.youtube.com/embed/VIDEO_ID_2">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Présentation ISTA</h3>
+                        <p>Découvrez notre agence et nos services en vidéo</p>
+                    </div>
+                </div>
+
+                <!-- Vidéo 3 -->
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="assets/images/video-thumb3.jpg" alt="Processus de visa">
+                        <div class="video-play-btn" data-video="https://www.youtube.com/embed/VIDEO_ID_3">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Processus de visa expliqué</h3>
+                        <p>Notre expert explique les étapes pour obtenir votre visa</p>
+                    </div>
+                </div>
+
+                <!-- Vidéo 4 -->
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="assets/images/WhatsApp Image 2026-01-12 at 01.50.43.jpeg" alt="Témoignage étudiant">
+                        <div class="video-play-btn" data-video="assets/images/WhatsApp Video 2026-01-12 at 01.50.43.mp4">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Témoignage étudiant - Canada</h3>
+                        <p>Marie partage son expérience avec ISTA pour ses études au Canada</p>
+                    </div>
+                </div>
+
+                <!-- Vidéo 5 -->
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="assets/images/video-thumb2.jpg" alt="Présentation ISTA">
+                        <div class="video-play-btn" data-video="https://www.youtube.com/embed/VIDEO_ID_2">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Présentation ISTA</h3>
+                        <p>Découvrez notre agence et nos services en vidéo</p>
+                    </div>
+                </div>
+
+                <!-- Vidéo 6 -->
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="assets/images/video-thumb3.jpg" alt="Processus de visa">
+                        <div class="video-play-btn" data-video="https://www.youtube.com/embed/VIDEO_ID_3">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Processus de visa expliqué</h3>
+                        <p>Notre expert explique les étapes pour obtenir votre visa</p>
+                    </div>
+                </div>
+
+                <!-- Vidéo 7 -->
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="assets/images/video-thumb3.jpg" alt="Processus de visa">
+                        <div class="video-play-btn" data-video="https://www.youtube.com/embed/VIDEO_ID_3">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Processus de visa expliqué</h3>
+                        <p>Notre expert explique les étapes pour obtenir votre visa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-about">
+                <img src="assets/images/remove.png" alt="ISTA Logo" class="footer-logo">
+                <h3>ISTA</h3>
+                <p>International Success Travel Agency - Votre partenaire de confiance pour tous vos projets d'immigration.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="visa-etude.html"><i class="fas fa-angle-right"></i> Visa d'Étude</a></li>
+                    <li><a href="visa-travail.html"><i class="fas fa-angle-right"></i> Visa de Travail</a></li>
+                    <li><a href="visa-visiteur.html"><i class="fas fa-angle-right"></i> Visa Visiteur</a></li>
+                    <li><a href="residence-permanente.html"><i class="fas fa-angle-right"></i> Résidence Permanente</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:+237672080166"><i class="fas fa-phone"></i> (+237) 672 080 166</a></li>
+                    <li><a href="tel:+237696214773"><i class="fas fa-phone"></i> (+237) 696 214 773</a></li>
+                    <li><a href="mailto:internationalsuccestravelagence@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Informations</h4>
+                <ul>
+                    <li><a href="temoignages.html"><i class="fas fa-angle-right"></i> Témoignages</a></li>
+                    <li><a href="paiement.html"><i class="fas fa-angle-right"></i> Paiement</a></li>
+                    <li><a href="colis.html"><i class="fas fa-angle-right"></i> Colis</a></li>
+                    <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 ISTA - International Success Travel Agency. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    
+    <script>
+        // Navigation mobile (identique à index.html)
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileToggle.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Fermer le menu au clic sur un lien
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Filtrage de la galerie
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.galerie-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Retirer la classe active de tous les boutons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Ajouter la classe active au bouton cliqué
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Gestion des vidéos
+        const videoButtons = document.querySelectorAll('.video-play-btn');
+        
+        videoButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const videoUrl = button.getAttribute('data-video');
+                
+                // Créer une modale pour la vidéo
+                const modal = document.createElement('div');
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                modal.style.zIndex = '2000';
+                modal.style.display = 'flex';
+                modal.style.alignItems = 'center';
+                modal.style.justifyContent = 'center';
+                
+                const videoContainer = document.createElement('div');
+                videoContainer.style.position = 'relative';
+                videoContainer.style.width = '90%';
+                videoContainer.style.maxWidth = '800px';
+                videoContainer.style.aspectRatio = '16/9';
+                
+                const iframe = document.createElement('iframe');
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.src = videoUrl + '?autoplay=1';
+                iframe.frameBorder = '0';
+                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                iframe.allowFullscreen = true;
+                
+                const closeBtn = document.createElement('button');
+                closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                closeBtn.style.position = 'absolute';
+                closeBtn.style.top = '-40px';
+                closeBtn.style.right = '0';
+                closeBtn.style.background = 'var(--gold)';
+                closeBtn.style.color = 'var(--dark-navy)';
+                closeBtn.style.border = 'none';
+                closeBtn.style.width = '35px';
+                closeBtn.style.height = '35px';
+                closeBtn.style.borderRadius = '50%';
+                closeBtn.style.cursor = 'pointer';
+                closeBtn.style.fontSize = '1.2rem';
+                closeBtn.style.display = 'flex';
+                closeBtn.style.alignItems = 'center';
+                closeBtn.style.justifyContent = 'center';
+                
+                closeBtn.addEventListener('click', () => {
+                    document.body.removeChild(modal);
+                });
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        document.body.removeChild(modal);
+                    }
+                });
+                
+                videoContainer.appendChild(iframe);
+                videoContainer.appendChild(closeBtn);
+                modal.appendChild(videoContainer);
+                document.body.appendChild(modal);
+            });
+        });
+
+        // Configuration Lightbox
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'albumLabel': "Image %1 sur %2",
+            'fadeDuration': 300,
+            'imageFadeDuration': 300
+        });
+    </script>
+</body>
+</html>
