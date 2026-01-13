@@ -183,6 +183,17 @@
             color: var(--gold);
         }
 
+        /* MODIFICATION: Icônes du menu en couleur sauf gold */
+        .nav-menu a i:not(.fa-chevron-down) {
+            color: var(--primary-blue);
+            transition: var(--transition);
+        }
+
+        .nav-menu > li > a:hover i:not(.fa-chevron-down),
+        .nav-menu > li > a.active i:not(.fa-chevron-down) {
+            color: var(--gold);
+        }
+
         .nav-menu a i {
             font-size: 1rem;
             width: 20px;
@@ -236,6 +247,10 @@
         .submenu li a i {
             font-size: 0.9rem;
             width: 18px;
+            color: var(--primary-blue);
+        }
+
+        .submenu li a:hover i {
             color: var(--gold);
         }
 
@@ -1135,9 +1150,10 @@
             gap: 1.5rem;
         }
 
+        /* MODIFICATION: Agrandir légèrement le cercle de la photo */
         .testimonial-avatar {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             overflow: hidden;
             border: 3px solid var(--gold);
@@ -1366,6 +1382,7 @@
             font-size: 0.95rem;
         }
 
+        /* MODIFICATION: Réduire la taille des flèches de l'équipe */
         .team-arrow {
             position: absolute;
             top: 50%;
@@ -1373,10 +1390,10 @@
             background: var(--gold);
             color: var(--dark-navy);
             border: none;
-            width: 45px;
-            height: 45px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
-            font-size: 1.2rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
@@ -1392,11 +1409,11 @@
         }
 
         .team-arrow.prev {
-            left: -60px;
+            left: -50px;
         }
 
         .team-arrow.next {
-            right: -60px;
+            right: -50px;
         }
 
         .team-dots {
@@ -2032,9 +2049,10 @@
                 padding-left: 1rem;
             }
             
+            /* MODIFICATION RESPONSIVE: Ajuster la taille de l'avatar */
             .testimonial-avatar {
-                width: 60px;
-                height: 60px;
+                width: 70px;
+                height: 70px;
             }
             
             .author-info h4 {
@@ -2071,10 +2089,11 @@
                 font-size: 1.3rem;
             }
             
+            /* MODIFICATION RESPONSIVE: Réduire les flèches en mobile */
             .team-arrow {
-                width: 45px;
-                height: 45px;
-                font-size: 1.2rem;
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
             }
             
             .team-arrow.prev {
@@ -2293,6 +2312,19 @@
                 width: 18px;
                 text-align: left;
             }
+            
+            /* MODIFICATION TRÈS PETITS ÉCRANS: Ajustement avatar */
+            .testimonial-avatar {
+                width: 65px;
+                height: 65px;
+            }
+            
+            /* MODIFICATION TRÈS PETITS ÉCRANS: Flèches équipe */
+            .team-arrow {
+                width: 28px;
+                height: 28px;
+                font-size: 0.8rem;
+            }
         }
 
     </style>
@@ -2314,7 +2346,8 @@
             </button>
 
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <!-- MODIFICATION: Ajout de la classe active pour le lien Accueil -->
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Accueil</a></li>
                 <li class="has-submenu">
                     <a href="index.html#services"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
                     <ul class="submenu">
@@ -2337,6 +2370,7 @@
         </div>
     </nav>
 
+    <!-- Le reste du code HTML reste inchangé... -->
     <!-- Section Hero -->
     <section class="hero" id="accueil">
         <div class="hero-overlay"></div>
@@ -3264,6 +3298,7 @@
     </footer>
 
     <script>
+        // Le script JavaScript reste inchangé...
         // ==================== NAVIGATION MOBILE ====================
 
         // Navigation mobile (corrigé)
