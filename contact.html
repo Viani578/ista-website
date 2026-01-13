@@ -224,6 +224,7 @@
             gap: 0.75rem;
             transition: var(--transition);
             font-size: 0.85rem;
+            white-space: nowrap;
         }
 
         .submenu li a:hover {
@@ -819,11 +820,10 @@
         }
 
         /* =========================================== */
-        /* MODIFICATIONS UNIQUEMENT POUR MOBILE (768px et moins) */
+        /* MODIFICATIONS POUR LE MENU MOBILE */
         /* =========================================== */
         
         @media (max-width: 768px) {
-            /* 1. CORRECTION DU SCROLL HORIZONTAL */
             html, body {
                 overflow-x: hidden;
                 max-width: 100vw;
@@ -836,32 +836,7 @@
                 max-width: 100%;
             }
             
-            /* 2. RÉDUCTION DES TAILLES DE POLICE */
-            h1 {
-                font-size: 2rem !important;
-                line-height: 1.2;
-            }
-            
-            h2 {
-                font-size: 1.7rem !important;
-                line-height: 1.2;
-            }
-            
-            h3 {
-                font-size: 1.4rem !important;
-                line-height: 1.3;
-            }
-            
-            h4 {
-                font-size: 1.2rem !important;
-            }
-            
-            p {
-                font-size: 0.95rem;
-                line-height: 1.5;
-            }
-            
-            /* 3. NAVBAR - LOGO PLUS PETIT ET CENTRÉ */
+            /* NAVBAR - LOGO PLUS PETIT ET CENTRÉ */
             .navbar {
                 padding: 0.8rem 0;
             }
@@ -898,14 +873,14 @@
                 padding: 0.3rem;
             }
             
-            /* 4. MENU MOBILE */
+            /* MENU MOBILE - STYLE SIMILAIRE À INDEX.HTML */
             .nav-menu {
                 position: fixed;
                 left: -100%;
                 top: 70px;
                 flex-direction: column;
                 background: var(--soft-white);
-                width: 100%;
+                width: 85%;
                 text-align: left;
                 transition: 0.3s;
                 padding: 1rem 0;
@@ -926,12 +901,37 @@
             }
             
             .nav-menu a {
-                padding: 1rem 1.5rem;
-                font-size: 1rem;
-                justify-content: space-between;
+                padding: 12px 15px;
+                font-size: 0.95rem;
+                justify-content: flex-start;
+                gap: 10px;
+                width: 100%;
             }
             
-            .has-submenu .submenu {
+            /* Icône à gauche, texte collé */
+            .nav-menu a i:first-child {
+                font-size: 1rem;
+                width: 22px;
+                text-align: left;
+            }
+            
+            /* Flèche pour sous-menu */
+            .has-submenu > a::after {
+                content: '\f078';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                position: absolute;
+                right: 15px;
+                transition: transform 0.3s ease;
+                font-size: 0.9rem;
+            }
+            
+            .has-submenu.active > a::after {
+                transform: rotate(180deg);
+            }
+            
+            /* Sous-menu mobile */
+            .submenu {
                 position: static;
                 opacity: 1;
                 visibility: visible;
@@ -941,9 +941,10 @@
                 border-radius: 0;
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height 0.3s ease;
+                transition: max-height 0.5s ease;
                 padding: 0;
                 min-width: 100%;
+                margin-left: 0;
             }
             
             .has-submenu.active .submenu {
@@ -952,11 +953,25 @@
             }
             
             .submenu li a {
-                padding: 0.8rem 2rem;
-                font-size: 0.9rem;
+                padding: 10px 15px 10px 35px;
+                font-size: 0.85rem;
+                border-left: 3px solid transparent;
+                gap: 10px;
             }
             
-            /* 5. HERO SECTION */
+            .submenu li a i {
+                font-size: 0.8rem;
+                width: 18px;
+                text-align: left;
+            }
+            
+            .submenu li a:hover {
+                border-left: 3px solid var(--gold);
+                background: rgba(212, 175, 55, 0.1);
+                padding-left: 38px;
+            }
+            
+            /* HERO SECTION */
             .contact-hero {
                 min-height: 50vh;
                 padding: 100px 0 40px;
@@ -973,145 +988,48 @@
                 padding: 0 0.5rem;
             }
             
-            /* 6. CONTACT SECTION - CARTES ENCORE PLUS RÉDUITES */
+            /* CONTACT SECTION */
             .contact-main-section {
-                padding: 2rem 0;
+                padding: 3rem 0;
             }
             
             .contact-container {
                 grid-template-columns: 1fr;
-                gap: 1.2rem;
+                gap: 2rem;
             }
             
             .contact-info {
-                gap: 1rem;
+                gap: 1.5rem;
             }
             
             .contact-info-card {
-                padding: 1.2rem;
-                border-radius: 12px;
-                margin-bottom: 0.5rem;
+                padding: 1.5rem;
+                border-radius: 15px;
             }
             
-            .contact-info-card h3 {
-                font-size: 1.1rem;
-                margin-bottom: 0.8rem;
-                gap: 0.6rem;
-            }
-            
-            .contact-info-card h3 i {
-                font-size: 1rem;
-            }
-            
-            .info-list {
-                gap: 0.6rem;
-            }
-            
-            .info-list li {
-                font-size: 0.85rem;
-                gap: 0.6rem;
-                line-height: 1.4;
-            }
-            
-            .info-list li i {
-                font-size: 0.8rem;
-                margin-top: 0.1rem;
-            }
-            
-            .info-list strong {
-                font-size: 0.87rem;
-            }
-            
-            .hours-list {
-                gap: 0.5rem;
-            }
-            
-            .hours-list li {
-                font-size: 0.85rem;
-                padding: 0.4rem 0;
-            }
-            
-            .social-contact {
-                gap: 0.6rem;
-                margin-top: 0.8rem;
-            }
-            
-            .social-contact a {
-                width: 34px;
-                height: 34px;
-                font-size: 0.9rem;
-            }
-            
-            /* 7. FORMULAIRE ENCORE PLUS RÉDUIT */
+            /* FORMULAIRE */
             .contact-form-container {
-                padding: 1.2rem;
-                border-radius: 12px;
-                margin-top: 0.5rem;
+                padding: 1.5rem;
+                border-radius: 15px;
             }
             
             .contact-form-container h2 {
-                font-size: 1.3rem;
-                margin-bottom: 0.3rem;
-            }
-            
-            .contact-form-container > p {
-                font-size: 0.9rem;
-                margin-bottom: 1.5rem;
-                line-height: 1.4;
-            }
-            
-            .form-group {
-                margin-bottom: 0.8rem;
-            }
-            
-            .form-group label {
-                font-size: 0.85rem;
-                margin-bottom: 0.3rem;
-            }
-            
-            .form-group input,
-            .form-group textarea,
-            .form-group select {
-                padding: 0.7rem 0.9rem;
-                font-size: 0.9rem;
-                border-radius: 10px;
-            }
-            
-            .form-group textarea {
-                min-height: 100px;
+                font-size: 1.5rem;
             }
             
             .form-row {
                 grid-template-columns: 1fr;
-                gap: 0.8rem;
+                gap: 1rem;
             }
             
-            .rgpd-checkbox {
-                gap: 0.5rem;
-                margin-bottom: 1.2rem;
-            }
-            
-            .rgpd-checkbox label {
-                font-size: 0.8rem;
-                line-height: 1.3;
-            }
-            
-            .submit-btn {
-                padding: 0.9rem;
-                font-size: 0.95rem;
-                border-radius: 10px;
-                gap: 0.5rem;
-            }
-            
-            /* 8. CARTE */
+            /* CARTE */
             .map-section {
                 padding: 2rem 0;
             }
             
             .map-wrapper {
-                height: 350px;
+                height: 300px;
                 border-radius: 15px;
-                border: 2px solid var(--gold);
             }
             
             .map-overlay {
@@ -1119,16 +1037,12 @@
                 top: 0;
                 left: 0;
                 max-width: 100%;
-                margin-bottom: 1rem;
+                margin: 1rem;
                 border-radius: 10px;
                 padding: 1rem;
             }
             
-            .map-overlay h3 {
-                font-size: 1.1rem;
-            }
-            
-            /* 9. FAQ */
+            /* FAQ */
             .faq-section {
                 padding: 3rem 0;
             }
@@ -1138,19 +1052,7 @@
                 font-size: 0.95rem;
             }
             
-            .faq-answer {
-                padding: 0 1.2rem;
-            }
-            
-            .faq-item.active .faq-answer {
-                padding: 0 1.2rem 1rem 1.2rem;
-            }
-            
-            .faq-answer p {
-                font-size: 0.9rem;
-            }
-            
-            /* 10. FOOTER */
+            /* FOOTER */
             .footer {
                 padding: 2rem 1rem 1rem;
             }
@@ -1158,66 +1060,16 @@
             .footer-container {
                 grid-template-columns: 1fr;
                 gap: 2rem;
-                margin-bottom: 2rem;
             }
             
-            .footer-about h3 {
-                font-size: 1.6rem;
-            }
-            
-            .footer-about p {
-                font-size: 0.9rem;
-                line-height: 1.6;
-            }
-            
-            .footer-links h4 {
-                font-size: 1.1rem;
-                margin-bottom: 1rem;
-            }
-            
-            .footer-links a {
-                font-size: 0.9rem;
-            }
-            
-            .social-links a {
-                width: 38px;
-                height: 38px;
-                font-size: 1rem;
-            }
-            
-            .footer-bottom {
-                padding: 1.5rem 1rem 0;
-                font-size: 0.85rem;
-            }
-            
-            /* 11. CONFIMATION MESSAGE */
-            .confirmation-message {
-                padding: 1.5rem;
-            }
-            
-            .confirmation-message i {
-                font-size: 2.5rem;
-            }
-            
-            .confirmation-message h3 {
-                font-size: 1.3rem;
-            }
-            
-            .confirmation-message p {
-                font-size: 0.95rem;
-            }
-            
-            /* 12. ÉLÉMENTS GÉNÉRAUX */
-            .section-header {
-                margin-bottom: 2rem;
-            }
+            /* ÉLÉMENTS GÉNÉRAUX */
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.7rem; }
+            h3 { font-size: 1.4rem; }
+            h4 { font-size: 1.2rem; }
             
             .section-header h2 {
-                font-size: 1.8rem !important;
-            }
-            
-            .section-header p {
-                font-size: 1rem;
+                font-size: 1.8rem;
             }
         }
         
@@ -1225,10 +1077,6 @@
         @media (max-width: 480px) {
             h1 {
                 font-size: 1.8rem;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
             }
             
             .contact-hero h1 {
@@ -1243,62 +1091,35 @@
                 font-size: 1rem;
             }
             
-            .map-wrapper {
-                height: 300px;
+            .nav-menu a {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .nav-menu a i:first-child {
+                font-size: 0.9rem;
+                width: 20px;
+            }
+            
+            .submenu li a {
+                padding: 8px 15px 8px 35px;
+                font-size: 0.8rem;
             }
             
             .contact-info-card {
-                padding: 1rem;
-            }
-            
-            .contact-form-container {
-                padding: 1rem;
-            }
-            
-            .contact-info-card h3 {
-                font-size: 1rem;
-            }
-            
-            .info-list li {
-                font-size: 0.82rem;
-            }
-            
-            .contact-form-container h2 {
-                font-size: 1.2rem;
-            }
-            
-            .form-group input,
-            .form-group textarea,
-            .form-group select {
-                padding: 0.6rem 0.8rem;
-            }
-            
-            .confirmation-message {
                 padding: 1.2rem;
             }
             
-            .confirmation-message i {
-                font-size: 2.2rem;
+            .contact-form-container {
+                padding: 1.2rem;
             }
             
-            .confirmation-message h3 {
-                font-size: 1.2rem;
+            .map-wrapper {
+                height: 250px;
             }
             
-            .confirmation-message p {
-                font-size: 0.9rem;
-            }
-        }
-        
-        /* Pour éviter tout débordement */
-        @media (max-width: 768px) {
-            img, video, iframe, canvas, svg {
-                max-width: 100%;
-                height: auto;
-            }
-            
-            * {
-                max-width: 100%;
+            .footer {
+                padding: 1.5rem 0.8rem 0.8rem;
             }
         }
     </style>
@@ -1320,25 +1141,25 @@
             </button>
 
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="index.html"><i class="fas fa-home"></i>Accueil</a></li>
                 <li class="has-submenu">
-                    <a href="index.html#services"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
+                    <a href="index.html#services"><i class="fas fa-passport"></i>Nos Services<i class="fas fa-chevron-down"></i></a>
                     <ul class="submenu">
-                        <li><a href="#etude.html"><i class="fas fa-graduation-cap"></i> Visa d'Etude</a></li>
-                        <li><a href="#travail.html"><i class="fas fa-briefcase"></i> Visa de Travail</a></li>
-                        <li><a href="#visiteur.html"><i class="fas fa-plane"></i> Visa Visiteur</a></li>
-                        <li><a href="#residence.html"><i class="fas fa-home"></i> Résidence Permanente</a></li>
-                        <li><a href="#billet.html"><i class="fas fa-ticket-alt"></i> Billets d'avion</a></li>
-                        <li><a href="#logement.html"><i class="fas fa-building"></i> Assistance Logement</a></li>
-                        <li><a href="#sejour.html"><i class="fas fa-id-card"></i> Assistance Titre de Séjour</a></li>
-                        <li><a href="#admissions.html"><i class="fas fa-university"></i> Admissions</a></li>
-                        <li><a href="galerie.html"><i class="fas fa-images"></i> Galerie Photo/Video</a></li>
+                        <li><a href="#etude.html"><i class="fas fa-graduation-cap"></i>Visa d'Etude</a></li>
+                        <li><a href="#travail.html"><i class="fas fa-briefcase"></i>Visa de Travail</a></li>
+                        <li><a href="#visiteur.html"><i class="fas fa-plane"></i>Visa Visiteur</a></li>
+                        <li><a href="#residence.html"><i class="fas fa-home"></i>Résidence Permanente</a></li>
+                        <li><a href="#billet.html"><i class="fas fa-ticket-alt"></i>Billets d'avion</a></li>
+                        <li><a href="#logement.html"><i class="fas fa-building"></i>Assistance Logement</a></li>
+                        <li><a href="#sejour.html"><i class="fas fa-id-card"></i>Assistance Titre de Séjour</a></li>
+                        <li><a href="#admissions.html"><i class="fas fa-university"></i>Admissions</a></li>
+                        <li><a href="galerie.html"><i class="fas fa-images"></i>Galerie Photo/Video</a></li>
                     </ul>
                 </li>
-                <li><a href="colis.html"><i class="fas fa-university"></i> Envoyer/Recevoir un colis</a></li>
-                <li><a href="index.html#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
-                <li><a href="index.html#equipe"><i class="fas fa-users"></i> Infos Paiement</a></li>
-                <li><a href="#contact" class="active"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="colis.html"><i class="fas fa-university"></i>Envoyer/Recevoir un colis</a></li>
+                <li><a href="index.html#temoignages"><i class="fas fa-star"></i>Témoignages</a></li>
+                <li><a href="index.html#equipe"><i class="fas fa-users"></i>Infos Paiement</a></li>
+                <li><a href="#contact" class="active"><i class="fas fa-envelope"></i>Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -1493,12 +1314,200 @@
                         <label for="destination">Destination souhaitée</label>
                         <select id="destination" name="destination">
                             <option value="">Sélectionnez une destination</option>
-                            <option value="canada">Canada</option>
-                            <option value="france">France</option>
-                            <option value="belgique">Belgique</option>
+                            <option value="afghanistan">Afghanistan</option>
+                            <option value="afrique_sud">Afrique du Sud</option>
+                            <option value="albanie">Albanie</option>
+                            <option value="algerie">Algérie</option>
                             <option value="allemagne">Allemagne</option>
-                            <option value="etats-unis">États-Unis</option>
-                            <option value="autres">Autres</option>
+                            <option value="andorre">Andorre</option>
+                            <option value="angola">Angola</option>
+                            <option value="antigua_et_barbuda">Antigua-et-Barbuda</option>
+                            <option value="arabie_saoudite">Arabie saoudite</option>
+                            <option value="argentine">Argentine</option>
+                            <option value="armenie">Arménie</option>
+                            <option value="australie">Australie</option>
+                            <option value="autriche">Autriche</option>
+                            <option value="azerbaidjan">Azerbaïdjan</option>
+                            <option value="bahamas">Bahamas</option>
+                            <option value="bahrein">Bahreïn</option>
+                            <option value="bangladesh">Bangladesh</option>
+                            <option value="barbade">Barbade</option>
+                            <option value="belgique">Belgique</option>
+                            <option value="belize">Belize</option>
+                            <option value="benin">Bénin</option>
+                            <option value="bhoutan">Bhoutan</option>
+                            <option value="bielorussie">Biélorussie</option>
+                            <option value="birmanie">Birmanie</option>
+                            <option value="bolivie">Bolivie</option>
+                            <option value="bosnie_herzegovine">Bosnie-Herzégovine</option>
+                            <option value="botswana">Botswana</option>
+                            <option value="bresil">Brésil</option>
+                            <option value="brunei">Brunei</option>
+                            <option value="bulgarie">Bulgarie</option>
+                            <option value="burkina_faso">Burkina Faso</option>
+                            <option value="burundi">Burundi</option>
+                            <option value="cambodge">Cambodge</option>
+                            <option value="cameroun">Cameroun</option>
+                            <option value="canada">Canada</option>
+                            <option value="cap_vert">Cap-Vert</option>
+                            <option value="republique_centrafricaine">République centrafricaine</option>
+                            <option value="chili">Chili</option>
+                            <option value="chine">Chine</option>
+                            <option value="chypre">Chypre</option>
+                            <option value="colombie">Colombie</option>
+                            <option value="comores">Comores</option>
+                            <option value="congo">Congo</option>
+                            <option value="congo_rdc">Congo (RDC)</option>
+                            <option value="coree_nord">Corée du Nord</option>
+                            <option value="coree_sud">Corée du Sud</option>
+                            <option value="costa_rica">Costa Rica</option>
+                            <option value="cote_divoire">Côte d'Ivoire</option>
+                            <option value="croatie">Croatie</option>
+                            <option value="cuba">Cuba</option>
+                            <option value="danemark">Danemark</option>
+                            <option value="djibouti">Djibouti</option>
+                            <option value="dominique">Dominique</option>
+                            <option value="egypte">Égypte</option>
+                            <option value="emirats_arabes_unis">Émirats arabes unis</option>
+                            <option value="equateur">Équateur</option>
+                            <option value="erythree">Érythrée</option>
+                            <option value="espagne">Espagne</option>
+                            <option value="estonie">Estonie</option>
+                            <option value="etats_unis">États-Unis</option>
+                            <option value="ethiopie">Éthiopie</option>
+                            <option value="fidji">Fidji</option>
+                            <option value="finlande">Finlande</option>
+                            <option value="france">France</option>
+                            <option value="gabon">Gabon</option>
+                            <option value="gambie">Gambie</option>
+                            <option value="georgie">Géorgie</option>
+                            <option value="ghana">Ghana</option>
+                            <option value="grece">Grèce</option>
+                            <option value="grenade">Grenade</option>
+                            <option value="guatemala">Guatemala</option>
+                            <option value="guinee">Guinée</option>
+                            <option value="guinee_bissau">Guinée-Bissau</option>
+                            <option value="guinee_equatoriale">Guinée équatoriale</option>
+                            <option value="guyana">Guyana</option>
+                            <option value="haiti">Haïti</option>
+                            <option value="honduras">Honduras</option>
+                            <option value="hongrie">Hongrie</option>
+                            <option value="inde">Inde</option>
+                            <option value="indonesie">Indonésie</option>
+                            <option value="irak">Irak</option>
+                            <option value="iran">Iran</option>
+                            <option value="irlande">Irlande</option>
+                            <option value="islande">Islande</option>
+                            <option value="israel">Israël</option>
+                            <option value="italie">Italie</option>
+                            <option value="jamaique">Jamaïque</option>
+                            <option value="japon">Japon</option>
+                            <option value="jordanie">Jordanie</option>
+                            <option value="kazakhstan">Kazakhstan</option>
+                            <option value="kenya">Kenya</option>
+                            <option value="kirghizistan">Kirghizistan</option>
+                            <option value="kiribati">Kiribati</option>
+                            <option value="koweit">Koweït</option>
+                            <option value="laos">Laos</option>
+                            <option value="lesotho">Lesotho</option>
+                            <option value="lettonie">Lettonie</option>
+                            <option value="liban">Liban</option>
+                            <option value="liberia">Libéria</option>
+                            <option value="libye">Libye</option>
+                            <option value="liechtenstein">Liechtenstein</option>
+                            <option value="lituanie">Lituanie</option>
+                            <option value="luxembourg">Luxembourg</option>
+                            <option value="macedoine">Macédoine</option>
+                            <option value="madagascar">Madagascar</option>
+                            <option value="malaisie">Malaisie</option>
+                            <option value="malawi">Malawi</option>
+                            <option value="maldives">Maldives</option>
+                            <option value="mali">Mali</option>
+                            <option value="malte">Malte</option>
+                            <option value="maroc">Maroc</option>
+                            <option value="marshall">Îles Marshall</option>
+                            <option value="maurice">Maurice</option>
+                            <option value="mauritanie">Mauritanie</option>
+                            <option value="mexique">Mexique</option>
+                            <option value="micronesie">Micronésie</option>
+                            <option value="moldavie">Moldavie</option>
+                            <option value="monaco">Monaco</option>
+                            <option value="mongolie">Mongolie</option>
+                            <option value="montenegro">Monténégro</option>
+                            <option value="mozambique">Mozambique</option>
+                            <option value="namibie">Namibie</option>
+                            <option value="nauru">Nauru</option>
+                            <option value="nepal">Népal</option>
+                            <option value="nicaragua">Nicaragua</option>
+                            <option value="niger">Niger</option>
+                            <option value="nigeria">Nigeria</option>
+                            <option value="norvege">Norvège</option>
+                            <option value="nouvelle_zelande">Nouvelle-Zélande</option>
+                            <option value="oman">Oman</option>
+                            <option value="ouganda">Ouganda</option>
+                            <option value="ouzbekistan">Ouzbékistan</option>
+                            <option value="pakistan">Pakistan</option>
+                            <option value="palaos">Palaos</option>
+                            <option value="palestine">Palestine</option>
+                            <option value="panama">Panama</option>
+                            <option value="papouasie_nouvelle_guinee">Papouasie-Nouvelle-Guinée</option>
+                            <option value="paraguay">Paraguay</option>
+                            <option value="pays_bas">Pays-Bas</option>
+                            <option value="perou">Pérou</option>
+                            <option value="philippines">Philippines</option>
+                            <option value="pologne">Pologne</option>
+                            <option value="portugal">Portugal</option>
+                            <option value="qatar">Qatar</option>
+                            <option value="roumanie">Roumanie</option>
+                            <option value="royaume_uni">Royaume-Uni</option>
+                            <option value="russie">Russie</option>
+                            <option value="rwanda">Rwanda</option>
+                            <option value="saint_kitts_et_nevis">Saint-Christophe-et-Niévès</option>
+                            <option value="sainte_lucie">Sainte-Lucie</option>
+                            <option value="saint_vincent_et_grenadines">Saint-Vincent-et-les-Grenadines</option>
+                            <option value="saint_marin">Saint-Marin</option>
+                            <option value="salomon">Îles Salomon</option>
+                            <option value="salvador">Salvador</option>
+                            <option value="samoa">Samoa</option>
+                            <option value="sao_tome_et_principe">Sao Tomé-et-Principe</option>
+                            <option value="senegal">Sénégal</option>
+                            <option value="serbie">Serbie</option>
+                            <option value="seychelles">Seychelles</option>
+                            <option value="sierra_leone">Sierra Leone</option>
+                            <option value="singapour">Singapour</option>
+                            <option value="slovaquie">Slovaquie</option>
+                            <option value="slovenie">Slovénie</option>
+                            <option value="somalie">Somalie</option>
+                            <option value="soudan">Soudan</option>
+                            <option value="soudan_du_sud">Soudan du Sud</option>
+                            <option value="sri_lanka">Sri Lanka</option>
+                            <option value="suède">Suède</option>
+                            <option value="suisse">Suisse</option>
+                            <option value="suriname">Suriname</option>
+                            <option value="swaziland">Swaziland</option>
+                            <option value="syrie">Syrie</option>
+                            <option value="tadjikistan">Tadjikistan</option>
+                            <option value="tanzanie">Tanzanie</option>
+                            <option value="tchad">Tchad</option>
+                            <option value="tchequie">Tchéquie</option>
+                            <option value="thailande">Thaïlande</option>
+                            <option value="timor_oriental">Timor oriental</option>
+                            <option value="togo">Togo</option>
+                            <option value="tonga">Tonga</option>
+                            <option value="trinite_et_tobago">Trinité-et-Tobago</option>
+                            <option value="tunisie">Tunisie</option>
+                            <option value="turkmenistan">Turkménistan</option>
+                            <option value="turquie">Turquie</option>
+                            <option value="tuvalu">Tuvalu</option>
+                            <option value="ukraine">Ukraine</option>
+                            <option value="uruguay">Uruguay</option>
+                            <option value="vanuatu">Vanuatu</option>
+                            <option value="vatican">Vatican</option>
+                            <option value="venezuela">Venezuela</option>
+                            <option value="vietnam">Vietnam</option>
+                            <option value="yemen">Yémen</option>
+                            <option value="zambie">Zambie</option>
+                            <option value="zimbabwe">Zimbabwe</option>
                         </select>
                     </div>
                     
@@ -1567,7 +1576,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Nous nous engageons à répondre à toutes les demandes dans un délai maximum de 24 heures ouvrées. Pour les demandes urgentes, nous vous recommandons de nous appeler directement au +33 1 23 45 67 89.</p>
+                        <p>Nous nous engageons à répondre à toutes les demandes dans un délai maximum de 24 heures ouvrées. Pour les demandes urgentes, nous vous recommandons de nous appeler directement.</p>
                     </div>
                 </div>
 
@@ -1589,7 +1598,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Pour optimiser notre échange, préparez si possible : votre passeport en cours de validité, vos derniers diplômes, votre CV (pour les demandes de travail), et tout document pertinent selon votre projet (relevés bancaires, attestations, etc.).</p>
+                        <p>Pour optimiser notre échange, préparez si possible : votre passeport en cours de validité, vos derniers diplômes, votre CV (pour les demandes de travail), et tout document pertinent selon votre projet.</p>
                     </div>
                 </div>
 
@@ -1600,7 +1609,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Oui, nous proposons des consultations par visioconférence (Zoom, Teams, Google Meet) et par téléphone. C'est une solution pratique pour nos clients ne pouvant pas se déplacer ou habitant.</p>
+                        <p>Oui, nous proposons des consultations par visioconférence et par téléphone. C'est une solution pratique pour nos clients ne pouvant pas se déplacer.</p>
                     </div>
                 </div>
 
@@ -1635,29 +1644,29 @@
             <div class="footer-links">
                 <h4>Services</h4>
                 <ul>
-                    <li><a href="visa-etude.html"><i class="fas fa-angle-right"></i> Visa d'Étude</a></li>
-                    <li><a href="visa-travail.html"><i class="fas fa-angle-right"></i> Visa de Travail</a></li>
-                    <li><a href="visa-visiteur.html"><i class="fas fa-angle-right"></i> Visa Visiteur</a></li>
-                    <li><a href="residence-permanente.html"><i class="fas fa-angle-right"></i> Résidence Permanente</a></li>
+                    <li><a href="visa-etude.html"><i class="fas fa-angle-right"></i>Visa d'Étude</a></li>
+                    <li><a href="visa-travail.html"><i class="fas fa-angle-right"></i>Visa de Travail</a></li>
+                    <li><a href="visa-visiteur.html"><i class="fas fa-angle-right"></i>Visa Visiteur</a></li>
+                    <li><a href="residence-permanente.html"><i class="fas fa-angle-right"></i>Résidence Permanente</a></li>
                 </ul>
             </div>
 
             <div class="footer-links">
                 <h4>Contact</h4>
                 <ul>
-                    <li><a href="tel:+237672080166"><i class="fas fa-phone"></i> (+237) 672 080 166</a></li>
-                    <li><a href="tel:+237696214773"><i class="fas fa-phone"></i> (+237) 696 214 773</a></li>
-                    <li><a href="mailto:internationalsuccestravelagence@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
+                    <li><a href="tel:+237672080166"><i class="fas fa-phone"></i>(+237) 672 080 166</a></li>
+                    <li><a href="tel:+237696214773"><i class="fas fa-phone"></i>(+237) 696 214 773</a></li>
+                    <li><a href="mailto:internationalsuccestravelagence@gmail.com"><i class="fas fa-envelope"></i>Email</a></li>
                 </ul>
             </div>
 
             <div class="footer-links">
                 <h4>Informations</h4>
                 <ul>
-                    <li><a href="temoignages.html"><i class="fas fa-angle-right"></i> Témoignages</a></li>
-                    <li><a href="paiement.html"><i class="fas fa-angle-right"></i> Paiement</a></li>
-                    <li><a href="colis.html"><i class="fas fa-angle-right"></i> Colis</a></li>
-                    <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                    <li><a href="temoignages.html"><i class="fas fa-angle-right"></i>Témoignages</a></li>
+                    <li><a href="paiement.html"><i class="fas fa-angle-right"></i>Paiement</a></li>
+                    <li><a href="colis.html"><i class="fas fa-angle-right"></i>Colis</a></li>
+                    <li><a href="contact.html"><i class="fas fa-angle-right"></i>Contact</a></li>
                 </ul>
             </div>
         </div>
