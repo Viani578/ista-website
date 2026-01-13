@@ -58,15 +58,11 @@
             background: var(--cream);
             overflow-x: hidden;
             line-height: 1.6;
-            transition: background-color 0.3s ease;
         }
 
         /* Empêcher le défilement quand le menu est ouvert */
         body.menu-open {
             overflow: hidden;
-            position: fixed;
-            width: 100%;
-            height: 100%;
         }
 
         /* Typographie améliorée */
@@ -109,6 +105,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         /* Logo */
@@ -117,6 +114,8 @@
             align-items: center;
             gap: 1.2rem;
             text-decoration: none;
+            z-index: 1003;
+            position: relative;
         }
 
         .logo-img {
@@ -253,6 +252,27 @@
             color: var(--dark-navy);
             cursor: pointer;
             padding: 0.5rem;
+            z-index: 1002;
+            position: relative;
+        }
+
+        /* Overlay pour menu mobile */
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-overlay.active {
+            display: block;
+            opacity: 1;
         }
 
         /* Section Hero */
@@ -1674,27 +1694,32 @@
                 overflow-x: hidden;
             }
             
-            /* ==================== NAVBAR ==================== */
+            /* ==================== NAVBAR MOBILE ==================== */
             .mobile-toggle {
                 display: block;
-                z-index: 1001;
+                position: relative;
+                z-index: 1002;
+                cursor: pointer;
+                background: none;
+                border: none;
+                padding: 10px;
             }
             
             .nav-menu {
                 position: fixed;
+                top: 0;
                 left: -100%;
-                top: 85px;
-                flex-direction: column;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
                 background: var(--soft-white);
-                width: 100%;
-                text-align: left;
-                transition: 0.3s;
-                padding: 1rem 0;
+                flex-direction: column;
+                padding: 85px 0 0 0;
                 gap: 0;
-                box-shadow: var(--shadow-lg);
-                max-height: calc(100vh - 85px);
+                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+                z-index: 1001;
                 overflow-y: auto;
-                z-index: 1000;
             }
             
             .nav-menu.active {
@@ -1707,16 +1732,31 @@
             }
             
             .nav-menu a {
-                padding: 1rem 1.5rem;
+                padding: 15px 20px;
                 font-size: 1rem;
                 justify-content: space-between;
                 width: 100%;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
             }
             
             .nav-menu a i:first-child {
                 width: 25px;
                 text-align: center;
                 font-size: 1.1rem;
+            }
+            
+            /* Logo ajusté pour mobile */
+            .logo-img {
+                height: 45px !important;
+            }
+            
+            .logo-text h1 {
+                font-size: 1rem !important;
+            }
+            
+            .logo-text p {
+                font-size: 0.5rem !important;
+                letter-spacing: 1px;
             }
             
             /* Sous-menu sur mobile */
@@ -1741,7 +1781,7 @@
             }
             
             .submenu li a {
-                padding: 0.8rem 2.5rem;
+                padding: 12px 30px;
                 font-size: 0.95rem;
                 border-left: 3px solid transparent;
             }
@@ -1758,26 +1798,15 @@
                 color: var(--gold);
             }
             
-            /* Logo réduit */
-            .logo-img {
-                height: 45px !important;
+            /* Overlay pour menu mobile */
+            .menu-overlay.active {
+                display: block;
+                opacity: 1;
             }
             
-            .logo-text h1 {
-                font-size: 1rem !important;
-            }
-            
-            .logo-text p {
-                font-size: 0.5rem !important;
-                letter-spacing: 1px;
-            }
-            
-            .nav-container {
-                justify-content: space-between;
-            }
-            
-            .logo-section {
-                gap: 0.5rem;
+            /* Ajuster le contenu quand le menu est ouvert */
+            body.menu-open {
+                overflow: hidden;
             }
             
             /* ==================== HERO SECTION ==================== */
@@ -2249,13 +2278,17 @@
             }
             
             /* Navigation mobile sur très petits écrans */
+            .nav-menu {
+                width: 85%;
+            }
+            
             .nav-menu a {
-                padding: 0.8rem 1rem;
+                padding: 12px 15px;
                 font-size: 0.9rem;
             }
             
             .submenu li a {
-                padding: 0.7rem 2rem;
+                padding: 10px 25px;
                 font-size: 0.85rem;
             }
             
@@ -2273,6 +2306,9 @@
     </style>
 </head>
 <body>
+    <!-- Overlay pour menu mobile -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
@@ -3239,17 +3275,26 @@
     </footer>
 
     <script>
-        // Navigation mobile
+        // ==================== NAVIGATION MOBILE ====================
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
         const body = document.body;
 
-        mobileToggle.addEventListener('click', () => {
+        // Toggle menu mobile
+        mobileToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             navMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
             body.classList.toggle('menu-open');
-            mobileToggle.innerHTML = navMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+            
+            // Changer l'icône
+            const icon = mobileToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
         });
 
         // Gestion des sous-menus sur mobile
@@ -3286,8 +3331,9 @@
         document.querySelectorAll('.nav-menu a:not(.submenu-trigger)').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
                 body.classList.remove('menu-open');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                mobileToggle.querySelector('i').className = 'fas fa-bars';
                 
                 // Fermer tous les sous-menus
                 document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
@@ -3296,26 +3342,27 @@
             });
         });
 
-        // Fermer le menu en cliquant à l'extérieur
-        document.addEventListener('click', (e) => {
-            const isClickInsideMenu = navMenu.contains(e.target);
-            const isClickOnToggle = mobileToggle.contains(e.target);
+        // Fermer le menu en cliquant sur l'overlay
+        menuOverlay.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            body.classList.remove('menu-open');
+            mobileToggle.querySelector('i').className = 'fas fa-bars';
             
-            if (!isClickInsideMenu && !isClickOnToggle && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                body.classList.remove('menu-open');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                
-                // Fermer tous les sous-menus
-                document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
-                    menu.classList.remove('mobile-open');
-                });
-            }
+            // Fermer tous les sous-menus
+            document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
+                menu.classList.remove('mobile-open');
+            });
         });
 
         // Fermer les sous-menus en redimensionnant la fenêtre
         window.addEventListener('resize', () => {
             if (window.innerWidth > 768) {
+                navMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                body.classList.remove('menu-open');
+                mobileToggle.querySelector('i').className = 'fas fa-bars';
+                
                 document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
                     menu.classList.remove('mobile-open');
                 });
