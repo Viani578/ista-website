@@ -1386,18 +1386,38 @@
         const videoButtons = document.querySelectorAll('.video-play-btn');
         const allVideoItems = Array.from(document.querySelectorAll('.video-item'));
         
-        // Variable pour stocker la dernière modal ouverte
+        // Variables pour gérer les modales
         let currentModal = null;
         let modalType = null; // 'image' ou 'video'
+        let modalHistoryState = null;
         
-        // Gestion du bouton retour du mobile
+        // Gestion du bouton retour du mobile - CORRIGÉ
         window.addEventListener('popstate', function(event) {
+            // Si on a une modale ouverte, on la ferme sans naviguer
             if (currentModal) {
+                event.preventDefault();
                 closeCurrentModal();
             }
         });
         
-        videoButtons.forEach(button => {
+        // Fonction pour empêcher la navigation par défaut
+        function preventBackNavigation(e) {
+            if (currentModal) {
+                // Empêcher la navigation normale
+                history.pushState(modalHistoryState, '', window.location.pathname + window.location.search);
+                closeCurrentModal();
+                return false;
+            }
+        }
+        
+        // Intercepter les événements de navigation
+        window.addEventListener('beforeunload', function(e) {
+            if (currentModal) {
+                // Ne rien faire, laisser la modale ouverte
+            }
+        });
+        
+        videoButtons.forEach((button, index) => {
             button.addEventListener('click', (e) => {
                 e.stopPropagation(); // Empêcher la propagation
                 
@@ -1407,8 +1427,8 @@
                 const videoTitle = videoItem.querySelector('.video-info h3').textContent;
                 const videoDescription = videoItem.querySelector('.video-info p').textContent;
                 
-                // Ajouter un état à l'historique pour gérer le bouton retour
-                history.pushState({ modal: 'video', index: videoIndex }, '', '#video-' + videoIndex);
+                // Stocker l'état dans notre variable, pas dans l'historique du navigateur
+                modalHistoryState = { modal: 'video', index: videoIndex };
                 
                 showVideoModal(videoUrl, videoTitle, videoDescription, videoIndex);
             });
@@ -1558,16 +1578,20 @@
                 document.body.style.overflow = '';
                 document.documentElement.style.overflow = '';
                 
-                document.body.removeChild(modal);
+                if (document.body.contains(modal)) {
+                    document.body.removeChild(modal);
+                }
                 document.removeEventListener('keydown', handleKeydown);
                 
-                // Revenir à l'état précédent dans l'historique
-                if (history.state && history.state.modal) {
-                    history.back();
-                }
-                
+                // Réinitialiser les variables
                 currentModal = null;
                 modalType = null;
+                modalHistoryState = null;
+                
+                // Réinitialiser l'URL sans changer l'historique
+                if (window.location.hash) {
+                    history.replaceState(null, '', window.location.pathname + window.location.search);
+                }
             };
             
             // Fonction pour fermer la modal courante
@@ -1575,23 +1599,14 @@
                 if (modalType === 'video') {
                     closeVideoModal();
                 } else if (modalType === 'image') {
-                    // Appeler la fonction de fermeture d'image si elle existe
-                    if (window.closeImageModal) {
+                    // Appeler la fonction de fermeture d'image
+                    if (typeof window.closeImageModal === 'function') {
                         window.closeImageModal();
-                    } else {
-                        document.body.style.overflow = '';
-                        document.documentElement.style.overflow = '';
-                        const imageModal = document.querySelector('.image-lightbox-modal');
-                        if (imageModal) {
-                            document.body.removeChild(imageModal);
-                        }
                     }
                 }
-                currentModal = null;
-                modalType = null;
             };
             
-            // Fonction pour naviguer vers une vidéo
+            // Fonction pour naviguer vers une vidéo - CORRIGÉ
             const navigateToVideo = (direction) => {
                 let newIndex;
                 if (direction === 'next') {
@@ -1606,8 +1621,8 @@
                 const nextTitle = nextItem.querySelector('.video-info h3').textContent;
                 const nextDescription = nextItem.querySelector('.video-info p').textContent;
                 
-                // Mettre à jour l'historique
-                history.replaceState({ modal: 'video', index: newIndex }, '', '#video-' + newIndex);
+                // Mettre à jour notre état local seulement
+                modalHistoryState = { modal: 'video', index: newIndex };
                 
                 // Fermer la modale actuelle
                 closeVideoModal();
@@ -1676,7 +1691,7 @@
             }
         }
 
-        // Lightbox pour les images de la galerie - AVEC DÉFILEMENT DÉSACTIVÉ
+        // Lightbox pour les images de la galerie - CORRIGÉ
         const galleryImageItems = Array.from(document.querySelectorAll('.galerie-item'));
         const zoomButtons = document.querySelectorAll('.galerie-zoom-btn');
 
@@ -1688,8 +1703,8 @@
             document.body.style.overflow = 'hidden';
             document.documentElement.style.overflow = 'hidden';
             
-            // Ajouter un état à l'historique pour gérer le bouton retour
-            history.pushState({ modal: 'image', index: currentIndex }, '', '#image-' + currentIndex);
+            // Stocker l'état dans notre variable
+            modalHistoryState = { modal: 'image', index: currentIndex };
             
             // Créer la modale
             const modal = document.createElement('div');
@@ -1791,22 +1806,26 @@
                 document.body.style.overflow = '';
                 document.documentElement.style.overflow = '';
                 
-                document.body.removeChild(modal);
+                if (document.body.contains(modal)) {
+                    document.body.removeChild(modal);
+                }
                 document.removeEventListener('keydown', handleKeydown);
                 
-                // Revenir à l'état précédent dans l'historique
-                if (history.state && history.state.modal) {
-                    history.back();
-                }
-                
+                // Réinitialiser les variables
                 currentModal = null;
                 modalType = null;
+                modalHistoryState = null;
+                
+                // Réinitialiser l'URL sans changer l'historique
+                if (window.location.hash) {
+                    history.replaceState(null, '', window.location.pathname + window.location.search);
+                }
             };
             
             // Exposer la fonction globalement pour la gestion du bouton retour
             window.closeImageModal = closeImageModal;
             
-            // Fonction pour naviguer vers une image
+            // Fonction pour naviguer vers une image - CORRIGÉ
             const navigateToImage = (direction) => {
                 let newIndex;
                 if (direction === 'next') {
@@ -1820,8 +1839,8 @@
                 const nextTitle = nextItem.querySelector('.galerie-title').textContent;
                 const nextCategory = nextItem.querySelector('.galerie-category').textContent;
                 
-                // Mettre à jour l'historique
-                history.replaceState({ modal: 'image', index: newIndex }, '', '#image-' + newIndex);
+                // Mettre à jour notre état local seulement
+                modalHistoryState = { modal: 'image', index: newIndex };
                 
                 // Fermer la modale actuelle
                 closeImageModal();
@@ -2076,6 +2095,78 @@
             }
         `;
         document.head.appendChild(style);
+        
+        // Nettoyer l'URL quand la page est chargée
+        window.addEventListener('load', function() {
+            if (window.location.hash) {
+                history.replaceState(null, '', window.location.pathname + window.location.search);
+            }
+        });
+
+                // Empêcher la navigation par défaut quand une modale est ouverte
+        (function() {
+            let modalOpen = false;
+            
+            // Surcharger la fonction pushState pour éviter les problèmes
+            const originalPushState = history.pushState;
+            history.pushState = function(state, title, url) {
+                if (!modalOpen) {
+                    originalPushState.call(history, state, title, url);
+                }
+            };
+            
+            // Surcharger la fonction replaceState
+            const originalReplaceState = history.replaceState;
+            history.replaceState = function(state, title, url) {
+                if (!modalOpen) {
+                    originalReplaceState.call(history, state, title, url);
+                }
+            };
+            
+            // Surveiller l'ouverture/fermeture des modales
+            const originalShowImageLightbox = window.showImageLightbox;
+            const originalShowVideoModal = window.showVideoModal;
+            
+            if (originalShowImageLightbox) {
+                window.showImageLightbox = function(...args) {
+                    modalOpen = true;
+                    return originalShowImageLightbox(...args);
+                };
+            }
+            
+            if (originalShowVideoModal) {
+                window.showVideoModal = function(...args) {
+                    modalOpen = true;
+                    return originalShowVideoModal(...args);
+                };
+            }
+            
+            // Fonction pour réinitialiser quand une modale est fermée
+            window.resetModalState = function() {
+                modalOpen = false;
+                currentModal = null;
+                modalType = null;
+                modalHistoryState = null;
+            };
+            
+            // Exposer les fonctions de fermeture
+            window.closeCurrentModal = function() {
+                if (modalType === 'video') {
+                    // Appeler la fonction de fermeture de vidéo
+                    const videoModal = document.querySelector('.video-lightbox-modal');
+                    if (videoModal) {
+                        const closeBtn = videoModal.querySelector('.modal-close-btn');
+                        if (closeBtn) closeBtn.click();
+                    }
+                } else if (modalType === 'image') {
+                    // Appeler la fonction de fermeture d'image
+                    if (typeof window.closeImageModal === 'function') {
+                        window.closeImageModal();
+                    }
+                }
+                resetModalState();
+            };
+        })();
     </script>
 </body>
 </html>
