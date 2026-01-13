@@ -1696,14 +1696,15 @@
                 padding: 0.3rem;
             }
             
-            /* 4. MENU MOBILE (IDENTIQUE À CONTACT.HTML) */
+            /* 4. MENU MOBILE - MODIFICATIONS POUR GLISSER DE GAUCHE À DROITE */
             .nav-menu {
                 position: fixed;
                 left: -100%;
                 top: 70px;
                 flex-direction: column;
                 background: var(--soft-white);
-                width: 100%;
+                width: 85%;
+                height: calc(100vh - 70px);
                 text-align: left;
                 transition: 0.3s;
                 padding: 1rem 0;
@@ -2285,7 +2286,7 @@
                 <li><a href="colis.html"><i class="fas fa-university"></i> Envoyer/Recevoir un colis</a></li>
                 <li><a href="index.html#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
                 <li><a href="index.html#equipe"><i class="fas fa-users"></i> Infos Paiement</a></li>
-                <li><a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
         </div>
     </nav>
