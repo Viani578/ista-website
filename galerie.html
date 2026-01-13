@@ -1382,174 +1382,339 @@
             });
         });
 
-        // Gestion des vidéos - CORRIGÉ
+        // Gestion des vidéos - AVEC BOUTONS SUIVANT/PRÉCÉDENT
         const videoButtons = document.querySelectorAll('.video-play-btn');
+        const allVideoItems = Array.from(document.querySelectorAll('.video-item'));
         
         videoButtons.forEach(button => {
             button.addEventListener('click', (e) => {
                 e.stopPropagation(); // Empêcher la propagation
                 
                 const videoUrl = button.getAttribute('data-video');
+                const videoItem = button.closest('.video-item');
+                const videoIndex = allVideoItems.findIndex(item => item === videoItem);
+                const videoTitle = videoItem.querySelector('.video-info h3').textContent;
+                const videoDescription = videoItem.querySelector('.video-info p').textContent;
                 
-                // Vérifier si c'est une vidéo locale ou YouTube
-                const isLocalVideo = videoUrl.includes('.mp4') || videoUrl.includes('.webm') || videoUrl.includes('.ogg');
-                
-                // Créer une modale pour la vidéo
-                const modal = document.createElement('div');
-                modal.style.position = 'fixed';
-                modal.style.top = '0';
-                modal.style.left = '0';
-                modal.style.width = '100%';
-                modal.style.height = '100%';
-                modal.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
-                modal.style.zIndex = '2000';
-                modal.style.display = 'flex';
-                modal.style.alignItems = 'center';
-                modal.style.justifyContent = 'center';
-                modal.style.opacity = '0';
-                modal.style.transition = 'opacity 0.3s ease';
-                
-                const videoContainer = document.createElement('div');
-                videoContainer.style.position = 'relative';
-                videoContainer.style.width = '90%';
-                videoContainer.style.maxWidth = '800px';
-                videoContainer.style.aspectRatio = '16/9';
-                videoContainer.style.borderRadius = '10px';
-                videoContainer.style.overflow = 'hidden';
-                videoContainer.style.backgroundColor = '#000';
-                
-                let videoElement;
-                
-                if (isLocalVideo) {
-                    // Pour les vidéos locales
-                    videoElement = document.createElement('video');
-                    videoElement.style.width = '100%';
-                    videoElement.style.height = '100%';
-                    videoElement.controls = true;
-                    videoElement.autoplay = true;
-                    
-                    const source = document.createElement('source');
-                    source.src = videoUrl;
-                    source.type = 'video/mp4';
-                    videoElement.appendChild(source);
-                    
-                    // Ajouter des messages d'erreur
-                    videoElement.innerHTML += `
-                        Votre navigateur ne supporte pas la lecture de vidéos.
-                        <a href="${videoUrl}">Télécharger la vidéo</a>
-                    `;
-                } else {
-                    // Pour les vidéos YouTube
-                    videoElement = document.createElement('iframe');
-                    videoElement.style.width = '100%';
-                    videoElement.style.height = '100%';
-                    videoElement.src = videoUrl + (videoUrl.includes('?') ? '&' : '?') + 'autoplay=1';
-                    videoElement.frameBorder = '0';
-                    videoElement.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-                    videoElement.allowFullscreen = true;
-                }
-                
-                const closeBtn = document.createElement('button');
-                closeBtn.innerHTML = '<i class="fas fa-times"></i>';
-                closeBtn.style.position = 'absolute';
-                closeBtn.style.top = '-40px';
-                closeBtn.style.right = '0';
-                closeBtn.style.background = 'var(--gold)';
-                closeBtn.style.color = 'var(--dark-navy)';
-                closeBtn.style.border = 'none';
-                closeBtn.style.width = '40px';
-                closeBtn.style.height = '40px';
-                closeBtn.style.borderRadius = '50%';
-                closeBtn.style.cursor = 'pointer';
-                closeBtn.style.fontSize = '1.2rem';
-                closeBtn.style.display = 'flex';
-                closeBtn.style.alignItems = 'center';
-                closeBtn.style.justifyContent = 'center';
-                closeBtn.style.transition = 'all 0.3s ease';
-                closeBtn.style.zIndex = '10';
-                
-                closeBtn.addEventListener('mouseenter', () => {
-                    closeBtn.style.transform = 'rotate(90deg)';
-                });
-                
-                closeBtn.addEventListener('mouseleave', () => {
-                    closeBtn.style.transform = 'rotate(0deg)';
-                });
-                
-                closeBtn.addEventListener('click', () => {
-                    // Arrêter la vidéo avant de fermer
-                    if (isLocalVideo && videoElement) {
-                        videoElement.pause();
-                        videoElement.currentTime = 0;
-                    }
-                    document.body.removeChild(modal);
-                });
-                
-                // Fonction pour fermer la modale
-                const closeModal = () => {
-                    if (isLocalVideo && videoElement) {
-                        videoElement.pause();
-                        videoElement.currentTime = 0;
-                    }
-                    document.body.removeChild(modal);
-                    document.removeEventListener('keydown', handleKeydown);
-                };
-                
-                // Gestion de la touche Échap
-                const handleKeydown = (e) => {
-                    if (e.key === 'Escape') {
-                        closeModal();
-                    }
-                };
-                
-                document.addEventListener('keydown', handleKeydown);
-                
-                // Fermer en cliquant à l'extérieur
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        closeModal();
-                    }
-                });
-                
-                videoContainer.appendChild(videoElement);
-                videoContainer.appendChild(closeBtn);
-                modal.appendChild(videoContainer);
-                document.body.appendChild(modal);
-                
-                // Animation d'entrée
-                setTimeout(() => {
-                    modal.style.opacity = '1';
-                }, 10);
-                
-                // Pour les vidéos locales, essayer de les lire
-                if (isLocalVideo && videoElement) {
-                    videoElement.play().catch(error => {
-                        console.error('Erreur de lecture vidéo:', error);
-                        // Afficher un message d'erreur
-                        const errorMsg = document.createElement('div');
-                        errorMsg.style.color = 'white';
-                        errorMsg.style.textAlign = 'center';
-                        errorMsg.style.padding = '2rem';
-                        errorMsg.innerHTML = `
-                            <p>Impossible de lire la vidéo. Essayez de :</p>
-                            <ol style="text-align: left; margin: 1rem auto; max-width: 300px;">
-                                <li>Vérifier que le fichier existe</li>
-                                <li>Utiliser un navigateur récent</li>
-                                <li><a href="${videoUrl}" style="color: var(--gold);">Télécharger la vidéo</a></li>
-                            </ol>
-                        `;
-                        videoContainer.appendChild(errorMsg);
-                    });
-                }
+                showVideoModal(videoUrl, videoTitle, videoDescription, videoIndex);
             });
         });
 
-        // Lightbox pour les images de la galerie
+        // Fonction pour créer et afficher la modale vidéo avec navigation
+        function showVideoModal(videoUrl, title, description, currentIndex) {
+            // Créer la modale
+            const modal = document.createElement('div');
+            modal.className = 'video-lightbox-modal';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.98);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 3000;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+            
+            // Conteneur vidéo
+            const videoContainer = document.createElement('div');
+            videoContainer.style.cssText = `
+                position: relative;
+                width: 90%;
+                max-width: 900px;
+                max-height: 90vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            `;
+            
+            // Conteneur pour la vidéo
+            const videoWrapper = document.createElement('div');
+            videoWrapper.style.cssText = `
+                width: 100%;
+                aspect-ratio: 16/9;
+                background: #000;
+                border-radius: 10px;
+                overflow: hidden;
+                margin-bottom: 1rem;
+                position: relative;
+            `;
+            
+            let videoElement;
+            const isLocalVideo = videoUrl.includes('.mp4') || videoUrl.includes('.webm') || videoUrl.includes('.ogg');
+            
+            if (isLocalVideo) {
+                // Pour les vidéos locales
+                videoElement = document.createElement('video');
+                videoElement.style.cssText = `
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    background: #000;
+                `;
+                videoElement.controls = true;
+                videoElement.autoplay = true;
+                
+                const source = document.createElement('source');
+                source.src = videoUrl;
+                source.type = 'video/mp4';
+                videoElement.appendChild(source);
+                
+                videoElement.innerHTML += `
+                    Votre navigateur ne supporte pas la lecture de vidéos.
+                    <a href="${videoUrl}">Télécharger la vidéo</a>
+                `;
+            } else {
+                // Pour les vidéos YouTube
+                videoElement = document.createElement('iframe');
+                videoElement.style.cssText = `
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                `;
+                videoElement.src = videoUrl + (videoUrl.includes('?') ? '&' : '?') + 'autoplay=1';
+                videoElement.frameBorder = '0';
+                videoElement.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                videoElement.allowFullscreen = true;
+            }
+            
+            // Info vidéo
+            const infoDiv = document.createElement('div');
+            infoDiv.style.cssText = `
+                color: white;
+                text-align: center;
+                width: 100%;
+                padding: 0 1rem;
+            `;
+            
+            const titleH3 = document.createElement('h3');
+            titleH3.textContent = title;
+            titleH3.style.cssText = `
+                font-family: 'Playfair Display', serif;
+                font-size: 1.5rem;
+                color: var(--gold);
+                margin-bottom: 0.5rem;
+            `;
+            
+            const descP = document.createElement('p');
+            descP.textContent = description;
+            descP.style.cssText = `
+                color: rgba(255, 255, 255, 0.8);
+                font-size: 1rem;
+                line-height: 1.5;
+            `;
+            
+            // Bouton de fermeture
+            const closeBtn = document.createElement('button');
+            closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+            closeBtn.style.cssText = `
+                position: absolute;
+                top: -50px;
+                right: 0;
+                background: var(--gold);
+                color: var(--dark-navy);
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 1.2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                z-index: 10;
+            `;
+            
+            closeBtn.addEventListener('mouseenter', () => {
+                closeBtn.style.transform = 'rotate(90deg)';
+            });
+            
+            closeBtn.addEventListener('mouseleave', () => {
+                closeBtn.style.transform = 'rotate(0deg)';
+            });
+            
+            closeBtn.addEventListener('click', () => {
+                closeVideoModal();
+            });
+            
+            // Bouton précédent (réduit sur mobile)
+            const prevBtn = document.createElement('button');
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            prevBtn.style.cssText = `
+                position: absolute;
+                left: -50px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(212, 175, 55, 0.8);
+                color: var(--dark-navy);
+                border: none;
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 1.1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                z-index: 10;
+            `;
+            
+            // Bouton suivant (réduit sur mobile)
+            const nextBtn = document.createElement('button');
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            nextBtn.style.cssText = `
+                position: absolute;
+                right: -50px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(212, 175, 55, 0.8);
+                color: var(--dark-navy);
+                border: none;
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 1.1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                z-index: 10;
+            `;
+            
+            // Fonction pour fermer la modale
+            const closeVideoModal = () => {
+                if (isLocalVideo && videoElement) {
+                    videoElement.pause();
+                    videoElement.currentTime = 0;
+                }
+                document.body.removeChild(modal);
+                document.removeEventListener('keydown', handleKeydown);
+            };
+            
+            // Fonction pour naviguer vers une vidéo
+            const navigateToVideo = (direction) => {
+                let newIndex;
+                if (direction === 'next') {
+                    newIndex = (currentIndex + 1) % allVideoItems.length;
+                } else {
+                    newIndex = (currentIndex - 1 + allVideoItems.length) % allVideoItems.length;
+                }
+                
+                const nextItem = allVideoItems[newIndex];
+                const nextButton = nextItem.querySelector('.video-play-btn');
+                const nextVideoUrl = nextButton.getAttribute('data-video');
+                const nextTitle = nextItem.querySelector('.video-info h3').textContent;
+                const nextDescription = nextItem.querySelector('.video-info p').textContent;
+                
+                // Fermer la modale actuelle
+                closeVideoModal();
+                
+                // Ouvrir la nouvelle vidéo
+                setTimeout(() => {
+                    showVideoModal(nextVideoUrl, nextTitle, nextDescription, newIndex);
+                }, 100);
+            };
+            
+            // Événements pour les boutons de navigation
+            prevBtn.addEventListener('click', () => navigateToVideo('prev'));
+            nextBtn.addEventListener('click', () => navigateToVideo('next'));
+            
+            // Gestion de la touche Échap
+            const handleKeydown = (e) => {
+                if (e.key === 'Escape') {
+                    closeVideoModal();
+                } else if (e.key === 'ArrowLeft') {
+                    navigateToVideo('prev');
+                } else if (e.key === 'ArrowRight') {
+                    navigateToVideo('next');
+                }
+            };
+            
+            document.addEventListener('keydown', handleKeydown);
+            
+            // Fermer en cliquant à l'extérieur
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeVideoModal();
+                }
+            });
+            
+            // Assembler les éléments
+            infoDiv.appendChild(titleH3);
+            infoDiv.appendChild(descP);
+            videoWrapper.appendChild(videoElement);
+            videoContainer.appendChild(videoWrapper);
+            videoContainer.appendChild(infoDiv);
+            videoContainer.appendChild(closeBtn);
+            videoContainer.appendChild(prevBtn);
+            videoContainer.appendChild(nextBtn);
+            modal.appendChild(videoContainer);
+            document.body.appendChild(modal);
+            
+            // Animation d'entrée
+            setTimeout(() => {
+                modal.style.opacity = '1';
+            }, 10);
+            
+            // Pour les vidéos locales, essayer de les lire
+            if (isLocalVideo && videoElement) {
+                videoElement.play().catch(error => {
+                    console.error('Erreur de lecture vidéo:', error);
+                    // Afficher un message d'erreur
+                    const errorMsg = document.createElement('div');
+                    errorMsg.style.cssText = `
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        color: white;
+                        text-align: center;
+                        padding: 2rem;
+                        background: rgba(0,0,0,0.8);
+                        border-radius: 10px;
+                        max-width: 80%;
+                    `;
+                    errorMsg.innerHTML = `
+                        <p>Impossible de lire la vidéo. Essayez de :</p>
+                        <ol style="text-align: left; margin: 1rem auto; max-width: 300px;">
+                            <li>Vérifier que le fichier existe</li>
+                            <li>Utiliser un navigateur récent</li>
+                            <li><a href="${videoUrl}" style="color: var(--gold);">Télécharger la vidéo</a></li>
+                        </ol>
+                    `;
+                    videoWrapper.appendChild(errorMsg);
+                });
+            }
+            
+            // Cacher le défilement de la page
+            document.body.style.overflow = 'hidden';
+            
+            // Restaurer le défilement quand la modale est fermée
+            const observer = new MutationObserver((mutations) => {
+                if (!document.body.contains(modal)) {
+                    document.body.style.overflow = '';
+                    observer.disconnect();
+                }
+            });
+            observer.observe(document.body, { childList: true });
+        }
+
+        // Lightbox pour les images de la galerie - AVEC DÉFILEMENT DÉSACTIVÉ
         const galleryImageItems = document.querySelectorAll('.galerie-item');
         const zoomButtons = document.querySelectorAll('.galerie-zoom-btn');
 
         // Fonction pour créer et afficher la lightbox
-        function showImageLightbox(imageUrl, title, category) {
+        function showImageLightbox(imageUrl, title, category, currentIndex) {
+            // Désactiver le défilement de la page
+            document.body.style.overflow = 'hidden';
+            
             // Créer la modale
             const modal = document.createElement('div');
             modal.className = 'image-lightbox-modal';
@@ -1559,7 +1724,7 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: rgba(0, 0, 0, 0.95);
+                background: rgba(0, 0, 0, 0.98);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -1625,12 +1790,12 @@
                 margin: 0;
             `;
             
-            // Bouton de fermeture
+            // Bouton de fermeture (réduit sur mobile)
             const closeBtn = document.createElement('button');
             closeBtn.innerHTML = '<i class="fas fa-times"></i>';
             closeBtn.style.cssText = `
                 position: absolute;
-                top: -40px;
+                top: -50px;
                 right: 0;
                 background: var(--gold);
                 color: var(--dark-navy);
@@ -1639,11 +1804,12 @@
                 height: 40px;
                 border-radius: 50%;
                 cursor: pointer;
-                font-size: 1.3rem;
+                font-size: 1.2rem;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 transition: all 0.3s ease;
+                z-index: 10;
             `;
             
             closeBtn.addEventListener('mouseenter', () => {
@@ -1655,53 +1821,111 @@
             });
             
             closeBtn.addEventListener('click', () => {
-                document.body.removeChild(modal);
-                document.removeEventListener('keydown', handleKeydown);
+                closeImageModal();
             });
             
-            // Bouton précédent
+            // Bouton précédent (réduit sur mobile)
             const prevBtn = document.createElement('button');
             prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
             prevBtn.style.cssText = `
                 position: absolute;
-                left: -60px;
+                left: -50px;
                 top: 50%;
                 transform: translateY(-50%);
                 background: rgba(212, 175, 55, 0.8);
                 color: var(--dark-navy);
                 border: none;
-                width: 50px;
-                height: 50px;
+                width: 45px;
+                height: 45px;
                 border-radius: 50%;
                 cursor: pointer;
-                font-size: 1.2rem;
+                font-size: 1.1rem;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 transition: all 0.3s ease;
+                z-index: 10;
             `;
             
-            // Bouton suivant
+            // Bouton suivant (réduit sur mobile)
             const nextBtn = document.createElement('button');
             nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
             nextBtn.style.cssText = `
                 position: absolute;
-                right: -60px;
+                right: -50px;
                 top: 50%;
                 transform: translateY(-50%);
                 background: rgba(212, 175, 55, 0.8);
                 color: var(--dark-navy);
                 border: none;
-                width: 50px;
-                height: 50px;
+                width: 45px;
+                height: 45px;
                 border-radius: 50%;
                 cursor: pointer;
-                font-size: 1.2rem;
+                font-size: 1.1rem;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 transition: all 0.3s ease;
+                z-index: 10;
             `;
+            
+            // Fonction pour fermer la modale et restaurer le défilement
+            const closeImageModal = () => {
+                document.body.removeChild(modal);
+                document.removeEventListener('keydown', handleKeydown);
+                document.body.style.overflow = '';
+            };
+            
+            // Navigation entre images
+            const allItems = Array.from(galleryImageItems);
+            
+            // Fonction pour naviguer vers une image
+            const navigateToImage = (direction) => {
+                let newIndex;
+                if (direction === 'next') {
+                    newIndex = (currentIndex + 1) % allItems.length;
+                } else {
+                    newIndex = (currentIndex - 1 + allItems.length) % allItems.length;
+                }
+                
+                const nextItem = allItems[newIndex];
+                const nextImage = nextItem.getAttribute('data-image');
+                const nextTitle = nextItem.querySelector('.galerie-title').textContent;
+                const nextCategory = nextItem.querySelector('.galerie-category').textContent;
+                
+                // Fermer la modale actuelle
+                closeImageModal();
+                
+                // Ouvrir la nouvelle image
+                setTimeout(() => {
+                    showImageLightbox(nextImage, nextTitle, nextCategory, newIndex);
+                }, 100);
+            };
+            
+            // Événements pour les boutons de navigation
+            prevBtn.addEventListener('click', () => navigateToImage('prev'));
+            nextBtn.addEventListener('click', () => navigateToImage('next'));
+            
+            // Navigation au clavier
+            const handleKeydown = (e) => {
+                if (e.key === 'Escape') {
+                    closeImageModal();
+                } else if (e.key === 'ArrowLeft') {
+                    navigateToImage('prev');
+                } else if (e.key === 'ArrowRight') {
+                    navigateToImage('next');
+                }
+            };
+            
+            document.addEventListener('keydown', handleKeydown);
+            
+            // Fermer en cliquant à l'extérieur
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeImageModal();
+                }
+            });
             
             // Assembler les éléments
             infoDiv.appendChild(categorySpan);
@@ -1721,64 +1945,10 @@
                 modal.style.opacity = '1';
                 img.style.transform = 'scale(1)';
             }, 10);
-            
-            // Navigation entre images
-            const allItems = Array.from(galleryImageItems);
-            const currentIndex = allItems.findIndex(item => item.getAttribute('data-image') === imageUrl);
-            
-            // Fonction pour naviguer vers une image
-            const navigateToImage = (direction) => {
-                let newIndex;
-                if (direction === 'next') {
-                    newIndex = (currentIndex + 1) % allItems.length;
-                } else {
-                    newIndex = (currentIndex - 1 + allItems.length) % allItems.length;
-                }
-                
-                const nextItem = allItems[newIndex];
-                const nextImage = nextItem.getAttribute('data-image');
-                const nextTitle = nextItem.querySelector('.galerie-title').textContent;
-                const nextCategory = nextItem.querySelector('.galerie-category').textContent;
-                
-                // Fermer la modale actuelle
-                document.body.removeChild(modal);
-                document.removeEventListener('keydown', handleKeydown);
-                
-                // Ouvrir la nouvelle image
-                setTimeout(() => {
-                    showImageLightbox(nextImage, nextTitle, nextCategory);
-                }, 100);
-            };
-            
-            // Événements pour les boutons de navigation
-            prevBtn.addEventListener('click', () => navigateToImage('prev'));
-            nextBtn.addEventListener('click', () => navigateToImage('next'));
-            
-            // Navigation au clavier
-            const handleKeydown = (e) => {
-                if (e.key === 'Escape') {
-                    document.body.removeChild(modal);
-                    document.removeEventListener('keydown', handleKeydown);
-                } else if (e.key === 'ArrowLeft') {
-                    navigateToImage('prev');
-                } else if (e.key === 'ArrowRight') {
-                    navigateToImage('next');
-                }
-            };
-            
-            document.addEventListener('keydown', handleKeydown);
-            
-            // Fermer en cliquant à l'extérieur
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    document.body.removeChild(modal);
-                    document.removeEventListener('keydown', handleKeydown);
-                }
-            });
         }
 
         // Ajouter les événements de clic aux cartes d'images et boutons de zoom
-        galleryImageItems.forEach(item => {
+        galleryImageItems.forEach((item, index) => {
             // Cliquer sur la carte entière
             item.addEventListener('click', (e) => {
                 // Ne pas déclencher si on clique sur le bouton de zoom
@@ -1786,7 +1956,7 @@
                     const imageUrl = item.getAttribute('data-image');
                     const title = item.querySelector('.galerie-title').textContent;
                     const category = item.querySelector('.galerie-category').textContent;
-                    showImageLightbox(imageUrl, title, category);
+                    showImageLightbox(imageUrl, title, category, index);
                 }
             });
             
@@ -1798,7 +1968,7 @@
                     const imageUrl = item.getAttribute('data-image');
                     const title = item.querySelector('.galerie-title').textContent;
                     const category = item.querySelector('.galerie-category').textContent;
-                    showImageLightbox(imageUrl, title, category);
+                    showImageLightbox(imageUrl, title, category, index);
                 });
             }
         });
@@ -1806,24 +1976,94 @@
         // Ajouter du CSS pour la responsive de la lightbox
         const style = document.createElement('style');
         style.textContent = `
+            /* Styles pour mobile - réduire les boutons */
             @media (max-width: 768px) {
-                .image-lightbox-modal button {
-                    position: relative;
-                    margin: 1rem;
-                    left: auto;
-                    right: auto;
-                    top: auto;
+                .image-lightbox-modal button,
+                .video-lightbox-modal button {
+                    width: 35px !important;
+                    height: 35px !important;
+                    font-size: 0.9rem !important;
                 }
                 
                 .image-lightbox-modal .fa-chevron-left,
-                .image-lightbox-modal .fa-chevron-right {
-                    position: static;
-                    transform: none;
-                    margin: 0 0.5rem;
+                .image-lightbox-modal .fa-chevron-right,
+                .video-lightbox-modal .fa-chevron-left,
+                .video-lightbox-modal .fa-chevron-right {
+                    position: static !important;
+                    transform: none !important;
+                    margin: 0 0.3rem !important;
                 }
                 
-                .image-lightbox-modal > div {
-                    width: 95%;
+                /* Repositionner les boutons sur mobile */
+                .image-lightbox-modal > div,
+                .video-lightbox-modal > div {
+                    width: 95% !important;
+                }
+                
+                .image-lightbox-modal button,
+                .video-lightbox-modal button {
+                    position: relative !important;
+                    margin: 0.5rem !important;
+                    left: auto !important;
+                    right: auto !important;
+                    top: auto !important;
+                }
+                
+                /* Boutons de navigation en bas sur mobile */
+                .image-lightbox-modal .fa-chevron-left,
+                .image-lightbox-modal .fa-chevron-right,
+                .video-lightbox-modal .fa-chevron-left,
+                .video-lightbox-modal .fa-chevron-right {
+                    position: static !important;
+                    transform: none !important;
+                }
+                
+                /* Bouton fermer en haut à droite sur mobile */
+                .image-lightbox-modal .fa-times,
+                .video-lightbox-modal .fa-times {
+                    position: absolute !important;
+                    top: 10px !important;
+                    right: 10px !important;
+                    width: 35px !important;
+                    height: 35px !important;
+                }
+                
+                /* Conteneur des boutons de navigation en bas */
+                .image-lightbox-modal .nav-buttons-container,
+                .video-lightbox-modal .nav-buttons-container {
+                    display: flex !important;
+                    justify-content: center !important;
+                    gap: 2rem !important;
+                    margin-top: 1rem !important;
+                }
+                
+                /* Info plus petite sur mobile */
+                .image-lightbox-modal h3,
+                .video-lightbox-modal h3 {
+                    font-size: 1.2rem !important;
+                }
+                
+                .image-lightbox-modal p,
+                .video-lightbox-modal p {
+                    font-size: 0.9rem !important;
+                }
+            }
+            
+            /* Styles pour très petits écrans */
+            @media (max-width: 480px) {
+                .image-lightbox-modal button,
+                .video-lightbox-modal button {
+                    width: 30px !important;
+                    height: 30px !important;
+                    font-size: 0.8rem !important;
+                }
+                
+                .image-lightbox-modal .fa-times,
+                .video-lightbox-modal .fa-times {
+                    top: 5px !important;
+                    right: 5px !important;
+                    width: 30px !important;
+                    height: 30px !important;
                 }
             }
         `;
