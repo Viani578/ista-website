@@ -252,13 +252,13 @@
         /* Section Hero */
         .hero {
             position: relative;
-            min-height: 100vh;
+            min-height: 60vh;
             display: flex;
             align-items: center;
             background: linear-gradient(135deg, #1E293B 0%, #2563EB 60%, #60A5FA 100%);
             overflow: hidden;
-            margin-top: 70px;
-            padding: 150px 0 60px;
+            margin-top: 55px;
+            padding: 120px 0 60px;
         }
 
         .hero-overlay {
@@ -1778,6 +1778,12 @@
             }
             
             /* ==================== HERO SECTION ==================== */
+            
+            .hero {
+                min-height: 50vh;
+                padding: 100px 0 40px;
+            }
+            
             .hero-text h1 {
                 font-size: 2rem;
                 text-align: center;
@@ -3301,7 +3307,7 @@
                 navbar.classList.remove('scrolled');
             }
         });
-        
+
         // ==================== CAROUSEL HERO ====================
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-slide');
@@ -3621,4 +3627,3 @@
     </script>
 </body>
 </html>
-
