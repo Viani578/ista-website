@@ -1690,16 +1690,18 @@
                 letter-spacing: 1px;
             }
             
+            /* TOGGLE À DROITE */
             .mobile-toggle {
                 display: block;
                 font-size: 1.2rem;
                 padding: 0.3rem;
+                margin-left: auto; /* Pousse le bouton à droite */
             }
             
-            /* 4. MENU MOBILE - MODIFICATIONS POUR GLISSER DE GAUCHE À DROITE */
+            /* 4. MENU MOBILE - MODIFICATIONS POUR GLISSER DE DROITE À GAUCHE */
             .nav-menu {
                 position: fixed;
-                left: -100%;
+                right: -100%; /* Changé de left à right */
                 top: 70px;
                 flex-direction: column;
                 background: var(--soft-white);
@@ -1716,7 +1718,7 @@
             }
             
             .nav-menu.active {
-                left: 0;
+                right: 0; /* Changé de left à right */
             }
             
             .nav-menu > li {
