@@ -63,6 +63,30 @@
             width: 100%;
         }
 
+        /* Empêcher le défilement quand le menu est ouvert */
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        /* Overlay pour menu mobile */
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
         /* Typographie améliorée */
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
@@ -112,6 +136,7 @@
             align-items: center;
             gap: 1.2rem;
             text-decoration: none;
+            flex-shrink: 0;
         }
 
         .logo-img {
@@ -139,8 +164,12 @@
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem; /* Espace augmenté entre les éléments */
             align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            flex: 1;
+            margin-left: 2rem; /* Espace supplémentaire entre logo et menu */
         }
 
         .nav-menu > li {
@@ -158,6 +187,7 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 0;
+            white-space: nowrap;
         }
 
         .nav-menu > li > a::after {
@@ -191,7 +221,7 @@
             top: 100%;
             left: 0;
             background: var(--soft-white);
-            min-width: 250px;
+            min-width: 280px;
             padding: 1rem 0;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-lg);
@@ -212,14 +242,24 @@
         .submenu li a {
             padding: 0.75rem 1.5rem;
             color: var(--text-dark);
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             transition: var(--transition);
+            font-size: 0.85rem;
         }
 
         .submenu li a:hover {
             background: var(--cream);
             color: var(--primary-blue);
             padding-left: 2rem;
+        }
+
+        /* Icônes dans les sous-menus */
+        .submenu li a i {
+            font-size: 0.9rem;
+            width: 20px;
+            color: var(--gold);
         }
 
         /* Menu mobile */
@@ -231,6 +271,8 @@
             color: var(--dark-navy);
             cursor: pointer;
             padding: 0.5rem;
+            z-index: 1002;
+            position: relative;
         }
 
         /* Section Hero Colis */
@@ -738,6 +780,7 @@
             .logo-section {
                 gap: 0.8rem;
                 align-items: center;
+                flex-shrink: 0;
             }
             
             .logo-img {
@@ -759,24 +802,26 @@
                 display: block;
                 font-size: 1.2rem;
                 padding: 0.3rem;
+                z-index: 1002;
             }
             
-            /* 4. MENU MOBILE */
+            /* 4. MENU MOBILE CORRIGÉ */
             .nav-menu {
                 position: fixed;
+                top: 0;
                 left: -100%;
-                top: 70px;
-                flex-direction: column;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
                 background: var(--soft-white);
-                width: 100%;
-                text-align: left;
-                transition: 0.3s;
-                padding: 1rem 0;
+                flex-direction: column;
+                padding: 85px 0 0 0;
                 gap: 0;
-                box-shadow: var(--shadow-lg);
-                max-height: calc(100vh - 70px);
+                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+                z-index: 1001;
                 overflow-y: auto;
-                z-index: 999;
+                margin-left: 0;
             }
             
             .nav-menu.active {
@@ -789,34 +834,50 @@
             }
             
             .nav-menu a {
-                padding: 1rem 1.5rem;
+                padding: 15px 20px;
                 font-size: 1rem;
                 justify-content: space-between;
+                width: 100%;
+                white-space: normal;
             }
             
-            .has-submenu .submenu {
+            /* Sous-menu sur mobile */
+            .submenu {
+                display: none;
                 position: static;
                 opacity: 1;
                 visibility: visible;
                 transform: none;
                 box-shadow: none;
-                background: var(--cream);
-                border-radius: 0;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease;
+                background: rgba(0, 0, 0, 0.03);
                 padding: 0;
-                min-width: 100%;
+                margin: 0;
+                width: 100%;
+                border-radius: 0;
+                border-top: none;
+                min-width: auto;
             }
             
-            .has-submenu.active .submenu {
-                max-height: 500px;
-                padding: 0.5rem 0;
+            .submenu.mobile-open {
+                display: block;
             }
             
             .submenu li a {
-                padding: 0.8rem 2rem;
+                padding: 12px 30px;
+                font-size: 0.95rem;
+                border-left: 3px solid transparent;
+            }
+            
+            .submenu li a:hover {
+                border-left: 3px solid var(--gold);
+                background: rgba(212, 175, 55, 0.1);
+            }
+            
+            /* Icônes dans les sous-menus sur mobile */
+            .submenu li a i {
                 font-size: 0.9rem;
+                width: 20px;
+                color: var(--gold);
             }
             
             /* 5. HERO SECTION */
@@ -880,6 +941,7 @@
             .colis-section ul li i {
                 font-size: 0.9rem;
                 margin-top: 0.1rem;
+                color: var(--gold);
             }
             
             .highlight-box {
@@ -1187,6 +1249,9 @@
     </style>
 </head>
 <body>
+    <!-- Overlay pour menu mobile -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
@@ -1205,17 +1270,17 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
                 <li class="has-submenu">
-                    <a href="index.html#services"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="submenu-trigger"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
                     <ul class="submenu">
-                        <li><a href="index.html#visas">Visa d'Etude</a></li>
-                        <li><a href="index.html#visas">Visa de Travail</a></li>
-                        <li><a href="index.html#visas">Visa Visiteur</a></li>
-                        <li><a href="index.html#immigration">Résidence Permanente</a></li>
-                        <li><a href="index.html#visas">Billets d'avion</a></li>
-                        <li><a href="index.html#traduction">Assistance Logement</a></li>
-                        <li><a href="index.html#traduction">Assistance Titre de Séjour</a></li>
-                        <li><a href="index.html#traduction">Admissions</a></li>
-                        <li><a href="galerie.html"></i> Galerie Photo/Video</a></li>
+                        <li><a href="index.html#visas"><i class="fas fa-graduation-cap" style="color: var(--gold);"></i> Visa d'Etude</a></li>
+                        <li><a href="index.html#visas"><i class="fas fa-briefcase" style="color: var(--gold);"></i> Visa de Travail</a></li>
+                        <li><a href="index.html#visas"><i class="fas fa-plane" style="color: var(--gold);"></i> Visa Visiteur</a></li>
+                        <li><a href="index.html#immigration"><i class="fas fa-home" style="color: var(--gold);"></i> Résidence Permanente</a></li>
+                        <li><a href="index.html#visas"><i class="fas fa-ticket-alt" style="color: var(--gold);"></i> Billets d'avion</a></li>
+                        <li><a href="index.html#traduction"><i class="fas fa-building" style="color: var(--gold);"></i> Assistance Logement</a></li>
+                        <li><a href="index.html#traduction"><i class="fas fa-id-card" style="color: var(--gold);"></i> Assistance Titre de Séjour</a></li>
+                        <li><a href="index.html#traduction"><i class="fas fa-university" style="color: var(--gold);"></i> Admissions</a></li>
+                        <li><a href="galerie.html"><i class="fas fa-images" style="color: var(--gold);"></i> Galerie Photo/Video</a></li>
                     </ul>
                 </li>
                 <li><a href="colis.html" class="active"><i class="fas fa-box"></i> Envoyer/Recevoir un colis</a></li>
@@ -1256,11 +1321,11 @@
                 <p>Nous offrons des tarifs compétitifs pour l'expédition de vos colis à l'étranger. Nous sommes également en mesure de vous proposer une gamme de services d'expédition adaptés à vos besoins spécifiques :</p>
                 
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> <strong>Assurance pour les envois de grande valeur</strong> - Protection optimale pour vos objets précieux</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Livraison express</strong> - Service prioritaire pour les urgences</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Suivi en temps réel</strong> - Localisez votre colis à chaque étape</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Emballage professionnel</strong> - Protection maximale pour vos envois</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Services douaniers</strong> - Gestion complète des formalités</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--gold);"></i> <strong>Assurance pour les envois de grande valeur</strong> - Protection optimale pour vos objets précieux</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--gold);"></i> <strong>Livraison express</strong> - Service prioritaire pour les urgences</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--gold);"></i> <strong>Suivi en temps réel</strong> - Localisez votre colis à chaque étape</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--gold);"></i> <strong>Emballage professionnel</strong> - Protection maximale pour vos envois</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--gold);"></i> <strong>Services douaniers</strong> - Gestion complète des formalités</li>
                 </ul>
             </div>
 
@@ -1304,10 +1369,10 @@
                 <p>Notre entreprise est fière de son engagement en matière de développement durable, c'est pourquoi nous cherchons toujours à minimiser notre impact environnemental.</p>
                 
                 <ul>
-                    <li><i class="fas fa-recycle"></i> <strong>Emballages recyclables</strong> - Utilisation de matériaux écologiques</li>
-                    <li><i class="fas fa-truck"></i> <strong>Transporteurs responsables</strong> - Partenaires avec des pratiques respectueuses de l'environnement</li>
-                    <li><i class="fas fa-chart-line"></i> <strong>Optimisation des trajets</strong> - Réduction de l'empreinte carbone</li>
-                    <li><i class="fas fa-battery-full"></i> <strong>Énergies renouvelables</strong> - Engagement vers la neutralité carbone</li>
+                    <li><i class="fas fa-recycle" style="color: var(--gold);"></i> <strong>Emballages recyclables</strong> - Utilisation de matériaux écologiques</li>
+                    <li><i class="fas fa-truck" style="color: var(--gold);"></i> <strong>Transporteurs responsables</strong> - Partenaires avec des pratiques respectueuses de l'environnement</li>
+                    <li><i class="fas fa-chart-line" style="color: var(--gold);"></i> <strong>Optimisation des trajets</strong> - Réduction de l'empreinte carbone</li>
+                    <li><i class="fas fa-battery-full" style="color: var(--gold);"></i> <strong>Énergies renouvelables</strong> - Engagement vers la neutralité carbone</li>
                 </ul>
             </div>
 
@@ -1422,37 +1487,48 @@
     </footer>
 
     <script>
-        // Navigation mobile améliorée
+        // ==================== NAVIGATION MOBILE ====================
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
         const body = document.body;
 
-        mobileToggle.addEventListener('click', () => {
+        // Toggle menu mobile
+        mobileToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             navMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
             body.classList.toggle('menu-open');
-            mobileToggle.innerHTML = navMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+            
+            // Changer l'icône
+            const icon = mobileToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
         });
 
         // Gestion des sous-menus sur mobile
-        document.querySelectorAll('.has-submenu > a').forEach(trigger => {
+        document.querySelectorAll('.submenu-trigger').forEach(trigger => {
             trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Sur mobile seulement
                 if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    
-                    const parent = trigger.parentElement;
-                    const isActive = parent.classList.contains('active');
+                    e.stopPropagation();
+                    const submenu = trigger.nextElementSibling;
+                    const isActive = submenu.classList.contains('mobile-open');
                     
                     // Fermer tous les autres sous-menus
-                    document.querySelectorAll('.has-submenu.active').forEach(item => {
-                        if (item !== parent) {
-                            item.classList.remove('active');
+                    document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
+                        if (menu !== submenu) {
+                            menu.classList.remove('mobile-open');
                         }
                     });
                     
                     // Toggle le sous-menu actuel
-                    parent.classList.toggle('active');
+                    submenu.classList.toggle('mobile-open');
                     
                     // Changer l'icône
                     const chevron = trigger.querySelector('.fa-chevron-down');
@@ -1464,32 +1540,67 @@
         });
 
         // Fermer le menu au clic sur un lien (sauf déclencheurs de sous-menu)
-        document.querySelectorAll('.nav-menu a:not(.has-submenu > a)').forEach(link => {
+        document.querySelectorAll('.nav-menu a:not(.submenu-trigger)').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
                 body.classList.remove('menu-open');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                
+                // Réinitialiser l'icône du toggle
+                const icon = mobileToggle.querySelector('i');
+                icon.className = 'fas fa-bars';
                 
                 // Fermer tous les sous-menus
-                document.querySelectorAll('.has-submenu.active').forEach(item => {
-                    item.classList.remove('active');
+                document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
+                    menu.classList.remove('mobile-open');
+                });
+                
+                // Réinitialiser les icônes flèches
+                document.querySelectorAll('.fa-chevron-down').forEach(chevron => {
+                    chevron.style.transform = 'rotate(0deg)';
                 });
             });
         });
 
-        // Fermer le menu en cliquant à l'extérieur
-        document.addEventListener('click', (e) => {
-            const isClickInsideMenu = navMenu.contains(e.target);
-            const isClickOnToggle = mobileToggle.contains(e.target);
+        // Fermer le menu en cliquant sur l'overlay
+        menuOverlay.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            body.classList.remove('menu-open');
             
-            if (!isClickInsideMenu && !isClickOnToggle && navMenu.classList.contains('active')) {
+            // Réinitialiser l'icône du toggle
+            const icon = mobileToggle.querySelector('i');
+            icon.className = 'fas fa-bars';
+            
+            // Fermer tous les sous-menus
+            document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
+                menu.classList.remove('mobile-open');
+            });
+            
+            // Réinitialiser les icônes flèches
+            document.querySelectorAll('.fa-chevron-down').forEach(chevron => {
+                chevron.style.transform = 'rotate(0deg)';
+            });
+        });
+
+        // Fermer les sous-menus en redimensionnant la fenêtre
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
                 navMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
                 body.classList.remove('menu-open');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
                 
-                // Fermer tous les sous-menus
-                document.querySelectorAll('.has-submenu.active').forEach(item => {
-                    item.classList.remove('active');
+                // Réinitialiser l'icône du toggle
+                const icon = mobileToggle.querySelector('i');
+                icon.className = 'fas fa-bars';
+                
+                document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
+                    menu.classList.remove('mobile-open');
+                });
+                
+                // Réinitialiser les icônes flèches
+                document.querySelectorAll('.fa-chevron-down').forEach(chevron => {
+                    chevron.style.transform = 'rotate(0deg)';
                 });
             }
         });
@@ -1517,12 +1628,16 @@
                     
                     // Fermer le menu mobile si ouvert
                     navMenu.classList.remove('active');
+                    menuOverlay.classList.remove('active');
                     body.classList.remove('menu-open');
-                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Réinitialiser l'icône du toggle
+                    const icon = mobileToggle.querySelector('i');
+                    icon.className = 'fas fa-bars';
                     
                     // Fermer tous les sous-menus
-                    document.querySelectorAll('.has-submenu.active').forEach(item => {
-                        item.classList.remove('active');
+                    document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
+                        menu.classList.remove('mobile-open');
                     });
                     
                     // Scroll vers la cible
@@ -1555,20 +1670,6 @@
             section.style.transform = 'translateY(20px)';
             section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             observer.observe(section);
-        });
-
-        // Redimensionnement de la fenêtre
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                navMenu.classList.remove('active');
-                body.classList.remove('menu-open');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                
-                // Fermer tous les sous-menus
-                document.querySelectorAll('.has-submenu.active').forEach(item => {
-                    item.classList.remove('active');
-                });
-            }
         });
     </script>
 </body>
