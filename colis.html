@@ -137,7 +137,7 @@
             color: var(--dark-navy);
         }
 
-        /* Menu de navigation */
+        /* Menu de navigation - CORRIGÉ POUR L'ALIGNEMENT */
         .nav-menu {
             display: flex;
             list-style: none;
@@ -160,6 +160,27 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 0;
+            white-space: nowrap;
+        }
+
+        /* CORRECTION: Alignement des icônes et texte */
+        .nav-menu a i:first-child {
+            margin-right: 0;
+            font-size: 1rem;
+            min-width: 20px;
+            text-align: left;
+            flex-shrink: 0;
+        }
+
+        /* CORRECTION: Flèche du sous-menu en desktop */
+        .nav-menu .has-submenu > a i.fa-chevron-down {
+            margin-left: 0.3rem;
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .has-submenu:hover > a i.fa-chevron-down {
+            transform: rotate(180deg);
         }
 
         .nav-menu > li > a::after {
@@ -183,13 +204,7 @@
             color: var(--gold);
         }
 
-        .nav-menu a i {
-            font-size: 1rem;
-            width: 20px;
-            text-align: center;
-        }
-
-        /* Sous-menu */
+        /* Sous-menu - CORRIGÉ POUR L'ALIGNEMENT */
         .has-submenu {
             position: relative;
         }
@@ -225,18 +240,22 @@
             gap: 0.75rem;
             transition: var(--transition);
             font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .submenu li a i:first-child {
+            margin-right: 0;
+            font-size: 0.9rem;
+            min-width: 18px;
+            color: var(--gold);
+            text-align: left;
+            flex-shrink: 0;
         }
 
         .submenu li a:hover {
             background: var(--cream);
             color: var(--primary-blue);
-            padding-left: 2rem;
-        }
-
-        .submenu li a i {
-            font-size: 0.9rem;
-            width: 18px;
-            color: var(--gold);
+            padding-left: 1.5rem;
         }
 
         /* Menu mobile */
@@ -392,7 +411,7 @@
             font-size: 1.5rem;
         }
 
-        /* Section Pourquoi nous choisir - AJOUTÉE ICI */
+        /* Section Pourquoi nous choisir */
         .why-choose-us {
             padding: 4rem 0;
             background: var(--soft-white);
@@ -775,7 +794,7 @@
                 padding: 0.3rem;
             }
 
-            /* 4. MENU MOBILE */
+            /* 4. MENU MOBILE - CORRIGÉ pour alignement comme galerie.html */
             .nav-menu {
                 position: fixed;
                 left: -100%;
@@ -805,11 +824,12 @@
             .nav-menu a {
                 padding: 1rem 1.5rem;
                 font-size: 1rem;
-                justify-content: space-between;
+                justify-content: flex-start;
                 width: 100%;
+                gap: 0.5rem;
             }
             
-            /* Correction pour les liens avec sous-menu */
+            /* Correction pour les liens avec sous-menu - comme galerie.html */
             .has-submenu > a {
                 position: relative;
             }
@@ -827,7 +847,7 @@
                 transform: rotate(180deg);
             }
             
-            /* Sous-menu mobile */
+            /* Sous-menu mobile - comme galerie.html */
             .submenu {
                 position: static;
                 opacity: 1;
@@ -841,7 +861,7 @@
                 transition: max-height 0.5s ease;
                 padding: 0;
                 min-width: 100%;
-                margin-left: 1rem;
+                margin-left: 0;
             }
             
             .has-submenu.active .submenu {
@@ -853,6 +873,8 @@
                 padding: 0.8rem 2rem;
                 font-size: 0.9rem;
                 border-left: 3px solid transparent;
+                justify-content: flex-start;
+                gap: 0.75rem;
             }
             
             .submenu li a:hover {
@@ -860,7 +882,20 @@
                 background: rgba(212, 175, 55, 0.1);
             }
             
-            /* 5. HERO SECTION */
+            /* Icônes dans le menu mobile - alignées comme galerie.html */
+            .nav-menu a i:first-child {
+                font-size: 1rem;
+                width: 24px;
+                text-align: left;
+            }
+            
+            .submenu li a i {
+                font-size: 0.9rem;
+                width: 20px;
+                text-align: left;
+            }
+            
+            /* HERO SECTION */
             .colis-hero {
                 min-height: 50vh;
                 padding: 100px 0 40px;
@@ -877,7 +912,7 @@
                 padding: 0 0.5rem;
             }
             
-            /* 6. SERVICES SECTION - CARTES ENCORE PLUS RÉDUITES */
+            /* SERVICES SECTION */
             .colis-services {
                 padding: 3rem 0 !important;
             }
@@ -943,7 +978,7 @@
                 font-size: 1.2rem;
             }
             
-            /* 7. POURQUOI NOUS CHOISIR - RESPONSIVE */
+            /* POURQUOI NOUS CHOISIR - RESPONSIVE */
             .why-choose-us {
                 padding: 3rem 0 !important;
             }
@@ -990,7 +1025,7 @@
                 line-height: 1.6;
             }
             
-            /* 8. SERVICES GRID */
+            /* SERVICES GRID */
             .services-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -1020,7 +1055,7 @@
                 line-height: 1.6;
             }
             
-            /* 9. CTA SECTION */
+            /* CTA SECTION */
             .colis-cta {
                 padding: 3rem 1rem;
             }
@@ -1054,7 +1089,7 @@
                 font-size: 0.95rem;
             }
             
-            /* 10. FOOTER */
+            /* FOOTER */
             .footer {
                 padding: 2rem 1rem 1rem;
             }
@@ -1094,7 +1129,7 @@
                 font-size: 0.85rem;
             }
             
-            /* 11. ÉLÉMENTS GÉNÉRAUX */
+            /* ÉLÉMENTS GÉNÉRAUX */
             .section-header {
                 margin-bottom: 2rem;
             }
@@ -1229,9 +1264,6 @@
     </style>
 </head>
 <body>
-    <!-- Overlay pour menu mobile -->
-    <div class="menu-overlay" id="menuOverlay"></div>
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
@@ -1356,7 +1388,7 @@
                 </ul>
             </div>
 
-            <!-- TITRE POURQUOI NOUS CHOISIR ? AJOUTÉ ICI -->
+            <!-- TITRE POURQUOI NOUS CHOISIR ? -->
             <div style="grid-column: 1 / -1; text-align: center; margin: 3rem 0 2rem 0;">
                 <h2 style="font-size: 2.5rem; color: var(--dark-navy); margin-bottom: 1rem;">Pourquoi nous choisir ?</h2>
                 <p style="color: var(--text-light); font-size: 1.1rem; max-width: 800px; margin: 0 auto;">ISTA se distingue par son expertise, sa fiabilité et son engagement envers l'excellence dans le domaine de l'expédition internationale.</p>
@@ -1527,7 +1559,7 @@
                 navbar.classList.remove('scrolled');
             }
         });
-
+        
         // Smooth scroll pour les ancres internes
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1541,16 +1573,11 @@
                     
                     // Fermer le menu mobile si ouvert
                     navMenu.classList.remove('active');
-                    menuOverlay.classList.remove('active');
-                    body.classList.remove('menu-open');
-                    
-                    // Réinitialiser l'icône du toggle
-                    const icon = mobileToggle.querySelector('i');
-                    icon.className = 'fas fa-bars';
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
                     
                     // Fermer tous les sous-menus
-                    document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
-                        menu.classList.remove('mobile-open');
+                    document.querySelectorAll('.has-submenu.active').forEach(item => {
+                        item.classList.remove('active');
                     });
                     
                     // Scroll vers la cible
