@@ -1389,33 +1389,24 @@
         // Variables pour gérer les modales
         let currentModal = null;
         let modalType = null; // 'image' ou 'video'
-        let modalHistoryState = null;
         
-        // Gestion du bouton retour du mobile - CORRIGÉ
+        // Flag pour suivre si une modale est ouverte
+        let isModalOpen = false;
+        
+        // Gestion SIMPLIFIÉE du bouton retour du mobile
         window.addEventListener('popstate', function(event) {
-            // Si on a une modale ouverte, on la ferme sans naviguer
-            if (currentModal) {
-                event.preventDefault();
+            if (isModalOpen && currentModal) {
+                // Fermer la modale sans naviguer
                 closeCurrentModal();
+                // Empêcher la navigation
+                history.pushState(null, '', window.location.pathname);
             }
         });
         
-        // Fonction pour empêcher la navigation par défaut
-        function preventBackNavigation(e) {
-            if (currentModal) {
-                // Empêcher la navigation normale
-                history.pushState(modalHistoryState, '', window.location.pathname + window.location.search);
-                closeCurrentModal();
-                return false;
-            }
+        // Ajouter un état initial à l'historique
+        if (!history.state) {
+            history.replaceState({ page: 'galerie' }, '', window.location.pathname);
         }
-        
-        // Intercepter les événements de navigation
-        window.addEventListener('beforeunload', function(e) {
-            if (currentModal) {
-                // Ne rien faire, laisser la modale ouverte
-            }
-        });
         
         videoButtons.forEach((button, index) => {
             button.addEventListener('click', (e) => {
@@ -1427,9 +1418,7 @@
                 const videoTitle = videoItem.querySelector('.video-info h3').textContent;
                 const videoDescription = videoItem.querySelector('.video-info p').textContent;
                 
-                // Stocker l'état dans notre variable, pas dans l'historique du navigateur
-                modalHistoryState = { modal: 'video', index: videoIndex };
-                
+                // Empêcher l'ajout à l'historique
                 showVideoModal(videoUrl, videoTitle, videoDescription, videoIndex);
             });
         });
@@ -1437,6 +1426,7 @@
         // Fonction pour créer et afficher la modale vidéo avec navigation
         function showVideoModal(videoUrl, title, description, currentIndex) {
             modalType = 'video';
+            isModalOpen = true;
             
             // Désactiver le défilement
             document.body.style.overflow = 'hidden';
@@ -1457,7 +1447,6 @@
                 justify-content: center;
                 z-index: 3000;
                 opacity: 0;
-                transition: opacity 0.3s ease;
             `;
             
             // Conteneur vidéo
@@ -1578,7 +1567,7 @@
                 document.body.style.overflow = '';
                 document.documentElement.style.overflow = '';
                 
-                if (document.body.contains(modal)) {
+                if (modal && document.body.contains(modal)) {
                     document.body.removeChild(modal);
                 }
                 document.removeEventListener('keydown', handleKeydown);
@@ -1586,16 +1575,11 @@
                 // Réinitialiser les variables
                 currentModal = null;
                 modalType = null;
-                modalHistoryState = null;
-                
-                // Réinitialiser l'URL sans changer l'historique
-                if (window.location.hash) {
-                    history.replaceState(null, '', window.location.pathname + window.location.search);
-                }
+                isModalOpen = false;
             };
             
             // Fonction pour fermer la modal courante
-            const closeCurrentModal = () => {
+            window.closeCurrentModal = () => {
                 if (modalType === 'video') {
                     closeVideoModal();
                 } else if (modalType === 'image') {
@@ -1606,7 +1590,7 @@
                 }
             };
             
-            // Fonction pour naviguer vers une vidéo - CORRIGÉ
+            // Fonction pour naviguer vers une vidéo - SANS ANIMATION
             const navigateToVideo = (direction) => {
                 let newIndex;
                 if (direction === 'next') {
@@ -1621,16 +1605,11 @@
                 const nextTitle = nextItem.querySelector('.video-info h3').textContent;
                 const nextDescription = nextItem.querySelector('.video-info p').textContent;
                 
-                // Mettre à jour notre état local seulement
-                modalHistoryState = { modal: 'video', index: newIndex };
-                
                 // Fermer la modale actuelle
                 closeVideoModal();
                 
-                // Ouvrir la nouvelle vidéo
-                setTimeout(() => {
-                    showVideoModal(nextVideoUrl, nextTitle, nextDescription, newIndex);
-                }, 100);
+                // Ouvrir la nouvelle vidéo IMMÉDIATEMENT
+                showVideoModal(nextVideoUrl, nextTitle, nextDescription, newIndex);
             };
             
             // Événements pour les boutons de navigation
@@ -1678,7 +1657,7 @@
             // Stocker la référence à la modal courante
             currentModal = modal;
             
-            // Animation d'entrée
+            // Afficher IMMÉDIATEMENT sans animation
             setTimeout(() => {
                 modal.style.opacity = '1';
             }, 10);
@@ -1691,20 +1670,18 @@
             }
         }
 
-        // Lightbox pour les images de la galerie - CORRIGÉ
+        // Lightbox pour les images de la galerie - SANS ANIMATIONS
         const galleryImageItems = Array.from(document.querySelectorAll('.galerie-item'));
         const zoomButtons = document.querySelectorAll('.galerie-zoom-btn');
 
         // Fonction pour créer et afficher la lightbox
         function showImageLightbox(imageUrl, title, category, currentIndex) {
             modalType = 'image';
+            isModalOpen = true;
             
             // Désactiver le défilement
             document.body.style.overflow = 'hidden';
             document.documentElement.style.overflow = 'hidden';
-            
-            // Stocker l'état dans notre variable
-            modalHistoryState = { modal: 'image', index: currentIndex };
             
             // Créer la modale
             const modal = document.createElement('div');
@@ -1721,7 +1698,6 @@
                 justify-content: center;
                 z-index: 3000;
                 opacity: 0;
-                transition: opacity 0.3s ease;
             `;
             
             // Conteneur de l'image
@@ -1746,8 +1722,6 @@
                 max-height: 70vh;
                 object-fit: contain;
                 border-radius: 10px;
-                transform: scale(0.9);
-                transition: transform 0.3s ease;
             `;
             
             // Info de l'image
@@ -1806,7 +1780,7 @@
                 document.body.style.overflow = '';
                 document.documentElement.style.overflow = '';
                 
-                if (document.body.contains(modal)) {
+                if (modal && document.body.contains(modal)) {
                     document.body.removeChild(modal);
                 }
                 document.removeEventListener('keydown', handleKeydown);
@@ -1814,18 +1788,13 @@
                 // Réinitialiser les variables
                 currentModal = null;
                 modalType = null;
-                modalHistoryState = null;
-                
-                // Réinitialiser l'URL sans changer l'historique
-                if (window.location.hash) {
-                    history.replaceState(null, '', window.location.pathname + window.location.search);
-                }
+                isModalOpen = false;
             };
             
             // Exposer la fonction globalement pour la gestion du bouton retour
             window.closeImageModal = closeImageModal;
             
-            // Fonction pour naviguer vers une image - CORRIGÉ
+            // Fonction pour naviguer vers une image - SANS ANIMATION
             const navigateToImage = (direction) => {
                 let newIndex;
                 if (direction === 'next') {
@@ -1839,16 +1808,11 @@
                 const nextTitle = nextItem.querySelector('.galerie-title').textContent;
                 const nextCategory = nextItem.querySelector('.galerie-category').textContent;
                 
-                // Mettre à jour notre état local seulement
-                modalHistoryState = { modal: 'image', index: newIndex };
-                
                 // Fermer la modale actuelle
                 closeImageModal();
                 
-                // Ouvrir la nouvelle image
-                setTimeout(() => {
-                    showImageLightbox(nextImage, nextTitle, nextCategory, newIndex);
-                }, 100);
+                // Ouvrir la nouvelle image IMMÉDIATEMENT
+                showImageLightbox(nextImage, nextTitle, nextCategory, newIndex);
             };
             
             // Événements pour les boutons de navigation
@@ -1897,10 +1861,9 @@
             // Stocker la référence à la modal courante
             currentModal = modal;
             
-            // Animation d'entrée
+            // Afficher IMMÉDIATEMENT sans animation
             setTimeout(() => {
                 modal.style.opacity = '1';
-                img.style.transform = 'scale(1)';
             }, 10);
         }
 
@@ -2095,76 +2058,54 @@
             }
         `;
         document.head.appendChild(style);
-        
-        // Nettoyer l'URL quand la page est chargée
-        window.addEventListener('load', function() {
-            if (window.location.hash) {
-                history.replaceState(null, '', window.location.pathname + window.location.search);
-            }
-        });
 
-                // Empêcher la navigation par défaut quand une modale est ouverte
+                // SOLUTION ROBUSTE POUR LE BOUTON RETOUR MOBILE
         (function() {
-            let modalOpen = false;
+            // Intercepter tous les clics sur la page
+            document.addEventListener('click', function(e) {
+                // Si on clique sur un bouton de navigation dans une modale
+                if (e.target.closest('.modal-nav-btn') || e.target.closest('.modal-close-btn')) {
+                    // Empêcher toute navigation
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }, true); // Utiliser la capture phase
             
-            // Surcharger la fonction pushState pour éviter les problèmes
+            // Intercepter les touches du clavier
+            document.addEventListener('keydown', function(e) {
+                if ((e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'Escape') && isModalOpen) {
+                    // Pour les touches de navigation dans les modales
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }, true);
+            
+            // Solution alternative: empêcher complètement le bouton retour
+            // en redirigeant toujours vers galerie.html
+            window.addEventListener('popstate', function(e) {
+                if (isModalOpen) {
+                    // Fermer la modale
+                    if (window.closeCurrentModal) {
+                        window.closeCurrentModal();
+                    }
+                    // Bloquer la navigation
+                    history.pushState(null, '', 'galerie.html');
+                    return false;
+                }
+            });
+            
+            // Initialiser l'historique
+            history.replaceState({ page: 'galerie' }, '', 'galerie.html');
+            
+            // Surcharger pushState pour toujours garder galerie.html
             const originalPushState = history.pushState;
             history.pushState = function(state, title, url) {
-                if (!modalOpen) {
-                    originalPushState.call(history, state, title, url);
+                // Toujours pousser galerie.html quand une modale est ouverte
+                if (isModalOpen) {
+                    originalPushState.call(this, { modalOpen: true }, '', 'galerie.html');
+                } else {
+                    originalPushState.call(this, state, title, url);
                 }
-            };
-            
-            // Surcharger la fonction replaceState
-            const originalReplaceState = history.replaceState;
-            history.replaceState = function(state, title, url) {
-                if (!modalOpen) {
-                    originalReplaceState.call(history, state, title, url);
-                }
-            };
-            
-            // Surveiller l'ouverture/fermeture des modales
-            const originalShowImageLightbox = window.showImageLightbox;
-            const originalShowVideoModal = window.showVideoModal;
-            
-            if (originalShowImageLightbox) {
-                window.showImageLightbox = function(...args) {
-                    modalOpen = true;
-                    return originalShowImageLightbox(...args);
-                };
-            }
-            
-            if (originalShowVideoModal) {
-                window.showVideoModal = function(...args) {
-                    modalOpen = true;
-                    return originalShowVideoModal(...args);
-                };
-            }
-            
-            // Fonction pour réinitialiser quand une modale est fermée
-            window.resetModalState = function() {
-                modalOpen = false;
-                currentModal = null;
-                modalType = null;
-                modalHistoryState = null;
-            };
-            
-            // Exposer les fonctions de fermeture
-            window.closeCurrentModal = function() {
-                if (modalType === 'video') {
-                    // Appeler la fonction de fermeture de vidéo
-                    const videoModal = document.querySelector('.video-lightbox-modal');
-                    if (videoModal) {
-                        const closeBtn = videoModal.querySelector('.modal-close-btn');
-                        if (closeBtn) closeBtn.click();
-                    }
-                } else if (modalType === 'image') {
-                    // Appeler la fonction de fermeture d'image
-                    if (typeof window.closeImageModal === 'function') {
-                        window.closeImageModal();
-                    }
-                }
-                resetModalState();
             };
         })();
     </script>
