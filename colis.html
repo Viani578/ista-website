@@ -63,30 +63,6 @@
             width: 100%;
         }
 
-        /* Empêcher le défilement quand le menu est ouvert */
-        body.menu-open {
-            overflow: hidden;
-        }
-
-        /* Overlay pour menu mobile */
-        .menu-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .menu-overlay.active {
-            display: block;
-            opacity: 1;
-        }
-
         /* Typographie améliorée */
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
@@ -99,7 +75,6 @@
         h3 { font-size: 2rem; }
         h4 { font-size: 1.5rem; }
 
-        /* Container pour alignement */
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -128,6 +103,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         /* Logo */
@@ -136,7 +114,6 @@
             align-items: center;
             gap: 1.2rem;
             text-decoration: none;
-            flex-shrink: 0;
         }
 
         .logo-img {
@@ -164,12 +141,8 @@
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2.5rem; /* Espace augmenté entre les éléments */
+            gap: 2rem;
             align-items: center;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            flex: 1;
-            margin-left: 2rem; /* Espace supplémentaire entre logo et menu */
         }
 
         .nav-menu > li {
@@ -187,7 +160,6 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 0;
-            white-space: nowrap;
         }
 
         .nav-menu > li > a::after {
@@ -211,6 +183,12 @@
             color: var(--gold);
         }
 
+        .nav-menu a i {
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
         /* Sous-menu */
         .has-submenu {
             position: relative;
@@ -221,7 +199,7 @@
             top: 100%;
             left: 0;
             background: var(--soft-white);
-            min-width: 280px;
+            min-width: 250px;
             padding: 1rem 0;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-lg);
@@ -255,10 +233,9 @@
             padding-left: 2rem;
         }
 
-        /* Icônes dans les sous-menus */
         .submenu li a i {
             font-size: 0.9rem;
-            width: 20px;
+            width: 18px;
             color: var(--gold);
         }
 
@@ -271,8 +248,6 @@
             color: var(--dark-navy);
             cursor: pointer;
             padding: 0.5rem;
-            z-index: 1002;
-            position: relative;
         }
 
         /* Section Hero Colis */
@@ -728,7 +703,6 @@
            RESPONSIVE DESIGN AMÉLIORÉ POUR MOBILE
            =========================================== */
         @media (max-width: 768px) {
-            /* 1. CORRECTION DU SCROLL HORIZONTAL */
             html, body {
                 overflow-x: hidden;
                 max-width: 100vw;
@@ -741,7 +715,6 @@
                 max-width: 100%;
             }
             
-            /* 2. RÉDUCTION DES TAILLES DE POLICE */
             h1 {
                 font-size: 2rem;
                 line-height: 1.2;
@@ -772,15 +745,13 @@
             }
             
             .nav-container {
-                justify-content: space-between;
-                align-items: center;
+                padding: 0 1rem;
                 width: 100%;
             }
             
             .logo-section {
                 gap: 0.8rem;
                 align-items: center;
-                flex-shrink: 0;
             }
             
             .logo-img {
@@ -802,9 +773,8 @@
                 display: block;
                 font-size: 1.2rem;
                 padding: 0.3rem;
-                z-index: 1002;
             }
-            
+
             /* 4. MENU MOBILE */
             .nav-menu {
                 position: fixed;
@@ -836,9 +806,29 @@
                 padding: 1rem 1.5rem;
                 font-size: 1rem;
                 justify-content: space-between;
+                width: 100%;
             }
             
-            .has-submenu .submenu {
+            /* Correction pour les liens avec sous-menu */
+            .has-submenu > a {
+                position: relative;
+            }
+            
+            .has-submenu > a::after {
+                content: '\f078';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                position: absolute;
+                right: 1.5rem;
+                transition: transform 0.3s ease;
+            }
+            
+            .has-submenu.active > a::after {
+                transform: rotate(180deg);
+            }
+            
+            /* Sous-menu mobile */
+            .submenu {
                 position: static;
                 opacity: 1;
                 visibility: visible;
@@ -848,9 +838,10 @@
                 border-radius: 0;
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height 0.3s ease;
+                transition: max-height 0.5s ease;
                 padding: 0;
                 min-width: 100%;
+                margin-left: 1rem;
             }
             
             .has-submenu.active .submenu {
@@ -861,6 +852,12 @@
             .submenu li a {
                 padding: 0.8rem 2rem;
                 font-size: 0.9rem;
+                border-left: 3px solid transparent;
+            }
+            
+            .submenu li a:hover {
+                border-left: 3px solid var(--gold);
+                background: rgba(212, 175, 55, 0.1);
             }
             
             /* 5. HERO SECTION */
@@ -1471,121 +1468,54 @@
 
     <script>
         // ==================== NAVIGATION MOBILE ====================
+        // Navigation mobile (corrigé)
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const body = document.body;
 
-        // Toggle menu mobile
-        mobileToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
+        mobileToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            body.classList.toggle('menu-open');
-            
-            // Changer l'icône
-            const icon = mobileToggle.querySelector('i');
-            if (navMenu.classList.contains('active')) {
-                icon.className = 'fas fa-times';
-            } else {
-                icon.className = 'fas fa-bars';
-            }
+            mobileToggle.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
         });
 
-        // Gestion des sous-menus sur mobile
-        document.querySelectorAll('.submenu-trigger').forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                // Sur mobile seulement
+        // Gestion des sous-menus en mobile
+        const hasSubmenuItems = document.querySelectorAll('.has-submenu > a');
+        
+        hasSubmenuItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                // En mobile seulement
                 if (window.innerWidth <= 768) {
-                    e.stopPropagation();
-                    const submenu = trigger.nextElementSibling;
-                    const isActive = submenu.classList.contains('mobile-open');
+                    e.preventDefault();
+                    const parent = item.parentElement;
                     
-                    // Fermer tous les autres sous-menus
-                    document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
-                        if (menu !== submenu) {
-                            menu.classList.remove('mobile-open');
+                    // Fermer les autres sous-menus
+                    document.querySelectorAll('.has-submenu.active').forEach(activeItem => {
+                        if (activeItem !== parent) {
+                            activeItem.classList.remove('active');
                         }
                     });
                     
-                    // Toggle le sous-menu actuel
-                    submenu.classList.toggle('mobile-open');
-                    
-                    // Changer l'icône
-                    const chevron = trigger.querySelector('.fa-chevron-down');
-                    if (chevron) {
-                        chevron.style.transform = isActive ? 'rotate(0deg)' : 'rotate(180deg)';
-                    }
+                    // Basculer le sous-menu courant
+                    parent.classList.toggle('active');
                 }
             });
         });
 
-        // Fermer le menu au clic sur un lien (sauf déclencheurs de sous-menu)
-        document.querySelectorAll('.nav-menu a:not(.submenu-trigger)').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                menuOverlay.classList.remove('active');
-                body.classList.remove('menu-open');
-                
-                // Réinitialiser l'icône du toggle
-                const icon = mobileToggle.querySelector('i');
-                icon.className = 'fas fa-bars';
-                
-                // Fermer tous les sous-menus
-                document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
-                    menu.classList.remove('mobile-open');
-                });
-                
-                // Réinitialiser les icônes flèches
-                document.querySelectorAll('.fa-chevron-down').forEach(chevron => {
-                    chevron.style.transform = 'rotate(0deg)';
-                });
+        // Fermer le menu au clic sur un lien (sauf ceux avec sous-menus)
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Si ce n'est pas un lien de sous-menu en mobile
+                if (window.innerWidth <= 768 && !link.parentElement.classList.contains('has-submenu')) {
+                    navMenu.classList.remove('active');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Fermer tous les sous-menus
+                    document.querySelectorAll('.has-submenu').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                }
             });
-        });
-
-        // Fermer le menu en cliquant sur l'overlay
-        menuOverlay.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            body.classList.remove('menu-open');
-            
-            // Réinitialiser l'icône du toggle
-            const icon = mobileToggle.querySelector('i');
-            icon.className = 'fas fa-bars';
-            
-            // Fermer tous les sous-menus
-            document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
-                menu.classList.remove('mobile-open');
-            });
-            
-            // Réinitialiser les icônes flèches
-            document.querySelectorAll('.fa-chevron-down').forEach(chevron => {
-                chevron.style.transform = 'rotate(0deg)';
-            });
-        });
-
-        // Fermer les sous-menus en redimensionnant la fenêtre
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                navMenu.classList.remove('active');
-                menuOverlay.classList.remove('active');
-                body.classList.remove('menu-open');
-                
-                // Réinitialiser l'icône du toggle
-                const icon = mobileToggle.querySelector('i');
-                icon.className = 'fas fa-bars';
-                
-                document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
-                    menu.classList.remove('mobile-open');
-                });
-                
-                // Réinitialiser les icônes flèches
-                document.querySelectorAll('.fa-chevron-down').forEach(chevron => {
-                    chevron.style.transform = 'rotate(0deg)';
-                });
-            }
         });
 
         // Navbar scroll effect
@@ -1657,5 +1587,3 @@
     </script>
 </body>
 </html>
-
-
