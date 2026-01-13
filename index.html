@@ -154,19 +154,14 @@
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 0.15rem; /* Espace entre icône et texte */
+            gap: 0.5rem; /* Espace entre icône et texte */
             padding: 0.5rem 0;
         }
 
-        /* CORRECTION : Icônes du menu */
         .nav-menu a i {
             font-size: 1rem;
+            width: 20px;
             text-align: center;
-        }
-        /* Pour les flèches des sous-menus */
-        .nav-menu a .fa-chevron-down {
-            font-size: 0.8rem;
-            min-width: 10px;
         }
 
         .nav-menu > li > a::after {
@@ -1700,45 +1695,62 @@
                 display: block;
                 font-size: 1.2rem;
                 padding: 0.3rem;
-                margin-left: auto; /* Pousse le bouton à droite */
             }
             
-            /* 4. MENU MOBILE - MODIFICATIONS POUR GLISSER DE DROITE À GAUCHE */
+            /* 4. MENU MOBILE */
             .nav-menu {
                 position: fixed;
-                right: -100%; 
-                top: 60px;
+                left: -100%;
+                top: 70px;
                 flex-direction: column;
                 background: var(--soft-white);
-                width: 85%;
-                height: calc(100vh - 60px);
+                width: 100%;
                 text-align: left;
                 transition: 0.3s;
                 padding: 1rem 0;
                 gap: 0;
                 box-shadow: var(--shadow-lg);
-                max-height: calc(100vh - 60px);
+                max-height: calc(100vh - 70px);
                 overflow-y: auto;
                 z-index: 999;
             }
-            
+
             .nav-menu.active {
-                right: 0; 
+                left: 0;
             }
-            
+
             .nav-menu > li {
                 width: 100%;
                 border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             }
-            
+
             .nav-menu a {
-                padding: 0.8rem 1.5rem;
+                padding: 1rem 1.5rem;
                 font-size: 1rem;
                 justify-content: space-between;
-                gap: 0.15;
+                width: 100%;
             }
-            
-            .has-submenu .submenu {
+
+            /* Correction pour les liens avec sous-menu */
+            .has-submenu > a {
+                position: relative;
+            }
+
+            .has-submenu > a::after {
+                content: '\f078';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                position: absolute;
+                right: 1.5rem;
+                transition: transform 0.3s ease;
+            }
+
+            .has-submenu.active > a::after {
+                transform: rotate(180deg);
+            }
+
+            /* Sous-menu mobile */
+            .submenu {
                 position: static;
                 opacity: 1;
                 visibility: visible;
@@ -1748,30 +1760,26 @@
                 border-radius: 0;
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height 0.3s ease;
+                transition: max-height 0.5s ease;
                 padding: 0;
                 min-width: 100%;
+                margin-left: 1rem;
             }
-            
+
             .has-submenu.active .submenu {
                 max-height: 500px;
                 padding: 0.5rem 0;
             }
-            
+
             .submenu li a {
                 padding: 0.8rem 2rem;
                 font-size: 0.9rem;
-                gap: 0.15rem;
+                border-left: 3px solid transparent;
             }
 
-            .nav-menu a i:first-child {
-                 font-size: 1rem;
-                 min-width: 16px; 
-            }
-    
-            .submenu li a i {
-                font-size: 0.8rem;
-                min-width: 18px; 
+            .submenu li a:hover {
+                border-left: 3px solid var(--gold);
+                background: rgba(212, 175, 55, 0.1);
             }
             
             /* ==================== HERO SECTION ==================== */
@@ -3238,45 +3246,53 @@
 
     <script>
         // ==================== NAVIGATION MOBILE ====================
+
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
-        const submenuToggles = document.querySelectorAll('.has-submenu > a');
 
         mobileToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             mobileToggle.innerHTML = navMenu.classList.contains('active') 
                 ? '<i class="fas fa-times"></i>' 
                 : '<i class="fas fa-bars"></i>';
-            
-            // Fermer tous les sous-menus quand le menu principal se ferme
-            if (!navMenu.classList.contains('active')) {
-                document.querySelectorAll('.has-submenu').forEach(item => {
-                    item.classList.remove('active');
-                });
-            }
         });
 
-        // Gestion des sous-menus sur mobile
-        submenuToggles.forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
+        // Gestion des sous-menus en mobile
+        const hasSubmenuItems = document.querySelectorAll('.has-submenu > a');
+
+        hasSubmenuItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                // En mobile seulement
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
-                    const parent = this.parentElement;
+                    const parent = item.parentElement;
+                    
+                    // Fermer les autres sous-menus
+                    document.querySelectorAll('.has-submenu.active').forEach(activeItem => {
+                        if (activeItem !== parent) {
+                            activeItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Basculer le sous-menu courant
                     parent.classList.toggle('active');
                 }
             });
         });
 
-        // Fermer le menu au clic sur un lien (sauf les liens qui ouvrent des sous-menus)
-        document.querySelectorAll('.nav-menu a:not(.has-submenu > a)').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                
-                // Fermer tous les sous-menus
-                document.querySelectorAll('.has-submenu').forEach(item => {
-                    item.classList.remove('active');
-                });
+        // Fermer le menu au clic sur un lien (sauf ceux avec sous-menus)
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Si ce n'est pas un lien de sous-menu en mobile
+                if (window.innerWidth <= 768 && !link.parentElement.classList.contains('has-submenu')) {
+                    navMenu.classList.remove('active');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Fermer tous les sous-menus
+                    document.querySelectorAll('.has-submenu').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                }
             });
         });
 
@@ -3289,7 +3305,6 @@
                 navbar.classList.remove('scrolled');
             }
         });
-
         // ==================== CAROUSEL HERO ====================
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-slide');
