@@ -163,6 +163,12 @@
             color: var(--gold);
         }
 
+        .nav-menu a i {
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
         /* Sous-menu */
         .has-submenu {
             position: relative;
@@ -194,14 +200,23 @@
         .submenu li a {
             padding: 0.75rem 1.5rem;
             color: var(--text-dark);
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             transition: var(--transition);
+            font-size: 0.85rem;
         }
 
         .submenu li a:hover {
             background: var(--cream);
             color: var(--primary-blue);
             padding-left: 2rem;
+        }
+
+        .submenu li a i {
+            font-size: 0.9rem;
+            width: 18px;
+            color: var(--gold);
         }
 
         /* Menu mobile */
@@ -699,7 +714,7 @@
             /* 4. MENU MOBILE - CORRECTION DU PROBLÈME DES SOUS-MENUS */
             .nav-menu {
                 position: fixed;
-                right: -100%;
+                left: -100%;
                 top: 70px;
                 flex-direction: column;
                 background: var(--soft-white);
@@ -715,8 +730,7 @@
             }
             
             .nav-menu.active {
-                right: 0; 
-                left: auto;
+                left: 0;
             }
             
             .nav-menu > li {
@@ -899,18 +913,18 @@
                 <li class="has-submenu">
                     <a href="javascript:void(0)"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
                     <ul class="submenu">
-                        <li><a href="index.html#visas">Visa d'Etude</a></li>
-                        <li><a href="index.html#visas">Visa de Travail</a></li>
-                        <li><a href="index.html#visas">Visa Visiteur</a></li>
-                        <li><a href="index.html#immigration">Résidence Permanente</a></li>
-                        <li><a href="index.html#visas">Billets d'avion</a></li>
-                        <li><a href="index.html#traduction">Assistance Logement</a></li>
-                        <li><a href="index.html#traduction">Assistance Titre de Séjour</a></li>
-                        <li><a href="index.html#traduction">Admissions</a></li>
+                        <li><a href="#etude.html"><i class="fas fa-graduation-cap"></i> Visa d'Etude</a></li>
+                        <li><a href="#travail.html"><i class="fas fa-briefcase"></i> Visa de Travail</a></li>
+                        <li><a href="#visiteur.html"><i class="fas fa-plane"></i> Visa Visiteur</a></li>
+                        <li><a href="#residence.html"><i class="fas fa-home"></i> Résidence Permanente</a></li>
+                        <li><a href="#billet.html"><i class="fas fa-ticket-alt"></i> Billets d'avion</a></li>
+                        <li><a href="#logement.html"><i class="fas fa-building"></i> Assistance Logement</a></li>
+                        <li><a href="#sejour.html"><i class="fas fa-id-card"></i> Assistance Titre de Séjour</a></li>
+                        <li><a href="#admissions.html"><i class="fas fa-university"></i> Admissions</a></li>
                         <li><a href="galerie.html"><i class="fas fa-images"></i> Galerie Photo/Video</a></li>
                     </ul>
                 </li>
-                <li><a href="index.html#universites"><i class="fas fa-university"></i> Envoyer/Recevoir un colis</a></li>
+                <li><a href="colis.html"><i class="fas fa-university"></i> Envoyer/Recevoir un colis</a></li>
                 <li><a href="#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
                 <li><a href="index.html#equipe"><i class="fas fa-users"></i> Infos Paiement</a></li>
                 <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
@@ -1794,22 +1808,22 @@
         style.textContent = `
             @media (max-width: 768px) {
                 .image-lightbox-modal button {
-                    position: relative !important;
-                    margin: 1rem !important;
-                    left: auto !important;
-                    right: auto !important;
-                    top: auto !important;
+                    position: relative;
+                    margin: 1rem;
+                    left: auto;
+                    right: auto;
+                    top: auto;
                 }
                 
                 .image-lightbox-modal .fa-chevron-left,
                 .image-lightbox-modal .fa-chevron-right {
-                    position: static !important;
-                    transform: none !important;
-                    margin: 0 0.5rem !important;
+                    position: static;
+                    transform: none;
+                    margin: 0 0.5rem;
                 }
                 
                 .image-lightbox-modal > div {
-                    width: 95% !important;
+                    width: 95%;
                 }
             }
         `;
@@ -1817,7 +1831,3 @@
     </script>
 </body>
 </html>
-
-
-
-
