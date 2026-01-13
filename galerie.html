@@ -1386,7 +1386,38 @@
         const videoButtons = document.querySelectorAll('.video-play-btn');
         const allVideoItems = Array.from(document.querySelectorAll('.video-item'));
         
-        videoButtons.forEach(button => {
+        // Variables pour gérer les modales
+        let currentModal = null;
+        let modalType = null; // 'image' ou 'video'
+        let modalHistoryState = null;
+        
+        // Gestion du bouton retour du mobile - CORRIGÉ
+        window.addEventListener('popstate', function(event) {
+            // Si on a une modale ouverte, on la ferme sans naviguer
+            if (currentModal) {
+                event.preventDefault();
+                closeCurrentModal();
+            }
+        });
+        
+        // Fonction pour empêcher la navigation par défaut
+        function preventBackNavigation(e) {
+            if (currentModal) {
+                // Empêcher la navigation normale
+                history.pushState(modalHistoryState, '', window.location.pathname + window.location.search);
+                closeCurrentModal();
+                return false;
+            }
+        }
+        
+        // Intercepter les événements de navigation
+        window.addEventListener('beforeunload', function(e) {
+            if (currentModal) {
+                // Ne rien faire, laisser la modale ouverte
+            }
+        });
+        
+        videoButtons.forEach((button, index) => {
             button.addEventListener('click', (e) => {
                 e.stopPropagation(); // Empêcher la propagation
                 
@@ -1396,12 +1427,21 @@
                 const videoTitle = videoItem.querySelector('.video-info h3').textContent;
                 const videoDescription = videoItem.querySelector('.video-info p').textContent;
                 
+                // Stocker l'état dans notre variable, pas dans l'historique du navigateur
+                modalHistoryState = { modal: 'video', index: videoIndex };
+                
                 showVideoModal(videoUrl, videoTitle, videoDescription, videoIndex);
             });
         });
 
         // Fonction pour créer et afficher la modale vidéo avec navigation
         function showVideoModal(videoUrl, title, description, currentIndex) {
+            modalType = 'video';
+            
+            // Désactiver le défilement
+            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
+            
             // Créer la modale
             const modal = document.createElement('div');
             modal.className = 'video-lightbox-modal';
@@ -1489,6 +1529,7 @@
                 text-align: center;
                 width: 100%;
                 padding: 0 1rem;
+                margin-top: 1rem;
             `;
             
             const titleH3 = document.createElement('h3');
@@ -1508,85 +1549,23 @@
                 line-height: 1.5;
             `;
             
-            // Bouton de fermeture
+            // Bouton de fermeture (en haut à droite du conteneur vidéo)
             const closeBtn = document.createElement('button');
+            closeBtn.className = 'modal-close-btn';
             closeBtn.innerHTML = '<i class="fas fa-times"></i>';
-            closeBtn.style.cssText = `
-                position: absolute;
-                top: -50px;
-                right: 0;
-                background: var(--gold);
-                color: var(--dark-navy);
-                border: none;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                cursor: pointer;
-                font-size: 1.2rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s ease;
-                z-index: 10;
-            `;
+            closeBtn.setAttribute('aria-label', 'Fermer');
             
-            closeBtn.addEventListener('mouseenter', () => {
-                closeBtn.style.transform = 'rotate(90deg)';
-            });
-            
-            closeBtn.addEventListener('mouseleave', () => {
-                closeBtn.style.transform = 'rotate(0deg)';
-            });
-            
-            closeBtn.addEventListener('click', () => {
-                closeVideoModal();
-            });
-            
-            // Bouton précédent (réduit sur mobile)
+            // Bouton précédent (petite taille, à gauche de la vidéo)
             const prevBtn = document.createElement('button');
+            prevBtn.className = 'modal-nav-btn modal-prev-btn';
             prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
-            prevBtn.style.cssText = `
-                position: absolute;
-                left: -50px;
-                top: 50%;
-                transform: translateY(-50%);
-                background: rgba(212, 175, 55, 0.8);
-                color: var(--dark-navy);
-                border: none;
-                width: 45px;
-                height: 45px;
-                border-radius: 50%;
-                cursor: pointer;
-                font-size: 1.1rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s ease;
-                z-index: 10;
-            `;
+            prevBtn.setAttribute('aria-label', 'Précédent');
             
-            // Bouton suivant (réduit sur mobile)
+            // Bouton suivant (petite taille, à droite de la vidéo)
             const nextBtn = document.createElement('button');
+            nextBtn.className = 'modal-nav-btn modal-next-btn';
             nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
-            nextBtn.style.cssText = `
-                position: absolute;
-                right: -50px;
-                top: 50%;
-                transform: translateY(-50%);
-                background: rgba(212, 175, 55, 0.8);
-                color: var(--dark-navy);
-                border: none;
-                width: 45px;
-                height: 45px;
-                border-radius: 50%;
-                cursor: pointer;
-                font-size: 1.1rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s ease;
-                z-index: 10;
-            `;
+            nextBtn.setAttribute('aria-label', 'Suivant');
             
             // Fonction pour fermer la modale
             const closeVideoModal = () => {
@@ -1594,11 +1573,40 @@
                     videoElement.pause();
                     videoElement.currentTime = 0;
                 }
-                document.body.removeChild(modal);
+                
+                // Réactiver le défilement
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+                
+                if (document.body.contains(modal)) {
+                    document.body.removeChild(modal);
+                }
                 document.removeEventListener('keydown', handleKeydown);
+                
+                // Réinitialiser les variables
+                currentModal = null;
+                modalType = null;
+                modalHistoryState = null;
+                
+                // Réinitialiser l'URL sans changer l'historique
+                if (window.location.hash) {
+                    history.replaceState(null, '', window.location.pathname + window.location.search);
+                }
             };
             
-            // Fonction pour naviguer vers une vidéo
+            // Fonction pour fermer la modal courante
+            const closeCurrentModal = () => {
+                if (modalType === 'video') {
+                    closeVideoModal();
+                } else if (modalType === 'image') {
+                    // Appeler la fonction de fermeture d'image
+                    if (typeof window.closeImageModal === 'function') {
+                        window.closeImageModal();
+                    }
+                }
+            };
+            
+            // Fonction pour naviguer vers une vidéo - CORRIGÉ
             const navigateToVideo = (direction) => {
                 let newIndex;
                 if (direction === 'next') {
@@ -1613,6 +1621,9 @@
                 const nextTitle = nextItem.querySelector('.video-info h3').textContent;
                 const nextDescription = nextItem.querySelector('.video-info p').textContent;
                 
+                // Mettre à jour notre état local seulement
+                modalHistoryState = { modal: 'video', index: newIndex };
+                
                 // Fermer la modale actuelle
                 closeVideoModal();
                 
@@ -1623,6 +1634,7 @@
             };
             
             // Événements pour les boutons de navigation
+            closeBtn.addEventListener('click', closeVideoModal);
             prevBtn.addEventListener('click', () => navigateToVideo('prev'));
             nextBtn.addEventListener('click', () => navigateToVideo('next'));
             
@@ -1646,6 +1658,11 @@
                 }
             });
             
+            // Empêcher la propagation dans le conteneur vidéo
+            videoContainer.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+            
             // Assembler les éléments
             infoDiv.appendChild(titleH3);
             infoDiv.appendChild(descP);
@@ -1658,6 +1675,9 @@
             modal.appendChild(videoContainer);
             document.body.appendChild(modal);
             
+            // Stocker la référence à la modal courante
+            currentModal = modal;
+            
             // Animation d'entrée
             setTimeout(() => {
                 modal.style.opacity = '1';
@@ -1667,53 +1687,24 @@
             if (isLocalVideo && videoElement) {
                 videoElement.play().catch(error => {
                     console.error('Erreur de lecture vidéo:', error);
-                    // Afficher un message d'erreur
-                    const errorMsg = document.createElement('div');
-                    errorMsg.style.cssText = `
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        color: white;
-                        text-align: center;
-                        padding: 2rem;
-                        background: rgba(0,0,0,0.8);
-                        border-radius: 10px;
-                        max-width: 80%;
-                    `;
-                    errorMsg.innerHTML = `
-                        <p>Impossible de lire la vidéo. Essayez de :</p>
-                        <ol style="text-align: left; margin: 1rem auto; max-width: 300px;">
-                            <li>Vérifier que le fichier existe</li>
-                            <li>Utiliser un navigateur récent</li>
-                            <li><a href="${videoUrl}" style="color: var(--gold);">Télécharger la vidéo</a></li>
-                        </ol>
-                    `;
-                    videoWrapper.appendChild(errorMsg);
                 });
             }
-            
-            // Cacher le défilement de la page
-            document.body.style.overflow = 'hidden';
-            
-            // Restaurer le défilement quand la modale est fermée
-            const observer = new MutationObserver((mutations) => {
-                if (!document.body.contains(modal)) {
-                    document.body.style.overflow = '';
-                    observer.disconnect();
-                }
-            });
-            observer.observe(document.body, { childList: true });
         }
 
-        // Lightbox pour les images de la galerie - AVEC DÉFILEMENT DÉSACTIVÉ
-        const galleryImageItems = document.querySelectorAll('.galerie-item');
+        // Lightbox pour les images de la galerie - CORRIGÉ
+        const galleryImageItems = Array.from(document.querySelectorAll('.galerie-item'));
         const zoomButtons = document.querySelectorAll('.galerie-zoom-btn');
 
         // Fonction pour créer et afficher la lightbox
         function showImageLightbox(imageUrl, title, category, currentIndex) {
-            // Désactiver le défilement de la page
+            modalType = 'image';
+            
+            // Désactiver le défilement
             document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
+            
+            // Stocker l'état dans notre variable
+            modalHistoryState = { modal: 'image', index: currentIndex };
             
             // Créer la modale
             const modal = document.createElement('div');
@@ -1752,7 +1743,7 @@
             img.style.cssText = `
                 width: 100%;
                 height: auto;
-                max-height: 80vh;
+                max-height: 70vh;
                 object-fit: contain;
                 border-radius: 10px;
                 transform: scale(0.9);
@@ -1766,6 +1757,7 @@
                 text-align: center;
                 margin-top: 1.5rem;
                 width: 100%;
+                padding: 0 1rem;
             `;
             
             const categorySpan = document.createElement('span');
@@ -1790,109 +1782,65 @@
                 margin: 0;
             `;
             
-            // Bouton de fermeture (réduit sur mobile)
+            // Bouton de fermeture (en haut à droite du conteneur image)
             const closeBtn = document.createElement('button');
+            closeBtn.className = 'modal-close-btn';
             closeBtn.innerHTML = '<i class="fas fa-times"></i>';
-            closeBtn.style.cssText = `
-                position: absolute;
-                top: -50px;
-                right: 0;
-                background: var(--gold);
-                color: var(--dark-navy);
-                border: none;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                cursor: pointer;
-                font-size: 1.2rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s ease;
-                z-index: 10;
-            `;
+            closeBtn.setAttribute('aria-label', 'Fermer');
             
-            closeBtn.addEventListener('mouseenter', () => {
-                closeBtn.style.transform = 'rotate(90deg)';
-            });
-            
-            closeBtn.addEventListener('mouseleave', () => {
-                closeBtn.style.transform = 'rotate(0deg)';
-            });
-            
-            closeBtn.addEventListener('click', () => {
-                closeImageModal();
-            });
-            
-            // Bouton précédent (réduit sur mobile)
+            // Bouton précédent (petite taille, à gauche de l'image)
             const prevBtn = document.createElement('button');
+            prevBtn.className = 'modal-nav-btn modal-prev-btn';
             prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
-            prevBtn.style.cssText = `
-                position: absolute;
-                left: -50px;
-                top: 50%;
-                transform: translateY(-50%);
-                background: rgba(212, 175, 55, 0.8);
-                color: var(--dark-navy);
-                border: none;
-                width: 45px;
-                height: 45px;
-                border-radius: 50%;
-                cursor: pointer;
-                font-size: 1.1rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s ease;
-                z-index: 10;
-            `;
+            prevBtn.setAttribute('aria-label', 'Précédent');
             
-            // Bouton suivant (réduit sur mobile)
+            // Bouton suivant (petite taille, à droite de l'image)
             const nextBtn = document.createElement('button');
+            nextBtn.className = 'modal-nav-btn modal-next-btn';
             nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
-            nextBtn.style.cssText = `
-                position: absolute;
-                right: -50px;
-                top: 50%;
-                transform: translateY(-50%);
-                background: rgba(212, 175, 55, 0.8);
-                color: var(--dark-navy);
-                border: none;
-                width: 45px;
-                height: 45px;
-                border-radius: 50%;
-                cursor: pointer;
-                font-size: 1.1rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s ease;
-                z-index: 10;
-            `;
+            nextBtn.setAttribute('aria-label', 'Suivant');
             
             // Fonction pour fermer la modale et restaurer le défilement
             const closeImageModal = () => {
-                document.body.removeChild(modal);
-                document.removeEventListener('keydown', handleKeydown);
+                // Réactiver le défilement
                 document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+                
+                if (document.body.contains(modal)) {
+                    document.body.removeChild(modal);
+                }
+                document.removeEventListener('keydown', handleKeydown);
+                
+                // Réinitialiser les variables
+                currentModal = null;
+                modalType = null;
+                modalHistoryState = null;
+                
+                // Réinitialiser l'URL sans changer l'historique
+                if (window.location.hash) {
+                    history.replaceState(null, '', window.location.pathname + window.location.search);
+                }
             };
             
-            // Navigation entre images
-            const allItems = Array.from(galleryImageItems);
+            // Exposer la fonction globalement pour la gestion du bouton retour
+            window.closeImageModal = closeImageModal;
             
-            // Fonction pour naviguer vers une image
+            // Fonction pour naviguer vers une image - CORRIGÉ
             const navigateToImage = (direction) => {
                 let newIndex;
                 if (direction === 'next') {
-                    newIndex = (currentIndex + 1) % allItems.length;
+                    newIndex = (currentIndex + 1) % galleryImageItems.length;
                 } else {
-                    newIndex = (currentIndex - 1 + allItems.length) % allItems.length;
+                    newIndex = (currentIndex - 1 + galleryImageItems.length) % galleryImageItems.length;
                 }
                 
-                const nextItem = allItems[newIndex];
+                const nextItem = galleryImageItems[newIndex];
                 const nextImage = nextItem.getAttribute('data-image');
                 const nextTitle = nextItem.querySelector('.galerie-title').textContent;
                 const nextCategory = nextItem.querySelector('.galerie-category').textContent;
+                
+                // Mettre à jour notre état local seulement
+                modalHistoryState = { modal: 'image', index: newIndex };
                 
                 // Fermer la modale actuelle
                 closeImageModal();
@@ -1904,6 +1852,7 @@
             };
             
             // Événements pour les boutons de navigation
+            closeBtn.addEventListener('click', closeImageModal);
             prevBtn.addEventListener('click', () => navigateToImage('prev'));
             nextBtn.addEventListener('click', () => navigateToImage('next'));
             
@@ -1927,6 +1876,11 @@
                 }
             });
             
+            // Empêcher la propagation dans le conteneur image
+            imageContainer.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+            
             // Assembler les éléments
             infoDiv.appendChild(categorySpan);
             infoDiv.appendChild(titleH3);
@@ -1939,6 +1893,9 @@
             
             // Ajouter au DOM
             document.body.appendChild(modal);
+            
+            // Stocker la référence à la modal courante
+            currentModal = modal;
             
             // Animation d'entrée
             setTimeout(() => {
@@ -1976,68 +1933,106 @@
         // Ajouter du CSS pour la responsive de la lightbox
         const style = document.createElement('style');
         style.textContent = `
+            /* Styles communs pour les boutons des modales */
+            .modal-close-btn {
+                position: absolute !important;
+                top: -45px !important;
+                right: 0 !important;
+                background: var(--gold) !important;
+                color: var(--dark-navy) !important;
+                border: none !important;
+                width: 40px !important;
+                height: 40px !important;
+                border-radius: 50% !important;
+                cursor: pointer !important;
+                font-size: 1.2rem !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                transition: all 0.3s ease !important;
+                z-index: 10 !important;
+            }
+            
+            .modal-nav-btn {
+                position: absolute !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                background: rgba(212, 175, 55, 0.8) !important;
+                color: var(--dark-navy) !important;
+                border: none !important;
+                width: 40px !important;
+                height: 40px !important;
+                border-radius: 50% !important;
+                cursor: pointer !important;
+                font-size: 1rem !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                transition: all 0.3s ease !important;
+                z-index: 10 !important;
+            }
+            
+            .modal-prev-btn {
+                left: -50px !important;
+            }
+            
+            .modal-next-btn {
+                right: -50px !important;
+            }
+            
+            .modal-close-btn:hover,
+            .modal-nav-btn:hover {
+                background: var(--gold) !important;
+                transform: scale(1.1) !important;
+            }
+            
+            .modal-prev-btn:hover {
+                transform: translateY(-50%) scale(1.1) !important;
+            }
+            
+            .modal-next-btn:hover {
+                transform: translateY(-50%) scale(1.1) !important;
+            }
+            
             /* Styles pour mobile - réduire les boutons */
             @media (max-width: 768px) {
-                .image-lightbox-modal button,
-                .video-lightbox-modal button {
+                .modal-close-btn {
+                    width: 35px !important;
+                    height: 35px !important;
+                    font-size: 1rem !important;
+                    top: 10px !important;
+                    right: 10px !important;
+                }
+                
+                .modal-nav-btn {
                     width: 35px !important;
                     height: 35px !important;
                     font-size: 0.9rem !important;
                 }
                 
-                .image-lightbox-modal .fa-chevron-left,
-                .image-lightbox-modal .fa-chevron-right,
-                .video-lightbox-modal .fa-chevron-left,
-                .video-lightbox-modal .fa-chevron-right {
-                    position: static !important;
-                    transform: none !important;
-                    margin: 0 0.3rem !important;
+                .modal-prev-btn {
+                    left: 10px !important;
                 }
                 
-                /* Repositionner les boutons sur mobile */
+                .modal-next-btn {
+                    right: 10px !important;
+                }
+                
+                .modal-prev-btn:hover {
+                    transform: translateY(-50%) scale(1.05) !important;
+                }
+                
+                .modal-next-btn:hover {
+                    transform: translateY(-50%) scale(1.05) !important;
+                }
+                
+                /* Ajuster la position des boutons de navigation */
                 .image-lightbox-modal > div,
                 .video-lightbox-modal > div {
                     width: 95% !important;
                 }
                 
-                .image-lightbox-modal button,
-                .video-lightbox-modal button {
-                    position: relative !important;
-                    margin: 0.5rem !important;
-                    left: auto !important;
-                    right: auto !important;
-                    top: auto !important;
-                }
-                
-                /* Boutons de navigation en bas sur mobile */
-                .image-lightbox-modal .fa-chevron-left,
-                .image-lightbox-modal .fa-chevron-right,
-                .video-lightbox-modal .fa-chevron-left,
-                .video-lightbox-modal .fa-chevron-right {
-                    position: static !important;
-                    transform: none !important;
-                }
-                
-                /* Bouton fermer en haut à droite sur mobile */
-                .image-lightbox-modal .fa-times,
-                .video-lightbox-modal .fa-times {
-                    position: absolute !important;
-                    top: 10px !important;
-                    right: 10px !important;
-                    width: 35px !important;
-                    height: 35px !important;
-                }
-                
-                /* Conteneur des boutons de navigation en bas */
-                .image-lightbox-modal .nav-buttons-container,
-                .video-lightbox-modal .nav-buttons-container {
-                    display: flex !important;
-                    justify-content: center !important;
-                    gap: 2rem !important;
-                    margin-top: 1rem !important;
-                }
-                
-                /* Info plus petite sur mobile */
+                /* Réduire la taille des textes sur mobile */
                 .image-lightbox-modal h3,
                 .video-lightbox-modal h3 {
                     font-size: 1.2rem !important;
@@ -2047,27 +2042,131 @@
                 .video-lightbox-modal p {
                     font-size: 0.9rem !important;
                 }
+                
+                .image-lightbox-modal span,
+                .video-lightbox-modal span {
+                    font-size: 0.75rem !important;
+                    padding: 0.3rem 0.8rem !important;
+                }
+                
+                /* Ajuster la taille maximale de l'image/vidéo */
+                .image-lightbox-modal img {
+                    max-height: 60vh !important;
+                }
+                
+                .video-lightbox-modal div[aspect-ratio] {
+                    max-height: 50vh !important;
+                }
             }
             
             /* Styles pour très petits écrans */
             @media (max-width: 480px) {
-                .image-lightbox-modal button,
-                .video-lightbox-modal button {
+                .modal-close-btn {
+                    width: 30px !important;
+                    height: 30px !important;
+                    font-size: 0.8rem !important;
+                    top: 5px !important;
+                    right: 5px !important;
+                }
+                
+                .modal-nav-btn {
                     width: 30px !important;
                     height: 30px !important;
                     font-size: 0.8rem !important;
                 }
                 
-                .image-lightbox-modal .fa-times,
-                .video-lightbox-modal .fa-times {
-                    top: 5px !important;
+                .modal-prev-btn {
+                    left: 5px !important;
+                }
+                
+                .modal-next-btn {
                     right: 5px !important;
-                    width: 30px !important;
-                    height: 30px !important;
+                }
+                
+                .image-lightbox-modal h3,
+                .video-lightbox-modal h3 {
+                    font-size: 1rem !important;
+                }
+                
+                .image-lightbox-modal p,
+                .video-lightbox-modal p {
+                    font-size: 0.8rem !important;
                 }
             }
         `;
         document.head.appendChild(style);
+        
+        // Nettoyer l'URL quand la page est chargée
+        window.addEventListener('load', function() {
+            if (window.location.hash) {
+                history.replaceState(null, '', window.location.pathname + window.location.search);
+            }
+        });
+
+                // Empêcher la navigation par défaut quand une modale est ouverte
+        (function() {
+            let modalOpen = false;
+            
+            // Surcharger la fonction pushState pour éviter les problèmes
+            const originalPushState = history.pushState;
+            history.pushState = function(state, title, url) {
+                if (!modalOpen) {
+                    originalPushState.call(history, state, title, url);
+                }
+            };
+            
+            // Surcharger la fonction replaceState
+            const originalReplaceState = history.replaceState;
+            history.replaceState = function(state, title, url) {
+                if (!modalOpen) {
+                    originalReplaceState.call(history, state, title, url);
+                }
+            };
+            
+            // Surveiller l'ouverture/fermeture des modales
+            const originalShowImageLightbox = window.showImageLightbox;
+            const originalShowVideoModal = window.showVideoModal;
+            
+            if (originalShowImageLightbox) {
+                window.showImageLightbox = function(...args) {
+                    modalOpen = true;
+                    return originalShowImageLightbox(...args);
+                };
+            }
+            
+            if (originalShowVideoModal) {
+                window.showVideoModal = function(...args) {
+                    modalOpen = true;
+                    return originalShowVideoModal(...args);
+                };
+            }
+            
+            // Fonction pour réinitialiser quand une modale est fermée
+            window.resetModalState = function() {
+                modalOpen = false;
+                currentModal = null;
+                modalType = null;
+                modalHistoryState = null;
+            };
+            
+            // Exposer les fonctions de fermeture
+            window.closeCurrentModal = function() {
+                if (modalType === 'video') {
+                    // Appeler la fonction de fermeture de vidéo
+                    const videoModal = document.querySelector('.video-lightbox-modal');
+                    if (videoModal) {
+                        const closeBtn = videoModal.querySelector('.modal-close-btn');
+                        if (closeBtn) closeBtn.click();
+                    }
+                } else if (modalType === 'image') {
+                    // Appeler la fonction de fermeture d'image
+                    if (typeof window.closeImageModal === 'function') {
+                        window.closeImageModal();
+                    }
+                }
+                resetModalState();
+            };
+        })();
     </script>
 </body>
 </html>
