@@ -1668,31 +1668,57 @@
             }
             
             /* ==================== NAVBAR MOBILE ==================== */
+            .navbar {
+                padding: 0.8rem 0;
+            }
+            
+            .nav-container {
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+            }
+            
+            .logo-section {
+                gap: 0.8rem;
+                align-items: center;
+            }
+            
+            .logo-img {
+                height: 40px;
+                width: auto;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.1rem;
+                line-height: 1;
+            }
+            
+            .logo-text p {
+                font-size: 0.55rem;
+                letter-spacing: 1px;
+            }
+            
             .mobile-toggle {
                 display: block;
-                position: relative;
-                z-index: 1002;
-                cursor: pointer;
-                background: none;
-                border: none;
-                padding: 10px;
+                font-size: 1.2rem;
+                padding: 0.3rem;
             }
             
             .nav-menu {
                 position: fixed;
-                top: 0;
                 left: -100%;
-                width: 80%;
-                max-width: 300px;
-                height: 100vh;
-                background: var(--soft-white);
+                top: 70px;
                 flex-direction: column;
-                padding: 85px 0 0 0;
+                background: var(--soft-white);
+                width: 100%;
+                text-align: left;
+                transition: 0.3s;
+                padding: 1rem 0;
                 gap: 0;
-                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
-                transition: left 0.3s ease;
-                z-index: 1001;
+                box-shadow: var(--shadow-lg);
+                max-height: calc(100vh - 70px);
                 overflow-y: auto;
+                z-index: 999;
             }
             
             .nav-menu.active {
@@ -1701,35 +1727,13 @@
             
             .nav-menu > li {
                 width: 100%;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             }
             
             .nav-menu a {
-                padding: 15px 20px;
+                padding: 1rem 1.5rem;
                 font-size: 1rem;
                 justify-content: space-between;
-                width: 100%;
-                border-bottom: 1px solid rgba(0,0,0,0.05);
-            }
-            
-            .nav-menu a i:first-child {
-                width: 25px;
-                text-align: center;
-                font-size: 1.1rem;
-            }
-            
-            /* Logo ajusté pour mobile */
-            .logo-img {
-                height: 45px !important;
-            }
-            
-            .logo-text h1 {
-                font-size: 1rem !important;
-            }
-            
-            .logo-text p {
-                font-size: 0.5rem !important;
-                letter-spacing: 1px;
             }
             
             /* Sous-menu sur mobile */
@@ -1784,12 +1788,12 @@
             
             /* ==================== HERO SECTION ==================== */
             .hero-text h1 {
-                font-size: 2rem !important;
+                font-size: 2rem;
                 text-align: center;
             }
             
             .hero-text p {
-                font-size: 1rem !important;
+                font-size: 1rem;
                 text-align: center;
             }
             
@@ -1813,15 +1817,15 @@
             
             /* Carousel réduit */
             .carousel-container {
-                height: 250px !important;
+                height: 250px;
                 margin: 0 auto;
                 max-width: 100%;
             }
             
             .carousel-arrow {
-                width: 35px !important;
-                height: 35px !important;
-                font-size: 0.9rem !important;
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
             }
             
             .carousel-dots {
@@ -1830,13 +1834,13 @@
             }
             
             .carousel-dot {
-                width: 6px !important;
-                height: 6px !important;
+                width: 6px;
+                height: 6px;
             }
             
             /* ==================== SECTIONS GÉNÉRALES ==================== */
             section {
-                padding: 3rem 0 !important;
+                padding: 3rem 0;
             }
             
             .section-header {
@@ -1845,17 +1849,17 @@
             }
             
             .section-header h2 {
-                font-size: 2rem !important;
+                font-size: 2rem;
             }
             
             .section-badge {
-                font-size: 0.7rem !important;
+                font-size: 0.7rem;
                 padding: 0.4rem 1rem;
             }
             
             /* ==================== SERVICES ==================== */
             .services-grid {
-                grid-template-columns: 1fr !important;
+                grid-template-columns: 1fr;
                 gap: 2rem;
                 padding: 0;
             }
@@ -1866,11 +1870,11 @@
             }
             
             .service-image {
-                height: 200px !important;
+                height: 200px;
             }
             
             .service-title {
-                font-size: 1.5rem !important;
+                font-size: 1.5rem;
             }
             
             .service-content {
@@ -1890,7 +1894,7 @@
             /* ==================== DESTINATIONS ==================== */
             .destinations-section, 
             .destinations {
-                padding: 3rem 1rem !important;
+                padding: 3rem 1rem;
             }
             
             .destinations-tabs {
@@ -1906,7 +1910,7 @@
             }
             
             .destinations-grid {
-                grid-template-columns: 1fr !important;
+                grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
             
@@ -1917,11 +1921,11 @@
             }
             
             .country-flag {
-                font-size: 3rem !important;
+                font-size: 3rem;
             }
             
             .destination-card h3 {
-                font-size: 1.2rem !important;
+                font-size: 1.2rem;
             }
             
             .type-badge {
@@ -1987,8 +1991,8 @@
             
             /* ==================== UNIVERSITÉS ==================== */
             .logo-slide {
-                width: 180px !important;
-                height: 100px !important;
+                width: 180px;
+                height: 100px;
                 margin: 0 1rem;
                 padding: 1rem;
             }
@@ -2001,13 +2005,13 @@
             }
             
             .stat-number {
-                font-size: 2.5rem !important;
+                font-size: 2.5rem;
             }
             
             /* ==================== TÉMOIGNAGES ==================== */
             .testimonial-card {
                 padding: 1.5rem;
-                flex: 0 0 100% !important;
+                flex: 0 0 100%;
             }
             
             .testimonial-text {
@@ -2141,10 +2145,10 @@
             .testimonials-container,
             .team-carousel-container,
             .footer-container {
-                width: 100% !important;
-                max-width: 100% !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
+                width: 100%;
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
             }
             
             .hero-text,
@@ -2313,7 +2317,7 @@
                         <li><a href="galerie.html"><i class="fas fa-images"></i> Galerie Photo/Video</a></li>
                     </ul>
                 </li>
-                <li><a href="#colis.html"><i class="fas fa-box"></i> Envoyer/Recevoir un colis</a></li>
+                <li><a href="colis.html"><i class="fas fa-box"></i> Envoyer/Recevoir un colis</a></li>
                 <li><a href="#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
                 <li><a href="#paiement.html"><i class="fas fa-credit-card"></i> Infos Paiement</a></li>
                 <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
@@ -3659,3 +3663,4 @@
     </script>
 </body>
 </html>
+
