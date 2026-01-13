@@ -17,9 +17,6 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Lightbox CSS (pour les galeries) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
-    
     <style>
         /* Réutilisez les mêmes variables CSS que index.html */
         :root {
@@ -59,6 +56,12 @@
             width: 100%;
         }
 
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
         /* Navigation */
         .navbar {
             position: fixed;
@@ -80,6 +83,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         /* Logo */
@@ -206,6 +212,7 @@
             font-size: 1.5rem;
             color: var(--dark-navy);
             cursor: pointer;
+            padding: 0.5rem;
         }
 
         /* Hero Section Galerie */
@@ -327,11 +334,11 @@
             transform: translateY(-2px);
         }
 
-        /* Grille Galerie */
+        /* Grille Galerie - Cartes plus grandes */
         .galerie-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
             margin-bottom: 3rem;
         }
 
@@ -339,27 +346,27 @@
             position: relative;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-lg);
             transition: var(--transition);
             cursor: pointer;
             aspect-ratio: 4/3;
+            background: var(--soft-white);
         }
 
         .galerie-item:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
         }
 
-        .galerie-item img,
-        .galerie-item video {
+        .galerie-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: block;
         }
 
-        .galerie-item:hover img,
-        .galerie-item:hover video {
+        .galerie-item:hover img {
             transform: scale(1.1);
         }
 
@@ -368,15 +375,17 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(10, 25, 41, 0.9) 0%, transparent 100%);
+            background: linear-gradient(to top, rgba(10, 25, 41, 0.95) 0%, transparent 100%);
             padding: 1.5rem;
             color: var(--soft-white);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
         }
 
         .galerie-item:hover .galerie-overlay {
             opacity: 1;
+            transform: translateY(0);
         }
 
         .galerie-category {
@@ -392,8 +401,40 @@
 
         .galerie-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
+        }
+
+        /* Bouton de zoom sur l'image */
+        .galerie-zoom-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 175, 55, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-navy);
+            font-size: 1rem;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            z-index: 10;
+            border: none;
+        }
+
+        .galerie-item:hover .galerie-zoom-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .galerie-zoom-btn:hover {
+            background: var(--gold);
+            transform: scale(1.1);
         }
 
         /* Section Vidéos */
@@ -406,8 +447,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 2rem;
-            margin-right: 9rem;
-            justify-items: center; 
             margin: 0 auto; 
             max-width: 1400px; 
         }
@@ -455,6 +494,8 @@
             font-size: 1.5rem;
             cursor: pointer;
             transition: var(--transition);
+            border: none;
+            z-index: 5;
         }
 
         .video-play-btn:hover {
@@ -589,7 +630,7 @@
         /* Responsive Design */
         @media (max-width: 1024px) {
             .galerie-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
             
             .videos-grid {
@@ -625,8 +666,7 @@
             }
             
             .nav-container {
-                justify-content: space-between;
-                align-items: center;
+                padding: 0 1rem;
                 width: 100%;
             }
             
@@ -656,7 +696,7 @@
                 padding: 0.3rem;
             }
 
-            /* 4. MENU MOBILE */
+            /* 4. MENU MOBILE - CORRECTION DU PROBLÈME DES SOUS-MENUS */
             .nav-menu {
                 position: fixed;
                 left: -100%;
@@ -687,9 +727,29 @@
                 padding: 1rem 1.5rem;
                 font-size: 1rem;
                 justify-content: space-between;
+                width: 100%;
             }
             
-            .has-submenu .submenu {
+            /* Correction pour les liens avec sous-menu */
+            .has-submenu > a {
+                position: relative;
+            }
+            
+            .has-submenu > a::after {
+                content: '\f078';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                position: absolute;
+                right: 1.5rem;
+                transition: transform 0.3s ease;
+            }
+            
+            .has-submenu.active > a::after {
+                transform: rotate(180deg);
+            }
+            
+            /* Sous-menu mobile */
+            .submenu {
                 position: static;
                 opacity: 1;
                 visibility: visible;
@@ -699,9 +759,10 @@
                 border-radius: 0;
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height 0.3s ease;
+                transition: max-height 0.5s ease;
                 padding: 0;
                 min-width: 100%;
+                margin-left: 1rem;
             }
             
             .has-submenu.active .submenu {
@@ -712,6 +773,12 @@
             .submenu li a {
                 padding: 0.8rem 2rem;
                 font-size: 0.9rem;
+                border-left: 3px solid transparent;
+            }
+            
+            .submenu li a:hover {
+                border-left: 3px solid var(--gold);
+                background: rgba(212, 175, 55, 0.1);
             }
             
             /* 5. HERO SECTION */
@@ -731,16 +798,28 @@
                 padding: 0 0.5rem;
             }
             
+            /* 6. GALERIE RESPONSIVE */
             .galerie-grid {
-                padding: 1.2rem;
-                border-radius: 12px;
-                margin-bottom: 0.5rem;
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             
+            .galerie-item {
+                aspect-ratio: 3/2;
+            }
+            
+            .galerie-zoom-btn {
+                opacity: 1;
+                transform: translateY(0);
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+            
+            /* 7. VIDEOS RESPONSIVE */
             .videos-grid {
-                padding: 1.2rem;
-                border-radius: 12px;
-                margin-bottom: 0.5rem;
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             
             /* 10. FOOTER */
@@ -801,7 +880,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="container nav-container">
+        <div class="nav-container">
             <a href="index.html" class="logo-section">
                 <img src="assets/images/remove.png" alt="ISTA Logo" class="logo-img">
                 <div class="logo-text">
@@ -817,7 +896,7 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
                 <li class="has-submenu">
-                    <a href="index.html#services"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
+                    <a href="javascript:void(0)"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
                     <ul class="submenu">
                         <li><a href="index.html#visas">Visa d'Etude</a></li>
                         <li><a href="index.html#visas">Visa de Travail</a></li>
@@ -827,7 +906,7 @@
                         <li><a href="index.html#traduction">Assistance Logement</a></li>
                         <li><a href="index.html#traduction">Assistance Titre de Séjour</a></li>
                         <li><a href="index.html#traduction">Admissions</a></li>
-                        <li><a href="galerie.html"></i> Galerie Photo/Video</a></li>
+                        <li><a href="galerie.html"><i class="fas fa-images"></i> Galerie Photo/Video</a></li>
                     </ul>
                 </li>
                 <li><a href="index.html#universites"><i class="fas fa-university"></i> Envoyer/Recevoir un colis</a></li>
@@ -861,56 +940,177 @@
                 <button class="filter-btn" data-filter="evenements">Événements</button>
                 <button class="filter-btn" data-filter="succes">Succès</button>
                 <button class="filter-btn" data-filter="equipe">Équipe</button>
-                <button class="filter-btn" data-filter="clients">Clients</button>
             </div>
 
             <!-- Grille Galerie -->
             <div class="galerie-grid">
                 <!-- Photo 1 -->
-                <div class="galerie-item" data-category="evenements">
-                    <a href="assets/images/evenement1.jpg" data-lightbox="gallery" data-title="Cérémonie de remise de visas">
-                        <img src="assets/images/evenement1.jpg" alt="Cérémonie de remise de visas">
-                        <div class="galerie-overlay">
-                            <span class="galerie-category">Événements</span>
-                            <h3 class="galerie-title">Cérémonie de remise de visas</h3>
-                        </div>
-                    </a>
+                <div class="galerie-item" data-category="evenements" data-image="assets/images/img 1.jpeg">
+                    <img src="assets/images/img 1.jpeg" alt="Cérémonie de remise de visas" loading="lazy">
+                    <button class="galerie-zoom-btn">
+                        <i class="fas fa-expand-alt"></i>
+                    </button>
+                    <div class="galerie-overlay">
+                        <span class="galerie-category">Événements</span>
+                        <h3 class="galerie-title">Cérémonie de remise de visas</h3>
+                    </div>
                 </div>
 
                 <!-- Photo 2 -->
-                <div class="galerie-item" data-category="succes">
-                    <a href="assets/images/succes1.jpg" data-lightbox="gallery" data-title="Étudiant partant au Canada">
-                        <img src="assets/images/succes1.jpg" alt="Étudiant partant au Canada">
-                        <div class="galerie-overlay">
-                            <span class="galerie-category">Succès</span>
-                            <h3 class="galerie-title">Étudiant partant au Canada</h3>
-                        </div>
-                    </a>
+                <div class="galerie-item" data-category="evenements" data-image="assets/images/img 12.jpeg">
+                    <img src="assets/images/img 12.jpeg" alt="Cérémonie de remise de visas" loading="lazy">
+                    <button class="galerie-zoom-btn">
+                        <i class="fas fa-expand-alt"></i>
+                    </button>
+                    <div class="galerie-overlay">
+                        <span class="galerie-category">Événements</span>
+                        <h3 class="galerie-title">Cérémonie de remise de visas</h3>
+                    </div>
                 </div>
 
                 <!-- Photo 3 -->
-                <div class="galerie-item" data-category="equipe">
-                    <a href="assets/images/equipe1.jpg" data-lightbox="gallery" data-title="Réunion d'équipe">
-                        <img src="assets/images/equipe1.jpg" alt="Réunion d'équipe ISTA">
-                        <div class="galerie-overlay">
-                            <span class="galerie-category">Équipe</span>
-                            <h3 class="galerie-title">Réunion d'équipe ISTA</h3>
-                        </div>
-                    </a>
+                <div class="galerie-item" data-category="evenements" data-image="assets/images/img 20.jpeg">
+                    <img src="assets/images/img 20.jpeg" alt="Cérémonie de remise de visas" loading="lazy">
+                    <button class="galerie-zoom-btn">
+                        <i class="fas fa-expand-alt"></i>
+                    </button>
+                    <div class="galerie-overlay">
+                        <span class="galerie-category">Événements</span>
+                        <h3 class="galerie-title">Cérémonie de remise de visas</h3>
+                    </div>
                 </div>
 
                 <!-- Photo 4 -->
-                <div class="galerie-item" data-category="clients">
-                    <a href="assets/images/clients1.jpg" data-lightbox="gallery" data-title="Témoignage client">
-                        <img src="assets/images/clients1.jpg" alt="Témoignage client">
-                        <div class="galerie-overlay">
-                            <span class="galerie-category">Clients</span>
-                            <h3 class="galerie-title">Témoignage client satisfait</h3>
-                        </div>
-                    </a>
+                <div class="galerie-item" data-category="evenements" data-image="assets/images/img 21.jpeg">
+                    <img src="assets/images/img 21.jpeg" alt="Cérémonie de remise de visas" loading="lazy">
+                    <button class="galerie-zoom-btn">
+                        <i class="fas fa-expand-alt"></i>
+                    </button>
+                    <div class="galerie-overlay">
+                        <span class="galerie-category">Événements</span>
+                        <h3 class="galerie-title">Cérémonie de remise de visas</h3>
+                    </div>
                 </div>
 
-                <!-- Ajoutez plus de photos ici -->
+                <!-- Photo 5 -->
+                <div class="galerie-item" data-category="succes" data-image="assets/images/img 19.jpeg">
+                    <img src="assets/images/img 19.jpeg" alt="Étudiant partant au Canada" loading="lazy">
+                    <button class="galerie-zoom-btn">
+                        <i class="fas fa-expand-alt"></i>
+                    </button>
+                    <div class="galerie-overlay">
+                        <span class="galerie-category">Succès</span>
+                        <h3 class="galerie-title">Étudiant partant au Canada</h3>
+                    </div>
+                </div>
+
+                <!-- Photo 6 -->
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 4.jpeg">
+                    <img src="assets/images/img 4.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
+                    <button class="galerie-zoom-btn">
+                        <i class="fas fa-expand-alt"></i>
+                    </button>
+                    <div class="galerie-overlay">
+                        <span class="galerie-category">Équipe</span>
+                        <h3 class="galerie-title">Equipe ISTA</h3>
+                    </div>
+                </div>
+
+                <!-- Photo 7 -->
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 5.jpeg">
+                    <img src="assets/images/img 5.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
+                    <button class="galerie-zoom-btn">
+                        <i class="fas fa-expand-alt"></i>
+                    </button>
+                    <div class="galerie-overlay">
+                        <span class="galerie-category">Équipe</span>
+                        <h3 class="galerie-title">Equipe ISTA</h3>
+                    </div>
+                </div>
+
+                <!-- Photo 8 -->
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 24.jpeg">
+                    <img src="assets/images/img 24.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
+                    <button class="galerie-zoom-btn">
+                        <i class="fas fa-expand-alt"></i>
+                    </button>
+                    <div class="galerie-overlay">
+                        <span class="galerie-category">Équipe</span>
+                        <h3 class="galerie-title">Equipe ISTA</h3>
+                    </div>
+                </div>
+
+                <!-- Photo 9 -->
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 15.jpeg">
+                    <img src="assets/images/img 15.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
+                    <button class="galerie-zoom-btn">
+                        <i class="fas fa-expand-alt"></i>
+                    </button>
+                    <div class="galerie-overlay">
+                        <span class="galerie-category">Équipe</span>
+                        <h3 class="galerie-title">Equipe ISTA</h3>
+                    </div>
+                </div>
+
+                <!-- Photo 10 -->
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 25.jpeg">
+                    <img src="assets/images/img 25.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
+                    <button class="galerie-zoom-btn">
+                        <i class="fas fa-expand-alt"></i>
+                    </button>
+                    <div class="galerie-overlay">
+                        <span class="galerie-category">Équipe</span>
+                        <h3 class="galerie-title">Equipe ISTA</h3>
+                    </div>
+                </div>
+
+                <!-- Photo 11 -->
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 18.jpeg">
+                    <img src="assets/images/img 18.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
+                    <button class="galerie-zoom-btn">
+                        <i class="fas fa-expand-alt"></i>
+                    </button>
+                    <div class="galerie-overlay">
+                        <span class="galerie-category">Équipe</span>
+                        <h3 class="galerie-title">Equipe ISTA</h3>
+                    </div>
+                </div>
+
+                <!-- Photo 12 -->
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 23.jpeg">
+                    <img src="assets/images/img 23.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
+                    <button class="galerie-zoom-btn">
+                        <i class="fas fa-expand-alt"></i>
+                    </button>
+                    <div class="galerie-overlay">
+                        <span class="galerie-category">Équipe</span>
+                        <h3 class="galerie-title">Equipe ISTA</h3>
+                    </div>
+                </div>
+
+                <!-- Photo 13 -->
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 9.jpeg">
+                    <img src="assets/images/img 9.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
+                    <button class="galerie-zoom-btn">
+                        <i class="fas fa-expand-alt"></i>
+                    </button>
+                    <div class="galerie-overlay">
+                        <span class="galerie-category">Équipe</span>
+                        <h3 class="galerie-title">Equipe ISTA</h3>
+                    </div>
+                </div>
+
+                <!-- Photo 14 -->
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 22.jpeg">
+                    <img src="assets/images/img 22.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
+                    <button class="galerie-zoom-btn">
+                        <i class="fas fa-expand-alt"></i>
+                    </button>
+                    <div class="galerie-overlay">
+                        <span class="galerie-category">Équipe</span>
+                        <h3 class="galerie-title">Equipe ISTA</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -928,22 +1128,22 @@
                 <!-- Vidéo 1 -->
                 <div class="video-item">
                     <div class="video-thumbnail">
-                        <img src="assets/images/WhatsApp Image 2026-01-12 at 01.50.43.jpeg" alt="Témoignage étudiant">
-                        <div class="video-play-btn" data-video="assets/images/WhatsApp Video 2026-01-12 at 01.50.43.mp4">
+                        <img src="assets/images/img 11.jpeg" alt="Présentation ISTA">
+                        <div class="video-play-btn" data-video="assets/images/video 7.mp4">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
                     <div class="video-info">
-                        <h3>Témoignage étudiant - Canada</h3>
-                        <p>Marie partage son expérience avec ISTA pour ses études au Canada</p>
+                        <h3>Présentation ISTA</h3>
+                        <p>Découvrez notre agence et nos services en vidéo</p>
                     </div>
                 </div>
 
                 <!-- Vidéo 2 -->
                 <div class="video-item">
                     <div class="video-thumbnail">
-                        <img src="assets/images/video-thumb2.jpg" alt="Présentation ISTA">
-                        <div class="video-play-btn" data-video="https://www.youtube.com/embed/VIDEO_ID_2">
+                        <img src="assets/images/img 17.jpeg" alt="Présentation ISTA">
+                        <div class="video-play-btn" data-video="assets/images/video 2.mp4">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
@@ -956,70 +1156,70 @@
                 <!-- Vidéo 3 -->
                 <div class="video-item">
                     <div class="video-thumbnail">
-                        <img src="assets/images/video-thumb3.jpg" alt="Processus de visa">
-                        <div class="video-play-btn" data-video="https://www.youtube.com/embed/VIDEO_ID_3">
+                        <img src="assets/images/img 1.jpeg" alt="Témoignage étudiant">
+                        <div class="video-play-btn" data-video="assets/images/video 1.mp4">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
                     <div class="video-info">
-                        <h3>Processus de visa expliqué</h3>
-                        <p>Notre expert explique les étapes pour obtenir votre visa</p>
+                        <h3>Témoignage étudiant - Canada</h3>
+                        <p>Elle partage son expérience avec ISTA pour ses études au Canada</p>
                     </div>
                 </div>
 
                 <!-- Vidéo 4 -->
                 <div class="video-item">
                     <div class="video-thumbnail">
-                        <img src="assets/images/WhatsApp Image 2026-01-12 at 01.50.43.jpeg" alt="Témoignage étudiant">
-                        <div class="video-play-btn" data-video="assets/images/WhatsApp Video 2026-01-12 at 01.50.43.mp4">
+                        <img src="assets/images/img 2.jpeg" alt="Témoignage étudiant">
+                        <div class="video-play-btn" data-video="assets/images/video 6.mp4">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
                     <div class="video-info">
                         <h3>Témoignage étudiant - Canada</h3>
-                        <p>Marie partage son expérience avec ISTA pour ses études au Canada</p>
+                        <p>Il partage son expérience avec ISTA pour ses études au Canada</p>
                     </div>
                 </div>
 
                 <!-- Vidéo 5 -->
                 <div class="video-item">
                     <div class="video-thumbnail">
-                        <img src="assets/images/video-thumb2.jpg" alt="Présentation ISTA">
-                        <div class="video-play-btn" data-video="https://www.youtube.com/embed/VIDEO_ID_2">
+                        <img src="assets/images/img 5.jpeg" alt="Témoignage étudiant">
+                        <div class="video-play-btn" data-video="assets/images/video 5.mp4">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
                     <div class="video-info">
-                        <h3>Présentation ISTA</h3>
-                        <p>Découvrez notre agence et nos services en vidéo</p>
+                        <h3>Témoignage étudiant - Canada</h3>
+                        <p>Elle partage son expérience avec ISTA pour ses études au Canada</p>
                     </div>
                 </div>
 
                 <!-- Vidéo 6 -->
                 <div class="video-item">
                     <div class="video-thumbnail">
-                        <img src="assets/images/video-thumb3.jpg" alt="Processus de visa">
-                        <div class="video-play-btn" data-video="https://www.youtube.com/embed/VIDEO_ID_3">
+                        <img src="assets/images/img 23.jpeg" alt="Retrait passeports">
+                        <div class="video-play-btn" data-video="assets/images/video 4.mp4">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
                     <div class="video-info">
-                        <h3>Processus de visa expliqué</h3>
-                        <p>Notre expert explique les étapes pour obtenir votre visa</p>
+                        <h3>Retrait des passeports à l'agence</h3>
+                        <p>Nos clients viennent nous présenter leurs passeports avec visa</p>
                     </div>
                 </div>
 
                 <!-- Vidéo 7 -->
                 <div class="video-item">
                     <div class="video-thumbnail">
-                        <img src="assets/images/video-thumb3.jpg" alt="Processus de visa">
-                        <div class="video-play-btn" data-video="https://www.youtube.com/embed/VIDEO_ID_3">
+                        <img src="assets/images/img 24.jpeg" alt="Retrait passeports">
+                        <div class="video-play-btn" data-video="assets/images/video 3.mp4">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
                     <div class="video-info">
-                        <h3>Processus de visa expliqué</h3>
-                        <p>Notre expert explique les étapes pour obtenir votre visa</p>
+                        <h3>Retrait des passeports à l'agence</h3>
+                        <p>Nos clients viennent nous présenter leurs passeports avec visa</p>
                     </div>
                 </div>
             </div>
@@ -1075,11 +1275,8 @@
         </div>
     </footer>
 
-    <!-- Lightbox JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-    
     <script>
-        // Navigation mobile (identique à index.html)
+        // Navigation mobile (corrigé)
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
 
@@ -1090,11 +1287,42 @@
                 : '<i class="fas fa-bars"></i>';
         });
 
-        // Fermer le menu au clic sur un lien
+        // Gestion des sous-menus en mobile
+        const hasSubmenuItems = document.querySelectorAll('.has-submenu > a');
+        
+        hasSubmenuItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                // En mobile seulement
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = item.parentElement;
+                    
+                    // Fermer les autres sous-menus
+                    document.querySelectorAll('.has-submenu.active').forEach(activeItem => {
+                        if (activeItem !== parent) {
+                            activeItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Basculer le sous-menu courant
+                    parent.classList.toggle('active');
+                }
+            });
+        });
+
+        // Fermer le menu au clic sur un lien (sauf ceux avec sous-menus)
         document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            link.addEventListener('click', (e) => {
+                // Si ce n'est pas un lien de sous-menu en mobile
+                if (window.innerWidth <= 768 && !link.parentElement.classList.contains('has-submenu')) {
+                    navMenu.classList.remove('active');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Fermer tous les sous-menus
+                    document.querySelectorAll('.has-submenu').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                }
             });
         });
 
@@ -1139,12 +1367,17 @@
             });
         });
 
-        // Gestion des vidéos
+        // Gestion des vidéos - CORRIGÉ
         const videoButtons = document.querySelectorAll('.video-play-btn');
         
         videoButtons.forEach(button => {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation(); // Empêcher la propagation
+                
                 const videoUrl = button.getAttribute('data-video');
+                
+                // Vérifier si c'est une vidéo locale ou YouTube
+                const isLocalVideo = videoUrl.includes('.mp4') || videoUrl.includes('.webm') || videoUrl.includes('.ogg');
                 
                 // Créer une modale pour la vidéo
                 const modal = document.createElement('div');
@@ -1153,25 +1386,53 @@
                 modal.style.left = '0';
                 modal.style.width = '100%';
                 modal.style.height = '100%';
-                modal.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                modal.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
                 modal.style.zIndex = '2000';
                 modal.style.display = 'flex';
                 modal.style.alignItems = 'center';
                 modal.style.justifyContent = 'center';
+                modal.style.opacity = '0';
+                modal.style.transition = 'opacity 0.3s ease';
                 
                 const videoContainer = document.createElement('div');
                 videoContainer.style.position = 'relative';
                 videoContainer.style.width = '90%';
                 videoContainer.style.maxWidth = '800px';
                 videoContainer.style.aspectRatio = '16/9';
+                videoContainer.style.borderRadius = '10px';
+                videoContainer.style.overflow = 'hidden';
+                videoContainer.style.backgroundColor = '#000';
                 
-                const iframe = document.createElement('iframe');
-                iframe.style.width = '100%';
-                iframe.style.height = '100%';
-                iframe.src = videoUrl + '?autoplay=1';
-                iframe.frameBorder = '0';
-                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-                iframe.allowFullscreen = true;
+                let videoElement;
+                
+                if (isLocalVideo) {
+                    // Pour les vidéos locales
+                    videoElement = document.createElement('video');
+                    videoElement.style.width = '100%';
+                    videoElement.style.height = '100%';
+                    videoElement.controls = true;
+                    videoElement.autoplay = true;
+                    
+                    const source = document.createElement('source');
+                    source.src = videoUrl;
+                    source.type = 'video/mp4';
+                    videoElement.appendChild(source);
+                    
+                    // Ajouter des messages d'erreur
+                    videoElement.innerHTML += `
+                        Votre navigateur ne supporte pas la lecture de vidéos.
+                        <a href="${videoUrl}">Télécharger la vidéo</a>
+                    `;
+                } else {
+                    // Pour les vidéos YouTube
+                    videoElement = document.createElement('iframe');
+                    videoElement.style.width = '100%';
+                    videoElement.style.height = '100%';
+                    videoElement.src = videoUrl + (videoUrl.includes('?') ? '&' : '?') + 'autoplay=1';
+                    videoElement.frameBorder = '0';
+                    videoElement.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                    videoElement.allowFullscreen = true;
+                }
                 
                 const closeBtn = document.createElement('button');
                 closeBtn.innerHTML = '<i class="fas fa-times"></i>';
@@ -1181,41 +1442,377 @@
                 closeBtn.style.background = 'var(--gold)';
                 closeBtn.style.color = 'var(--dark-navy)';
                 closeBtn.style.border = 'none';
-                closeBtn.style.width = '35px';
-                closeBtn.style.height = '35px';
+                closeBtn.style.width = '40px';
+                closeBtn.style.height = '40px';
                 closeBtn.style.borderRadius = '50%';
                 closeBtn.style.cursor = 'pointer';
                 closeBtn.style.fontSize = '1.2rem';
                 closeBtn.style.display = 'flex';
                 closeBtn.style.alignItems = 'center';
                 closeBtn.style.justifyContent = 'center';
+                closeBtn.style.transition = 'all 0.3s ease';
+                closeBtn.style.zIndex = '10';
+                
+                closeBtn.addEventListener('mouseenter', () => {
+                    closeBtn.style.transform = 'rotate(90deg)';
+                });
+                
+                closeBtn.addEventListener('mouseleave', () => {
+                    closeBtn.style.transform = 'rotate(0deg)';
+                });
                 
                 closeBtn.addEventListener('click', () => {
+                    // Arrêter la vidéo avant de fermer
+                    if (isLocalVideo && videoElement) {
+                        videoElement.pause();
+                        videoElement.currentTime = 0;
+                    }
                     document.body.removeChild(modal);
                 });
                 
+                // Fonction pour fermer la modale
+                const closeModal = () => {
+                    if (isLocalVideo && videoElement) {
+                        videoElement.pause();
+                        videoElement.currentTime = 0;
+                    }
+                    document.body.removeChild(modal);
+                    document.removeEventListener('keydown', handleKeydown);
+                };
+                
+                // Gestion de la touche Échap
+                const handleKeydown = (e) => {
+                    if (e.key === 'Escape') {
+                        closeModal();
+                    }
+                };
+                
+                document.addEventListener('keydown', handleKeydown);
+                
+                // Fermer en cliquant à l'extérieur
                 modal.addEventListener('click', (e) => {
                     if (e.target === modal) {
-                        document.body.removeChild(modal);
+                        closeModal();
                     }
                 });
                 
-                videoContainer.appendChild(iframe);
+                videoContainer.appendChild(videoElement);
                 videoContainer.appendChild(closeBtn);
                 modal.appendChild(videoContainer);
                 document.body.appendChild(modal);
+                
+                // Animation d'entrée
+                setTimeout(() => {
+                    modal.style.opacity = '1';
+                }, 10);
+                
+                // Pour les vidéos locales, essayer de les lire
+                if (isLocalVideo && videoElement) {
+                    videoElement.play().catch(error => {
+                        console.error('Erreur de lecture vidéo:', error);
+                        // Afficher un message d'erreur
+                        const errorMsg = document.createElement('div');
+                        errorMsg.style.color = 'white';
+                        errorMsg.style.textAlign = 'center';
+                        errorMsg.style.padding = '2rem';
+                        errorMsg.innerHTML = `
+                            <p>Impossible de lire la vidéo. Essayez de :</p>
+                            <ol style="text-align: left; margin: 1rem auto; max-width: 300px;">
+                                <li>Vérifier que le fichier existe</li>
+                                <li>Utiliser un navigateur récent</li>
+                                <li><a href="${videoUrl}" style="color: var(--gold);">Télécharger la vidéo</a></li>
+                            </ol>
+                        `;
+                        videoContainer.appendChild(errorMsg);
+                    });
+                }
             });
         });
 
-        // Configuration Lightbox
-        lightbox.option({
-            'resizeDuration': 200,
-            'wrapAround': true,
-            'albumLabel': "Image %1 sur %2",
-            'fadeDuration': 300,
-            'imageFadeDuration': 300
+        // Lightbox pour les images de la galerie
+        const galleryImageItems = document.querySelectorAll('.galerie-item');
+        const zoomButtons = document.querySelectorAll('.galerie-zoom-btn');
+
+        // Fonction pour créer et afficher la lightbox
+        function showImageLightbox(imageUrl, title, category) {
+            // Créer la modale
+            const modal = document.createElement('div');
+            modal.className = 'image-lightbox-modal';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 3000;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+            
+            // Conteneur de l'image
+            const imageContainer = document.createElement('div');
+            imageContainer.style.cssText = `
+                position: relative;
+                width: 90%;
+                max-width: 1200px;
+                max-height: 90vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            `;
+            
+            // Image agrandie
+            const img = document.createElement('img');
+            img.src = imageUrl;
+            img.alt = title;
+            img.style.cssText = `
+                width: 100%;
+                height: auto;
+                max-height: 80vh;
+                object-fit: contain;
+                border-radius: 10px;
+                transform: scale(0.9);
+                transition: transform 0.3s ease;
+            `;
+            
+            // Info de l'image
+            const infoDiv = document.createElement('div');
+            infoDiv.style.cssText = `
+                color: white;
+                text-align: center;
+                margin-top: 1.5rem;
+                width: 100%;
+            `;
+            
+            const categorySpan = document.createElement('span');
+            categorySpan.textContent = category;
+            categorySpan.style.cssText = `
+                display: inline-block;
+                padding: 0.4rem 1rem;
+                background: var(--gold);
+                color: var(--dark-navy);
+                border-radius: 20px;
+                font-size: 0.85rem;
+                font-weight: 600;
+                margin-bottom: 0.8rem;
+            `;
+            
+            const titleH3 = document.createElement('h3');
+            titleH3.textContent = title;
+            titleH3.style.cssText = `
+                font-family: 'Playfair Display', serif;
+                font-size: 1.5rem;
+                color: white;
+                margin: 0;
+            `;
+            
+            // Bouton de fermeture
+            const closeBtn = document.createElement('button');
+            closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+            closeBtn.style.cssText = `
+                position: absolute;
+                top: -40px;
+                right: 0;
+                background: var(--gold);
+                color: var(--dark-navy);
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 1.3rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            `;
+            
+            closeBtn.addEventListener('mouseenter', () => {
+                closeBtn.style.transform = 'rotate(90deg)';
+            });
+            
+            closeBtn.addEventListener('mouseleave', () => {
+                closeBtn.style.transform = 'rotate(0deg)';
+            });
+            
+            closeBtn.addEventListener('click', () => {
+                document.body.removeChild(modal);
+                document.removeEventListener('keydown', handleKeydown);
+            });
+            
+            // Bouton précédent
+            const prevBtn = document.createElement('button');
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            prevBtn.style.cssText = `
+                position: absolute;
+                left: -60px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(212, 175, 55, 0.8);
+                color: var(--dark-navy);
+                border: none;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 1.2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            `;
+            
+            // Bouton suivant
+            const nextBtn = document.createElement('button');
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            nextBtn.style.cssText = `
+                position: absolute;
+                right: -60px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(212, 175, 55, 0.8);
+                color: var(--dark-navy);
+                border: none;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 1.2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            `;
+            
+            // Assembler les éléments
+            infoDiv.appendChild(categorySpan);
+            infoDiv.appendChild(titleH3);
+            imageContainer.appendChild(img);
+            imageContainer.appendChild(infoDiv);
+            imageContainer.appendChild(closeBtn);
+            imageContainer.appendChild(prevBtn);
+            imageContainer.appendChild(nextBtn);
+            modal.appendChild(imageContainer);
+            
+            // Ajouter au DOM
+            document.body.appendChild(modal);
+            
+            // Animation d'entrée
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                img.style.transform = 'scale(1)';
+            }, 10);
+            
+            // Navigation entre images
+            const allItems = Array.from(galleryImageItems);
+            const currentIndex = allItems.findIndex(item => item.getAttribute('data-image') === imageUrl);
+            
+            // Fonction pour naviguer vers une image
+            const navigateToImage = (direction) => {
+                let newIndex;
+                if (direction === 'next') {
+                    newIndex = (currentIndex + 1) % allItems.length;
+                } else {
+                    newIndex = (currentIndex - 1 + allItems.length) % allItems.length;
+                }
+                
+                const nextItem = allItems[newIndex];
+                const nextImage = nextItem.getAttribute('data-image');
+                const nextTitle = nextItem.querySelector('.galerie-title').textContent;
+                const nextCategory = nextItem.querySelector('.galerie-category').textContent;
+                
+                // Fermer la modale actuelle
+                document.body.removeChild(modal);
+                document.removeEventListener('keydown', handleKeydown);
+                
+                // Ouvrir la nouvelle image
+                setTimeout(() => {
+                    showImageLightbox(nextImage, nextTitle, nextCategory);
+                }, 100);
+            };
+            
+            // Événements pour les boutons de navigation
+            prevBtn.addEventListener('click', () => navigateToImage('prev'));
+            nextBtn.addEventListener('click', () => navigateToImage('next'));
+            
+            // Navigation au clavier
+            const handleKeydown = (e) => {
+                if (e.key === 'Escape') {
+                    document.body.removeChild(modal);
+                    document.removeEventListener('keydown', handleKeydown);
+                } else if (e.key === 'ArrowLeft') {
+                    navigateToImage('prev');
+                } else if (e.key === 'ArrowRight') {
+                    navigateToImage('next');
+                }
+            };
+            
+            document.addEventListener('keydown', handleKeydown);
+            
+            // Fermer en cliquant à l'extérieur
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                    document.removeEventListener('keydown', handleKeydown);
+                }
+            });
+        }
+
+        // Ajouter les événements de clic aux cartes d'images et boutons de zoom
+        galleryImageItems.forEach(item => {
+            // Cliquer sur la carte entière
+            item.addEventListener('click', (e) => {
+                // Ne pas déclencher si on clique sur le bouton de zoom
+                if (!e.target.closest('.galerie-zoom-btn')) {
+                    const imageUrl = item.getAttribute('data-image');
+                    const title = item.querySelector('.galerie-title').textContent;
+                    const category = item.querySelector('.galerie-category').textContent;
+                    showImageLightbox(imageUrl, title, category);
+                }
+            });
+            
+            // Cliquer sur le bouton de zoom
+            const zoomBtn = item.querySelector('.galerie-zoom-btn');
+            if (zoomBtn) {
+                zoomBtn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Empêcher le déclenchement de l'événement sur la carte
+                    const imageUrl = item.getAttribute('data-image');
+                    const title = item.querySelector('.galerie-title').textContent;
+                    const category = item.querySelector('.galerie-category').textContent;
+                    showImageLightbox(imageUrl, title, category);
+                });
+            }
         });
+
+        // Ajouter du CSS pour la responsive de la lightbox
+        const style = document.createElement('style');
+        style.textContent = `
+            @media (max-width: 768px) {
+                .image-lightbox-modal button {
+                    position: relative !important;
+                    margin: 1rem !important;
+                    left: auto !important;
+                    right: auto !important;
+                    top: auto !important;
+                }
+                
+                .image-lightbox-modal .fa-chevron-left,
+                .image-lightbox-modal .fa-chevron-right {
+                    position: static !important;
+                    transform: none !important;
+                    margin: 0 0.5rem !important;
+                }
+                
+                .image-lightbox-modal > div {
+                    width: 95% !important;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
-
