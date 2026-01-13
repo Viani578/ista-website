@@ -1668,6 +1668,7 @@
             }
             
             /* ==================== NAVBAR MOBILE ==================== */
+            /* 3. NAVBAR */
             .navbar {
                 padding: 0.8rem 0;
             }
@@ -1704,6 +1705,7 @@
                 padding: 0.3rem;
             }
             
+            /* 4. MENU MOBILE */
             .nav-menu {
                 position: fixed;
                 left: -100%;
@@ -1736,36 +1738,29 @@
                 justify-content: space-between;
             }
             
-            /* Sous-menu sur mobile */
-            .submenu {
-                display: none;
+            .has-submenu .submenu {
                 position: static;
                 opacity: 1;
                 visibility: visible;
                 transform: none;
                 box-shadow: none;
-                background: rgba(0, 0, 0, 0.03);
-                padding: 0;
-                margin: 0;
-                width: 100%;
+                background: var(--cream);
                 border-radius: 0;
-                border-top: none;
-                min-width: auto;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                padding: 0;
+                min-width: 100%;
             }
             
-            .submenu.mobile-open {
-                display: block;
+            .has-submenu.active .submenu {
+                max-height: 500px;
+                padding: 0.5rem 0;
             }
             
             .submenu li a {
-                padding: 12px 30px;
-                font-size: 0.95rem;
-                border-left: 3px solid transparent;
-            }
-            
-            .submenu li a:hover {
-                border-left: 3px solid var(--gold);
-                background: rgba(212, 175, 55, 0.1);
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
             }
             
             /* Icônes dans les sous-menus sur mobile */
@@ -1773,17 +1768,6 @@
                 font-size: 0.9rem;
                 width: 20px;
                 color: var(--gold);
-            }
-            
-            /* Overlay pour menu mobile */
-            .menu-overlay.active {
-                display: block;
-                opacity: 1;
-            }
-            
-            /* Ajuster le contenu quand le menu est ouvert */
-            body.menu-open {
-                overflow: hidden;
             }
             
             /* ==================== HERO SECTION ==================== */
@@ -3663,4 +3647,5 @@
     </script>
 </body>
 </html>
+
 
