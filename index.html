@@ -135,53 +135,65 @@
 
         /* Menu de navigation */
         .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+}
 
-        .nav-menu > li {
-            position: relative;
-        }
+.nav-menu > li {
+    position: relative;
+}
 
-        .nav-menu a {
-            color: var(--dark-navy);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 0;
-        }
+.nav-menu a {
+    color: var(--dark-navy);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Espace entre icône et texte */
+    padding: 0.5rem 0;
+}
 
-        .nav-menu > li > a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gold);
-            transition: width 0.3s ease;
-        }
+/* CORRECTION : Icônes du menu */
+.nav-menu a i {
+    font-size: 1rem;
+    text-align: center;
+}
 
-        .nav-menu > li > a:hover::after,
-        .nav-menu > li > a.active::after {
-            width: 100%;
-        }
+/* Pour les flèches des sous-menus */
+.nav-menu a .fa-chevron-down {
+    font-size: 0.8rem;
+    min-width: 10px;
+}
 
-        .nav-menu > li > a:hover,
-        .nav-menu > li > a.active {
-            color: var(--gold);
-        }
+.nav-menu > li > a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+}
+
+.nav-menu > li > a:hover::after,
+.nav-menu > li > a.active::after {
+    width: 100%;
+}
+
+.nav-menu > li > a:hover,
+.nav-menu > li > a.active {
+    color: var(--gold);
+}
 
         .nav-menu a i {
             font-size: 1rem;
-            width: 20px;
+            min-width: 18px;
             text-align: center;
         }
 
@@ -1701,7 +1713,7 @@
             /* 4. MENU MOBILE - MODIFICATIONS POUR GLISSER DE DROITE À GAUCHE */
             .nav-menu {
                 position: fixed;
-                right: -100%; /* Changé de left à right */
+                right: -100%; 
                 top: 70px;
                 flex-direction: column;
                 background: var(--soft-white);
@@ -1718,7 +1730,7 @@
             }
             
             .nav-menu.active {
-                right: 0; /* Changé de left à right */
+                right: 0; 
             }
             
             .nav-menu > li {
@@ -1755,6 +1767,16 @@
             .submenu li a {
                 padding: 0.8rem 2rem;
                 font-size: 0.9rem;
+            }
+
+            .nav-menu a i:first-child {
+                 font-size: 1rem;
+                 min-width: 22px; 
+            }
+    
+            .submenu li a i {
+                font-size: 0.8rem;
+                min-width: 18px; 
             }
             
             /* ==================== HERO SECTION ==================== */
@@ -3592,3 +3614,4 @@
     </script>
 </body>
 </html>
+
