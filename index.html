@@ -3242,6 +3242,7 @@
     <script>
         // ==================== NAVIGATION MOBILE ====================
 
+        // Navigation mobile (corrigé)
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
 
@@ -3254,7 +3255,7 @@
 
         // Gestion des sous-menus en mobile
         const hasSubmenuItems = document.querySelectorAll('.has-submenu > a');
-
+        
         hasSubmenuItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 // En mobile seulement
@@ -3300,6 +3301,7 @@
                 navbar.classList.remove('scrolled');
             }
         });
+        
         // ==================== CAROUSEL HERO ====================
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-slide');
