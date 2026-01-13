@@ -58,6 +58,15 @@
             background: var(--cream);
             overflow-x: hidden;
             line-height: 1.6;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Empêcher le défilement quand le menu est ouvert */
+        body.menu-open {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100%;
         }
 
         /* Typographie améliorée */
@@ -177,6 +186,13 @@
             color: var(--gold);
         }
 
+        /* Icônes dans la navigation */
+        .nav-menu a i {
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
         /* Sous-menu */
         .has-submenu {
             position: relative;
@@ -208,14 +224,24 @@
         .submenu li a {
             padding: 0.75rem 1.5rem;
             color: var(--text-dark);
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             transition: var(--transition);
+            font-size: 0.85rem;
         }
 
         .submenu li a:hover {
             background: var(--cream);
             color: var(--primary-blue);
             padding-left: 2rem;
+        }
+
+        /* Icônes dans les sous-menus */
+        .submenu li a i {
+            font-size: 0.9rem;
+            width: 18px;
+            color: var(--gold);
         }
 
         /* Menu mobile */
@@ -226,6 +252,7 @@
             font-size: 1.5rem;
             color: var(--dark-navy);
             cursor: pointer;
+            padding: 0.5rem;
         }
 
         /* Section Hero */
@@ -541,6 +568,7 @@
         .service-list i {
             color: var(--gold);
             font-size: 1rem;
+            min-width: 20px;
         }
 
         .service-meta {
@@ -561,6 +589,7 @@
 
         .meta-item i {
             color: var(--primary-blue);
+            font-size: 0.9rem;
         }
 
         /* Section Destinations */
@@ -907,6 +936,7 @@
             color: var(--gold);
             font-size: 1rem;
             line-height: 1;
+            min-width: 20px;
         }
 
         .step-number {
@@ -974,6 +1004,8 @@
 
         .step-list i {
             color: var(--gold);
+            font-size: 0.9rem;
+            min-width: 20px;
         }
 
         /* Statistiques */
@@ -1618,9 +1650,34 @@
             }
         }
 
+        /* ===========================================
+           STYLES POUR MOBILE (max-width: 768px)
+           =========================================== */
         @media (max-width: 768px) {
+            /* Empêcher le défilement horizontal */
+            body, html {
+                overflow-x: hidden;
+                max-width: 100%;
+                position: relative;
+            }
+            
+            /* Correction pour éviter que le hero soit caché par la navbar */
+            .hero {
+                padding: 120px 0 60px;
+                min-height: auto;
+            }
+            
+            /* Container centré */
+            .container {
+                padding: 0 1rem;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+            
+            /* ==================== NAVBAR ==================== */
             .mobile-toggle {
                 display: block;
+                z-index: 1001;
             }
             
             .nav-menu {
@@ -1630,13 +1687,14 @@
                 flex-direction: column;
                 background: var(--soft-white);
                 width: 100%;
-                text-align: center;
+                text-align: left;
                 transition: 0.3s;
-                padding: 2rem 0;
+                padding: 1rem 0;
                 gap: 0;
                 box-shadow: var(--shadow-lg);
                 max-height: calc(100vh - 85px);
                 overflow-y: auto;
+                z-index: 1000;
             }
             
             .nav-menu.active {
@@ -1645,82 +1703,64 @@
             
             .nav-menu > li {
                 width: 100%;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
             }
             
-            .hero-text h1 {
-                font-size: 2.5rem;
+            .nav-menu a {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                justify-content: space-between;
+                width: 100%;
             }
             
-            .carousel-container {
-                height: 350px;
+            .nav-menu a i:first-child {
+                width: 25px;
+                text-align: center;
+                font-size: 1.1rem;
             }
             
-            .carousel-arrow {
-                width: 45px;
-                height: 45px;
-                font-size: 1.2rem;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .logo-img {
-                height: 50px;
-            }
-            
-            .testimonial-card {
-                flex: 0 0 100%;
-            }
-            
-            .testimonials-track {
-                gap: 1.2rem;
-            }
-            
-            .testimonials-carousel {
-                padding: 0 1rem;
-            }
-            
-            .testimonial-carousel-controls {
-                top: auto;
-                bottom: 8px;
+            /* Sous-menu sur mobile */
+            .submenu {
+                display: none;
+                position: static;
+                opacity: 1;
+                visibility: visible;
                 transform: none;
-                justify-content: center;
-                gap: 1rem;
-            }
-        }
-
-        /* ===========================================
-           CORRECTIONS POUR MOBILE (max-width: 768px)
-           =========================================== */
-        @media (max-width: 768px) {
-            /* Supprimer le scroll horizontal global */
-            body, html {
-                overflow-x: hidden;
-                max-width: 100%;
-                position: relative;
+                box-shadow: none;
+                background: rgba(0, 0, 0, 0.03);
+                padding: 0;
+                margin: 0;
+                width: 100%;
+                border-radius: 0;
+                border-top: none;
+                min-width: auto;
             }
             
-            /* Correction pour éviter que le hero soit caché par la navbar */
-            .hero {
-                padding: 120px 0 60px; /* Augmenté pour éviter le chevauchement */
-                padding-bottom: 140px;
-                min-height: auto;
+            .submenu.mobile-open {
+                display: block;
             }
             
-            /* Container centré avec padding réduit */
-            .container {
-                padding: 0 1rem;
-                max-width: 100%;
-                overflow-x: hidden;
+            .submenu li a {
+                padding: 0.8rem 2.5rem;
+                font-size: 0.95rem;
+                border-left: 3px solid transparent;
             }
             
-            /* ==================== NAVBAR ==================== */
-            /* Logo réduit et centré */
+            .submenu li a:hover {
+                border-left: 3px solid var(--gold);
+                background: rgba(212, 175, 55, 0.1);
+            }
+            
+            /* Icônes dans les sous-menus sur mobile */
+            .submenu li a i {
+                font-size: 0.9rem;
+                width: 20px;
+                color: var(--gold);
+            }
+            
+            /* Logo réduit */
             .logo-img {
-                height: 40px !important;
+                height: 45px !important;
             }
             
             .logo-text h1 {
@@ -1733,13 +1773,11 @@
             }
             
             .nav-container {
-                justify-content: space-between; /* Garder espace entre logo et menu */
-                flex-wrap: nowrap;
+                justify-content: space-between;
             }
             
             .logo-section {
                 gap: 0.5rem;
-                flex-shrink: 0; /* Empêcher le logo de rétrécir */
             }
             
             /* ==================== HERO SECTION ==================== */
@@ -1767,7 +1805,11 @@
                 justify-content: center;
             }
             
-            /* Carousel réduit mais fonctionnel */
+            .btn-primary i, .btn-secondary i {
+                font-size: 0.9rem;
+            }
+            
+            /* Carousel réduit */
             .carousel-container {
                 height: 250px !important;
                 margin: 0 auto;
@@ -1836,6 +1878,11 @@
             .service-list li {
                 font-size: 0.85rem;
                 padding: 0.5rem 0;
+            }
+            
+            .service-list i {
+                font-size: 0.9rem;
+                min-width: 18px;
             }
             
             /* ==================== DESTINATIONS ==================== */
@@ -1931,6 +1978,11 @@
                 font-size: 1.2rem;
             }
             
+            .step-list i {
+                font-size: 0.8rem;
+                min-width: 18px;
+            }
+            
             /* ==================== UNIVERSITÉS ==================== */
             .logo-slide {
                 width: 180px !important;
@@ -1968,6 +2020,10 @@
             
             .author-info h4 {
                 font-size: 1.1rem;
+            }
+            
+            .testimonial-rating i {
+                font-size: 0.9rem;
             }
             
             .carousel-btn {
@@ -2039,6 +2095,10 @@
                 font-size: 0.9rem;
             }
             
+            .footer-links a i {
+                font-size: 0.8rem;
+            }
+            
             .social-links a {
                 width: 38px;
                 height: 38px;
@@ -2060,6 +2120,11 @@
             .process-doc, 
             .process-list li {
                 font-size: 0.9rem;
+            }
+            
+            .process-list li i {
+                font-size: 0.9rem;
+                min-width: 18px;
             }
             
             /* ==================== CORRECTIONS DE LARGEUR ==================== */
@@ -2107,23 +2172,28 @@
         /* Correction supplémentaire pour très petits écrans */
         @media (max-width: 480px) {
             .logo-img {
-                height: 35px !important;
+                height: 35px;
             }
             
             .logo-text h1 {
-                font-size: 0.9rem !important;
+                font-size: 0.9rem;
             }
             
             .hero-text h1 {
-                font-size: 1.8rem !important;
+                font-size: 1.8rem;
             }
-            
+
+            .hero {
+                padding: 80px 0 30px;
+                min-height: 75vh;
+            }
+    
             .carousel-container {
-                height: 200px !important;
+                height: 200px;
             }
             
             .section-header h2 {
-                font-size: 1.8rem !important;
+                font-size: 1.8rem;
             }
             
             .btn-primary, .btn-secondary {
@@ -2134,7 +2204,72 @@
             .stats-container {
                 grid-template-columns: 1fr;
             }
+
+            .footer {
+                padding: 1.5rem 0.8rem 0.8rem;
+            }
+    
+            .footer-container {
+                gap: 1.5rem;
+            }
+    
+            .footer-logo {
+                max-width: 70px;
+            }
+    
+            .footer-about h3 {
+                font-size: 1.3rem;
+            }
+    
+            .footer-about p {
+                font-size: 0.8rem;
+            }
+    
+            .social-links a {
+                width: 32px;
+                height: 32px;
+                font-size: 0.85rem;
+            }
+    
+            .footer-links h4 {
+                font-size: 1rem;
+            }
+    
+            .footer-links a {
+                font-size: 0.8rem;
+            }
+    
+            .footer-links a i {
+                font-size: 0.7rem;
+            }
+    
+            .footer-bottom {
+                padding: 0.8rem 0;
+                font-size: 0.7rem;
+            }
+            
+            /* Navigation mobile sur très petits écrans */
+            .nav-menu a {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .submenu li a {
+                padding: 0.7rem 2rem;
+                font-size: 0.85rem;
+            }
+            
+            .nav-menu a i:first-child {
+                font-size: 1rem;
+                width: 22px;
+            }
+            
+            .submenu li a i {
+                font-size: 0.8rem;
+                width: 18px;
+            }
         }
+
     </style>
 </head>
 <body>
@@ -2156,22 +2291,22 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#accueil" class="active"><i class="fas fa-home"></i> Accueil</a></li>
                 <li class="has-submenu">
-                    <a href="#services"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="submenu-trigger"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
                     <ul class="submenu">
-                        <li><a href="#visas">Visa d'Etude</a></li>
-                        <li><a href="#visas">Visa de Travail</a></li>
-                        <li><a href="#visas">Visa Visiteur</a></li>
-                        <li><a href="#immigration">Résidence Permanente</a></li>
-                        <li><a href="#visas">Billets d'avion</a></li>
-                        <li><a href="#traduction">Assistance Logement</a></li>
-                        <li><a href="#traduction">Assistance Titre de Séjour</a></li>
-                        <li><a href="#traduction">Admissions</a></li>
-                        <li><a href="#traduction">Autres Services</a></li>
+                        <li><a href="#etude.html"><i class="fas fa-graduation-cap"></i> Visa d'Etude</a></li>
+                        <li><a href="#travail.html"><i class="fas fa-briefcase"></i> Visa de Travail</a></li>
+                        <li><a href="#visiteur.html"><i class="fas fa-plane"></i> Visa Visiteur</a></li>
+                        <li><a href="#residence.html"><i class="fas fa-home"></i> Résidence Permanente</a></li>
+                        <li><a href="#billet.html"><i class="fas fa-ticket-alt"></i> Billets d'avion</a></li>
+                        <li><a href="#logement.html"><i class="fas fa-building"></i> Assistance Logement</a></li>
+                        <li><a href="#sejour.html"><i class="fas fa-id-card"></i> Assistance Titre de Séjour</a></li>
+                        <li><a href="#admissions.html"><i class="fas fa-university"></i> Admissions</a></li>
+                        <li><a href="galerie.html"><i class="fas fa-images"></i> Galerie Photo/Video</a></li>
                     </ul>
                 </li>
-                <li><a href="#universites"><i class="fas fa-university"></i> Envoyer/Recevoir un colis</a></li>
+                <li><a href="#colis.html"><i class="fas fa-box"></i> Envoyer/Recevoir un colis</a></li>
                 <li><a href="#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
-                <li><a href="#equipe"><i class="fas fa-users"></i> Infos Paiement</a></li>
+                <li><a href="#paiement.html"><i class="fas fa-credit-card"></i> Infos Paiement</a></li>
                 <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
         </div>
@@ -2489,7 +2624,7 @@
                 </div>
 
                 <div class="destination-card" data-region="europe">
-                    <span class="country-flag">🇪🇸</span>
+                    <span class="country-flag">🇵🇱</span>
                     <h3>Pologne</h3>
                     <div class="destination-types">
                         <span class="type-badge">Étude</span>
@@ -2981,7 +3116,7 @@
                 <div class="team-slide active">
                     <div class="team-member">
                         <div class="member-avatar">
-                            <img src="assets/images/ma photo.jpg" alt="Patrick Tchuente">
+                            <img src="assets/images/img 9.jpeg" alt="Patrick Tchuente">
                         </div>
                         <h3>Patrick TCHUENTE</h3>
                         <p class="member-role">Directeur Général</p>
@@ -3003,7 +3138,7 @@
                 <div class="team-slide">
                     <div class="team-member">
                         <div class="member-avatar">
-                            <img src="assets/images/ma photo.jpg" alt="Jean FOTSO">
+                            <img src="assets/images/ma photo.jpg" alt="Jean Fotso">
                         </div>
                         <h3>Jean FOTSO</h3>
                         <p class="member-role">Conseiller Visa de Travail</p>
@@ -3014,7 +3149,7 @@
                 <div class="team-slide">
                     <div class="team-member">
                         <div class="member-avatar">
-                            <img src="assets/images/ma photo.jpg" alt="Christelle MBALLA">
+                            <img src="assets/images/ma photo.jpg" alt="Christelle Mballa">
                         </div>
                         <h3>Christelle MBALLA</h3>
                         <p class="member-role">Coordinatrice des Dossiers</p>
@@ -3025,7 +3160,7 @@
                 <div class="team-slide">
                     <div class="team-member">
                         <div class="member-avatar">
-                            <img src="assets/images/ma photo.jpg" alt="Eric NGUEMA">
+                            <img src="assets/images/ma photo.jpg" alt="Eric Nguema">
                         </div>
                         <h3>Eric NGUEMA</h3>
                         <p class="member-role">Responsable Relations Internationales</p>
@@ -3036,7 +3171,7 @@
                 <div class="team-slide">
                     <div class="team-member">
                         <div class="member-avatar">
-                            <img src="assets/images/ma photo.jpg" alt="Sophie KAMDEM">
+                            <img src="assets/images/ma photo.jpg" alt="Sophie Kamdem">
                         </div>
                         <h3>Sophie KAMDEM</h3>
                         <p class="member-role">Service Client</p>
@@ -3107,20 +3242,84 @@
         // Navigation mobile
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
+        const body = document.body;
 
         mobileToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
+            body.classList.toggle('menu-open');
             mobileToggle.innerHTML = navMenu.classList.contains('active') 
                 ? '<i class="fas fa-times"></i>' 
                 : '<i class="fas fa-bars"></i>';
         });
 
-        // Fermer le menu au clic sur un lien
-        document.querySelectorAll('.nav-menu a').forEach(link => {
+        // Gestion des sous-menus sur mobile
+        document.querySelectorAll('.submenu-trigger').forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Sur mobile seulement
+                if (window.innerWidth <= 768) {
+                    e.stopPropagation();
+                    const submenu = trigger.nextElementSibling;
+                    const isActive = submenu.classList.contains('mobile-open');
+                    
+                    // Fermer tous les autres sous-menus
+                    document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
+                        if (menu !== submenu) {
+                            menu.classList.remove('mobile-open');
+                        }
+                    });
+                    
+                    // Toggle le sous-menu actuel
+                    submenu.classList.toggle('mobile-open');
+                    
+                    // Changer l'icône
+                    const chevron = trigger.querySelector('.fa-chevron-down');
+                    if (chevron) {
+                        chevron.style.transform = isActive ? 'rotate(0deg)' : 'rotate(180deg)';
+                    }
+                }
+            });
+        });
+
+        // Fermer le menu au clic sur un lien (sauf déclencheurs de sous-menu)
+        document.querySelectorAll('.nav-menu a:not(.submenu-trigger)').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
                 mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                
+                // Fermer tous les sous-menus
+                document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
+                    menu.classList.remove('mobile-open');
+                });
             });
+        });
+
+        // Fermer le menu en cliquant à l'extérieur
+        document.addEventListener('click', (e) => {
+            const isClickInsideMenu = navMenu.contains(e.target);
+            const isClickOnToggle = mobileToggle.contains(e.target);
+            
+            if (!isClickInsideMenu && !isClickOnToggle && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                
+                // Fermer tous les sous-menus
+                document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
+                    menu.classList.remove('mobile-open');
+                });
+            }
+        });
+
+        // Fermer les sous-menus en redimensionnant la fenêtre
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                document.querySelectorAll('.submenu.mobile-open').forEach(menu => {
+                    menu.classList.remove('mobile-open');
+                });
+            }
         });
 
         // Navbar scroll effect
@@ -3166,9 +3365,23 @@
         });
 
         // Auto slide
-        setInterval(() => {
+        let autoSlideInterval = setInterval(() => {
             showSlide(currentSlide + 1);
         }, 5000);
+
+        // Pause auto slide on hover
+        const carouselContainer = document.querySelector('.carousel-container');
+        if (carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', () => {
+                clearInterval(autoSlideInterval);
+            });
+            
+            carouselContainer.addEventListener('mouseleave', () => {
+                autoSlideInterval = setInterval(() => {
+                    showSlide(currentSlide + 1);
+                }, 5000);
+            });
+        }
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
