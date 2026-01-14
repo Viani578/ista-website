@@ -107,35 +107,38 @@
             padding: 0 2rem;
         }
 
-        /* Logo */
+        /* Logo - TAILLE RÉDUITE */
         .logo-section {
             display: flex;
             align-items: center;
-            gap: 1.2rem;
+            gap: 1rem;
             text-decoration: none;
             margin-right: auto;
-            transform: translateX(-15px);
+            transform: translateX(-10px);
         }
 
         .logo-img {
-            height: 50px;
+            height: 45px;
             width: auto;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
 
         .logo-text h1 {
-            font-size: 1.2rem;
+            font-size: 1rem; /* Réduit de 1.2rem à 1rem */
             margin: 0;
             color: var(--dark-navy);
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
         .logo-text p {
-            font-size: 0.6rem;
-            letter-spacing: 1.8px;
+            font-size: 0.55rem; /* Réduit de 0.6rem à 0.55rem */
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             opacity: 0.9;
             margin: 0;
             color: var(--dark-navy);
+            line-height: 1.2;
         }
 
         /* Menu de navigation */
@@ -394,6 +397,14 @@
             text-align: center;
             flex: 1;
             min-width: 150px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .stat-item.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .stat-number {
@@ -478,6 +489,13 @@
             height: 100%;
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .service-detail-card.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .service-detail-card::before {
@@ -493,7 +511,7 @@
             transition: transform 0.4s ease;
         }
 
-        .service-detail-card:hover::before {
+        .service-detail-card.animated::before {
             transform: scaleX(1);
         }
 
@@ -606,6 +624,13 @@
             box-shadow: var(--shadow-md);
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .why-ista-card.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .why-ista-card::after {
@@ -621,7 +646,7 @@
             transition: transform 0.4s ease;
         }
 
-        .why-ista-card:hover::after {
+        .why-ista-card.animated::after {
             transform: scaleX(1);
             transform-origin: left;
         }
@@ -752,6 +777,13 @@
             position: relative;
             transition: all 0.4s ease;
             border: 2px solid transparent;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .process-step.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .process-step:hover {
@@ -845,18 +877,18 @@
             font-size: 1.2rem;
         }
 
-        /* Section Documents - Améliorée */
-        .documents-section {
+        /* Section Formulaire - MODIFIÉ */
+        .formulaire-section {
             padding: 6rem 0;
             background: var(--cream);
         }
 
-        .documents-container {
+        .formulaire-container {
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        .documents-content {
+        .formulaire-content {
             background: var(--soft-white);
             padding: 3rem;
             border-radius: 25px;
@@ -866,7 +898,7 @@
             overflow: hidden;
         }
 
-        .documents-content::before {
+        .formulaire-content::before {
             content: '';
             position: absolute;
             top: 0;
@@ -877,7 +909,7 @@
             border-radius: 0 25px 0 0;
         }
 
-        .documents-content h2 {
+        .formulaire-content h2 {
             color: var(--dark-navy);
             margin-bottom: 1.5rem;
             display: flex;
@@ -886,7 +918,7 @@
             font-size: 2rem;
         }
 
-        .documents-content h2 i {
+        .formulaire-content h2 i {
             color: var(--gold);
             font-size: 1.8rem;
             background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
@@ -895,41 +927,134 @@
             background-clip: text;
         }
 
-        .documents-list {
-            list-style: none;
-            margin: 2rem 0;
+        .formulaire-content p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
         }
 
-        .documents-list li {
-            padding: 1rem;
-            margin-bottom: 1rem;
-            background: rgba(212, 175, 55, 0.05);
-            border-radius: 10px;
-            border-left: 4px solid var(--gold);
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* ÉTOILES REQUIRED EN ROUGE */
+        .form-group label.required::after {
+            content: " *";
+            color: var(--primary-red);
+            font-weight: bold;
+            margin-left: 3px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--cream);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        /* BOUTON ENVOYER EN OR */
+        .form-submit {
+            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+            color: var(--dark-navy);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 1rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            margin-top: 2rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
-        .documents-list li:hover {
-            transform: translateX(10px);
-            background: rgba(212, 175, 55, 0.1);
-            box-shadow: var(--shadow-sm);
+        .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(135deg, #FFD700 0%, var(--gold) 100%);
         }
 
-        .documents-list li i {
-            color: var(--gold);
-            font-size: 1.2rem;
-            width: 24px;
+        .form-submit i {
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .form-submit:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Success Stats */
+        .success-stats {
+            display: flex;
+            justify-content: space-around;
+            gap: 2rem;
+            margin: 4rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
             text-align: center;
-            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 200px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        .documents-list li:hover i {
-            transform: scale(1.2);
-            color: var(--primary-blue);
+        .stat-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-card .stat-number {
+            font-size: 3rem;
+            color: var(--gold);
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
 
         /* Section CTA - Améliorée */
@@ -1038,10 +1163,13 @@
             box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6);
         }
 
+        /* BOUTON NOUS CONTACTER - TEXTE CENTRÉ */
         .btn-secondary {
             background: transparent;
             color: var(--soft-white);
             border-color: var(--soft-white);
+            justify-content: center;
+            text-align: center;
         }
 
         .btn-secondary:hover {
@@ -1071,41 +1199,6 @@
 
         .btn-primary:hover i, .btn-secondary:hover i, .btn-whatsapp:hover i {
             transform: scale(1.2) rotate(5deg);
-        }
-
-        /* Stats supplémentaires */
-        .success-stats {
-            display: flex;
-            justify-content: space-around;
-            gap: 2rem;
-            margin: 4rem 0;
-            flex-wrap: wrap;
-        }
-
-        .stat-card {
-            text-align: center;
-            flex: 1;
-            min-width: 200px;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .stat-card .stat-number {
-            font-size: 3rem;
-            color: var(--gold);
-            display: block;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-card .stat-label {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
         }
 
         /* Footer */
@@ -1280,7 +1373,7 @@
             }
             
             .introduction-content h2,
-            .documents-content h2 {
+            .formulaire-content h2 {
                 font-size: 1.5rem !important;
                 line-height: 1.2 !important;
                 margin-bottom: 1rem !important;
@@ -1313,7 +1406,7 @@
                 font-size: 2.5rem !important;
             }
             
-            /* Navbar */
+            /* Navbar - LOGO MOBILE RÉDUIT */
             .navbar {
                 padding: 0.8rem 0;
             }
@@ -1331,17 +1424,17 @@
             }
             
             .logo-img {
-                height: 40px;
+                height: 35px; /* Réduit sur mobile */
                 width: auto;
             }
             
             .logo-text h1 {
-                font-size: 1.1rem;
+                font-size: 0.9rem !important; /* Réduit sur mobile */
                 line-height: 1;
             }
             
             .logo-text p {
-                font-size: 0.55rem;
+                font-size: 0.5rem !important; /* Réduit sur mobile */
                 letter-spacing: 1px;
             }
             
@@ -1528,6 +1621,20 @@
                 font-size: 1.5rem;
             }
             
+            /* Formulaire */
+            .formulaire-section {
+                padding: 3rem 0;
+            }
+            
+            .formulaire-content {
+                padding: 1.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
             /* Process Section */
             .process-section {
                 padding: 3rem 0;
@@ -1558,15 +1665,6 @@
                 font-size: 2rem !important;
             }
             
-            /* Documents */
-            .documents-section {
-                padding: 3rem 0;
-            }
-            
-            .documents-content {
-                padding: 1.5rem;
-            }
-            
             /* CTA */
             .sejour-cta {
                 padding: 3rem 1rem;
@@ -1587,6 +1685,12 @@
                 max-width: 300px;
                 padding: 0.9rem 1.5rem;
                 font-size: 1rem;
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .btn-secondary i {
+                margin-right: 0.5rem;
             }
             
             /* Footer */
@@ -1682,16 +1786,16 @@
                 <p>Nous proposons des services complets pour vous aider dans toutes les démarches administratives liées à l'obtention et au renouvellement de votre titre de séjour. Nous nous engageons à vous offrir une assistance personnalisée et de qualité, afin de vous accompagner tout au long du processus.</p>
                 
                 <div class="introduction-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">95%</span>
+                    <div class="stat-item" data-delay="0">
+                        <span class="stat-number" data-target="95">0</span>
                         <span class="stat-label">Taux de réussite</span>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number">500+</span>
+                    <div class="stat-item" data-delay="100">
+                        <span class="stat-number" data-target="500">0</span>
                         <span class="stat-label">Dossiers traités</span>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number">24h</span>
+                    <div class="stat-item" data-delay="200">
+                        <span class="stat-number" data-target="24">0</span>
                         <span class="stat-label">Réponse rapide</span>
                     </div>
                 </div>
@@ -1714,7 +1818,7 @@
             </div>
             
             <div class="services-grid">
-                <div class="service-detail-card">
+                <div class="service-detail-card" data-delay="0">
                     <div class="service-icon">
                         <i class="fas fa-file-alt"></i>
                     </div>
@@ -1727,7 +1831,7 @@
                     </ul>
                 </div>
                 
-                <div class="service-detail-card">
+                <div class="service-detail-card" data-delay="100">
                     <div class="service-icon">
                         <i class="fas fa-users"></i>
                     </div>
@@ -1740,7 +1844,7 @@
                     </ul>
                 </div>
                 
-                <div class="service-detail-card">
+                <div class="service-detail-card" data-delay="200">
                     <div class="service-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
@@ -1753,7 +1857,7 @@
                     </ul>
                 </div>
                 
-                <div class="service-detail-card">
+                <div class="service-detail-card" data-delay="300">
                     <div class="service-icon">
                         <i class="fas fa-bell"></i>
                     </div>
@@ -1778,7 +1882,7 @@
             </div>
             
             <div class="why-ista-container">
-                <div class="why-ista-card">
+                <div class="why-ista-card" data-delay="0">
                     <div class="why-ista-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
@@ -1786,7 +1890,7 @@
                     <p>Plusieurs années d'expérience dans l'assistance aux titres de séjour avec un taux de réussite élevé.</p>
                 </div>
                 
-                <div class="why-ista-card">
+                <div class="why-ista-card" data-delay="100">
                     <div class="why-ista-icon">
                         <i class="fas fa-user-check"></i>
                     </div>
@@ -1794,7 +1898,7 @@
                     <p>Chaque client bénéficie d'un conseiller dédié pour un suivi sur mesure de son dossier.</p>
                 </div>
                 
-                <div class="why-ista-card">
+                <div class="why-ista-card" data-delay="200">
                     <div class="why-ista-icon">
                         <i class="fas fa-clock"></i>
                     </div>
@@ -1814,40 +1918,40 @@
             </div>
             
             <div class="success-stats">
-                <div class="stat-card">
-                    <span class="stat-number">48h</span>
+                <div class="stat-card" data-delay="0">
+                    <span class="stat-number" data-target="48">0</span>
                     <span class="stat-label">Évaluation initiale</span>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-number">7j</span>
+                <div class="stat-card" data-delay="100">
+                    <span class="stat-number" data-target="7">0</span>
                     <span class="stat-label">Préparation dossier</span>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-number">24/7</span>
+                <div class="stat-card" data-delay="200">
+                    <span class="stat-number" data-target="24">0</span>
                     <span class="stat-label">Support disponible</span>
                 </div>
             </div>
             
             <div class="process-steps">
-                <div class="process-step">
+                <div class="process-step" data-delay="0">
                     <div class="step-number">1</div>
                     <h3>Évaluation Initiale</h3>
                     <p>Analyse de votre situation et définition des besoins spécifiques pour votre titre de séjour.</p>
                 </div>
                 
-                <div class="process-step">
+                <div class="process-step" data-delay="100">
                     <div class="step-number">2</div>
                     <h3>Préparation du Dossier</h3>
                     <p>Collecte et vérification de tous les documents requis pour constituer un dossier complet.</p>
                 </div>
                 
-                <div class="process-step">
+                <div class="process-step" data-delay="200">
                     <div class="step-number">3</div>
                     <h3>Dépôt et Suivi</h3>
                     <p>Dépôt du dossier et suivi régulier auprès des autorités compétentes.</p>
                 </div>
                 
-                <div class="process-step">
+                <div class="process-step" data-delay="300">
                     <div class="step-number">4</div>
                     <h3>Résultat et Acompagnement</h3>
                     <p>Récupération de votre titre de séjour et conseils pour les démarches futures.</p>
@@ -1856,24 +1960,80 @@
         </div>
     </section>
 
-    <!-- Section Documents -->
-    <section class="documents-section">
-        <div class="container documents-container">
-            <div class="documents-content">
-                <h2><i class="fas fa-file-contract"></i> Documents Généralement Requis</h2>
-                <p>Bien que les exigences varient selon votre situation, voici les documents couramment demandés :</p>
+    <!-- Section Formulaire -->
+    <section class="formulaire-section">
+        <div class="container formulaire-container">
+            <div class="formulaire-content">
+                <h2><i class="fas fa-file-contract"></i> Demande d'Assistance</h2>
+                <p>Remplissez ce formulaire pour recevoir une évaluation gratuite de votre dossier et un devis personnalisé.</p>
                 
-                <ul class="documents-list">
-                    <li><i class="fas fa-passport"></i> Passeport en cours de validité</li>
-                    <li><i class="fas fa-home"></i> Justificatif de domicile</li>
-                    <li><i class="fas fa-money-bill-wave"></i> Relevés bancaires et justificatifs de ressources</li>
-                    <li><i class="fas fa-file-medical"></i> Certificat médical et attestation d'assurance</li>
-                    <li><i class="fas fa-graduation-cap"></i> Diplômes et attestations scolaires (pour étudiants)</li>
-                    <li><i class="fas fa-briefcase"></i> Contrat de travail et fiches de paie (pour travailleurs)</li>
-                    <li><i class="fas fa-images"></i> Photos d'identité conformes aux normes</li>
-                </ul>
-                
-                <p><strong>Note :</strong> Notre équipe vous fournira la liste exacte des documents nécessaires après l'évaluation de votre situation spécifique.</p>
+                <form id="assistanceForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nom" class="required">Nom complet</label>
+                            <input type="text" id="nom" name="nom" required placeholder="Votre nom complet">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="required">Adresse email</label>
+                            <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telephone" class="required">Numéro de téléphone</label>
+                            <input type="tel" id="telephone" name="telephone" required placeholder="Votre numéro de téléphone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pays" class="required">Pays de résidence actuel</label>
+                            <select id="pays" name="pays" required>
+                                <option value="">Sélectionnez un pays</option>
+                                <option value="france">France</option>
+                                <option value="canada">Canada</option>
+                                <option value="usa">États-Unis</option>
+                                <option value="cameroun">Cameroun</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="type_sejour" class="required">Type de titre de séjour recherché</label>
+                            <select id="type_sejour" name="type_sejour" required>
+                                <option value="">Sélectionnez un type</option>
+                                <option value="etudiant">Étudiant</option>
+                                <option value="travail">Travailleur</option>
+                                <option value="famille">Regroupement familial</option>
+                                <option value="visiteur">Visiteur</option>
+                                <option value="renouvellement">Renouvellement</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="situation" class="required">Situation actuelle</label>
+                            <select id="situation" name="situation" required>
+                                <option value="">Sélectionnez une situation</option>
+                                <option value="premiere_demande">Première demande</option>
+                                <option value="renouvellement">Renouvellement</option>
+                                <option value="changement_statut">Changement de statut</option>
+                                <option value="regularisation">Régularisation</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message complémentaire</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Décrivez brièvement votre situation et vos besoins..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="form-submit">
+                        <i class="fas fa-paper-plane"></i> Envoyer ma demande
+                    </button>
+                </form>
             </div>
         </div>
     </section>
@@ -1885,16 +2045,16 @@
             <p>Confiez-nous vos démarches administratives et concentrez-vous sur votre projet d'installation à l'étranger.</p>
             
             <div class="success-stats">
-                <div class="stat-card">
-                    <span class="stat-number">95%</span>
+                <div class="stat-card" data-delay="0">
+                    <span class="stat-number" data-target="95">0</span>
                     <span class="stat-label">Satisfaction client</span>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-number">10+</span>
+                <div class="stat-card" data-delay="100">
+                    <span class="stat-number" data-target="10">0</span>
                     <span class="stat-label">Années d'expérience</span>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-number">500+</span>
+                <div class="stat-card" data-delay="200">
+                    <span class="stat-number" data-target="500">0</span>
                     <span class="stat-label">Clients satisfaits</span>
                 </div>
             </div>
@@ -2049,7 +2209,7 @@
             });
         });
 
-        // Animation au scroll
+        // Animation automatique au scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -2058,51 +2218,90 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                    if (entry.target.classList.contains('service-detail-card')) {
-                        entry.target.style.transitionDelay = '0.1s';
-                    }
+                    const delay = entry.target.dataset.delay || 0;
+                    
+                    setTimeout(() => {
+                        entry.target.classList.add('animated');
+                        
+                        // Animation des nombres pour les stats
+                        if (entry.target.classList.contains('stat-item') || entry.target.classList.contains('stat-card')) {
+                            const statNumber = entry.target.querySelector('.stat-number');
+                            if (statNumber && statNumber.dataset.target) {
+                                const targetValue = parseInt(statNumber.dataset.target);
+                                const hasPlus = statNumber.textContent.includes('+');
+                                const hasPercent = statNumber.textContent.includes('%');
+                                let currentValue = 0;
+                                const increment = targetValue / 30;
+                                const timer = setInterval(() => {
+                                    currentValue += increment;
+                                    if (currentValue >= targetValue) {
+                                        statNumber.textContent = targetValue + 
+                                            (hasPercent ? '%' : '') + 
+                                            (hasPlus ? '+' : '');
+                                        clearInterval(timer);
+                                    } else {
+                                        const displayValue = hasPercent ? 
+                                            Math.floor(currentValue) + '%' : 
+                                            Math.floor(currentValue);
+                                        statNumber.textContent = displayValue;
+                                    }
+                                }, 40);
+                            }
+                        }
+                    }, parseInt(delay));
                 }
             });
         }, observerOptions);
 
-        // Observer les sections pour l'animation
-        document.querySelectorAll('.service-detail-card, .why-ista-card, .process-step, .stat-item, .stat-card').forEach((section, index) => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            if (section.classList.contains('service-detail-card')) {
-                section.style.transitionDelay = `${index * 0.1}s`;
-            }
-            observer.observe(section);
+        // Observer tous les éléments à animer
+        document.querySelectorAll('.service-detail-card, .why-ista-card, .process-step, .stat-item, .stat-card').forEach(element => {
+            observer.observe(element);
         });
 
-        // Animation pour les stats
-        const statNumbers = document.querySelectorAll('.stat-number');
-        
-        const animateStats = (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const statNumber = entry.target;
-                    const targetValue = parseInt(statNumber.textContent);
-                    let currentValue = 0;
-                    const increment = targetValue / 50;
-                    const timer = setInterval(() => {
-                        currentValue += increment;
-                        if (currentValue >= targetValue) {
-                            statNumber.textContent = targetValue + (statNumber.textContent.includes('%') ? '%' : '+');
-                            clearInterval(timer);
-                        } else {
-                            statNumber.textContent = Math.floor(currentValue) + (statNumber.textContent.includes('%') ? '%' : '');
-                        }
-                    }, 30);
+        // Gestion du formulaire
+        document.getElementById('assistanceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Récupération des données du formulaire
+            const formData = {
+                nom: document.getElementById('nom').value,
+                email: document.getElementById('email').value,
+                telephone: document.getElementById('telephone').value,
+                pays: document.getElementById('pays').value,
+                type_sejour: document.getElementById('type_sejour').value,
+                situation: document.getElementById('situation').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Simulation d'envoi (à remplacer par votre logique d'envoi réelle)
+            alert('Votre demande a été envoyée avec succès ! Notre équipe vous contactera dans les plus brefs délais.');
+            this.reset();
+            
+            // Redirection vers WhatsApp avec les informations pré-remplies
+            const whatsappMessage = `Bonjour ISTA,\n\nJe souhaite une assistance pour un titre de séjour.\n\nNom: ${formData.nom}\nEmail: ${formData.email}\nTéléphone: ${formData.telephone}\nPays: ${formData.pays}\nType de séjour: ${formData.type_sejour}\nSituation: ${formData.situation}\nMessage: ${formData.message}`;
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            window.open(`https://wa.me/237672080166?text=${encodedMessage}`, '_blank');
+        });
+
+        // Animation initiale pour les éléments visibles au chargement
+        function checkInitialVisibility() {
+            document.querySelectorAll('.service-detail-card, .why-ista-card, .process-step, .stat-item, .stat-card').forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                if (rect.top < windowHeight - 100) {
+                    const delay = element.dataset.delay || 0;
+                    setTimeout(() => {
+                        element.classList.add('animated');
+                    }, parseInt(delay));
                 }
             });
-        };
+        }
 
-        const statsObserver = new IntersectionObserver(animateStats, { threshold: 0.5 });
-        statNumbers.forEach(stat => statsObserver.observe(stat));
+        // Vérifier la visibilité initiale au chargement
+        window.addEventListener('load', checkInitialVisibility);
+        // Vérifier aussi après un court délai pour s'assurer que tout est chargé
+        setTimeout(checkInitialVisibility, 500);
     </script>
 </body>
 </html>
