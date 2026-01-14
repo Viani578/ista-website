@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -2909,3 +2910,3673 @@
     </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISTA - International Success Travel Agency | Immigration & Visa</title>
+    <meta name="description" content="ISTA - Agence de voyage internationale spécialisée dans l'immigration et les services de visa. Nous facilitons vos démarches pour étudier, travailler ou vivre à l'étranger.">
+    <meta name="keywords" content="immigration, visa, études à l'étranger, agence de voyage, relocation">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ISTA - International Success Travel Agency">
+    <meta property="og:description" content="Spécialistes en immigration et visas pour vos projets à l'étranger">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    
+    <!-- Favicon (use site logo) -->
+    <link rel="icon" type="image/jpeg" href="assets/images/remove.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Variables et configuration de base */
+        :root {
+            --primary-red: #DC143C;
+            --primary-blue: #1E40AF;
+            --gold: #D4AF37;
+            --dark-navy: #0A1929;
+            --cream: #FAF8F3;
+            --soft-white: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --text-light: #6B7280;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+            --transition: all 0.3s ease;
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            color: var(--text-dark);
+            background: var(--cream);
+            overflow-x: hidden;
+            line-height: 1.6;
+            width: 100%;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 2rem; }
+        h4 { font-size: 1.5rem; }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--soft-white);
+            box-shadow: var(--shadow-md);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 0.7rem 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Logo */
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .logo-text h1 {
+            font-size: 1.4rem;
+            margin: 0;
+            color: var(--dark-navy);
+        }
+
+        .logo-text p {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin: 0;
+            color: var(--dark-navy);
+        }
+
+        /* Menu de navigation */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu > li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            color: var(--dark-navy);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            white-space: nowrap;
+        }
+
+        .nav-menu > li > a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu > li > a:hover::after,
+        .nav-menu > li > a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu > li > a:hover,
+        .nav-menu > li > a.active {
+            color: var(--gold);
+        }
+
+        .nav-menu a i:not(.fa-chevron-down) {
+            color: var(--primary-blue);
+            transition: var(--transition);
+        }
+
+        .nav-menu > li > a:hover i:not(.fa-chevron-down),
+        .nav-menu > li > a.active i:not(.fa-chevron-down) {
+            color: var(--gold);
+        }
+
+        .nav-menu a i {
+            font-size: 1rem;
+            width: 20px;
+            text-align: left;
+        }
+
+        /* Sous-menu */
+        .has-submenu {
+            position: relative;
+        }
+
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--soft-white);
+            min-width: 250px;
+            padding: 1rem 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            list-style: none;
+            z-index: 100;
+        }
+
+        .has-submenu:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .submenu li a {
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: var(--transition);
+            font-size: 0.85rem;
+        }
+
+        .submenu li a:hover {
+            background: var(--cream);
+            color: var(--primary-blue);
+            padding-left: 1.5rem;
+        }
+
+        .submenu li a i {
+            font-size: 0.9rem;
+            width: 18px;
+            color: var(--primary-blue);
+        }
+
+        .submenu li a:hover i {
+            color: var(--gold);
+        }
+
+        /* Menu mobile */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-navy);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Section Hero */
+        .hero {
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #1E293B 0%, #2563EB 60%, #60A5FA 100%);
+            overflow: hidden;
+            padding: 120px 0 60px;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(196, 30, 58, 0.12) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            color: var(--soft-white);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-text h1 .highlight {
+            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        /* Boutons */
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+            color: var(--dark-navy);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px rgba(212, 175, 55, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--soft-white);
+            border-color: var(--soft-white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--soft-white);
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        /* Carousel Hero */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 550px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Contrôles carousel */
+        .carousel-dots {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+            background: rgba(10, 25, 41, 0.7);
+            padding: 10px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .carousel-dot.active {
+            background: var(--gold);
+            transform: scale(1.4);
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(212, 175, 55, 0.95);
+            color: var(--dark-navy);
+            border: none;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .carousel-arrow:hover {
+            background: var(--gold);
+            transform: translateY(-50%) scale(1.15);
+        }
+
+        .carousel-arrow.prev { left: 20px; }
+        .carousel-arrow.next { right: 20px; }
+
+        /* Sections générales */
+        section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 5rem;
+        }
+        .section-header h2 {
+            margin-bottom: 0.75rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--dark-navy);
+            font-weight: 900;
+        }
+        .section-header p {
+            margin-top: 0;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+            color: var(--dark-navy);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Grille de services */
+        .services {
+            padding: 6rem 0;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .service-card {
+            background: var(--soft-white);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-image {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+
+        .service-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(10, 25, 41, 0.95) 0%, rgba(10, 25, 41, 0.7) 70%, transparent 100%);
+        }
+
+        .service-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--soft-white);
+            margin: 0;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .service-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-list li {
+            padding: 0.7rem 0;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            font-size: 0.95rem;
+        }
+
+        .service-content {
+            padding: 2.5rem;
+        }
+
+        .service-list li:last-child {
+            border-bottom: none;
+        }
+
+        .service-list i {
+            color: var(--gold);
+            font-size: 1rem;
+            min-width: 20px;
+        }
+
+        .service-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .meta-item i {
+            color: var(--primary-blue);
+            font-size: 0.9rem;
+        }
+
+        /* Section Destinations */
+        .destinations {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, #1a0b2e 50%, #0c1b2e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .destinations::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(196, 30, 58, 0.08) 0%, transparent 50%);
+        }
+
+        .destinations .section-header h2,
+        .destinations .section-badge {
+            color: var(--soft-white);
+        }
+
+        .destinations .section-header p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .destinations-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .destinations-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #d7cfd37b);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--dark-navy);
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .tab-btn:hover,
+        .tab-btn.active {
+            background: var(--gold);
+            color: var(--dark-navy);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .destination-card {
+            background: linear-gradient(180deg, rgba(10,25,41,0.92) 0%, rgba(24,48,88,0.75) 100%);
+            backdrop-filter: blur(6px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.18);
+            box-shadow: 0 12px 30px rgba(10,25,41,0.55);
+            transition: all 0.4s ease;
+            text-align: center;
+            color: var(--soft-white);
+        }
+
+        .destination-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: linear-gradient(180deg, rgba(212,175,55,0.12) 0%, rgba(24,48,88,0.92) 100%);
+            border: 1px solid rgba(212,175,55,0.28);
+            box-shadow: 0 18px 50px rgba(212,175,55,0.08), 0 8px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Apply same color theme as .process-section to destinations when using .destinations-section */
+        .destinations-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
+            position: relative;
+        }
+
+        .destinations-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(196, 30, 58, 0.08) 0%, transparent 50%);
+        }
+
+        .destinations-section .section-header h2,
+        .destinations-section .section-badge {
+            color: var(--soft-white);
+        }
+
+        .destinations-section .section-header p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .destinations-section .tab-btn {
+            background: rgba(255,255,255,0.06);
+            border: 2px solid rgba(255,255,255,0.12);
+            color: var(--soft-white);
+        }
+
+        .destinations-section .tab-btn:hover,
+        .destinations-section .tab-btn.active {
+            background: var(--gold);
+            color: var(--dark-navy);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .destinations-section .destination-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+            transition: all 0.4s ease;
+            text-align: center;
+            color: var(--soft-white);
+        }
+
+        .destinations-section .destination-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.14);
+            box-shadow: 0 18px 50px rgba(0,0,0,0.28);
+        }
+
+        .country-flag {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .destination-card h3 {
+            color: var(--soft-white);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        }
+
+        .destination-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .type-badge {
+            padding: 0.4rem 1rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            color: var(--soft-white);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Pourquoi nous choisir */
+        .why-choose-us {
+            padding: 6rem 0;
+            background: var(--soft-white);
+        }
+
+        .why-choose-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .why-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: var(--soft-white);
+        }
+
+        .why-card {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--soft-white) 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .why-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold);
+        }
+
+        .why-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--dark-navy);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .why-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
+            position: relative;
+        }
+
+        .process-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(196, 30, 58, 0.08) 0%, transparent 50%);
+        }
+
+        .process-section .section-header h2,
+        .process-section .section-badge {
+            color: var(--soft-white);
+        }
+
+        .process-section .section-header p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .process-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-step {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gold), #FFD700);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .process-step:hover::before {
+            transform: translateX(0);
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .process-notice-container {
+            max-width: 1100px;
+            margin: 2rem auto 3.5rem;
+            padding: 0 2rem;
+        }
+
+        .process-notice-container .process-notice,
+        .process-notice-container .process-doc {
+            color: var(--text-dark);
+            text-align: left;
+            margin: 0;
+            line-height: 1.8; 
+        }
+
+        .process-notice-container .process-list {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-top: 1rem;
+            padding-left: 1.2rem;
+            list-style: none; 
+        }
+
+        .process-notice-container .process-list li {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .process-notice-container .process-list li i {
+            color: var(--gold);
+            font-size: 1rem;
+            line-height: 1;
+            min-width: 20px;
+        }
+
+        .step-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gold), #FFD700);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--dark-navy);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        .process-step h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--soft-white);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .process-step p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-list {
+            list-style: none;
+        }
+
+        .step-list li {
+            padding: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .step-list i {
+            color: var(--gold);
+            font-size: 0.9rem;
+            min-width: 20px;
+        }
+
+        /* Statistiques */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-red) 100%);
+            padding: 6rem 0;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: -1.6rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(212,175,55,1), rgba(212,175,55,0.25));
+            border-radius: 2px;
+            box-shadow: 0 4px 12px rgba(212,175,55,0.08);
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: var(--soft-white);
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Témoignages */
+        .testimonials-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--soft-white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .testimonials-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-carousel {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 2rem;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .testimonial-card {
+            flex: 0 0 calc(30% - 1.5rem);
+            background: var(--soft-white);
+            min-width: 0;
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.4s ease;
+            border: 2px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            border-color: var(--gold);
+        }
+
+        .testimonial-card::before {
+            content: '❝';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 5rem;
+            color: rgba(212, 175, 55, 0.1);
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            font-style: italic;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--gold);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .testimonial-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--gold);
+            flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .testimonial-avatar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), transparent);
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .testimonial-card:hover .testimonial-avatar img {
+            transform: scale(1.1);
+        }
+
+        .author-info h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--dark-navy);
+            font-size: 1.3rem;
+        }
+
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .testimonial-rating {
+            display: flex;
+            gap: 0.25rem;
+            margin-top: 0.5rem;
+        }
+
+        .testimonial-rating i {
+            color: var(--gold);
+            font-size: 1rem;
+        }
+
+        .testimonial-carousel-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0.5rem;
+            gap: 0;
+            transform: translateY(-50%);
+            margin-top: 0;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .testimonial-carousel-controls .carousel-dots {
+            display: none;
+        }
+
+        .carousel-btn {
+            pointer-events: auto;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.95);
+            border: 2px solid var(--gold);
+            color: var(--dark-navy);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.22s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        .carousel-btn:hover {
+            background: var(--gold);
+            transform: translateY(-2px) scale(0.98);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.25);
+        }
+
+        .testimonial-carousel-controls #testimonialPrev { margin-left: 6px; }
+        .testimonial-carousel-controls #testimonialNext { margin-right: 6px; }
+
+        .carousel-dots {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--gold);
+            transform: scale(1.3);
+        }
+
+        .testimonial-carousel-controls .carousel-dots {
+            display: none;
+        }
+
+        /* Équipe */
+        .team-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
+            position: relative;
+        }
+
+        .team-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(220, 38, 38, 0.08) 0%, transparent 50%);
+        }
+
+        .team-section .section-header h2,
+        .team-section .section-badge {
+            color: var(--soft-white);
+        }
+
+        .team-section .section-header p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .team-carousel-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .team-carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 25px;
+        }
+
+        .team-slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .team-slide.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .team-member {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 3rem 2rem;
+            border-radius: 25px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .member-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--gold), #FBBF24);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 3rem;
+            color: var(--dark-navy);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+            overflow: hidden;
+        }
+
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .team-member h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--soft-white);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .member-role {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .member-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* MODIFICATION */
+        .team-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--gold);
+            color: var(--dark-navy);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            box-shadow: var(--shadow-md);
+        }
+
+        .team-arrow:hover {
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-arrow.prev {
+            left: -50px;
+        }
+
+        .team-arrow.next {
+            right: -50px;
+        }
+
+        .team-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 2.5rem;
+        }
+
+        .team-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .team-dot.active {
+            background: var(--gold);
+            transform: scale(1.3);
+        }
+        
+        /* Universités */
+        .universities-section {
+            padding: 6rem 0;
+            background: var(--soft-white);
+            overflow: hidden;
+        }
+
+        .logo-track {
+            display: flex;
+            animation: scroll 40s linear infinite;
+            width: fit-content;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .logo-slide {
+            flex-shrink: 0;
+            width: 250px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            margin: 0 2rem;
+            background: var(--soft-white);
+            border-radius: 15px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .logo-slide:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .logo-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: grayscale(20%);
+            transition: filter 0.3s ease;
+        }
+
+        .logo-slide:hover img {
+            filter: grayscale(0%);
+        }
+
+        /* Processus */
+        .process-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
+        }
+
+        .process-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .process-section h2,
+        .process-section .section-badge {
+            color: var(--soft-white);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-navy);
+            padding: 4rem 2rem 2rem;
+            color: var(--soft-white);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .footer-about h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .footer-about .footer-logo {
+            display: block;
+            max-width: 120px;
+            height: auto;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--soft-white);
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--dark-navy);
+            transform: translateY(-5px);
+        }
+
+        .footer-links h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 0.5rem;
+        }
+
+        .footer-links a i {
+            font-size: 0.8rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design - CORRIGÉ pour alignement mobile comme galerie.html */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .carousel-container {
+                height: 450px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .testimonial-card {
+                flex: 0 0 calc(50% - 1rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body, html {
+                overflow-x: hidden;
+                max-width: 100%;
+                position: relative;
+            }
+            
+            .hero {
+                min-height: 50vh;
+                padding: 100px 0 40px;
+            }
+            
+            .container {
+                padding: 0 1rem;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+            
+            /* 3. NAVBAR */
+            .navbar {
+                padding: 0.8rem 0;
+            }
+            
+            .nav-container {
+                padding: 0 1rem;
+                width: 100%;
+            }
+            
+            .logo-section {
+                gap: 0.8rem;
+                align-items: center;
+            }
+            
+            .logo-img {
+                height: 40px;
+                width: auto;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.1rem;
+                line-height: 1;
+            }
+            
+            .logo-text p {
+                font-size: 0.55rem;
+                letter-spacing: 1px;
+            }
+            
+            .mobile-toggle {
+                display: block;
+                font-size: 1.2rem;
+                padding: 0.3rem;
+            }
+
+            /* 4. MENU MOBILE */
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: var(--soft-white);
+                width: 100%;
+                text-align: left;
+                transition: 0.3s;
+                padding: 1rem 0;
+                gap: 0;
+                box-shadow: var(--shadow-lg);
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu > li {
+                width: 100%;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-menu a {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                justify-content: flex-start;
+                width: 100%;
+                gap: 0.5rem;
+            }
+            
+            .has-submenu > a {
+                position: relative;
+            }
+            
+            .has-submenu > a::after {
+                content: '\f078';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                position: absolute;
+                right: 1.5rem;
+                transition: transform 0.3s ease;
+            }
+            
+            .has-submenu.active > a::after {
+                transform: rotate(180deg);
+            }
+            
+            /* Sous-menu */
+            .submenu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: var(--cream);
+                border-radius: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+                padding: 0;
+                min-width: 100%;
+                margin-left: 0;
+            }
+            
+            .has-submenu.active .submenu {
+                max-height: 500px;
+                padding: 0.5rem 0;
+            }
+            
+            .submenu li a {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+                border-left: 3px solid transparent;
+                justify-content: flex-start;
+                gap: 0.75rem;
+            }
+            
+            .submenu li a:hover {
+                border-left: 3px solid var(--gold);
+                background: rgba(212, 175, 55, 0.1);
+            }
+            
+            .nav-menu a i:first-child {
+                font-size: 1rem;
+                width: 24px;
+                text-align: left;
+            }
+            
+            .submenu li a i {
+                font-size: 0.9rem;
+                width: 20px;
+                text-align: left;
+            }
+            
+            /* ==================== HERO SECTION ==================== */
+            
+            .hero {
+                min-height: 50vh;
+                padding: 100px 0 40px;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+                text-align: center;
+            }
+            
+            .hero-text p {
+                font-size: 1rem;
+                text-align: center;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .btn-primary, .btn-secondary {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .btn-primary i, .btn-secondary i {
+                font-size: 0.9rem;
+            }
+            
+            /* Carousel réduit */
+            .carousel-container {
+                height: 250px;
+                margin: 0 auto;
+                max-width: 100%;
+            }
+            
+            .carousel-arrow {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+            
+            .carousel-dots {
+                padding: 6px 12px;
+                bottom: 15px;
+            }
+            
+            .carousel-dot {
+                width: 6px;
+                height: 6px;
+            }
+            
+            /* ==================== SECTIONS GÉNÉRALES ==================== */
+            section {
+                padding: 3rem 0;
+            }
+            
+            .section-header {
+                margin: 0 auto 3rem;
+                padding: 0 0.5rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .section-badge {
+                font-size: 0.7rem;
+                padding: 0.4rem 1rem;
+            }
+            
+            /* ==================== SERVICES ==================== */
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0;
+            }
+            
+            .service-card {
+                max-width: 100%;
+                margin: 0 auto;
+            }
+            
+            .service-image {
+                height: 200px;
+            }
+            
+            .service-title {
+                font-size: 1.5rem;
+            }
+            
+            .service-content {
+                padding: 1.5rem;
+            }
+            
+            .service-list li {
+                font-size: 0.85rem;
+                padding: 0.5rem 0;
+            }
+            
+            .service-list i {
+                font-size: 0.9rem;
+                min-width: 18px;
+            }
+            
+            /* ==================== DESTINATIONS ==================== */
+            .destinations-section, 
+            .destinations {
+                padding: 3rem 1rem;
+            }
+            
+            .destinations-tabs {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .tab-btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.8rem;
+            }
+            
+            .destinations-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .destination-card {
+                padding: 1.5rem;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+            
+            .country-flag {
+                font-size: 3rem;
+            }
+            
+            .destination-card h3 {
+                font-size: 1.2rem;
+            }
+            
+            .type-badge {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.7rem;
+            }
+            
+            /* ==================== POURQUOI NOUS CHOISIR ==================== */
+            .why-choose-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 0.5rem;
+            }
+            
+            .why-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+            
+            .why-card {
+                padding: 1.5rem;
+            }
+            
+            .why-card h3 {
+                font-size: 1.2rem;
+            }
+            
+            /* ==================== PROCESSUS ==================== */
+            .process-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 0.5rem;
+            }
+            
+            .process-step {
+                padding: 1.5rem;
+            }
+            
+            .step-number {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+                top: 15px;
+                right: 15px;
+            }
+            
+            .step-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .process-step h3 {
+                font-size: 1.2rem;
+            }
+            
+            .step-list i {
+                font-size: 0.8rem;
+                min-width: 18px;
+            }
+            
+            /* ==================== UNIVERSITÉS ==================== */
+            .logo-slide {
+                width: 180px;
+                height: 100px;
+                margin: 0 1rem;
+                padding: 1rem;
+            }
+            
+            /* ==================== STATISTIQUES ==================== */
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                padding: 0 0.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            /* ==================== TÉMOIGNAGES ==================== */
+            .testimonial-card {
+                padding: 1.5rem;
+                flex: 0 0 100%;
+            }
+            
+            .testimonial-text {
+                font-size: 1rem;
+                padding-left: 1rem;
+            }
+            
+            .testimonial-avatar {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .author-info h4 {
+                font-size: 1.1rem;
+            }
+            
+            .testimonial-rating i {
+                font-size: 0.9rem;
+            }
+            
+            .carousel-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+            
+            /* ==================== ÉQUIPE ==================== */
+            .team-carousel-container {
+                max-width: 100%;
+                padding: 0 1rem;
+            }
+            
+            .team-member {
+                padding: 2rem 1rem;
+            }
+            
+            .member-avatar {
+                width: 90px;
+                height: 90px;
+                font-size: 2rem;
+            }
+            
+            .team-member h3 {
+                font-size: 1.3rem;
+            }
+            
+            .team-arrow {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+            
+            .team-arrow.prev {
+                left: 10px;
+            }
+            
+            .team-arrow.next {
+                right: 10px;
+            }
+            
+            /* ==================== FOOTER ==================== */
+            .footer {
+                padding: 2rem 1rem 1rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .footer-about h3 {
+                font-size: 1.6rem;
+            }
+            
+            .footer-about p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+            
+            .footer-links h4 {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .footer-links a {
+                font-size: 0.9rem;
+            }
+            
+            .footer-links a i {
+                font-size: 0.8rem;
+            }
+            
+            .social-links a {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
+            
+            .footer-bottom {
+                padding: 1.5rem 1rem 0;
+                font-size: 0.85rem;
+            }
+            
+            /* ==================== NOTE DU PROCESSUS ==================== */
+            .process-notice-container {
+                padding: 0 1rem;
+                margin: 1rem auto 2rem;
+            }
+            
+            .process-notice, 
+            .process-doc, 
+            .process-list li {
+                font-size: 0.9rem;
+            }
+            
+            .process-list li i {
+                font-size: 0.9rem;
+                min-width: 18px;
+            }
+            
+            /* ==================== CORRECTIONS DE LARGEUR ==================== */
+            .hero-content,
+            .hero-visual,
+            .carousel-container,
+            .services-grid,
+            .destinations-container,
+            .why-choose-container,
+            .process-container,
+            .stats-container,
+            .testimonials-container,
+            .team-carousel-container,
+            .footer-container {
+                width: 100%;
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-text,
+            .hero-buttons,
+            .service-content,
+            .destination-card,
+            .why-card,
+            .process-step,
+            .testimonial-card,
+            .team-member {
+                width: 100%;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+            }
+            
+            img:not(.logo-img):not(.footer-logo) {
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+            
+            .testimonials-track {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-img {
+                height: 35px;
+            }
+            
+            .logo-text h1 {
+                font-size: 0.9rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero {
+                padding: 80px 0 30px;
+                min-height: 75vh;
+            }
+    
+            .carousel-container {
+                height: 200px;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .btn-primary, .btn-secondary {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                padding: 1.5rem 0.8rem 0.8rem;
+            }
+    
+            .footer-container {
+                gap: 1.5rem;
+            }
+    
+            .footer-logo {
+                max-width: 70px;
+            }
+    
+            .footer-about h3 {
+                font-size: 1.3rem;
+            }
+    
+            .footer-about p {
+                font-size: 0.8rem;
+            }
+    
+            .social-links a {
+                width: 32px;
+                height: 32px;
+                font-size: 0.85rem;
+            }
+    
+            .footer-links h4 {
+                font-size: 1rem;
+            }
+    
+            .footer-links a {
+                font-size: 0.8rem;
+            }
+    
+            .footer-links a i {
+                font-size: 0.7rem;
+            }
+    
+            .footer-bottom {
+                padding: 0.8rem 0;
+                font-size: 0.7rem;
+            }
+            
+            /* Navigation mobile sur très petits écrans - comme galerie.html */
+            .nav-menu {
+                width: 85%;
+            }
+            
+            .nav-menu a {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .submenu li a {
+                padding: 10px 25px;
+                font-size: 0.85rem;
+            }
+            
+            .nav-menu a i:first-child {
+                font-size: 1rem;
+                width: 22px;
+                text-align: left;
+            }
+            
+            .submenu li a i {
+                font-size: 0.8rem;
+                width: 18px;
+                text-align: left;
+            }
+            
+            .testimonial-avatar {
+                width: 65px;
+                height: 65px;
+            }
+     
+            .team-arrow {
+                width: 28px;
+                height: 28px;
+                font-size: 0.8rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-section">
+                <img src="assets/images/remove.png" alt="ISTA Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1>ISTA</h1>
+                    <p>International Success Travel Agency</p>
+                </div>
+            </a>
+
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Accueil</a></li>
+                <li class="has-submenu">
+                    <a href="index.html#services"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="etude.html"><i class="fas fa-graduation-cap"></i> Visa d'Etude</a></li>
+                        <li><a href="travail.html"><i class="fas fa-briefcase"></i> Visa de Travail</a></li>
+                        <li><a href="visiteur.html"><i class="fas fa-plane"></i> Visa Visiteur</a></li>
+                        <li><a href="residence.html"><i class="fas fa-home"></i> Résidence Permanente</a></li>
+                        <li><a href="billet.html"><i class="fas fa-ticket-alt"></i> Billets d'avion</a></li>
+                        <li><a href="logement.html" class="active"><i class="fas fa-building"></i> Assistance Logement</a></li>
+                        <li><a href="sejour.html"><i class="fas fa-id-card"></i> Assistance Titre de Séjour</a></li>
+                        <li><a href="admissions.html"><i class="fas fa-university"></i> Admissions</a></li>
+                        <li><a href="galerie.html"><i class="fas fa-images"></i> Galerie Photo/Video</a></li>
+                    </ul>
+                </li>
+                <li><a href="colis.html"><i class="fas fa-university"></i> Envoyer/Recevoir un colis</a></li>
+                <li><a href="index.html#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
+                <li><a href="index.html#equipe"><i class="fas fa-users"></i> Infos Paiement</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Section Hero -->
+    <section class="hero" id="accueil">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Votre réussite à l'<span class="highlight">international</span> commence ici</h1>
+                <p>ISTA vous accompagne dans toutes vos démarches d'immigration et d'obtention de visa. Réalisez vos projets d'études, de travail ou de vie à l'étranger en toute sérénité.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">
+                        <i class="fas fa-calendar-check"></i> Demander un devis
+                    </a>
+                    <a href="#services" class="btn-secondary">
+                        <i class="fas fa-info-circle"></i> Nos services
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="carousel-container">
+                    <!-- Carousel Slides -->
+                    <div class="carousel-slide active">
+                        <img src="assets/images/land-o-lakes-inc-vBUGdI7JAvc-unsplash.jpg" alt="Étudiants internationaux">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/javier-trueba-iQPr1XkF5F0-unsplash.jpg" alt="Visa et documents">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/thiago-zarpar-B6kwq4PkhdU-unsplash.jpg" alt="Universités partenaires">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/rut-miit-3EMw3T-ZjkE-unsplash.jpg" alt="Universités partenaires">
+                    </div>
+                    
+                    <!-- Carousel Controls -->
+                    <button class="carousel-arrow prev" id="carouselPrev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-arrow next" id="carouselNext">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    
+                    <div class="carousel-dots" id="carouselDots">
+                        <span class="carousel-dot active" data-slide="0"></span>
+                        <span class="carousel-dot" data-slide="1"></span>
+                        <span class="carousel-dot" data-slide="2"></span>
+                        <span class="carousel-dot" data-slide="3"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Nos Services</span>
+                <h2>Votre réussite, notre mission</h2>
+                <p>Nous offrons une gamme complète de services pour faciliter votre projet international</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="assets/images/jason-hafso-C2keINMOhIE-unsplash.jpg" alt="Visa d'études">
+                        <div class="service-overlay">
+                            <h3 class="service-title">Canada</h3>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <p>Le Canada offre des opportunités exceptionnelles pour les étudiants, travailleurs et résidents permanents.</p>
+                        <ul class="service-list">
+                            <li><i class="fas fa-check-circle"></i> Visa d'Étude (3-6 mois)</li>
+                            <li><i class="fas fa-check-circle"></i> Permis de Travail (6-8 mois)</li>
+                            <li><i class="fas fa-check-circle"></i> Résidence Permanente (6-12 mois)</li>
+                            <li><i class="fas fa-check-circle"></i> Visa Visiteur (2-4 mois)</li>
+                        </ul>
+                        <p>L'accessibilité des différents status dépendent de la politique du térritoire.</p>
+                        <div class="service-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>3-12 mois</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-percent"></i>
+                                <span>95% de réussite</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="assets/images/markus-spiske-wIUxLHndcLw-unsplash.jpg" alt="Immigration">
+                        <div class="service-overlay">
+                            <h3 class="service-title">Espace Schengen</h3>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <p>Accédez à 26 pays européens avec nos procédures standard et express. France, Allemagne, Belgique, Italie, Espagne et plus.</p>
+                        <ul class="service-list">
+                            <li><i class="fas fa-check-circle"></i> Visa d'Étude (3-6 mois)</li>
+                            <li><i class="fas fa-check-circle"></i> Visa de Travail (6-8 mois)</li>
+                            <li><i class="fas fa-check-circle"></i> Visa Visiteur (2-4 mois)</li>
+                            <li><i class="fas fa-check-circle"></i> Regroupement Familial (Belgique)</li>
+                        </ul>
+                        <p>Hors mis les procédures normales pour l'espace Schengen nous avons les procédures <b>Visa Express</b></p>
+                        <div class="service-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-bolt"></i>
+                                <span>Express disponible</span>
+                            </div>
+                            <div class="meta-item">
+                                 <i class="fas fa-globe-europe"></i>
+                                 <span>26 pays</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-percent"></i>
+                                <span>90% de réussite</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="assets/images/bodega--UVGK2HtouY-unsplash.jpg" alt="Services de traduction">
+                        <div class="service-overlay">
+                            <h3 class="service-title">États-Unis</h3>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <p>Réalisez votre rêve américain avec nos services spécialisés pour les visas d'études et de visiteur.</p>
+                        <ul class="service-list">
+                            <li><i class="fas fa-check-circle"></i> Visa d'Étude</li>
+                            <li><i class="fas fa-check-circle"></i> Visa Visiteur (3 mois maximum)</li>
+                            <li><i class="fas fa-check-circle"></i> Assistance complète</li>
+                            <li><i class="fas fa-check-circle"></i> Préparation d'entretien</li>
+                        </ul>
+                        <div class="service-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Sécurisé</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-hands-helping"></i>
+                                <span>Support continu</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="assets/images/alexa-v-OqDx0pa6VXI-unsplash.jpg" alt="Services de traduction">
+                        <div class="service-overlay">
+                            <h3 class="service-title">Destinations Multiples</h3>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <p>Australie, Irlande, Turquie, Chine, Russie - Des opportunités mondiales pour tous les profils.</p>
+                        <ul class="service-list">
+                            <li><i class="fas fa-check-circle"></i> Australie - Travail</li>
+                            <li><i class="fas fa-check-circle"></i> Irlande - Travail</li>
+                            <li><i class="fas fa-check-circle"></i> Turquie - Étude & Visiteur</li>
+                            <li><i class="fas fa-check-circle"></i> Chine - Travail & Visiteur</li>
+                            <li><i class="fas fa-check-circle"></i> Russie - Travail, Etude & Visiteur</li>
+                        </ul>
+                        <div class="service-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-plane"></i>
+                                <span>Mondial</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>Opportunités</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Destinations -->
+    <section class="destinations-section" id="destinations">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Destinations</span>
+                <h2>Explorez nos destinations populaires</h2>
+                <p>Découvrez les pays où nous pouvons vous aider à réaliser vos projets d'études ou d'immigration</p>
+            </div>
+            
+            <div class="destinations-container">
+            <div class="destinations-tabs">
+                <button class="tab-btn active" data-region="all">Tous les Pays</button>
+                <button class="tab-btn" data-region="europe">Europe</button>
+                <button class="tab-btn" data-region="americas">Amériques</button>
+                <button class="tab-btn" data-region="others">Autres</button>
+            </div>
+
+            <div class="destinations-grid">
+                <div class="destination-card" data-region="americas">
+                    <span class="country-flag">🇨🇦</span>
+                    <h3>Canada</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Travail</span>
+                        <span class="type-badge">Résidence Permanente</span>
+                        <span class="type-badge">Visiteur</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="europe">
+                    <span class="country-flag">🇫🇷</span>
+                    <h3>France</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Travail</span>
+                        <span class="type-badge">Visiteur</span>
+                        <span class="type-badge">Express</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="europe">
+                    <span class="country-flag">🇧🇪</span>
+                    <h3>Belgique</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Travail</span>
+                        <span class="type-badge">Regroupement Familial</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="europe">
+                    <span class="country-flag">🇩🇪</span>
+                    <h3>Allemagne</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Travail</span>
+                        <span class="type-badge">Visiteur</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="europe">
+                    <span class="country-flag">🇮🇹</span>
+                    <h3>Italie</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Travail</span>
+                        <span class="type-badge">Visiteur</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="europe">
+                    <span class="country-flag">🇪🇸</span>
+                    <h3>Espagne</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Travail</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="europe">
+                    <span class="country-flag">🇭🇷</span>
+                    <h3>Croatie</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Travail</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="europe">
+                    <span class="country-flag">🇫🇮</span>
+                    <h3>Finlande</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Travail</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="europe">
+                    <span class="country-flag">🇭🇺</span>
+                    <h3>Hongrie</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Travail</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="europe">
+                    <span class="country-flag">🇱🇺</span>
+                    <h3>Luxembourg</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Travail</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="europe">
+                    <span class="country-flag">🇲🇹</span>
+                    <h3>Malte</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Travail</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="europe">
+                    <span class="country-flag">🇵🇱</span>
+                    <h3>Pologne</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Travail</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="europe">
+                    <span class="country-flag">🇷🇸</span>
+                    <h3>Serbie</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Travail</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="europe">
+                    <span class="country-flag">🇸🇰</span>
+                    <h3>Slovaquie</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Travail</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="europe">
+                    <span class="country-flag">🇦🇱</span>
+                    <h3>Albanie</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Travail</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="americas">
+                    <span class="country-flag">🇺🇸</span>
+                    <h3>États-Unis</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Visiteur</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="others">
+                    <span class="country-flag">🇹🇷</span>
+                    <h3>Turquie</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Visiteur</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="others">
+                    <span class="country-flag">🇦🇺</span>
+                    <h3>Australie</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Travail</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="others">
+                    <span class="country-flag">🇷🇺</span>
+                    <h3>Russie</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Étude</span>
+                        <span class="type-badge">Travail</span>
+                        <span class="type-badge">Visiteur</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="europe">
+                    <span class="country-flag">🇮🇪</span>
+                    <h3>Irlande</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Travail</span>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-region="others">
+                    <span class="country-flag">🇨🇳</span>
+                    <h3>Chine</h3>
+                    <div class="destination-types">
+                        <span class="type-badge">Visiteur</span>
+                        <span class="type-badge">Travail</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Pourquoi nous choisir -->
+    <section class="why-choose-us">
+        <div class="section-header">
+            <span class="section-badge">Pourquoi ISTA</span>
+            <h2>Pourquoi Nous Choisir ?</h2>
+            <p>ISTA se distingue par son expertise, sa transparence et son taux de réussite exceptionnel dans le traitement des dossiers d'immigration.</p>
+        </div>
+
+        <div class="why-choose-container">
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Expertise Professionnelle</h3>
+                <p>Notre équipe d'experts en immigration possède une connaissance approfondie des lois et procédures de tous les pays que nous desservons.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Traitement Rapide</h3>
+                <p>Nous optimisons chaque étape pour réduire les délais de traitement et vous permettre de réaliser vos projets rapidement.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3>Accompagnement Personnalisé</h3>
+                <p>Chaque dossier est unique. Nous analysons votre profil et créons une stratégie sur mesure pour maximiser vos chances de succès.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Transparence Totale</h3>
+                <p>Pas de frais cachés. Nous vous informons clairement de tous les coûts et étapes dès le début de votre procédure.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>Support 24/7</h3>
+                <p>Notre équipe est disponible pour répondre à vos questions et vous accompagner à chaque étape de votre parcours d'immigration.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3>Taux de Réussite Élevé</h3>
+                <p>Des années d'expérience et une maîtrise parfaite des procédures nous permettent d'obtenir d'excellents résultats pour nos clients.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Processus -->
+    <div class="process-notice-container">
+        <p class="process-notice"><strong>N.B:</strong> <em>les prix des différentes procédures dépendent des profils de chaque candidats, il est donc judicieux de fournir vos documents afin de pouvoir mieux vous orienter dans votre procédure.</em></p>
+        <p class="process-doc">Les documents (fichiers numériques) sont :</p>
+        <ul class="process-list">
+            <li><i class="fas fa-check-circle"></i> Carte Nationale d'identité (CNI)</li>
+            <li><i class="fas fa-check-circle"></i> Passeport (si possible)</li>
+            <li><i class="fas fa-check-circle"></i> Curriculum Vitae (CV)</li>
+            <li><i class="fas fa-check-circle"></i> Baccalauréat (BAC) + Relevé de Notes</li>
+            <li><i class="fas fa-check-circle"></i> Attestation de fin d'étude/formation/travail ou stage</li>
+            <li><i class="fas fa-check-circle"></i> Frais d'étude du profil + ouverture du dossier : 30 milles franc cfa</li>
+        </ul>
+    </div>
+    <section class="process-section">
+        <div class="section-header">
+            <span class="section-badge">Notre Processus</span>
+            <h2>Comment Ça Marche ?</h2>
+            <p>Un processus simple, transparent et efficace en 4 étapes pour réaliser votre rêve d'immigration.</p>
+        </div>
+
+        <div class="process-container">
+            <div class="process-step">
+                <div class="step-number">01</div>
+                <div class="step-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3>Évaluation de Profil</h3>
+                <p>Il est capital pour nous de connaître votre profil afin de trouver un établissement, un contrat de travail ou une lettre d'invitation qui scie le mieux à votre dossier afin de mieux faciliter l'évolution de votre procédure. Il est question de soumettre votre profil pour étude dans certains pays.</p>
+                <ul class="step-list">
+                    <li><i class="fas fa-check"></i> Consultation initiale</li>
+                    <li><i class="fas fa-check"></i> Analyse de votre profil</li>
+                    <li><i class="fas fa-check"></i> Recommandations personnalisées</li>
+                </ul>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">02</div>
+                <div class="step-icon">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+                <h3>Préparation du Dossier</h3>
+                <p>Une fois votre profil validé, nous préparons minutieusement votre dossier avec tous les documents nécessaires.</p>
+                <ul class="step-list">
+                    <li><i class="fas fa-check"></i> Collecte des documents</li>
+                    <li><i class="fas fa-check"></i> Vérification et validation</li>
+                    <li><i class="fas fa-check"></i> Préparation des formulaires</li>
+                </ul>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">03</div>
+                <div class="step-icon">
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <h3>Soumission & Suivi</h3>
+                <p>Nous soumettons votre dossier aux autorités compétentes et assurons un suivi rigoureux jusqu'à l'obtention de votre visa.</p>
+                <ul class="step-list">
+                    <li><i class="fas fa-check"></i> Dépôt officiel du dossier</li>
+                    <li><i class="fas fa-check"></i> Suivi en temps réel</li>
+                    <li><i class="fas fa-check"></i> Gestion des communications</li>
+                </ul>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">04</div>
+                <div class="step-icon">
+                    <i class="fas fa-plane-departure"></i>
+                </div>
+                <h3>Visa & Départ</h3>
+                <p>Recevez votre visa et bénéficiez de notre assistance complète pour préparer votre départ et votre installation.</p>
+                <ul class="step-list">
+                    <li><i class="fas fa-check"></i> Réception du visa</li>
+                    <li><i class="fas fa-check"></i> Conseils pré-départ</li>
+                    <li><i class="fas fa-check"></i> Support à l'arrivée</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Universités -->
+    <section class="universities-section" id="universites">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Partenariats</span>
+                <h2>Universités partenaires</h2>
+                <p>Nous travaillons avec les meilleures institutions à travers le monde</p>
+            </div>
+            
+            <div class="universities-logo-carousel">
+                <div class="logo-track">
+                    <!-- Logos universités -->
+                    <div class="logo-slide">
+                        <img src="assets/images/Ankara_universitesi.png" alt="University of Oxford">
+                    </div>
+                    <div class="logo-slide">
+                        <img src="assets/images/esprit.png" alt="Harvard University">
+                    </div>
+                    <div class="logo-slide">
+                        <img src="assets/images/universite-aix-marseille-1-logo.svg_373fd98327b2de7e8807e963c217038d.png" alt="University of Toronto">
+                    </div>
+                    <div class="logo-slide">
+                        <img src="assets/images/Universite_Cadi_Ayyad.png" alt="ETH Zurich">
+                    </div>
+                    <div class="logo-slide">
+                        <img src="assets/images/université paris.png" alt="University of Melbourne">
+                    </div>
+                    <div class="logo-slide">
+                        <img src="assets/images/Harvard_University_shield.png" alt="University of Melbourne">
+                    </div>
+                    <div class="logo-slide">
+                        <img src="assets/images/UCLouvain_Saint-Louis_-_Bruxelles.png" alt="University of Melbourne">
+                    </div>
+                    <div class="logo-slide">
+                        <img src="assets/images/Université_Laval_logo_et_texte.svg.png" alt="University of Melbourne">
+                    </div>
+                    <div class="logo-slide">
+                        <img src="assets/images/logoUSPN_avec-marges.jpg" alt="University of Melbourne">
+                    </div>
+                    <div class="logo-slide">
+                        <img src="assets/images/Logo_IPSA.png" alt="University of Melbourne">
+                    </div>
+                    <div class="logo-slide">
+                        <img src="assets/images/images 1.jpg" alt="University of Melbourne">
+                    </div>
+                    <div class="logo-slide">
+                        <img src="assets/images/1_541097gm.jpg" alt="University of Melbourne">
+                    </div>
+                    <div class="logo-slide">
+                        <img src="assets/images/2153c9952d1a7148ee814cc357779959.png" alt="University of Melbourne">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistiques -->
+    <section class="stats-section">
+        <div class="container stats-container">
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="stat-number">1,000+</div>
+                <p>Étudiants accompagnés</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <div class="stat-number">30+</div>
+                <p>Pays couverts</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="stat-number">35+</div>
+                <p>Universités partenaires</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <div class="stat-number">90%</div>
+                <p>Taux de réussite</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Témoignages -->
+    <section class="testimonials-section" id="temoignages">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Témoignages</span>
+                <h2>Ce que disent nos clients</h2>
+                <p>Découvrez les expériences de ceux qui nous ont fait confiance pour réaliser leurs projets à l'étranger</p>
+            </div>
+            
+            <div class="testimonials-container">
+                <div class="testimonials-carousel">
+                    <div class="testimonials-track" id="testimonialsTrack">
+                        <!-- Témoignage 1 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="testimonial-text">
+                                    "Faite appel à l'Agence ISTA pour votre procédure de résidence est un investissement très rentable."
+                                </p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-avatar">
+                                        <img src="assets/images/ma photo.jpg" alt="Marie Dubois">
+                                    </div>
+                                    <div class="author-info">
+                                        <h4>Marie Dubois</h4>
+                                        <p>Étudiante en Master - Canada</p>
+                                        <div class="testimonial-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Témoignage 2 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="testimonial-text">
+                                    "L'équipe d'ISTA a été formidable pour m'aider à obtenir un permis de travail en Allemagne. Leur expertise et leur professionnalisme ont fait toute la différence. Un grand merci !"
+                                </p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-avatar">
+                                        <img src="assets/images/ma photo.jpg" alt="Thomas Martin">
+                                    </div>
+                                    <div class="author-info">
+                                        <h4>Thomas Martin</h4>
+                                        <p>Ingénieur Logiciel - Allemagne</p>
+                                        <div class="testimonial-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Témoignage 3 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="testimonial-text">
+                                    "Je cherchais à obtenir un visa pour les États-Unis depuis longtemps. ISTA a rendu le processus simple et efficace. Leur service express est vraiment incroyable !"
+                                </p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-avatar">
+                                        <img src="assets/images/ma photo.jpg" alt="Sophie Lambert">
+                                    </div>
+                                    <div class="author-info">
+                                        <h4>Sophie Lambert</h4>
+                                        <p>Consultante - États-Unis</p>
+                                        <div class="testimonial-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Témoignage 4 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="testimonial-text">
+                                    "Le processus de regroupement familial en Belgique était complexe, mais ISTA nous a guidés à chaque étape. Aujourd'hui, ma famille est réunie grâce à leur expertise."
+                                </p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-avatar">
+                                        <img src="assets/images/ma photo.jpg" alt="Ahmed Kone">
+                                    </div>
+                                    <div class="author-info">
+                                        <h4>Ahmed Kone</h4>
+                                        <p>Réunification Familiale - Belgique</p>
+                                        <div class="testimonial-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Témoignage 5 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="testimonial-text">
+                                    "En tant qu'étudiante internationale, je ne savais pas par où commencer. ISTA m'a aidée avec mon admission universitaire et mon visa. Un service vraiment complet !"
+                                </p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-avatar">
+                                        <img src="assets/images/ma photo.jpg" alt="Emma Rodriguez">
+                                    </div>
+                                    <div class="author-info">
+                                        <h4>Emma Rodriguez</h4>
+                                        <p>Étudiante MBA - France</p>
+                                        <div class="testimonial-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-carousel-controls">
+                    <button class="carousel-btn" id="testimonialPrev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    
+                    <div class="carousel-dots" id="testimonialDots">
+                        <span class="carousel-dot active" data-index="0"></span>
+                        <span class="carousel-dot" data-index="1"></span>
+                        <span class="carousel-dot" data-index="2"></span>
+                        <span class="carousel-dot" data-index="3"></span>
+                        <span class="carousel-dot" data-index="4"></span>
+                    </div>
+                    
+                    <button class="carousel-btn" id="testimonialNext">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Équipe -->
+    <section class="team-section">
+        <div class="section-header">
+            <span class="section-badge">Notre Équipe</span>
+            <h2>Le Personnel d'ISTA</h2>
+            <p>Une équipe d'experts dévoués pour vous accompagner dans votre projet d'immigration.</p>
+        </div>
+
+        <div class="team-carousel-container">
+            <div class="team-carousel">
+                <div class="team-slide active">
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img src="assets/images/img 9.jpeg" alt="Patrick Tchuente">
+                        </div>
+                        <h3>Patrick TCHUENTE</h3>
+                        <p class="member-role">Directeur Général</p>
+                        <p class="member-description">Expert en immigration avec plus de 10 ans d'expérience dans le domaine.</p>
+                    </div>
+                </div>
+
+                <div class="team-slide">
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img src="assets/images/ma photo.jpg" alt="Marie Ngando">
+                        </div>
+                        <h3>Marie NGANDO</h3>
+                        <p class="member-role">Responsable Visa Étudiant</p>
+                        <p class="member-description">Spécialiste des procédures d'admission universitaire internationale.</p>
+                    </div>
+                </div>
+
+                <div class="team-slide">
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img src="assets/images/ma photo.jpg" alt="Jean Fotso">
+                        </div>
+                        <h3>Jean FOTSO</h3>
+                        <p class="member-role">Conseiller Visa de Travail</p>
+                        <p class="member-description">Expert en immigration professionnelle pour le Canada et l'Europe.</p>
+                    </div>
+                </div>
+
+                <div class="team-slide">
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img src="assets/images/ma photo.jpg" alt="Christelle Mballa">
+                        </div>
+                        <h3>Christelle MBALLA</h3>
+                        <p class="member-role">Coordinatrice des Dossiers</p>
+                        <p class="member-description">Assure le suivi rigoureux de tous les dossiers en cours de traitement.</p>
+                    </div>
+                </div>
+
+                <div class="team-slide">
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img src="assets/images/ma photo.jpg" alt="Eric Nguema">
+                        </div>
+                        <h3>Eric NGUEMA</h3>
+                        <p class="member-role">Responsable Relations Internationales</p>
+                        <p class="member-description">Gère les partenariats avec les universités et ambassades.</p>
+                    </div>
+                </div>
+
+                <div class="team-slide">
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img src="assets/images/ma photo.jpg" alt="Sophie Kamdem">
+                        </div>
+                        <h3>Sophie KAMDEM</h3>
+                        <p class="member-role">Service Client</p>
+                        <p class="member-description">Premier point de contact pour tous vos besoins et questions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="team-arrow prev" id="teamPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button type="button" class="team-arrow next" id="teamNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-about">
+                <img src="assets/images/remove.png" alt="ISTA Logo" class="footer-logo">
+                <h3>ISTA</h3>
+                <p>International Success Travel Agency - Votre partenaire de confiance pour tous vos projets d'immigration.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="visa-etude.html"><i class="fas fa-angle-right"></i> Visa d'Étude</a></li>
+                    <li><a href="visa-travail.html"><i class="fas fa-angle-right"></i> Visa de Travail</a></li>
+                    <li><a href="visa-visiteur.html"><i class="fas fa-angle-right"></i> Visa Visiteur</a></li>
+                    <li><a href="residence-permanente.html"><i class="fas fa-angle-right"></i> Résidence Permanente</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:+237672080166"><i class="fas fa-phone"></i> (+237) 672 080 166</a></li>
+                    <li><a href="tel:+237696214773"><i class="fas fa-phone"></i> (+237) 696 214 773</a></li>
+                    <li><a href="mailto:internationalsuccestravelagence@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Informations</h4>
+                <ul>
+                    <li><a href="temoignages.html"><i class="fas fa-angle-right"></i> Témoignages</a></li>
+                    <li><a href="paiement.html"><i class="fas fa-angle-right"></i> Paiement</a></li>
+                    <li><a href="colis.html"><i class="fas fa-angle-right"></i> Colis</a></li>
+                    <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 ISTA - International Success Travel Agency. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ==================== NAVIGATION MOBILE ====================
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileToggle.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Gestion des sous-menus en mobile
+        const hasSubmenuItems = document.querySelectorAll('.has-submenu > a');
+        
+        hasSubmenuItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                // En mobile seulement
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = item.parentElement;
+                    
+                    // Fermer les autres sous-menus
+                    document.querySelectorAll('.has-submenu.active').forEach(activeItem => {
+                        if (activeItem !== parent) {
+                            activeItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Basculer le sous-menu courant
+                    parent.classList.toggle('active');
+                }
+            });
+        });
+
+        // Fermer le menu au clic sur un lien (sauf ceux avec sous-menus)
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Si ce n'est pas un lien de sous-menu en mobile
+                if (window.innerWidth <= 768 && !link.parentElement.classList.contains('has-submenu')) {
+                    navMenu.classList.remove('active');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Fermer tous les sous-menus
+                    document.querySelectorAll('.has-submenu').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ==================== CAROUSEL HERO ====================
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            currentSlide = (n + totalSlides) % totalSlides;
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        // Dots controls
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+
+        // Arrow controls
+        document.getElementById('carouselPrev').addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+        });
+
+        document.getElementById('carouselNext').addEventListener('click', () => {
+            showSlide(currentSlide + 1);
+        });
+
+        // Auto slide
+        let autoSlideInterval = setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+
+        // Pause auto slide on hover
+        const carouselContainer = document.querySelector('.carousel-container');
+        if (carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', () => {
+                clearInterval(autoSlideInterval);
+            });
+            
+            carouselContainer.addEventListener('mouseleave', () => {
+                autoSlideInterval = setInterval(() => {
+                    showSlide(currentSlide + 1);
+                }, 5000);
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                // Ignorer les liens qui ne pointent pas vers un élément spécifique
+                if (href === '#' || href === '#!') return;
+                
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    // Fermer le menu mobile si ouvert
+                    navMenu.classList.remove('active');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Fermer tous les sous-menus
+                    document.querySelectorAll('.has-submenu').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Scroll vers la cible
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ==================== DESTINATIONS TABS ====================
+        (function() {
+            const tabButtons = document.querySelectorAll('.destinations-tabs .tab-btn');
+            const destinationCards = document.querySelectorAll('.destination-card');
+
+            function filterDestinations(region) {
+                destinationCards.forEach(card => {
+                    if (region === 'all' || card.dataset.region === region) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const region = btn.dataset.region;
+                    filterDestinations(region);
+                });
+            });
+
+            // Ensure initial state
+            filterDestinations('all');
+        })();
+
+        // ==================== TÉMOIGNAGES CAROUSEL ====================
+        (function() {
+            const track = document.getElementById('testimonialsTrack');
+            const prevBtn = document.getElementById('testimonialPrev');
+            const nextBtn = document.getElementById('testimonialNext');
+            const dots = document.querySelectorAll('#testimonialDots .carousel-dot');
+            
+            if (!track || !prevBtn || !nextBtn) return;
+
+            const cards = track.querySelectorAll('.testimonial-card');
+            let currentIndex = 0;
+            let autoInterval = null;
+
+            function getGap() {
+                const styles = window.getComputedStyle(track);
+                const gap = parseFloat(styles.gap || styles.columnGap || 0);
+                return isNaN(gap) ? 24 : gap;
+            }
+
+            function updateCarousel() {
+                if (!cards.length) return;
+                
+                const card = cards[0];
+                const cardWidth = card.getBoundingClientRect().width;
+                const gap = getGap();
+                const step = cardWidth + gap;
+                
+                // Calculate maximum allowed offset
+                const containerWidth = track.parentElement.getBoundingClientRect().width;
+                const maxOffset = Math.max(0, step * cards.length - containerWidth);
+                
+                let offset = currentIndex * step;
+                if (offset > maxOffset) offset = maxOffset;
+                
+                track.style.transform = `translateX(-${offset}px)`;
+                
+                // Update dots
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            function nextTestimonial() {
+                currentIndex = (currentIndex + 1) % cards.length;
+                updateCarousel();
+            }
+
+            function prevTestimonial() {
+                currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+                updateCarousel();
+            }
+
+            // Event listeners
+            nextBtn.addEventListener('click', () => {
+                nextTestimonial();
+                resetAuto();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                prevTestimonial();
+                resetAuto();
+            });
+
+            // Dots controls
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                    resetAuto();
+                });
+            });
+
+            function startAuto() {
+                stopAuto();
+                autoInterval = setInterval(nextTestimonial, 4000);
+            }
+
+            function stopAuto() {
+                if (autoInterval) {
+                    clearInterval(autoInterval);
+                    autoInterval = null;
+                }
+            }
+
+            function resetAuto() {
+                stopAuto();
+                startAuto();
+            }
+
+            // Pause on hover
+            const carouselEl = track.closest('.testimonials-carousel');
+            if (carouselEl) {
+                carouselEl.addEventListener('mouseenter', stopAuto);
+                carouselEl.addEventListener('mouseleave', startAuto);
+            }
+
+            // Initialize
+            window.addEventListener('resize', updateCarousel);
+            updateCarousel();
+            startAuto();
+        })();
+
+        // ==================== ÉQUIPE CAROUSEL ====================
+        (function() {
+            const slides = document.querySelectorAll('.team-slide');
+            if (!slides || !slides.length) return;
+            
+            let currentTeamSlide = 0;
+            let teamInterval = null;
+
+            const prevBtn = document.getElementById('teamPrev');
+            const nextBtn = document.getElementById('teamNext');
+
+            // Create dots
+            const dotsContainer = document.createElement('div');
+            dotsContainer.className = 'team-dots';
+            slides.forEach((s, i) => {
+                const dot = document.createElement('span');
+                dot.className = 'team-dot' + (i === 0 ? ' active' : '');
+                dot.dataset.index = i;
+                dot.addEventListener('click', () => {
+                    showTeamSlide(i);
+                    resetTeamAuto();
+                });
+                dotsContainer.appendChild(dot);
+            });
+            const carouselContainer = document.querySelector('.team-carousel-container');
+            if (carouselContainer) carouselContainer.appendChild(dotsContainer);
+
+            function showTeamSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                slides[index].classList.add('active');
+                
+                // Update dots
+                document.querySelectorAll('.team-dot').forEach(d => {
+                    d.classList.toggle('active', Number(d.dataset.index) === index);
+                });
+                
+                currentTeamSlide = index;
+            }
+
+            function nextTeamSlide() {
+                let nextIndex = currentTeamSlide + 1;
+                if (nextIndex >= slides.length) nextIndex = 0;
+                showTeamSlide(nextIndex);
+            }
+
+            function prevTeamSlide() {
+                let prevIndex = currentTeamSlide - 1;
+                if (prevIndex < 0) prevIndex = slides.length - 1;
+                showTeamSlide(prevIndex);
+            }
+
+            // Event listeners
+            if (prevBtn) {
+                prevBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    prevTeamSlide();
+                    resetTeamAuto();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    nextTeamSlide();
+                    resetTeamAuto();
+                });
+            }
+
+            function startTeamAuto() {
+                stopTeamAuto();
+                teamInterval = setInterval(nextTeamSlide, 4500);
+            }
+
+            function stopTeamAuto() {
+                if (teamInterval) {
+                    clearInterval(teamInterval);
+                    teamInterval = null;
+                }
+            }
+
+            function resetTeamAuto() {
+                stopTeamAuto();
+                startTeamAuto();
+            }
+
+            // Pause on hover
+            const teamCarouselEl = document.querySelector('.team-carousel');
+            if (teamCarouselEl) {
+                teamCarouselEl.addEventListener('mouseenter', stopTeamAuto);
+                teamCarouselEl.addEventListener('mouseleave', startTeamAuto);
+            }
+
+            // Initialize
+            showTeamSlide(0);
+            startTeamAuto();
+            
+            // Pause when tab is not visible
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    stopTeamAuto();
+                } else {
+                    startTeamAuto();
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
+>>>>>>> 7e4114fc0c8c4b7c1d35c2c04eadc9428eb923c1
