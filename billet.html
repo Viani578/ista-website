@@ -257,6 +257,32 @@
             color: var(--gold);
         }
 
+        /* Lien actif dans le sous-menu */
+        .submenu li a.active {
+            color: var(--gold);
+            font-weight: 600;
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 3px solid var(--gold);
+            padding-left: 1.5rem;
+        }
+
+        .submenu li a.active i {
+            color: var(--gold);
+        }
+
+        /* Pour le lien "Nos Services" quand un sous-lien est actif */
+        .has-submenu.active-parent > a {
+            color: var(--gold);
+        }
+
+        .has-submenu.active-parent > a i:not(.fa-chevron-down) {
+            color: var(--gold);
+        }
+
+        .has-submenu.active-parent > a::after {
+            width: 100%;
+        }
+
         /* Menu mobile */
         .mobile-toggle {
             display: none;
