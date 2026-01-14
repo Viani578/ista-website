@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISTA - Assistance Logement | International Success Travel Agency</title>
+    <title>ISTA - Assistance Logement | International Succes Travel Agency</title>
     <meta name="description" content="Assistance logement ISTA - Services complets pour étudiants et professionnels. Trouvez votre logement idéal à l'étranger avec notre aide experte.">
     <meta name="keywords" content="assistance logement ISTA, logement étudiant, location appartement, recherche logement, aide administrative location">
     
@@ -253,6 +253,32 @@
 
         .submenu li a:hover i {
             color: var(--gold);
+        }
+
+        /* Lien actif dans le sous-menu */
+        .submenu li a.active {
+            color: var(--gold);
+            font-weight: 600;
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 3px solid var(--gold);
+            padding-left: 1.5rem;
+        }
+
+        .submenu li a.active i {
+            color: var(--gold);
+        }
+
+        /* Pour le lien "Nos Services" quand un sous-lien est actif */
+        .has-submenu.active-parent > a {
+            color: var(--gold);
+        }
+
+        .has-submenu.active-parent > a i:not(.fa-chevron-down) {
+            color: var(--gold);
+        }
+
+        .has-submenu.active-parent > a::after {
+            width: 100%;
         }
 
         /* Menu mobile */
@@ -821,17 +847,17 @@
             }
             
             .logo-img {
-                height: 40px;
+                height: 35px;
                 width: auto;
             }
             
             .logo-text h1 {
-                font-size: 1.1rem;
+                font-size: 0.9rem;
                 line-height: 1;
             }
             
             .logo-text p {
-                font-size: 0.55rem;
+                font-size: 0.5rem;
                 letter-spacing: 1px;
             }
             
