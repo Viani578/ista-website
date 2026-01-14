@@ -1,0 +1,1847 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISTA - Billets d'Avion | International Success Travel Agency</title>
+    <meta name="description" content="ISTA - Réservation de billets d'avion vers toutes les destinations internationales. Meilleurs prix garantis et service client exceptionnel.">
+    <meta name="keywords" content="billets d'avion, réservation vol, vols internationaux, compagnies aériennes, voyage, ISTA">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ISTA - Billets d'Avion">
+    <meta property="og:description" content="Réservez vos billets d'avion vers toutes les destinations avec ISTA - International Success Travel Agency">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/remove.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Variables et configuration de base */
+        :root {
+            --primary-red: #DC143C;
+            --primary-blue: #1E40AF;
+            --gold: #D4AF37;
+            --dark-navy: #0A1929;
+            --cream: #FAF8F3;
+            --soft-white: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --text-light: #6B7280;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+            --transition: all 0.3s ease;
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            color: var(--text-dark);
+            background: var(--cream);
+            overflow-x: hidden;
+            line-height: 1.6;
+            width: 100%;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 2rem; }
+        h4 { font-size: 1.5rem; }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--soft-white);
+            box-shadow: var(--shadow-md);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 0.7rem 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Logo */
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            text-decoration: none;
+            margin-right: auto;
+            transform: translateX(-15px);
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .logo-text h1 {
+            font-size: 1.2rem;
+            margin: 0;
+            color: var(--dark-navy);
+        }
+
+        .logo-text p {
+            font-size: 0.6rem;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin: 0;
+            color: var(--dark-navy);
+        }
+
+        /* Menu de navigation */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+            align-items: center;
+            margin-left: auto;
+            transform: translateX(15px);
+        }
+
+        .nav-menu > li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            color: var(--dark-navy);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            white-space: nowrap;
+        }
+
+        .nav-menu > li > a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu > li > a:hover::after,
+        .nav-menu > li > a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu > li > a:hover,
+        .nav-menu > li > a.active {
+            color: var(--gold);
+        }
+
+        .nav-menu a i:not(.fa-chevron-down) {
+            color: var(--primary-blue);
+            transition: var(--transition);
+        }
+
+        .nav-menu > li > a:hover i:not(.fa-chevron-down),
+        .nav-menu > li > a.active i:not(.fa-chevron-down) {
+            color: var(--gold);
+        }
+
+        .nav-menu a i {
+            font-size: 1rem;
+            width: 20px;
+            text-align: left;
+        }
+
+        /* Sous-menu */
+        .has-submenu {
+            position: relative;
+        }
+
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--soft-white);
+            min-width: 250px;
+            padding: 1rem 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            list-style: none;
+            z-index: 100;
+        }
+
+        .has-submenu:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .submenu li a {
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: var(--transition);
+            font-size: 0.85rem;
+        }
+
+        .submenu li a:hover {
+            background: var(--cream);
+            color: var(--primary-blue);
+            padding-left: 1.5rem;
+        }
+
+        .submenu li a i {
+            font-size: 0.9rem;
+            width: 18px;
+            color: var(--primary-blue);
+        }
+
+        .submenu li a:hover i {
+            color: var(--gold);
+        }
+
+        /* Menu mobile */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-navy);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Section Hero Billet */
+        .billet-hero {
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
+            padding: 120px 0 60px;
+            overflow: hidden;
+        }
+
+        .billet-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(196, 30, 58, 0.15) 0%, transparent 50%);
+        }
+
+        .billet-hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--soft-white);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .billet-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--soft-white) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .billet-hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+
+        /* Section Introduction */
+        .billet-introduction {
+            padding: 6rem 0;
+            background: var(--cream);
+        }
+
+        .introduction-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .introduction-content {
+            background: var(--soft-white);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow-md);
+            border: 2px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .introduction-content h2 {
+            color: var(--dark-navy);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 2rem;
+        }
+
+        .introduction-content h2 i {
+            color: var(--gold);
+            font-size: 1.8rem;
+        }
+
+        .introduction-content p {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border-left: 4px solid var(--gold);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: var(--dark-navy);
+            font-weight: 600;
+        }
+
+        /* Section Avantages */
+        .avantages-section {
+            padding: 4rem 0;
+            background: var(--soft-white);
+        }
+
+        .avantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .avantage-card {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--soft-white) 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            box-shadow: var(--shadow-md);
+        }
+
+        .avantage-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold);
+        }
+
+        .avantage-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--dark-navy);
+        }
+
+        .avantage-card h3 {
+            color: var(--dark-navy);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .avantage-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Section Processus */
+        .process-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+            color: var(--dark-navy);
+            font-size: 1.2rem;
+        }
+
+        .process-step h3 {
+            color: var(--dark-navy);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .process-step p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .section-header-white h2 {
+            color: var(--soft-white);
+            margin-bottom: 1rem;
+        }
+
+        .section-header-white p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Section Formulaire */
+        .formulaire-section {
+            padding: 6rem 0;
+            background: var(--cream);
+        }
+
+        .formulaire-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .formulaire-content {
+            background: var(--soft-white);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .formulaire-content h2 {
+            color: var(--dark-navy);
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .formulaire-content > p {
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-navy);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--soft-white);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        /* Radio group pour type de voyage */
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: var(--cream);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .radio-option:hover {
+            border-color: var(--gold);
+        }
+
+        .radio-option input {
+            width: auto;
+        }
+
+        .radio-option label {
+            margin: 0;
+            cursor: pointer;
+        }
+
+        /* Radio group pour la classe */
+        .radio-group-classe {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Searchable select styles */
+        .select-search-container {
+            position: relative;
+        }
+
+        .select-search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--soft-white);
+        }
+
+        .select-search-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .select-search-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 200px;
+            overflow-y: auto;
+            background: var(--soft-white);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 12px 12px;
+            z-index: 1000;
+            display: none;
+            box-shadow: var(--shadow-md);
+        }
+
+        .select-search-option {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .select-search-option:hover {
+            background: var(--cream);
+        }
+
+        .select-search-option.active {
+            background: var(--gold);
+            color: var(--dark-navy);
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-header h2 {
+            margin-bottom: 1rem;
+            color: var(--dark-navy);
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Bouton d'envoi */
+        .submit-btn {
+            width: 100%;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+            color: var(--dark-navy);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Message de confirmation */
+        .confirmation-message {
+            display: none;
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .confirmation-message i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #28a745;
+        }
+
+        .thank-you-note {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border-left: 4px solid var(--gold);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .thank-you-note p {
+            margin: 0;
+            color: var(--dark-navy);
+            font-weight: 600;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section CTA */
+        .billet-cta {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
+            text-align: center;
+            color: var(--soft-white);
+        }
+
+        .billet-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--soft-white);
+        }
+
+        .billet-cta p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+            color: var(--dark-navy);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px rgba(212, 175, 55, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--soft-white);
+            border-color: var(--soft-white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--soft-white);
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: var(--soft-white);
+            border: none;
+        }
+
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            color: var(--soft-white);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-navy);
+            padding: 4rem 2rem 2rem;
+            color: var(--soft-white);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .footer-about h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .footer-about .footer-logo {
+            display: block;
+            max-width: 120px;
+            height: auto;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--soft-white);
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--dark-navy);
+            transform: translateY(-5px);
+        }
+
+        .footer-links h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 0.5rem;
+        }
+
+        .footer-links a i {
+            font-size: 0.8rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            html, body {
+                overflow-x: hidden;
+                max-width: 100vw;
+                position: relative;
+            }
+            
+            .container {
+                padding: 0 1rem;
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
+                line-height: 1.2;
+            }
+            
+            h3 {
+                font-size: 1.4rem;
+                line-height: 1.3;
+            }
+            
+            h4 {
+                font-size: 1.2rem;
+            }
+            
+            p {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+            
+            /* Navbar */
+            .navbar {
+                padding: 0.8rem 0;
+            }
+            
+            .nav-container {
+                padding: 0 1rem;
+                width: 100%;
+            }
+            
+            .logo-section {
+                gap: 0.8rem;
+                align-items: center;
+                transform: translateX(0);
+                margin-right: 0;
+            }
+            
+            .logo-img {
+                height: 40px;
+                width: auto;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.1rem;
+                line-height: 1;
+            }
+            
+            .logo-text p {
+                font-size: 0.55rem;
+                letter-spacing: 1px;
+            }
+            
+            .nav-menu {
+                transform: translateX(0);
+                margin-left: 0;
+            }
+            
+            .mobile-toggle {
+                display: block;
+                font-size: 1.2rem;
+                padding: 0.3rem;
+            }
+
+            /* Menu mobile */
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: var(--soft-white);
+                width: 100%;
+                text-align: left;
+                transition: 0.3s;
+                padding: 1rem 0;
+                gap: 0;
+                box-shadow: var(--shadow-lg);
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu > li {
+                width: 100%;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-menu a {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                justify-content: flex-start;
+                width: 100%;
+                gap: 0.5rem;
+            }
+            
+            .has-submenu > a {
+                position: relative;
+            }
+            
+            .has-submenu > a::after {
+                content: '\f078';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                position: absolute;
+                right: 1.5rem;
+                transition: transform 0.3s ease;
+            }
+            
+            .has-submenu.active > a::after {
+                transform: rotate(180deg);
+            }
+            
+            /* Sous-menu */
+            .submenu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: var(--cream);
+                border-radius: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+                padding: 0;
+                min-width: 100%;
+                margin-left: 0;
+            }
+            
+            .has-submenu.active .submenu {
+                max-height: 500px;
+                padding: 0.5rem 0;
+            }
+            
+            .submenu li a {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+                border-left: 3px solid transparent;
+                justify-content: flex-start;
+                gap: 0.75rem;
+            }
+            
+            .submenu li a:hover {
+                border-left: 3px solid var(--gold);
+                background: rgba(212, 175, 55, 0.1);
+            }
+            
+            /* Hero Section */
+            .billet-hero {
+                min-height: 50vh;
+                padding: 100px 0 40px;
+            }
+            
+            .billet-hero h1 {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .billet-hero p {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+                padding: 0 0.5rem;
+            }
+            
+            /* Introduction */
+            .billet-introduction {
+                padding: 3rem 0;
+            }
+            
+            .introduction-content {
+                padding: 1.5rem;
+                border-radius: 15px;
+            }
+            
+            .introduction-content h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .highlight-box {
+                padding: 1rem;
+                margin: 1.5rem 0;
+            }
+            
+            /* Avantages */
+            .avantages-section {
+                padding: 3rem 0;
+            }
+            
+            .avantages-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .avantage-card {
+                padding: 1.5rem;
+            }
+            
+            .avantage-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            /* Process Section */
+            .process-section {
+                padding: 3rem 0;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            /* Formulaire */
+            .formulaire-section {
+                padding: 3rem 0;
+            }
+            
+            .formulaire-content {
+                padding: 1.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .radio-group, .radio-group-classe {
+                grid-template-columns: 1fr;
+            }
+            
+            /* CTA */
+            .billet-cta {
+                padding: 3rem 1rem;
+            }
+            
+            .billet-cta h2 {
+                font-size: 1.8rem;
+            }
+            
+            .billet-cta p {
+                font-size: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                padding: 0.9rem 1.5rem;
+            }
+            
+            /* Footer */
+            .footer {
+                padding: 2rem 1rem 1rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .footer-bottom {
+                padding: 1.5rem 1rem 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .billet-hero h1 {
+                font-size: 1.9rem;
+            }
+            
+            .btn-primary, .btn-secondary {
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-section">
+                <img src="assets/images/remove.png" alt="ISTA Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1>ISTA</h1>
+                    <p>International Success Travel Agency</p>
+                </div>
+            </a>
+
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li class="has-submenu">
+                    <a href="#" class="submenu-trigger"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="etude.html"><i class="fas fa-graduation-cap"></i> Visa d'Etude</a></li>
+                        <li><a href="travail.html"><i class="fas fa-briefcase"></i> Visa de Travail</a></li>
+                        <li><a href="visiteur.html"><i class="fas fa-plane"></i> Visa Visiteur</a></li>
+                        <li><a href="residence.html"><i class="fas fa-home"></i> Résidence Permanente</a></li>
+                        <li><a href="billet.html" class="active"><i class="fas fa-ticket-alt"></i> Billets d'avion</a></li>
+                        <li><a href="logement.html"><i class="fas fa-building"></i> Assistance Logement</a></li>
+                        <li><a href="sejour.html"><i class="fas fa-id-card"></i> Assistance Titre de Séjour</a></li>
+                        <li><a href="admissions.html"><i class="fas fa-university"></i> Admissions</a></li>
+                        <li><a href="galerie.html"><i class="fas fa-images"></i> Galerie Photo/Video</a></li>
+                    </ul>
+                </li>
+                <li><a href="colis.html"><i class="fas fa-box"></i> Envoyer/Recevoir un colis</a></li>
+                <li><a href="index.html#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
+                <li><a href="index.html#paiement"><i class="fas fa-credit-card"></i> Infos Paiement</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Section Hero Billet -->
+    <section class="billet-hero">
+        <div class="container billet-hero-content">
+            <h1>Billets d'Avion</h1>
+            <p>Vos vols vers toutes les destinations internationales au meilleur prix avec l'expertise ISTA</p>
+        </div>
+    </section>
+
+    <!-- Section Introduction -->
+    <section class="billet-introduction">
+        <div class="container introduction-container">
+            <div class="introduction-content">
+                <h2><i class="fas fa-ticket-alt"></i> Billets d'Avion Internationaux</h2>
+                
+                <p>Nous proposons des vols vers de nombreuses destinations à travers le monde, pour des clients individuels et professionnels.</p>
+                
+                <div class="highlight-box">
+                    <p>Notre objectif est de fournir à nos clients des billets d'avion de qualité, au meilleur prix possible, tout en offrant un service client exceptionnel.</p>
+                </div>
+                
+                <p>Notre prestation consiste à offrir une large gamme de billets d'avion pour répondre aux besoins de nos clients. Nous travaillons avec de nombreuses compagnies aériennes pour proposer des vols vers des destinations dans le monde entier. Nous offrons également des services complémentaires tels que des assurances de voyage et des réservations d'hôtels.</p>
+                
+                <h3 style="margin-top: 2rem; color: var(--dark-navy);">Processus de commande et de livraison</h3>
+                
+                <p>Le processus de commande de billets d'avion est simple. Nos clients peuvent nous contacter par téléphone, par e-mail ou via notre site web pour obtenir un devis ou effectuer une réservation. Nous veillons à ce que nos clients soient informés de toutes les options disponibles pour leur voyage, telles que les différents horaires, les escales, les compagnies aériennes, etc.</p>
+                
+                <p>Nous livrons les billets d'avion directement aux clients ou nous les envoyons par e-mail. Nous sommes également disponibles pour aider les clients avec toutes les formalités liées à leur voyage.</p>
+                
+                <div class="highlight-box">
+                    <p>Nous mettons l'accent sur le service client et nous nous engageons à répondre à toutes les demandes de nos clients dans les plus brefs délais.</p>
+                </div>
+                
+                <p>Notre personnel est compétent et sympathique, et est à la disposition des clients pour les aider avec toutes les questions ou préoccupations qu'ils pourraient avoir avant ou pendant leur voyage.</p>
+                
+                <p>Nous offrons des tarifs compétitifs pour nos billets d'avion et nous sommes en mesure de proposer des tarifs préférentiels pour les groupes de voyageurs. Nous fournissons également des devis transparents qui détaillent les coûts associés à chaque option de voyage.</p>
+                
+                <p>Nous offrons une garantie de satisfaction à nos clients. Si un client n'est pas satisfait de son achat, nous ferons tout notre possible pour trouver une solution satisfaisante.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Avantages -->
+    <section class="avantages-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pourquoi Commander avec ISTA ?</h2>
+                <p>Découvrez les avantages de réserver vos billets d'avion avec notre agence</p>
+            </div>
+            
+            <div class="avantages-grid">
+                <div class="avantage-card">
+                    <div class="avantage-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h3>Meilleurs Prix Garantis</h3>
+                    <p>Tarifs compétitifs et préférentiels pour les groupes. Devis transparents sans frais cachés.</p>
+                </div>
+                
+                <div class="avantage-card">
+                    <div class="avantage-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3>Destination Mondiale</h3>
+                    <p>Accès à des milliers de destinations internationales avec les principales compagnies aériennes.</p>
+                </div>
+                
+                <div class="avantage-card">
+                    <div class="avantage-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Service Client 24/7</h3>
+                    <p>Assistance avant, pendant et après votre voyage par notre équipe dédiée.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Formulaire -->
+    <section class="formulaire-section" id="formulaire">
+        <div class="container formulaire-container">
+            <div class="formulaire-content">
+                <h2>Formulaire de Demande de Billet</h2>
+                <p>Remplissez ce formulaire pour demander un devis personnalisé pour vos billets d'avion</p>
+                
+                <form id="billetForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nom">Nom *</label>
+                            <input type="text" id="nom" name="nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prenom">Prénom *</label>
+                            <input type="text" id="prenom" name="prenom" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date_naissance">Date de naissance *</label>
+                            <input type="date" id="date_naissance" name="date_naissance" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="passeport">Numéro de passeport *</label>
+                            <input type="text" id="passeport" name="passeport" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telephone">Téléphone *</label>
+                            <input type="tel" id="telephone" name="telephone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="pays_depart">Pays de départ *</label>
+                            <div class="select-search-container">
+                                <input type="text" id="pays_depart" name="pays_depart" class="select-search-input" placeholder="Rechercher un pays..." required>
+                                <div class="select-search-options" id="pays_depart_options"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pays_arrivee">Pays d'arrivée *</label>
+                            <div class="select-search-container">
+                                <input type="text" id="pays_arrivee" name="pays_arrivee" class="select-search-input" placeholder="Rechercher un pays..." required>
+                                <div class="select-search-options" id="pays_arrivee_options"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Classe de voyage *</label>
+                        <select id="service" name="service" required>
+                            <option value="">Sélectionnez un service</option>
+                            <option value="economique">Economique</option>
+                            <option value="premiumeco">Premium Economique</option>
+                            <option value="affaire">Classe Affaire</option>
+                            <option value="premiereclass">Première Classe</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Type de voyage *</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="aller_simple" name="type_voyage" value="aller_simple" required checked>
+                                <label for="aller_simple">Aller simple</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="aller_retour" name="type_voyage" value="aller_retour">
+                                <label for="aller_retour">Aller-retour</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group" id="date_depart_container" style="display: none;">
+                            <label for="date_depart">Date de départ prévu *</label>
+                            <input type="date" id="date_depart" name="date_depart" required>
+                        </div>
+                        <div class="form-group" id="date_retour_container" style="display: none;">
+                            <label for="date_retour">Date de retour *</label>
+                            <input type="date" id="date_retour" name="date_retour">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="compagnie_aerienne">Préférence de compagnie aérienne (optionnel)</label>
+                        <div class="select-search-container">
+                            <input type="text" id="compagnie_aerienne" name="compagnie_aerienne" class="select-search-input" placeholder="Rechercher une compagnie...">
+                            <div class="select-search-options" id="compagnie_aerienne_options"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bagages">Bagages (nombre de kilos souhaité) *</label>
+                        <div class="select-search-container">
+                            <input type="text" id="bagages" name="bagages" class="select-search-input" placeholder="Rechercher un poids..." required>
+                            <div class="select-search-options" id="bagages_options"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="commentaires">Commentaires supplémentaires</label>
+                        <textarea id="commentaires" name="commentaires" placeholder="Précisions sur la compagnie aérienne, besoins spécifiques..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Envoyer un message
+                    </button>
+                </form>
+                
+                <div id="confirmationMessage" class="confirmation-message">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Message envoyé avec succès !</h3>
+                    <p>Merci pour votre message. Notre équipe vous contactera dans les plus brefs délais avec un devis personnalisé.</p>
+                </div>
+                
+                <div class="thank-you-note" id="thankYouNote" style="display: none;">
+                    <p>Merci pour l'envoi de votre message. ISTA vous contactera dès la réception de votre message par mail et par téléphone si possible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section CTA -->
+    <section class="billet-cta">
+        <div class="container">
+            <h2>Besoin d'une assistance immédiate ?</h2>
+            <p>Contactez directement nos experts en réservation de billets d'avion</p>
+            
+            <div class="cta-buttons">
+                <a href="https://wa.me/237672080166?text=Bonjour%20ISTA,%20je%20souhaite%20obtenir%20un%20devis%20pour%20un%20billet%20d'avion" 
+                   class="btn-primary btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Contact WhatsApp
+                </a>
+                <a href="tel:+237672080166" class="btn-secondary">
+                    <i class="fas fa-phone"></i> Nous appeler
+                </a>
+                <a href="contact.html" class="btn-secondary">
+                    <i class="fas fa-envelope"></i> Formulaire de contact
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-about">
+                <img src="assets/images/remove.png" alt="ISTA Logo" class="footer-logo">
+                <h3>ISTA</h3>
+                <p>International Success Travel Agency - Votre partenaire de confiance pour tous vos projets d'immigration et d'expédition.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/237672080166" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="index.html#services"><i class="fas fa-angle-right"></i> Visa d'Étude</a></li>
+                    <li><a href="index.html#services"><i class="fas fa-angle-right"></i> Visa de Travail</a></li>
+                    <li><a href="index.html#services"><i class="fas fa-angle-right"></i> Visa Visiteur</a></li>
+                    <li><a href="index.html#services"><i class="fas fa-angle-right"></i> Résidence Permanente</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:+237672080166"><i class="fas fa-phone"></i> (+237) 672 080 166</a></li>
+                    <li><a href="tel:+237696214773"><i class="fas fa-phone"></i> (+237) 696 214 773</a></li>
+                    <li><a href="mailto:internationalsuccestravelagence@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Informations</h4>
+                <ul>
+                    <li><a href="index.html#temoignages"><i class="fas fa-angle-right"></i> Témoignages</a></li>
+                    <li><a href="index.html#paiement"><i class="fas fa-angle-right"></i> Paiement</a></li>
+                    <li><a href="colis.html"><i class="fas fa-angle-right"></i> Colis</a></li>
+                    <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 ISTA - International Success Travel Agency. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Données pour les champs de recherche
+        const paysList = [
+            "Afghanistan", "Afrique du Sud", "Albanie", "Algérie", "Allemagne", "Andorre", "Angola", 
+            "Antigua-et-Barbuda", "Arabie saoudite", "Argentine", "Arménie", "Australie", "Autriche", 
+            "Azerbaïdjan", "Bahamas", "Bahreïn", "Bangladesh", "Barbade", "Belgique", "Belize", "Bénin", 
+            "Bhoutan", "Biélorussie", "Birmanie", "Bolivie", "Bosnie-Herzégovine", "Botswana", "Brésil", 
+            "Brunei", "Bulgarie", "Burkina Faso", "Burundi", "Cambodge", "Cameroun", "Canada", "Cap-Vert", 
+            "République centrafricaine", "Chili", "Chine", "Chypre", "Colombie", "Comores", "République du Congo", 
+            "République démocratique du Congo", "Corée du Nord", "Corée du Sud", "Costa Rica", "Côte d'Ivoire", 
+            "Croatie", "Cuba", "Danemark", "Djibouti", "Dominique", "Égypte", "Émirats arabes unis", "Équateur", 
+            "Érythrée", "Espagne", "Estonie", "États-Unis", "Éthiopie", "Fidji", "Finlande", "France", "Gabon", 
+            "Gambie", "Géorgie", "Ghana", "Grèce", "Grenade", "Guatemala", "Guinée", "Guinée équatoriale", 
+            "Guinée-Bissau", "Guyana", "Haïti", "Honduras", "Hongrie", "Inde", "Indonésie", "Irak", "Iran", 
+            "Irlande", "Islande", "Israël", "Italie", "Jamaïque", "Japon", "Jordanie", "Kazakhstan", "Kenya", 
+            "Kirghizistan", "Kiribati", "Koweït", "Laos", "Lesotho", "Lettonie", "Liban", "Libéria", "Libye", 
+            "Liechtenstein", "Lituanie", "Luxembourg", "Macédoine du Nord", "Madagascar", "Malaisie", "Malawi", 
+            "Maldives", "Mali", "Malte", "Maroc", "Îles Marshall", "Maurice", "Mauritanie", "Mexique", "Micronésie", 
+            "Moldavie", "Monaco", "Mongolie", "Monténégro", "Mozambique", "Namibie", "Nauru", "Népal", "Nicaragua", 
+            "Niger", "Nigéria", "Norvège", "Nouvelle-Zélande", "Oman", "Ouganda", "Ouzbékistan", "Pakistan", 
+            "Palaos", "Panama", "Papouasie-Nouvelle-Guinée", "Paraguay", "Pays-Bas", "Pérou", "Philippines", 
+            "Pologne", "Portugal", "Qatar", "Roumanie", "Royaume-Uni", "Russie", "Rwanda", "Saint-Christophe-et-Niévès", 
+            "Saint-Marin", "Saint-Vincent-et-les-Grenadines", "Sainte-Lucie", "Salvador", "Samoa", "Sao Tomé-et-Principe", 
+            "Sénégal", "Serbie", "Seychelles", "Sierra Leone", "Singapour", "Slovaquie", "Slovénie", "Somalie", 
+            "Soudan", "Soudan du Sud", "Sri Lanka", "Suède", "Suisse", "Suriname", "Eswatini", "Syrie", "Tadjikistan", 
+            "Tanzanie", "Tchad", "Tchéquie", "Thaïlande", "Timor oriental", "Togo", "Tonga", "Trinité-et-Tobago", 
+            "Tunisie", "Turkménistan", "Turquie", "Tuvalu", "Ukraine", "Uruguay", "Vanuatu", "Vatican", "Venezuela", 
+            "Viêt Nam", "Yémen", "Zambie", "Zimbabwe"
+        ];
+
+        const compagniesList = [
+            "Air France", "Emirates", "Qatar Airways", "Lufthansa", "British Airways", "KLM", "Turkish Airlines", 
+            "Ethiopian Airlines", "Royal Air Maroc", "Air Canada", "United Airlines", "Delta Air Lines", 
+            "American Airlines", "South African Airways", "Kenya Airways", "RwandAir", "Air Côte d'Ivoire", 
+            "ASKY Airlines", "Camair-Co", "Air Senegal", "EgyptAir", "Tunisair", "Alitalia", "Iberia", 
+            "SAS Scandinavian Airlines", "Swiss International Air Lines", "Austrian Airlines", "Brussels Airlines", 
+            "TAP Air Portugal", "Aeroméxico", "LATAM Airlines", "Avianca", "Copa Airlines", "Air China", 
+            "China Eastern Airlines", "China Southern Airlines", "Air India", "Singapore Airlines", "Cathay Pacific", 
+            "Japan Airlines", "ANA (All Nippon Airways)", "Korean Air", "Asiana Airlines", "Malaysia Airlines", 
+            "Garuda Indonesia", "Qantas", "Virgin Australia", "Air New Zealand", "Fiji Airways", "Air Arabia", 
+            "Flydubai", "Gulf Air", "Oman Air", "Saudia", "Kuwait Airways", "Royal Jordanian", "Middle East Airlines", 
+            "Air Astana", "Uzbekistan Airways", "Aeroflot", "S7 Airlines", "Ural Airlines", "Pegasus Airlines", 
+            "SunExpress", "AtlasGlobal", "Onur Air", "Norwegian Air Shuttle", "Wizz Air", "Ryanair", "EasyJet", 
+            "Vueling", "Transavia", "Eurowings", "airBaltic", "LOT Polish Airlines", "Czech Airlines", "TAROM", 
+            "Bulgaria Air", "Aegean Airlines", "Olympic Air", "Adria Airways", "Croatia Airlines", "Montenegro Airlines", 
+            "Air Serbia", "Air Malta", "Cyprus Airways", "El Al", "Arkia"
+        ];
+
+        const bagagesList = [
+            "10 kg", "15 kg", "20 kg", "23 kg (bagage standard)", "25 kg", "30 kg", "35 kg", "40 kg", "45 kg", 
+            "50 kg", "60 kg", "70 kg", "80 kg", "90 kg", "100 kg"
+        ];
+
+        // Fonction pour créer un champ de recherche
+        function createSearchableSelect(inputId, optionsId, dataList, placeholder) {
+            const input = document.getElementById(inputId);
+            const optionsContainer = document.getElementById(optionsId);
+            
+            // Remplir les options initiales
+            updateOptions(dataList, optionsContainer);
+            
+            // Gestion de la recherche
+            input.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const filteredList = dataList.filter(item => 
+                    item.toLowerCase().includes(searchTerm)
+                );
+                updateOptions(filteredList, optionsContainer);
+                optionsContainer.style.display = 'block';
+            });
+            
+            // Gestion du clic sur une option
+            optionsContainer.addEventListener('click', function(e) {
+                if (e.target.classList.contains('select-search-option')) {
+                    input.value = e.target.textContent;
+                    optionsContainer.style.display = 'none';
+                }
+            });
+            
+            // Fermer les options quand on clique ailleurs
+            document.addEventListener('click', function(e) {
+                if (!input.contains(e.target) && !optionsContainer.contains(e.target)) {
+                    optionsContainer.style.display = 'none';
+                }
+            });
+            
+            // Afficher les options quand on focus
+            input.addEventListener('focus', function() {
+                optionsContainer.style.display = 'block';
+                updateOptions(dataList, optionsContainer);
+            });
+        }
+        
+        function updateOptions(list, container) {
+            container.innerHTML = '';
+            list.forEach(item => {
+                const option = document.createElement('div');
+                option.className = 'select-search-option';
+                option.textContent = item;
+                container.appendChild(option);
+            });
+        }
+
+        // Initialiser les champs de recherche
+        document.addEventListener('DOMContentLoaded', function() {
+            createSearchableSelect('pays_depart', 'pays_depart_options', paysList, 'Rechercher un pays...');
+            createSearchableSelect('pays_arrivee', 'pays_arrivee_options', paysList, 'Rechercher un pays...');
+            createSearchableSelect('compagnie_aerienne', 'compagnie_aerienne_options', compagniesList, 'Rechercher une compagnie...');
+            createSearchableSelect('bagages', 'bagages_options', bagagesList, 'Rechercher un poids...');
+        });
+
+        // Gestion de la navigation mobile
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileToggle.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Gestion des sous-menus en mobile
+        const hasSubmenuItems = document.querySelectorAll('.has-submenu > a');
+        
+        hasSubmenuItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                // En mobile seulement
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = item.parentElement;
+                    
+                    // Fermer les autres sous-menus
+                    document.querySelectorAll('.has-submenu.active').forEach(activeItem => {
+                        if (activeItem !== parent) {
+                            activeItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Basculer le sous-menu courant
+                    parent.classList.toggle('active');
+                }
+            });
+        });
+
+        // Fermer le menu au clic sur un lien (sauf ceux avec sous-menus)
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Si ce n'est pas un lien de sous-menu en mobile
+                if (window.innerWidth <= 768 && !link.parentElement.classList.contains('has-submenu')) {
+                    navMenu.classList.remove('active');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Fermer tous les sous-menus
+                    document.querySelectorAll('.has-submenu').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Gestion du formulaire
+        const billetForm = document.getElementById('billetForm');
+        const confirmationMessage = document.getElementById('confirmationMessage');
+        const thankYouNote = document.getElementById('thankYouNote');
+        const dateRetourContainer = document.getElementById('date_retour_container');
+        const dateRetourInput = document.getElementById('date_retour');
+
+        // Gestion de l'affichage du champ date de retour
+        document.querySelectorAll('input[name="type_voyage"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'aller_retour') {
+                    dateRetourContainer.style.display = 'block';
+                    dateRetourInput.required = true;
+                } else {
+                    dateRetourContainer.style.display = 'none';
+                    dateRetourInput.required = false;
+                    dateRetourInput.value = '';
+                }
+            });
+        });
+
+        // Soumission du formulaire
+        if (billetForm) {
+            billetForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validation des dates
+                const dateDepart = new Date(document.getElementById('date_depart').value);
+                const dateArrivee = new Date(document.getElementById('date_arrivee').value);
+                
+                if (dateDepart >= dateArrivee) {
+                    alert('La date de départ doit être antérieure à la date d\'arrivée.');
+                    return;
+                }
+                
+                const typeVoyage = document.querySelector('input[name="type_voyage"]:checked').value;
+                if (typeVoyage === 'aller_retour') {
+                    const dateRetour = new Date(dateRetourInput.value);
+                    if (dateRetour <= dateArrivee) {
+                        alert('La date de retour doit être postérieure à la date d\'arrivée.');
+                        return;
+                    }
+                }
+                
+                // Afficher le message de confirmation
+                confirmationMessage.style.display = 'block';
+                thankYouNote.style.display = 'block';
+                
+                // Faire défiler jusqu'au message
+                confirmationMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Réinitialiser le formulaire après 3 secondes
+                setTimeout(() => {
+                    billetForm.reset();
+                    dateRetourContainer.style.display = 'none';
+                    dateRetourInput.required = false;
+                    
+                    // Réinitialiser les champs de recherche
+                    document.getElementById('pays_depart').value = '';
+                    document.getElementById('pays_arrivee').value = '';
+                    document.getElementById('compagnie_aerienne').value = '';
+                    document.getElementById('bagages').value = '';
+                }, 3000);
+            });
+        }
+
+        // Smooth scroll pour les ancres internes
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                if (href === '#' || href === '#!') return;
+                
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    // Fermer le menu mobile si ouvert
+                    navMenu.classList.remove('active');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Fermer tous les sous-menus
+                    document.querySelectorAll('.has-submenu.active').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Scroll vers la cible
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observer les sections pour l'animation
+        document.querySelectorAll('.avantage-card').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(section);
+        });
+
+        // Remplir automatiquement la date de retour si c'est un aller-retour
+        document.getElementById('date_depart').addEventListener('change', function() {
+            const typeVoyage = document.querySelector('input[name="type_voyage"]:checked').value;
+            if (typeVoyage === 'aller_retour') {
+                const dateDepart = new Date(this.value);
+                const dateRetour = new Date(dateDepart.getTime() + (7 * 24 * 60 * 60 * 1000)); // +7 jours
+                const formattedDate = dateRetour.toISOString().split('T')[0];
+                dateRetourInput.value = formattedDate;
+            }
+        });
+    </script>
+</body>
+</html>
