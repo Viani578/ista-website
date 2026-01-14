@@ -312,9 +312,9 @@
             margin-bottom: 2rem;
         }
 
-        /* Section Introduction */
+        /* Section Introduction - Améliorée */
         .sejour-introduction {
-            padding: 6rem 0;
+            padding: 6rem 0 4rem;
             background: var(--cream);
         }
 
@@ -329,6 +329,18 @@
             border-radius: 25px;
             box-shadow: var(--shadow-md);
             border: 2px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .introduction-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--primary-blue));
         }
 
         .introduction-content h2 {
@@ -338,11 +350,16 @@
             align-items: center;
             gap: 1rem;
             font-size: 2rem;
+            position: relative;
         }
 
         .introduction-content h2 i {
             color: var(--gold);
             font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .introduction-content p {
@@ -350,31 +367,50 @@
             line-height: 1.8;
             margin-bottom: 1.5rem;
             font-size: 1.05rem;
+            position: relative;
+            padding-left: 1.5rem;
         }
 
-        .introduction-content ul {
-            list-style: none;
-            margin: 2rem 0;
+        .introduction-content p::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5em;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
         }
 
-        .introduction-content ul li {
-            padding: 0.75rem 0;
-            color: var(--text-dark);
+        .introduction-stats {
             display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            justify-content: space-around;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
         }
 
-        .introduction-content ul li:last-child {
-            border-bottom: none;
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
         }
 
-        .introduction-content ul li i {
-            color: var(--gold);
-            margin-top: 0.3rem;
-            font-size: 1.1rem;
-            min-width: 24px;
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .highlight-box {
@@ -383,18 +419,44 @@
             padding: 1.5rem 2rem;
             margin: 2rem 0;
             border-radius: 8px;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.2;
+            font-family: 'Playfair Display', serif;
         }
 
         .highlight-box p {
             margin: 0;
             color: var(--dark-navy);
             font-weight: 600;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Section Services Détail */
+        /* Section Services Détail - Améliorée */
         .services-detail {
             padding: 4rem 0;
-            background: var(--soft-white);
+            background: linear-gradient(180deg, var(--soft-white) 0%, var(--cream) 100%);
+            position: relative;
+        }
+
+        .services-detail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
         .services-grid {
@@ -408,16 +470,35 @@
             background: linear-gradient(135deg, var(--cream) 0%, var(--soft-white) 100%);
             padding: 2.5rem;
             border-radius: 20px;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 2px solid transparent;
             box-shadow: var(--shadow-md);
             display: flex;
             flex-direction: column;
             height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-detail-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--gold));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-detail-card:hover::before {
+            transform: scaleX(1);
         }
 
         .service-detail-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
             box-shadow: var(--shadow-lg);
             border-color: var(--gold);
         }
@@ -433,6 +514,13 @@
             margin-bottom: 1.5rem;
             font-size: 2rem;
             color: var(--soft-white);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+
+        .service-detail-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--gold), #FFD700);
         }
 
         .service-detail-card h3 {
@@ -440,6 +528,23 @@
             margin-bottom: 1rem;
             font-size: 1.5rem;
             min-height: 3.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .service-detail-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .service-detail-card:hover h3::after {
+            width: 100%;
         }
 
         .service-detail-card p {
@@ -459,18 +564,30 @@
             display: flex;
             align-items: flex-start;
             gap: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-detail-list li:hover {
+            color: var(--primary-blue);
+            transform: translateX(5px);
         }
 
         .service-detail-list li i {
             color: var(--gold);
             font-size: 0.9rem;
             margin-top: 0.2rem;
+            transition: all 0.3s ease;
         }
 
-        /* Section Pourquoi Choisir ISTA */
+        .service-detail-list li:hover i {
+            color: var(--primary-blue);
+            transform: scale(1.2);
+        }
+
+        /* Section Pourquoi Choisir ISTA - Améliorée */
         .why-ista {
-            padding: 4rem 0;
-            background: var(--cream);
+            padding: 6rem 0;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--soft-white) 100%);
         }
 
         .why-ista-container {
@@ -484,13 +601,33 @@
             padding: 2.5rem;
             border-radius: 20px;
             text-align: center;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 2px solid transparent;
             box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-ista-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--primary-blue));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        .why-ista-card:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
 
         .why-ista-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
             box-shadow: var(--shadow-lg);
             border-color: var(--gold);
         }
@@ -506,12 +643,38 @@
             margin: 0 auto 1.5rem;
             font-size: 2rem;
             color: var(--dark-navy);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .why-ista-card:hover .why-ista-icon {
+            transform: scale(1.1) rotate(-5deg);
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            color: var(--soft-white);
         }
 
         .why-ista-card h3 {
             color: var(--dark-navy);
             margin-bottom: 1rem;
             font-size: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .why-ista-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .why-ista-card:hover h3::after {
+            width: 100px;
         }
 
         .why-ista-card p {
@@ -523,12 +686,27 @@
             text-align: center;
             max-width: 800px;
             margin: 0 auto 5rem;
+            position: relative;
         }
 
         .section-header h2 {
             margin-bottom: 1rem;
             color: var(--dark-navy);
             font-size: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--gold));
+            border-radius: 2px;
         }
 
         .section-header p {
@@ -537,10 +715,24 @@
             line-height: 1.6;
         }
 
-        /* Section Processus */
+        /* Section Processus - Améliorée */
         .process-section {
-            padding: 4rem 0;
+            padding: 6rem 0;
             background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(220, 20, 60, 0.1) 0%, transparent 40%);
         }
 
         .process-steps {
@@ -548,6 +740,8 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
         .process-step {
@@ -556,11 +750,20 @@
             border-radius: 20px;
             text-align: center;
             position: relative;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: var(--gold);
+            background: var(--soft-white);
         }
 
         .step-number {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
             border-radius: 50%;
             display: flex;
@@ -569,13 +772,39 @@
             margin: 0 auto 1rem;
             font-weight: bold;
             color: var(--dark-navy);
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .process-step:hover .step-number {
+            transform: scale(1.1) rotate(360deg);
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            color: var(--soft-white);
         }
 
         .process-step h3 {
             color: var(--dark-navy);
             margin-bottom: 1rem;
             font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .process-step h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .process-step:hover h3::after {
+            width: 80px;
         }
 
         .process-step p {
@@ -583,16 +812,40 @@
             line-height: 1.6;
         }
 
+        .section-header-white {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem;
+            position: relative;
+            z-index: 1;
+        }
+
         .section-header-white h2 {
             color: var(--soft-white);
             margin-bottom: 1rem;
+            font-size: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header-white h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--soft-white));
+            border-radius: 2px;
         }
 
         .section-header-white p {
             color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
         }
 
-        /* Section Documents */
+        /* Section Documents - Améliorée */
         .documents-section {
             padding: 6rem 0;
             background: var(--cream);
@@ -609,6 +862,37 @@
             border-radius: 25px;
             box-shadow: var(--shadow-md);
             border: 2px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .documents-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+            border-radius: 0 25px 0 0;
+        }
+
+        .documents-content h2 {
+            color: var(--dark-navy);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 2rem;
+        }
+
+        .documents-content h2 i {
+            color: var(--gold);
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .documents-list {
@@ -625,25 +909,74 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .documents-list li:hover {
+            transform: translateX(10px);
+            background: rgba(212, 175, 55, 0.1);
+            box-shadow: var(--shadow-sm);
         }
 
         .documents-list li i {
             color: var(--gold);
             font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
         }
 
-        /* Section CTA */
+        .documents-list li:hover i {
+            transform: scale(1.2);
+            color: var(--primary-blue);
+        }
+
+        /* Section CTA - Améliorée */
         .sejour-cta {
-            padding: 4rem 0;
+            padding: 6rem 0;
             background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
             text-align: center;
             color: var(--soft-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sejour-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .sejour-cta .container {
+            position: relative;
+            z-index: 1;
         }
 
         .sejour-cta h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             color: var(--soft-white);
+            position: relative;
+            display: inline-block;
+        }
+
+        .sejour-cta h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--soft-white));
+            border-radius: 2px;
         }
 
         .sejour-cta p {
@@ -660,6 +993,7 @@
             gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
+            margin-top: 2rem;
         }
 
         .btn-primary, .btn-secondary {
@@ -668,12 +1002,29 @@
             font-weight: 600;
             text-decoration: none;
             border-radius: 50px;
-            transition: var(--transition);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 2px solid transparent;
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before, .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before, .btn-secondary:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
@@ -683,8 +1034,8 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 30px rgba(212, 175, 55, 0.6);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6);
         }
 
         .btn-secondary {
@@ -696,7 +1047,8 @@
         .btn-secondary:hover {
             background: var(--soft-white);
             color: var(--primary-blue);
-            transform: translateY(-3px);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 255, 255, 0.3);
         }
 
         .btn-whatsapp {
@@ -708,6 +1060,52 @@
         .btn-whatsapp:hover {
             background: #128C7E;
             color: var(--soft-white);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-primary i, .btn-secondary i, .btn-whatsapp i {
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover i, .btn-secondary:hover i, .btn-whatsapp:hover i {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        /* Stats supplémentaires */
+        .success-stats {
+            display: flex;
+            justify-content: space-around;
+            gap: 2rem;
+            margin: 4rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-card .stat-number {
+            font-size: 3rem;
+            color: var(--gold);
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
 
         /* Footer */
@@ -776,13 +1174,25 @@
         .social-links a:hover {
             background: var(--gold);
             color: var(--dark-navy);
-            transform: translateY(-5px);
+            transform: translateY(-5px) rotate(360deg);
         }
 
         .footer-links h4 {
             font-size: 1.25rem;
             margin-bottom: 1.5rem;
             font-weight: 700;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--gold);
         }
 
         .footer-links ul {
@@ -818,7 +1228,7 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
-        /* Responsive */
+        /* Responsive - TITRES OPTIMISÉS */
         @media (max-width: 768px) {
             html, body {
                 overflow-x: hidden;
@@ -832,28 +1242,75 @@
                 max-width: 100%;
             }
             
+            /* TITRES OPTIMISÉS POUR MOBILE */
             h1 {
-                font-size: 2rem;
-                line-height: 1.2;
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
             }
             
             h2 {
-                font-size: 1.4rem;
-                line-height: 1.2;
+                font-size: 1.7rem !important;
+                line-height: 1.2 !important;
+                margin-bottom: 0.5rem !important;
             }
             
             h3 {
-                font-size: 1.2rem;
-                line-height: 1.3;
+                font-size: 1.4rem !important;
+                line-height: 1.3 !important;
             }
             
             h4 {
-                font-size: 1.2rem;
+                font-size: 1.2rem !important;
+            }
+            
+            .section-header h2,
+            .section-header-white h2,
+            .sejour-cta h2 {
+                font-size: 1.8rem !important;
+                line-height: 1.2 !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .section-header h2::after,
+            .section-header-white h2::after,
+            .sejour-cta h2::after {
+                width: 50px !important;
+                height: 2px !important;
+                bottom: -5px !important;
+            }
+            
+            .introduction-content h2,
+            .documents-content h2 {
+                font-size: 1.5rem !important;
+                line-height: 1.2 !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .service-detail-card h3,
+            .why-ista-card h3,
+            .process-step h3 {
+                font-size: 1.3rem !important;
+                line-height: 1.3 !important;
+                min-height: auto !important;
             }
             
             p {
                 font-size: 0.95rem;
                 line-height: 1.5;
+            }
+            
+            .section-header,
+            .section-header-white {
+                margin-bottom: 3rem !important;
+            }
+            
+            /* Stat number mobile */
+            .stat-number {
+                font-size: 2rem !important;
+            }
+            
+            .stat-card .stat-number {
+                font-size: 2.5rem !important;
             }
             
             /* Navbar */
@@ -993,7 +1450,7 @@
             }
             
             .sejour-hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.2rem !important;
                 margin-bottom: 1rem;
             }
             
@@ -1013,9 +1470,17 @@
                 border-radius: 15px;
             }
             
-            .introduction-content h2 {
-                font-size: 1.5rem;
-                margin-bottom: 1rem;
+            .introduction-stats {
+                gap: 1rem;
+                margin: 2rem 0;
+            }
+            
+            .stat-item {
+                min-width: 120px;
+            }
+            
+            .stat-number {
+                font-size: 2rem !important;
             }
             
             .highlight-box {
@@ -1073,6 +1538,26 @@
                 gap: 1.5rem;
             }
             
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            /* Success Stats */
+            .success-stats {
+                margin: 2rem 0;
+            }
+            
+            .stat-card {
+                padding: 1.5rem;
+                min-width: 150px;
+            }
+            
+            .stat-card .stat-number {
+                font-size: 2rem !important;
+            }
+            
             /* Documents */
             .documents-section {
                 padding: 3rem 0;
@@ -1085,10 +1570,6 @@
             /* CTA */
             .sejour-cta {
                 padding: 3rem 1rem;
-            }
-            
-            .sejour-cta h2 {
-                font-size: 1.8rem;
             }
             
             .sejour-cta p {
@@ -1105,6 +1586,7 @@
                 width: 100%;
                 max-width: 300px;
                 padding: 0.9rem 1.5rem;
+                font-size: 1rem;
             }
             
             /* Footer */
@@ -1124,11 +1606,19 @@
         
         @media (max-width: 480px) {
             .sejour-hero h1 {
-                font-size: 1.9rem;
+                font-size: 1.9rem !important;
             }
             
             .btn-primary, .btn-secondary {
                 padding: 0.8rem 1.2rem;
+            }
+            
+            .stat-item {
+                min-width: 100px;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem !important;
             }
         }
     </style>
@@ -1190,6 +1680,21 @@
                 <p>Nous vous remercions de l'intérêt que vous portez à notre entreprise spécialisée dans l'assistance aux titres de séjour.</p>
                 
                 <p>Nous proposons des services complets pour vous aider dans toutes les démarches administratives liées à l'obtention et au renouvellement de votre titre de séjour. Nous nous engageons à vous offrir une assistance personnalisée et de qualité, afin de vous accompagner tout au long du processus.</p>
+                
+                <div class="introduction-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">95%</span>
+                        <span class="stat-label">Taux de réussite</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Dossiers traités</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24h</span>
+                        <span class="stat-label">Réponse rapide</span>
+                    </div>
+                </div>
                 
                 <div class="highlight-box">
                     <p>Notre expertise et notre expérience dans le domaine de l'assistance aux titres de séjour seront un atout précieux pour vous aider à obtenir rapidement votre titre de séjour.</p>
@@ -1308,6 +1813,21 @@
                 <p>Une méthodologie éprouvée pour garantir la réussite de votre demande</p>
             </div>
             
+            <div class="success-stats">
+                <div class="stat-card">
+                    <span class="stat-number">48h</span>
+                    <span class="stat-label">Évaluation initiale</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">7j</span>
+                    <span class="stat-label">Préparation dossier</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Support disponible</span>
+                </div>
+            </div>
+            
             <div class="process-steps">
                 <div class="process-step">
                     <div class="step-number">1</div>
@@ -1363,6 +1883,21 @@
         <div class="container">
             <h2>Démarrez Votre Demande</h2>
             <p>Confiez-nous vos démarches administratives et concentrez-vous sur votre projet d'installation à l'étranger.</p>
+            
+            <div class="success-stats">
+                <div class="stat-card">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Satisfaction client</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Années d'expérience</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Clients satisfaits</span>
+                </div>
+            </div>
             
             <div class="cta-buttons">
                 <a href="https://wa.me/237672080166?text=Bonjour%20ISTA,%20je%20souhaite%20plus%20d'informations%20sur%20vos%20services%20d'assistance%20titre%20de%20séjour" 
@@ -1525,18 +2060,49 @@
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
+                    if (entry.target.classList.contains('service-detail-card')) {
+                        entry.target.style.transitionDelay = '0.1s';
+                    }
                 }
             });
         }, observerOptions);
 
         // Observer les sections pour l'animation
-        document.querySelectorAll('.service-detail-card, .why-ista-card, .process-step').forEach(section => {
+        document.querySelectorAll('.service-detail-card, .why-ista-card, .process-step, .stat-item, .stat-card').forEach((section, index) => {
             section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            if (section.classList.contains('service-detail-card')) {
+                section.style.transitionDelay = `${index * 0.1}s`;
+            }
             observer.observe(section);
         });
+
+        // Animation pour les stats
+        const statNumbers = document.querySelectorAll('.stat-number');
+        
+        const animateStats = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target;
+                    const targetValue = parseInt(statNumber.textContent);
+                    let currentValue = 0;
+                    const increment = targetValue / 50;
+                    const timer = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= targetValue) {
+                            statNumber.textContent = targetValue + (statNumber.textContent.includes('%') ? '%' : '+');
+                            clearInterval(timer);
+                        } else {
+                            statNumber.textContent = Math.floor(currentValue) + (statNumber.textContent.includes('%') ? '%' : '');
+                        }
+                    }, 30);
+                }
+            });
+        };
+
+        const statsObserver = new IntersectionObserver(animateStats, { threshold: 0.5 });
+        statNumbers.forEach(stat => statsObserver.observe(stat));
     </script>
 </body>
-
 </html>
