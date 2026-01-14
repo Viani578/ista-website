@@ -260,6 +260,32 @@
             color: var(--gold);
         }
 
+        /* Lien actif dans le sous-menu */
+        .submenu li a.active {
+            color: var(--gold);
+            font-weight: 600;
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 3px solid var(--gold);
+            padding-left: 1.5rem;
+        }
+
+        .submenu li a.active i {
+            color: var(--gold);
+        }
+
+        /* Pour le lien "Nos Services" quand un sous-lien est actif */
+        .has-submenu.active-parent > a {
+            color: var(--gold);
+        }
+
+        .has-submenu.active-parent > a i:not(.fa-chevron-down) {
+            color: var(--gold);
+        }
+
+        .has-submenu.active-parent > a::after {
+            width: 100%;
+        }
+
         /* Menu mobile */
         .mobile-toggle {
             display: none;
@@ -1321,7 +1347,6 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
-        /* Responsive - TITRES OPTIMISÉS */
         @media (max-width: 768px) {
             html, body {
                 overflow-x: hidden;
@@ -1335,56 +1360,55 @@
                 max-width: 100%;
             }
             
-            /* TITRES OPTIMISÉS POUR MOBILE */
             h1 {
-                font-size: 2rem !important;
-                line-height: 1.2 !important;
+                font-size: 2rem;
+                line-height: 1.2;
             }
             
             h2 {
-                font-size: 1.7rem !important;
-                line-height: 1.2 !important;
-                margin-bottom: 0.5rem !important;
+                font-size: 1.7rem;
+                line-height: 1.2;
+                margin-bottom: 0.5rem;
             }
             
             h3 {
-                font-size: 1.4rem !important;
-                line-height: 1.3 !important;
+                font-size: 1.4rem;
+                line-height: 1.3;
             }
             
             h4 {
-                font-size: 1.2rem !important;
+                font-size: 1.2rem;
             }
             
             .section-header h2,
             .section-header-white h2,
             .sejour-cta h2 {
-                font-size: 1.8rem !important;
-                line-height: 1.2 !important;
-                margin-bottom: 0.5rem !important;
+                font-size: 1.8rem;
+                line-height: 1.2;
+                margin-bottom: 0.5rem;
             }
             
             .section-header h2::after,
             .section-header-white h2::after,
             .sejour-cta h2::after {
-                width: 50px !important;
-                height: 2px !important;
-                bottom: -5px !important;
+                width: 50px;
+                height: 2px;
+                bottom: -5px;
             }
             
             .introduction-content h2,
             .formulaire-content h2 {
-                font-size: 1.5rem !important;
-                line-height: 1.2 !important;
-                margin-bottom: 1rem !important;
+                font-size: 1.5rem;
+                line-height: 1.2;
+                margin-bottom: 1rem;
             }
             
             .service-detail-card h3,
             .why-ista-card h3,
             .process-step h3 {
-                font-size: 1.3rem !important;
-                line-height: 1.3 !important;
-                min-height: auto !important;
+                font-size: 1.3rem;
+                line-height: 1.3;
+                min-height: auto;
             }
             
             p {
@@ -1394,19 +1418,19 @@
             
             .section-header,
             .section-header-white {
-                margin-bottom: 3rem !important;
+                margin-bottom: 3rem;
             }
             
             /* Stat number mobile */
             .stat-number {
-                font-size: 2rem !important;
+                font-size: 2rem;
             }
             
             .stat-card .stat-number {
-                font-size: 2.5rem !important;
+                font-size: 2.5rem;
             }
             
-            /* Navbar - LOGO MOBILE RÉDUIT */
+            /* Navbar */
             .navbar {
                 padding: 0.8rem 0;
             }
