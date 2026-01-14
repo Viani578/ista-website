@@ -6,6 +6,12 @@
     <title>ISTA - Galerie Photo & Vidéo | International Success Travel Agency</title>
     <meta name="description" content="Galerie photo et vidéo d'ISTA - Découvrez nos succès, événements et témoignages en images">
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ISTA - Galerie Photo & Vidéo">
+    <meta property="og:description" content="Découvrez nos succès, événements et témoignages en images avec ISTA">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/remove.png">
     
@@ -55,10 +61,22 @@
             width: 100%;
         }
 
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 2rem; }
+        h4 { font-size: 1.5rem; }
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
+            width: 100%;
         }
 
         /* Navigation */
@@ -219,6 +237,7 @@
             gap: 0.75rem;
             transition: var(--transition);
             font-size: 0.85rem;
+            position: relative;
         }
 
         .submenu li a:hover {
@@ -235,6 +254,32 @@
 
         .submenu li a:hover i {
             color: var(--gold);
+        }
+
+        /* Lien actif dans le sous-menu */
+        .submenu li a.active {
+            color: var(--gold);
+            font-weight: 600;
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 3px solid var(--gold);
+            padding-left: 1.5rem;
+        }
+
+        .submenu li a.active i {
+            color: var(--gold);
+        }
+
+        /* Pour le lien "Nos Services" quand un sous-lien est actif */
+        .has-submenu.active-parent > a {
+            color: var(--gold);
+        }
+
+        .has-submenu.active-parent > a i:not(.fa-chevron-down) {
+            color: var(--gold);
+        }
+
+        .has-submenu.active-parent > a::after {
+            width: 100%;
         }
 
         /* Menu mobile */
@@ -278,7 +323,6 @@
         }
 
         .galerie-hero h1 {
-            font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
             background: linear-gradient(135deg, var(--soft-white) 0%, var(--gold) 100%);
@@ -311,11 +355,8 @@
         }
 
         .section-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
             color: var(--dark-navy);
             margin-bottom: 1rem;
-            font-weight: 900;
         }
 
         .section-header p {
@@ -840,24 +881,7 @@
             }
         }
 
-        @media (max-width: 1024px) {
-            .galerie-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
-            
-            .videos-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .modal-media {
-                height: 60vh;
-            }
-        }
-
+        /* Responsive Styles - Identique à billet.html */
         @media (max-width: 768px) {
             html, body {
                 overflow-x: hidden;
@@ -870,12 +894,32 @@
                 width: 100%;
                 max-width: 100%;
             }
-
-            .mobile-toggle {
-                display: block;
+            
+            h1 {
+                font-size: 2rem;
+                line-height: 1.2;
             }
-
-            /* 3. NAVBAR */
+            
+            h2 {
+                font-size: 1.7rem;
+                line-height: 1.2;
+            }
+            
+            h3 {
+                font-size: 1.4rem;
+                line-height: 1.3;
+            }
+            
+            h4 {
+                font-size: 1.2rem;
+            }
+            
+            p {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+            
+            /* Navbar */
             .navbar {
                 padding: 0.8rem 0;
             }
@@ -893,17 +937,17 @@
             }
             
             .logo-img {
-                height: 40px;
+                height: 35px;
                 width: auto;
             }
             
             .logo-text h1 {
-                font-size: 1.1rem;
+                font-size: 0.9rem;
                 line-height: 1;
             }
             
             .logo-text p {
-                font-size: 0.55rem;
+                font-size: 0.5rem;
                 letter-spacing: 1px;
             }
             
@@ -918,7 +962,7 @@
                 padding: 0.3rem;
             }
 
-            /* 4. MENU MOBILE */
+            /* Menu mobile */
             .nav-menu {
                 position: fixed;
                 left: -100%;
@@ -1005,19 +1049,22 @@
                 background: rgba(212, 175, 55, 0.1);
             }
             
-            .nav-menu a i:first-child {
-                font-size: 1rem;
-                width: 24px;
-                text-align: left;
+            /* CORRECTION : Lien actif dans le sous-menu en mobile */
+            .submenu li a.active {
+                border-left: 3px solid var(--gold);
+                background: rgba(212, 175, 55, 0.1);
             }
             
-            .submenu li a i {
-                font-size: 0.9rem;
-                width: 20px;
-                text-align: left;
+            /* CORRECTION : Pour le lien "Nos Services" quand un sous-lien est actif en mobile */
+            .has-submenu.active-parent > a {
+                color: var(--gold);
             }
             
-            /* HERO SECTION */
+            .has-submenu.active-parent > a i:not(.fa-chevron-down) {
+                color: var(--gold);
+            }
+            
+            /* Hero Section */
             .galerie-hero {
                 min-height: 50vh;
                 padding: 100px 0 40px;
@@ -1027,14 +1074,18 @@
                 font-size: 2.2rem;
                 margin-bottom: 1rem;
             }
-
+            
             .galerie-hero p {
                 font-size: 1.1rem;
                 margin-bottom: 1.5rem;
                 padding: 0 0.5rem;
             }
             
-            /* GALERIE RESPONSIVE */
+            /* Galerie */
+            .galerie-section {
+                padding: 3rem 0;
+            }
+            
             .galerie-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -1052,13 +1103,17 @@
                 font-size: 0.9rem;
             }
             
-            /* VIDEOS RESPONSIVE */
+            /* Videos */
+            .videos-section {
+                padding: 3rem 0;
+            }
+            
             .videos-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
             
-            /* MODAL RESPONSIVE */
+            /* Modal Responsive */
             .modal-container {
                 width: 95%;
                 max-width: 95%;
@@ -1098,7 +1153,7 @@
                 font-size: 0.85rem;
             }
             
-            /* FOOTER */
+            /* Footer */
             .footer {
                 padding: 2rem 1rem 1rem;
             }
@@ -1106,42 +1161,19 @@
             .footer-container {
                 grid-template-columns: 1fr;
                 gap: 2rem;
-                margin-bottom: 2rem;
-            }
-            
-            .footer-about h3 {
-                font-size: 1.6rem;
-            }
-            
-            .footer-about p {
-                font-size: 0.9rem;
-                line-height: 1.6;
-            }
-            
-            .footer-links h4 {
-                font-size: 1.1rem;
-                margin-bottom: 1rem;
-            }
-            
-            .footer-links a {
-                font-size: 0.9rem;
-            }
-            
-            .social-links a {
-                width: 38px;
-                height: 38px;
-                font-size: 1rem;
+                margin-bottom: 3rem;
             }
             
             .footer-bottom {
-                padding: 1.5rem 1rem 0;
-                font-size: 0.85rem;
+                padding-top: 2rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                color: rgba(255, 255, 255, 0.5);
             }
         }
-
+        
         @media (max-width: 480px) {
             .galerie-hero h1 {
-                font-size: 2rem;
+                font-size: 1.9rem;
             }
             
             .section-header h2 {
@@ -1192,7 +1224,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="nav-container">
+        <div class="container nav-container">
             <a href="index.html" class="logo-section">
                 <img src="assets/images/remove.png" alt="ISTA Logo" class="logo-img">
                 <div class="logo-text">
@@ -1616,6 +1648,8 @@
         // Navigation mobile
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
+        const hasSubmenu = document.querySelector('.has-submenu');
+        const submenuTrigger = document.querySelector('.submenu-trigger');
 
         mobileToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
@@ -1672,6 +1706,87 @@
                 navbar.classList.remove('scrolled');
             }
         });
+
+        // CORRECTION : Gestion du menu "Nos Services"
+        let isHoveringSubmenu = false;
+        let isHoveringTrigger = false;
+        let submenuTimeout;
+
+        // Gestion du hover sur "Nos Services"
+        submenuTrigger.addEventListener('mouseenter', () => {
+            isHoveringTrigger = true;
+            clearTimeout(submenuTimeout);
+            // Ajouter la classe active-parent pour mettre en or
+            hasSubmenu.classList.add('active-parent');
+        });
+
+        submenuTrigger.addEventListener('mouseleave', () => {
+            isHoveringTrigger = false;
+            // Délai avant de retirer la classe si on n'est pas dans le sous-menu
+            submenuTimeout = setTimeout(() => {
+                if (!isHoveringSubmenu) {
+                    hasSubmenu.classList.remove('active-parent');
+                }
+            }, 300);
+        });
+
+        // Gestion du hover sur le sous-menu
+        const submenu = document.querySelector('.submenu');
+        if (submenu) {
+            submenu.addEventListener('mouseenter', () => {
+                isHoveringSubmenu = true;
+                clearTimeout(submenuTimeout);
+                // S'assurer que "Nos Services" reste en or
+                hasSubmenu.classList.add('active-parent');
+            });
+
+            submenu.addEventListener('mouseleave', () => {
+                isHoveringSubmenu = false;
+                // Délai avant de retirer la classe si on n'est pas sur le trigger
+                submenuTimeout = setTimeout(() => {
+                    if (!isHoveringTrigger) {
+                        hasSubmenu.classList.remove('active-parent');
+                    }
+                }, 300);
+            });
+        }
+
+        // CORRECTION : Au chargement de la page, on vérifie si on est sur galerie.html
+        // et on ajoute la classe active-parent au has-submenu parent
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPage = window.location.pathname;
+            if (currentPage.includes('galerie.html')) {
+                // S'assurer que le lien Galerie a la classe active
+                const galerieLink = document.querySelector('.submenu li a[href="galerie.html"]');
+                if (galerieLink) {
+                    galerieLink.classList.add('active');
+                }
+                
+                // Pour le desktop, on garde "Nos Services" en or
+                // Pour le mobile, on ne l'ajoute que si le sous-menu est ouvert
+                if (window.innerWidth > 768) {
+                    hasSubmenu.classList.add('active-parent');
+                }
+            }
+        });
+
+        // CORRECTION : Pour le mobile, gérer l'ouverture/fermeture du sous-menu
+        if (window.innerWidth <= 768) {
+            hasSubmenuItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const parent = item.parentElement;
+                    if (parent.classList.contains('active')) {
+                        // Si le sous-menu est ouvert et qu'on est sur galerie.html
+                        if (window.location.pathname.includes('galerie.html')) {
+                            hasSubmenu.classList.add('active-parent');
+                        }
+                    } else {
+                        // Si le sous-menu est fermé
+                        hasSubmenu.classList.remove('active-parent');
+                    }
+                });
+            });
+        }
 
         // Filtrage de la galerie
         const filterButtons = document.querySelectorAll('.filter-btn');
@@ -1919,20 +2034,6 @@
                 // Fermer la modal sans ajouter d'historique supplémentaire
                 e.preventDefault();
                 closeModal();
-            }
-        });
-
-        // Initialisation
-        window.addEventListener('DOMContentLoaded', () => {
-            // Marquer le lien Galerie comme actif
-            const galerieLink = document.querySelector('.nav-menu a[href="galerie.html"]');
-            if (galerieLink) {
-                galerieLink.classList.add('active');
-            }
-            
-            // S'assurer que l'URL est propre au chargement
-            if (window.location.hash === '#modal') {
-                history.replaceState(null, '', window.location.pathname + window.location.search);
             }
         });
     </script>
