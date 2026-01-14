@@ -93,23 +93,25 @@
             align-items: center;
             gap: 1.2rem;
             text-decoration: none;
+            margin-right: auto;
+            transform: translateX(-15px);
         }
 
         .logo-img {
-            height: 60px;
+            height: 50px;
             width: auto;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
 
         .logo-text h1 {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             margin: 0;
             color: var(--dark-navy);
         }
 
         .logo-text p {
-            font-size: 0.65rem;
-            letter-spacing: 2px;
+            font-size: 0.6rem;
+            letter-spacing: 1.8px;
             text-transform: uppercase;
             opacity: 0.9;
             margin: 0;
@@ -120,8 +122,10 @@
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.8rem;
             align-items: center;
+            margin-left: auto;
+            transform: translateX(15px);
         }
 
         .nav-menu > li {
@@ -166,6 +170,11 @@
         .nav-menu a i:not(.fa-chevron-down) {
             color: var(--primary-blue);
             transition: var(--transition);
+        }
+
+        .nav-menu > li > a:hover i:not(.fa-chevron-down),
+        .nav-menu > li > a.active i:not(.fa-chevron-down) {
+            color: var(--gold);
         }
 
         .nav-menu a i {
@@ -221,8 +230,11 @@
         .submenu li a i {
             font-size: 0.9rem;
             width: 18px;
+            color: var(--primary-blue);
+        }
+
+        .submenu li a:hover i {
             color: var(--gold);
-            text-align: left;
         }
 
         /* Menu mobile */
@@ -647,6 +659,187 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
+        /* Styles pour les modales */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-container {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            margin: auto;
+            background: transparent;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .modal-media {
+            width: 100%;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .modal-media img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .modal-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .modal-info {
+            text-align: center;
+            color: white;
+            padding: 1rem;
+            width: 100%;
+        }
+
+        .modal-category {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: var(--gold);
+            color: var(--dark-navy);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: white;
+            margin: 0.5rem 0;
+        }
+
+        .modal-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border: none;
+            border-radius: 50%;
+            color: var(--dark-navy);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(212, 175, 55, 0.8);
+            border: none;
+            border-radius: 50%;
+            color: var(--dark-navy);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .modal-nav:hover {
+            background: var(--gold);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-prev {
+            left: 15px;
+        }
+
+        .modal-next {
+            right: 15px;
+        }
+
+        /* Animation de transition pour les modales */
+        .modal-enter {
+            animation: modalEnter 0.4s ease forwards;
+        }
+
+        .modal-exit {
+            animation: modalExit 0.4s ease forwards;
+        }
+
+        @keyframes modalEnter {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes modalExit {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+        }
+
         @media (max-width: 1024px) {
             .galerie-grid {
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -658,6 +851,10 @@
             
             .footer-container {
                 grid-template-columns: 1fr 1fr;
+            }
+            
+            .modal-media {
+                height: 60vh;
             }
         }
 
@@ -691,6 +888,8 @@
             .logo-section {
                 gap: 0.8rem;
                 align-items: center;
+                transform: translateX(0);
+                margin-right: 0;
             }
             
             .logo-img {
@@ -706,6 +905,11 @@
             .logo-text p {
                 font-size: 0.55rem;
                 letter-spacing: 1px;
+            }
+            
+            .nav-menu {
+                transform: translateX(0);
+                margin-left: 0;
             }
             
             .mobile-toggle {
@@ -766,7 +970,7 @@
                 transform: rotate(180deg);
             }
             
-            /* Sous-menu mobile */
+            /* Sous-menu */
             .submenu {
                 position: static;
                 opacity: 1;
@@ -813,7 +1017,7 @@
                 text-align: left;
             }
             
-            /* 5. HERO SECTION */
+            /* HERO SECTION */
             .galerie-hero {
                 min-height: 50vh;
                 padding: 100px 0 40px;
@@ -830,7 +1034,7 @@
                 padding: 0 0.5rem;
             }
             
-            /* 6. GALERIE RESPONSIVE */
+            /* GALERIE RESPONSIVE */
             .galerie-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -848,13 +1052,53 @@
                 font-size: 0.9rem;
             }
             
-            /* 7. VIDEOS RESPONSIVE */
+            /* VIDEOS RESPONSIVE */
             .videos-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
             
-            /* 10. FOOTER */
+            /* MODAL RESPONSIVE */
+            .modal-container {
+                width: 95%;
+                max-width: 95%;
+            }
+            
+            .modal-media {
+                height: 50vh;
+            }
+            
+            .modal-close {
+                top: 10px;
+                right: 10px;
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .modal-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .modal-prev {
+                left: 10px;
+            }
+            
+            .modal-next {
+                right: 10px;
+            }
+            
+            .modal-title {
+                font-size: 1.2rem;
+            }
+            
+            .modal-description {
+                font-size: 0.85rem;
+            }
+            
+            /* FOOTER */
             .footer {
                 padding: 2rem 1rem 1rem;
             }
@@ -933,6 +1177,16 @@
                 width: 18px;
                 text-align: left;
             }
+            
+            .modal-media {
+                height: 40vh;
+            }
+            
+            .modal-nav {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -954,22 +1208,22 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
                 <li class="has-submenu">
-                    <a href="javascript:void(0)"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="submenu-trigger"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
                     <ul class="submenu">
                         <li><a href="etude.html"><i class="fas fa-graduation-cap"></i> Visa d'Etude</a></li>
                         <li><a href="travail.html"><i class="fas fa-briefcase"></i> Visa de Travail</a></li>
                         <li><a href="visiteur.html"><i class="fas fa-plane"></i> Visa Visiteur</a></li>
                         <li><a href="residence.html"><i class="fas fa-home"></i> Résidence Permanente</a></li>
                         <li><a href="billet.html"><i class="fas fa-ticket-alt"></i> Billets d'avion</a></li>
-                        <li><a href="logement.html" class="active"><i class="fas fa-building"></i> Assistance Logement</a></li>
+                        <li><a href="logement.html"><i class="fas fa-building"></i> Assistance Logement</a></li>
                         <li><a href="sejour.html"><i class="fas fa-id-card"></i> Assistance Titre de Séjour</a></li>
                         <li><a href="admissions.html"><i class="fas fa-university"></i> Admissions</a></li>
-                        <li><a href="galerie.html"><i class="fas fa-images"></i> Galerie Photo/Video</a></li>
+                        <li><a href="galerie.html" class="active"><i class="fas fa-images"></i> Galerie Photo/Video</a></li>
                     </ul>
                 </li>
-                <li><a href="colis.html"><i class="fas fa-university"></i> Envoyer/Recevoir un colis</a></li>
-                <li><a href="#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
-                <li><a href="index.html#equipe"><i class="fas fa-users"></i> Infos Paiement</a></li>
+                <li><a href="colis.html"><i class="fas fa-box"></i> Envoyer/Recevoir un colis</a></li>
+                <li><a href="index.html#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
+                <li><a href="index.html#paiement"><i class="fas fa-credit-card"></i> Infos Paiement</a></li>
                 <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
         </div>
@@ -1003,7 +1257,7 @@
             <!-- Grille Galerie -->
             <div class="galerie-grid">
                 <!-- Photo 1 -->
-                <div class="galerie-item" data-category="evenements" data-image="assets/images/img 1.jpeg">
+                <div class="galerie-item" data-category="evenements" data-image="assets/images/img 1.jpeg" data-title="Cérémonie de remise de visas">
                     <img src="assets/images/img 1.jpeg" alt="Cérémonie de remise de visas" loading="lazy">
                     <button class="galerie-zoom-btn">
                         <i class="fas fa-expand-alt"></i>
@@ -1015,7 +1269,7 @@
                 </div>
 
                 <!-- Photo 2 -->
-                <div class="galerie-item" data-category="evenements" data-image="assets/images/img 12.jpeg">
+                <div class="galerie-item" data-category="evenements" data-image="assets/images/img 12.jpeg" data-title="Cérémonie de remise de visas">
                     <img src="assets/images/img 12.jpeg" alt="Cérémonie de remise de visas" loading="lazy">
                     <button class="galerie-zoom-btn">
                         <i class="fas fa-expand-alt"></i>
@@ -1027,7 +1281,7 @@
                 </div>
 
                 <!-- Photo 3 -->
-                <div class="galerie-item" data-category="evenements" data-image="assets/images/img 20.jpeg">
+                <div class="galerie-item" data-category="evenements" data-image="assets/images/img 20.jpeg" data-title="Cérémonie de remise de visas">
                     <img src="assets/images/img 20.jpeg" alt="Cérémonie de remise de visas" loading="lazy">
                     <button class="galerie-zoom-btn">
                         <i class="fas fa-expand-alt"></i>
@@ -1039,7 +1293,7 @@
                 </div>
 
                 <!-- Photo 4 -->
-                <div class="galerie-item" data-category="evenements" data-image="assets/images/img 21.jpeg">
+                <div class="galerie-item" data-category="evenements" data-image="assets/images/img 21.jpeg" data-title="Cérémonie de remise de visas">
                     <img src="assets/images/img 21.jpeg" alt="Cérémonie de remise de visas" loading="lazy">
                     <button class="galerie-zoom-btn">
                         <i class="fas fa-expand-alt"></i>
@@ -1051,7 +1305,7 @@
                 </div>
 
                 <!-- Photo 5 -->
-                <div class="galerie-item" data-category="succes" data-image="assets/images/img 19.jpeg">
+                <div class="galerie-item" data-category="succes" data-image="assets/images/img 19.jpeg" data-title="Étudiant partant au Canada">
                     <img src="assets/images/img 19.jpeg" alt="Étudiant partant au Canada" loading="lazy">
                     <button class="galerie-zoom-btn">
                         <i class="fas fa-expand-alt"></i>
@@ -1063,7 +1317,7 @@
                 </div>
 
                 <!-- Photo 6 -->
-                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 4.jpeg">
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 4.jpeg" data-title="Equipe ISTA">
                     <img src="assets/images/img 4.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
                     <button class="galerie-zoom-btn">
                         <i class="fas fa-expand-alt"></i>
@@ -1075,7 +1329,7 @@
                 </div>
 
                 <!-- Photo 7 -->
-                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 5.jpeg">
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 5.jpeg" data-title="Equipe ISTA">
                     <img src="assets/images/img 5.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
                     <button class="galerie-zoom-btn">
                         <i class="fas fa-expand-alt"></i>
@@ -1087,7 +1341,7 @@
                 </div>
 
                 <!-- Photo 8 -->
-                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 24.jpeg">
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 24.jpeg" data-title="Equipe ISTA">
                     <img src="assets/images/img 24.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
                     <button class="galerie-zoom-btn">
                         <i class="fas fa-expand-alt"></i>
@@ -1099,7 +1353,7 @@
                 </div>
 
                 <!-- Photo 9 -->
-                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 15.jpeg">
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 15.jpeg" data-title="Equipe ISTA">
                     <img src="assets/images/img 15.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
                     <button class="galerie-zoom-btn">
                         <i class="fas fa-expand-alt"></i>
@@ -1111,7 +1365,7 @@
                 </div>
 
                 <!-- Photo 10 -->
-                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 25.jpeg">
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 25.jpeg" data-title="Equipe ISTA">
                     <img src="assets/images/img 25.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
                     <button class="galerie-zoom-btn">
                         <i class="fas fa-expand-alt"></i>
@@ -1123,7 +1377,7 @@
                 </div>
 
                 <!-- Photo 11 -->
-                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 18.jpeg">
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 18.jpeg" data-title="Equipe ISTA">
                     <img src="assets/images/img 18.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
                     <button class="galerie-zoom-btn">
                         <i class="fas fa-expand-alt"></i>
@@ -1135,7 +1389,7 @@
                 </div>
 
                 <!-- Photo 12 -->
-                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 23.jpeg">
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 23.jpeg" data-title="Equipe ISTA">
                     <img src="assets/images/img 23.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
                     <button class="galerie-zoom-btn">
                         <i class="fas fa-expand-alt"></i>
@@ -1147,7 +1401,7 @@
                 </div>
 
                 <!-- Photo 13 -->
-                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 9.jpeg">
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 9.jpeg" data-title="Equipe ISTA">
                     <img src="assets/images/img 9.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
                     <button class="galerie-zoom-btn">
                         <i class="fas fa-expand-alt"></i>
@@ -1159,7 +1413,7 @@
                 </div>
 
                 <!-- Photo 14 -->
-                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 22.jpeg">
+                <div class="galerie-item" data-category="equipe" data-image="assets/images/img 22.jpeg" data-title="Equipe ISTA">
                     <img src="assets/images/img 22.jpeg" alt="Réunion d'équipe ISTA" loading="lazy">
                     <button class="galerie-zoom-btn">
                         <i class="fas fa-expand-alt"></i>
@@ -1184,10 +1438,10 @@
 
             <div class="videos-grid">
                 <!-- Vidéo 1 -->
-                <div class="video-item">
+                <div class="video-item" data-video="assets/images/video 7.mp4" data-title="Présentation ISTA" data-description="Découvrez notre agence et nos services en vidéo">
                     <div class="video-thumbnail">
                         <img src="assets/images/img 11.jpeg" alt="Présentation ISTA">
-                        <div class="video-play-btn" data-video="assets/images/video 7.mp4">
+                        <div class="video-play-btn">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
@@ -1198,10 +1452,10 @@
                 </div>
 
                 <!-- Vidéo 2 -->
-                <div class="video-item">
+                <div class="video-item" data-video="assets/images/video 2.mp4" data-title="Présentation ISTA" data-description="Découvrez notre agence et nos services en vidéo">
                     <div class="video-thumbnail">
                         <img src="assets/images/img 17.jpeg" alt="Présentation ISTA">
-                        <div class="video-play-btn" data-video="assets/images/video 2.mp4">
+                        <div class="video-play-btn">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
@@ -1212,10 +1466,10 @@
                 </div>
 
                 <!-- Vidéo 3 -->
-                <div class="video-item">
+                <div class="video-item" data-video="assets/images/video 1.mp4" data-title="Témoignage étudiant - Canada" data-description="Elle partage son expérience avec ISTA pour ses études au Canada">
                     <div class="video-thumbnail">
                         <img src="assets/images/img 1.jpeg" alt="Témoignage étudiant">
-                        <div class="video-play-btn" data-video="assets/images/video 1.mp4">
+                        <div class="video-play-btn">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
@@ -1226,10 +1480,10 @@
                 </div>
 
                 <!-- Vidéo 4 -->
-                <div class="video-item">
+                <div class="video-item" data-video="assets/images/video 6.mp4" data-title="Témoignage étudiant - Canada" data-description="Il partage son expérience avec ISTA pour ses études au Canada">
                     <div class="video-thumbnail">
                         <img src="assets/images/img 2.jpeg" alt="Témoignage étudiant">
-                        <div class="video-play-btn" data-video="assets/images/video 6.mp4">
+                        <div class="video-play-btn">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
@@ -1240,10 +1494,10 @@
                 </div>
 
                 <!-- Vidéo 5 -->
-                <div class="video-item">
+                <div class="video-item" data-video="assets/images/video 5.mp4" data-title="Témoignage étudiant - Canada" data-description="Elle partage son expérience avec ISTA pour ses études au Canada">
                     <div class="video-thumbnail">
                         <img src="assets/images/img 5.jpeg" alt="Témoignage étudiant">
-                        <div class="video-play-btn" data-video="assets/images/video 5.mp4">
+                        <div class="video-play-btn">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
@@ -1254,10 +1508,10 @@
                 </div>
 
                 <!-- Vidéo 6 -->
-                <div class="video-item">
+                <div class="video-item" data-video="assets/images/video 4.mp4" data-title="Retrait des passeports à l'agence" data-description="Nos clients viennent nous présenter leurs passeports avec visa">
                     <div class="video-thumbnail">
                         <img src="assets/images/img 23.jpeg" alt="Retrait passeports">
-                        <div class="video-play-btn" data-video="assets/images/video 4.mp4">
+                        <div class="video-play-btn">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
@@ -1268,10 +1522,10 @@
                 </div>
 
                 <!-- Vidéo 7 -->
-                <div class="video-item">
+                <div class="video-item" data-video="assets/images/video 3.mp4" data-title="Retrait des passeports à l'agence" data-description="Nos clients viennent nous présenter leurs passeports avec visa">
                     <div class="video-thumbnail">
                         <img src="assets/images/img 24.jpeg" alt="Retrait passeports">
-                        <div class="video-play-btn" data-video="assets/images/video 3.mp4">
+                        <div class="video-play-btn">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
@@ -1301,10 +1555,10 @@
             <div class="footer-links">
                 <h4>Services</h4>
                 <ul>
-                    <li><a href="visa-etude.html"><i class="fas fa-angle-right"></i> Visa d'Étude</a></li>
-                    <li><a href="visa-travail.html"><i class="fas fa-angle-right"></i> Visa de Travail</a></li>
-                    <li><a href="visa-visiteur.html"><i class="fas fa-angle-right"></i> Visa Visiteur</a></li>
-                    <li><a href="residence-permanente.html"><i class="fas fa-angle-right"></i> Résidence Permanente</a></li>
+                    <li><a href="etude.html"><i class="fas fa-angle-right"></i> Visa d'Étude</a></li>
+                    <li><a href="travail.html"><i class="fas fa-angle-right"></i> Visa de Travail</a></li>
+                    <li><a href="visiteur.html"><i class="fas fa-angle-right"></i> Visa Visiteur</a></li>
+                    <li><a href="residence.html"><i class="fas fa-angle-right"></i> Résidence Permanente</a></li>
                 </ul>
             </div>
 
@@ -1320,8 +1574,8 @@
             <div class="footer-links">
                 <h4>Informations</h4>
                 <ul>
-                    <li><a href="temoignages.html"><i class="fas fa-angle-right"></i> Témoignages</a></li>
-                    <li><a href="paiement.html"><i class="fas fa-angle-right"></i> Paiement</a></li>
+                    <li><a href="index.html#temoignages"><i class="fas fa-angle-right"></i> Témoignages</a></li>
+                    <li><a href="index.html#paiement"><i class="fas fa-angle-right"></i> Paiement</a></li>
                     <li><a href="colis.html"><i class="fas fa-angle-right"></i> Colis</a></li>
                     <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
                 </ul>
@@ -1333,7 +1587,33 @@
         </div>
     </footer>
 
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-container">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="modal-nav modal-prev" id="modalPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="modal-nav modal-next" id="modalNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="modal-content">
+                <div class="modal-media" id="modalMedia">
+                    <!-- Le média (image ou vidéo) sera inséré ici -->
+                </div>
+                <div class="modal-info">
+                    <span class="modal-category" id="modalCategory"></span>
+                    <h3 class="modal-title" id="modalTitle"></h3>
+                    <p class="modal-description" id="modalDescription"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Navigation mobile
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
 
@@ -1424,791 +1704,237 @@
             });
         });
 
-        // Gestion des vidéos - AVEC BOUTONS SUIVANT/PRÉCÉDENT
-        const videoButtons = document.querySelectorAll('.video-play-btn');
-        const allVideoItems = Array.from(document.querySelectorAll('.video-item'));
-        
-        // Variables pour gérer les modales
-        let currentModal = null;
-        let modalType = null; // 'image' ou 'video'
-        let modalHistoryState = null;
-        
-        // Gestion du bouton retour du mobile
-        window.addEventListener('popstate', function(event) {
-            // Si on a une modale ouverte, on la ferme sans naviguer
-            if (currentModal) {
-                event.preventDefault();
-                closeCurrentModal();
-            }
-        });
-        
-        // Fonction pour empêcher la navigation par défaut
-        function preventBackNavigation(e) {
-            if (currentModal) {
-                // Empêcher la navigation normale
-                history.pushState(modalHistoryState, '', window.location.pathname + window.location.search);
-                closeCurrentModal();
-                return false;
-            }
-        }
-        
-        // Intercepter les événements de navigation
-        window.addEventListener('beforeunload', function(e) {
-            if (currentModal) {
-                // Ne rien faire, laisser la modale ouverte
-            }
-        });
-        
-        videoButtons.forEach((button, index) => {
-            button.addEventListener('click', (e) => {
-                e.stopPropagation(); // Empêcher la propagation
-                
-                const videoUrl = button.getAttribute('data-video');
-                const videoItem = button.closest('.video-item');
-                const videoIndex = allVideoItems.findIndex(item => item === videoItem);
-                const videoTitle = videoItem.querySelector('.video-info h3').textContent;
-                const videoDescription = videoItem.querySelector('.video-info p').textContent;
-                
-                // Stocker l'état dans notre variable, pas dans l'historique du navigateur
-                modalHistoryState = { modal: 'video', index: videoIndex };
-                
-                showVideoModal(videoUrl, videoTitle, videoDescription, videoIndex);
-            });
-        });
+        // Gestion des modales
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalClose = document.getElementById('modalClose');
+        const modalPrev = document.getElementById('modalPrev');
+        const modalNext = document.getElementById('modalNext');
+        const modalMedia = document.getElementById('modalMedia');
+        const modalCategory = document.getElementById('modalCategory');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
 
-        // Fonction pour créer et afficher la modale vidéo avec navigation
-        function showVideoModal(videoUrl, title, description, currentIndex) {
-            modalType = 'video';
+        let currentItems = []; // Les éléments actuellement dans la modal
+        let currentIndex = 0; // L'index de l'élément courant
+        let currentType = ''; // 'image' ou 'video'
+
+        // Collecter toutes les images et vidéos
+        const imageItems = Array.from(document.querySelectorAll('.galerie-item'));
+        const videoItems = Array.from(document.querySelectorAll('.video-item'));
+
+        // Fonction pour ouvrir la modal
+        function openModal(items, index, type) {
+            currentItems = items;
+            currentIndex = index;
+            currentType = type;
             
-            // Désactiver le défilement
+            // Mettre à jour le contenu de la modal
+            updateModalContent();
+            
+            // Afficher la modal avec animation
+            modalOverlay.classList.add('active');
+            setTimeout(() => {
+                modalOverlay.querySelector('.modal-container').classList.add('modal-enter');
+            }, 10);
+            
+            // Ajouter l'état à l'historique pour le bouton retour
+            history.pushState({ modal: true, type, index }, '', '#modal');
+            
+            // Désactiver le défilement de la page
             document.body.style.overflow = 'hidden';
-            document.documentElement.style.overflow = 'hidden';
+        }
+
+        // Fonction pour fermer la modal
+        function closeModal() {
+            // Animation de fermeture
+            modalOverlay.querySelector('.modal-container').classList.remove('modal-enter');
+            modalOverlay.querySelector('.modal-container').classList.add('modal-exit');
             
-            // Créer la modale
-            const modal = document.createElement('div');
-            modal.className = 'video-lightbox-modal';
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.98);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 3000;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            `;
-            
-            // Conteneur vidéo
-            const videoContainer = document.createElement('div');
-            videoContainer.style.cssText = `
-                position: relative;
-                width: 90%;
-                max-width: 900px;
-                max-height: 90vh;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            `;
-            
-            // Conteneur pour la vidéo
-            const videoWrapper = document.createElement('div');
-            videoWrapper.style.cssText = `
-                width: 100%;
-                aspect-ratio: 16/9;
-                background: #000;
-                border-radius: 10px;
-                overflow: hidden;
-                margin-bottom: 1rem;
-                position: relative;
-            `;
-            
-            let videoElement;
-            const isLocalVideo = videoUrl.includes('.mp4') || videoUrl.includes('.webm') || videoUrl.includes('.ogg');
-            
-            if (isLocalVideo) {
-                // Pour les vidéos locales
-                videoElement = document.createElement('video');
-                videoElement.style.cssText = `
-                    width: 100%;
-                    height: 100%;
-                    object-fit: contain;
-                    background: #000;
-                `;
-                videoElement.controls = true;
-                videoElement.autoplay = true;
+            setTimeout(() => {
+                modalOverlay.classList.remove('active');
+                modalOverlay.querySelector('.modal-container').classList.remove('modal-exit');
                 
-                const source = document.createElement('source');
-                source.src = videoUrl;
-                source.type = 'video/mp4';
-                videoElement.appendChild(source);
-                
-                videoElement.innerHTML += `
-                    Votre navigateur ne supporte pas la lecture de vidéos.
-                    <a href="${videoUrl}">Télécharger la vidéo</a>
-                `;
-            } else {
-                // Pour les vidéos YouTube
-                videoElement = document.createElement('iframe');
-                videoElement.style.cssText = `
-                    width: 100%;
-                    height: 100%;
-                    border: none;
-                `;
-                videoElement.src = videoUrl + (videoUrl.includes('?') ? '&' : '?') + 'autoplay=1';
-                videoElement.frameBorder = '0';
-                videoElement.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-                videoElement.allowFullscreen = true;
-            }
-            
-            // Info vidéo
-            const infoDiv = document.createElement('div');
-            infoDiv.style.cssText = `
-                color: white;
-                text-align: center;
-                width: 100%;
-                padding: 0 1rem;
-                margin-top: 1rem;
-            `;
-            
-            const titleH3 = document.createElement('h3');
-            titleH3.textContent = title;
-            titleH3.style.cssText = `
-                font-family: 'Playfair Display', serif;
-                font-size: 1.5rem;
-                color: var(--gold);
-                margin-bottom: 0.5rem;
-            `;
-            
-            const descP = document.createElement('p');
-            descP.textContent = description;
-            descP.style.cssText = `
-                color: rgba(255, 255, 255, 0.8);
-                font-size: 1rem;
-                line-height: 1.5;
-            `;
-            
-            // Bouton de fermeture (en haut à droite du conteneur vidéo)
-            const closeBtn = document.createElement('button');
-            closeBtn.className = 'modal-close-btn';
-            closeBtn.innerHTML = '<i class="fas fa-times"></i>';
-            closeBtn.setAttribute('aria-label', 'Fermer');
-            
-            // Bouton précédent (petite taille, à gauche de la vidéo)
-            const prevBtn = document.createElement('button');
-            prevBtn.className = 'modal-nav-btn modal-prev-btn';
-            prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
-            prevBtn.setAttribute('aria-label', 'Précédent');
-            
-            // Bouton suivant (petite taille, à droite de la vidéo)
-            const nextBtn = document.createElement('button');
-            nextBtn.className = 'modal-nav-btn modal-next-btn';
-            nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
-            nextBtn.setAttribute('aria-label', 'Suivant');
-            
-            // Fonction pour fermer la modale
-            const closeVideoModal = () => {
-                if (isLocalVideo && videoElement) {
-                    videoElement.pause();
-                    videoElement.currentTime = 0;
+                // Arrêter la vidéo si elle est en cours
+                const video = modalMedia.querySelector('video');
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
                 }
                 
                 // Réactiver le défilement
                 document.body.style.overflow = '';
-                document.documentElement.style.overflow = '';
                 
-                if (document.body.contains(modal)) {
-                    document.body.removeChild(modal);
-                }
-                document.removeEventListener('keydown', handleKeydown);
-                
-                // Réinitialiser les variables
-                currentModal = null;
-                modalType = null;
-                modalHistoryState = null;
-                
-                // Réinitialiser l'URL sans changer l'historique
-                if (window.location.hash) {
-                    history.replaceState(null, '', window.location.pathname + window.location.search);
-                }
-            };
-            
-            // Fonction pour fermer la modal courante
-            const closeCurrentModal = () => {
-                if (modalType === 'video') {
-                    closeVideoModal();
-                } else if (modalType === 'image') {
-                    // Appeler la fonction de fermeture d'image
-                    if (typeof window.closeImageModal === 'function') {
-                        window.closeImageModal();
+                // Si on est en mobile, revenir à la section appropriée
+                if (window.innerWidth <= 768) {
+                    const scrollTarget = currentType === 'image' ? '.galerie-section' : '.videos-section';
+                    const targetElement = document.querySelector(scrollTarget);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
                     }
                 }
-            };
-            
-            // Fonction pour naviguer vers une vidéo - CORRIGÉ
-            const navigateToVideo = (direction) => {
-                let newIndex;
-                if (direction === 'next') {
-                    newIndex = (currentIndex + 1) % allVideoItems.length;
-                } else {
-                    newIndex = (currentIndex - 1 + allVideoItems.length) % allVideoItems.length;
-                }
                 
-                const nextItem = allVideoItems[newIndex];
-                const nextButton = nextItem.querySelector('.video-play-btn');
-                const nextVideoUrl = nextButton.getAttribute('data-video');
-                const nextTitle = nextItem.querySelector('.video-info h3').textContent;
-                const nextDescription = nextItem.querySelector('.video-info p').textContent;
-                
-                // Mettre à jour notre état local seulement
-                modalHistoryState = { modal: 'video', index: newIndex };
-                
-                // Fermer la modale actuelle
-                closeVideoModal();
-                
-                // Ouvrir la nouvelle vidéo
-                setTimeout(() => {
-                    showVideoModal(nextVideoUrl, nextTitle, nextDescription, newIndex);
-                }, 100);
-            };
-            
-            // Événements pour les boutons de navigation
-            closeBtn.addEventListener('click', closeVideoModal);
-            prevBtn.addEventListener('click', () => navigateToVideo('prev'));
-            nextBtn.addEventListener('click', () => navigateToVideo('next'));
-            
-            // Gestion de la touche Échap
-            const handleKeydown = (e) => {
-                if (e.key === 'Escape') {
-                    closeVideoModal();
-                } else if (e.key === 'ArrowLeft') {
-                    navigateToVideo('prev');
-                } else if (e.key === 'ArrowRight') {
-                    navigateToVideo('next');
-                }
-            };
-            
-            document.addEventListener('keydown', handleKeydown);
-            
-            // Fermer en cliquant à l'extérieur
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeVideoModal();
-                }
-            });
-            
-            // Empêcher la propagation dans le conteneur vidéo
-            videoContainer.addEventListener('click', (e) => {
-                e.stopPropagation();
-            });
-            
-            // Assembler les éléments
-            infoDiv.appendChild(titleH3);
-            infoDiv.appendChild(descP);
-            videoWrapper.appendChild(videoElement);
-            videoContainer.appendChild(videoWrapper);
-            videoContainer.appendChild(infoDiv);
-            videoContainer.appendChild(closeBtn);
-            videoContainer.appendChild(prevBtn);
-            videoContainer.appendChild(nextBtn);
-            modal.appendChild(videoContainer);
-            document.body.appendChild(modal);
-            
-            // Stocker la référence à la modal courante
-            currentModal = modal;
-            
-            // Animation d'entrée
-            setTimeout(() => {
-                modal.style.opacity = '1';
-            }, 10);
-            
-            // Pour les vidéos locales, essayer de les lire
-            if (isLocalVideo && videoElement) {
-                videoElement.play().catch(error => {
-                    console.error('Erreur de lecture vidéo:', error);
-                });
-            }
-        }
-
-        // Lightbox pour les images de la galerie - CORRIGÉ
-        const galleryImageItems = Array.from(document.querySelectorAll('.galerie-item'));
-        const zoomButtons = document.querySelectorAll('.galerie-zoom-btn');
-
-        // Fonction pour créer et afficher la lightbox
-        function showImageLightbox(imageUrl, title, category, currentIndex) {
-            modalType = 'image';
-            
-            // Désactiver le défilement
-            document.body.style.overflow = 'hidden';
-            document.documentElement.style.overflow = 'hidden';
-            
-            // Stocker l'état dans notre variable
-            modalHistoryState = { modal: 'image', index: currentIndex };
-            
-            // Créer la modale
-            const modal = document.createElement('div');
-            modal.className = 'image-lightbox-modal';
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.98);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 3000;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            `;
-            
-            // Conteneur de l'image
-            const imageContainer = document.createElement('div');
-            imageContainer.style.cssText = `
-                position: relative;
-                width: 90%;
-                max-width: 1200px;
-                max-height: 90vh;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            `;
-            
-            // Image agrandie
-            const img = document.createElement('img');
-            img.src = imageUrl;
-            img.alt = title;
-            img.style.cssText = `
-                width: 100%;
-                height: auto;
-                max-height: 70vh;
-                object-fit: contain;
-                border-radius: 10px;
-                transform: scale(0.9);
-                transition: transform 0.3s ease;
-            `;
-            
-            // Info de l'image
-            const infoDiv = document.createElement('div');
-            infoDiv.style.cssText = `
-                color: white;
-                text-align: center;
-                margin-top: 1.5rem;
-                width: 100%;
-                padding: 0 1rem;
-            `;
-            
-            const categorySpan = document.createElement('span');
-            categorySpan.textContent = category;
-            categorySpan.style.cssText = `
-                display: inline-block;
-                padding: 0.4rem 1rem;
-                background: var(--gold);
-                color: var(--dark-navy);
-                border-radius: 20px;
-                font-size: 0.85rem;
-                font-weight: 600;
-                margin-bottom: 0.8rem;
-            `;
-            
-            const titleH3 = document.createElement('h3');
-            titleH3.textContent = title;
-            titleH3.style.cssText = `
-                font-family: 'Playfair Display', serif;
-                font-size: 1.5rem;
-                color: white;
-                margin: 0;
-            `;
-            
-            // Bouton de fermeture (en haut à droite du conteneur image)
-            const closeBtn = document.createElement('button');
-            closeBtn.className = 'modal-close-btn';
-            closeBtn.innerHTML = '<i class="fas fa-times"></i>';
-            closeBtn.setAttribute('aria-label', 'Fermer');
-            
-            // Bouton précédent (petite taille, à gauche de l'image)
-            const prevBtn = document.createElement('button');
-            prevBtn.className = 'modal-nav-btn modal-prev-btn';
-            prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
-            prevBtn.setAttribute('aria-label', 'Précédent');
-            
-            // Bouton suivant (petite taille, à droite de l'image)
-            const nextBtn = document.createElement('button');
-            nextBtn.className = 'modal-nav-btn modal-next-btn';
-            nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
-            nextBtn.setAttribute('aria-label', 'Suivant');
-            
-            // Fonction pour fermer la modale et restaurer le défilement
-            const closeImageModal = () => {
-                // Réactiver le défilement
-                document.body.style.overflow = '';
-                document.documentElement.style.overflow = '';
-                
-                if (document.body.contains(modal)) {
-                    document.body.removeChild(modal);
-                }
-                document.removeEventListener('keydown', handleKeydown);
-                
-                // Réinitialiser les variables
-                currentModal = null;
-                modalType = null;
-                modalHistoryState = null;
-                
-                // Réinitialiser l'URL sans changer l'historique
-                if (window.location.hash) {
+                // Nettoyer l'URL sans navigation
+                if (window.location.hash === '#modal') {
                     history.replaceState(null, '', window.location.pathname + window.location.search);
                 }
-            };
-            
-            // Exposer la fonction globalement pour la gestion du bouton retour
-            window.closeImageModal = closeImageModal;
-            
-            // Fonction pour naviguer vers une image - CORRIGÉ
-            const navigateToImage = (direction) => {
-                let newIndex;
-                if (direction === 'next') {
-                    newIndex = (currentIndex + 1) % galleryImageItems.length;
-                } else {
-                    newIndex = (currentIndex - 1 + galleryImageItems.length) % galleryImageItems.length;
-                }
-                
-                const nextItem = galleryImageItems[newIndex];
-                const nextImage = nextItem.getAttribute('data-image');
-                const nextTitle = nextItem.querySelector('.galerie-title').textContent;
-                const nextCategory = nextItem.querySelector('.galerie-category').textContent;
-                
-                // Mettre à jour notre état local seulement
-                modalHistoryState = { modal: 'image', index: newIndex };
-                
-                // Fermer la modale actuelle
-                closeImageModal();
-                
-                // Ouvrir la nouvelle image
-                setTimeout(() => {
-                    showImageLightbox(nextImage, nextTitle, nextCategory, newIndex);
-                }, 100);
-            };
-            
-            // Événements pour les boutons de navigation
-            closeBtn.addEventListener('click', closeImageModal);
-            prevBtn.addEventListener('click', () => navigateToImage('prev'));
-            nextBtn.addEventListener('click', () => navigateToImage('next'));
-            
-            // Navigation au clavier
-            const handleKeydown = (e) => {
-                if (e.key === 'Escape') {
-                    closeImageModal();
-                } else if (e.key === 'ArrowLeft') {
-                    navigateToImage('prev');
-                } else if (e.key === 'ArrowRight') {
-                    navigateToImage('next');
-                }
-            };
-            
-            document.addEventListener('keydown', handleKeydown);
-            
-            // Fermer en cliquant à l'extérieur
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeImageModal();
-                }
-            });
-            
-            // Empêcher la propagation dans le conteneur image
-            imageContainer.addEventListener('click', (e) => {
-                e.stopPropagation();
-            });
-            
-            // Assembler les éléments
-            infoDiv.appendChild(categorySpan);
-            infoDiv.appendChild(titleH3);
-            imageContainer.appendChild(img);
-            imageContainer.appendChild(infoDiv);
-            imageContainer.appendChild(closeBtn);
-            imageContainer.appendChild(prevBtn);
-            imageContainer.appendChild(nextBtn);
-            modal.appendChild(imageContainer);
-            
-            // Ajouter au DOM
-            document.body.appendChild(modal);
-            
-            // Stocker la référence à la modal courante
-            currentModal = modal;
-            
-            // Animation d'entrée
-            setTimeout(() => {
-                modal.style.opacity = '1';
-                img.style.transform = 'scale(1)';
-            }, 10);
+            }, 400);
         }
 
-        // Ajouter les événements de clic aux cartes d'images et boutons de zoom
-        galleryImageItems.forEach((item, index) => {
-            // Cliquer sur la carte entière
+        // Fonction pour mettre à jour le contenu de la modal
+        function updateModalContent() {
+            const currentItem = currentItems[currentIndex];
+            
+            // Vider le contenu précédent
+            modalMedia.innerHTML = '';
+            
+            if (currentType === 'image') {
+                // Afficher une image
+                const img = document.createElement('img');
+                img.src = currentItem.getAttribute('data-image');
+                img.alt = currentItem.getAttribute('data-title');
+                modalMedia.appendChild(img);
+                
+                // Mettre à jour les informations
+                modalCategory.textContent = currentItem.getAttribute('data-category');
+                modalTitle.textContent = currentItem.getAttribute('data-title');
+                modalDescription.textContent = '';
+            } else if (currentType === 'video') {
+                // Afficher une vidéo
+                const video = document.createElement('video');
+                video.controls = true;
+                video.autoplay = true;
+                video.style.width = '100%';
+                video.style.height = '100%';
+                
+                const source = document.createElement('source');
+                source.src = currentItem.getAttribute('data-video');
+                source.type = 'video/mp4';
+                video.appendChild(source);
+                
+                modalMedia.appendChild(video);
+                
+                // Mettre à jour les informations
+                modalCategory.textContent = 'Vidéo';
+                modalTitle.textContent = currentItem.getAttribute('data-title');
+                modalDescription.textContent = currentItem.getAttribute('data-description');
+            }
+            
+            // Mettre à jour les boutons de navigation
+            modalPrev.style.display = currentItems.length > 1 ? 'flex' : 'none';
+            modalNext.style.display = currentItems.length > 1 ? 'flex' : 'none';
+        }
+
+        // Fonction pour naviguer vers l'élément précédent
+        function goToPrev() {
+            currentIndex = (currentIndex - 1 + currentItems.length) % currentItems.length;
+            updateModalContent();
+            
+            // Mettre à jour l'historique
+            history.replaceState({ modal: true, type: currentType, index: currentIndex }, '', '#modal');
+        }
+
+        // Fonction pour naviguer vers l'élément suivant
+        function goToNext() {
+            currentIndex = (currentIndex + 1) % currentItems.length;
+            updateModalContent();
+            
+            // Mettre à jour l'historique
+            history.replaceState({ modal: true, type: currentType, index: currentIndex }, '', '#modal');
+        }
+
+        // Événements pour les images
+        imageItems.forEach((item, index) => {
+            // Clic sur l'image
             item.addEventListener('click', (e) => {
                 // Ne pas déclencher si on clique sur le bouton de zoom
                 if (!e.target.closest('.galerie-zoom-btn')) {
-                    const imageUrl = item.getAttribute('data-image');
-                    const title = item.querySelector('.galerie-title').textContent;
-                    const category = item.querySelector('.galerie-category').textContent;
-                    showImageLightbox(imageUrl, title, category, index);
+                    openModal(imageItems, index, 'image');
                 }
             });
             
-            // Cliquer sur le bouton de zoom
+            // Clic sur le bouton de zoom
             const zoomBtn = item.querySelector('.galerie-zoom-btn');
             if (zoomBtn) {
                 zoomBtn.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Empêcher le déclenchement de l'événement sur la carte
-                    const imageUrl = item.getAttribute('data-image');
-                    const title = item.querySelector('.galerie-title').textContent;
-                    const category = item.querySelector('.galerie-category').textContent;
-                    showImageLightbox(imageUrl, title, category, index);
+                    e.stopPropagation();
+                    openModal(imageItems, index, 'image');
                 });
             }
         });
 
-        // Ajouter du CSS pour la responsive de la lightbox
-        const style = document.createElement('style');
-        style.textContent = `
-            /* Styles communs pour les boutons des modales */
-            .modal-close-btn {
-                position: absolute !important;
-                top: -45px !important;
-                right: 0 !important;
-                background: var(--gold) !important;
-                color: var(--dark-navy) !important;
-                border: none !important;
-                width: 40px !important;
-                height: 40px !important;
-                border-radius: 50% !important;
-                cursor: pointer !important;
-                font-size: 1.2rem !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                transition: all 0.3s ease !important;
-                z-index: 10 !important;
+        // Événements pour les vidéos
+        videoItems.forEach((item, index) => {
+            const playBtn = item.querySelector('.video-play-btn');
+            if (playBtn) {
+                playBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openModal(videoItems, index, 'video');
+                });
             }
             
-            .modal-nav-btn {
-                position: absolute !important;
-                top: 50% !important;
-                transform: translateY(-50%) !important;
-                background: rgba(212, 175, 55, 0.8) !important;
-                color: var(--dark-navy) !important;
-                border: none !important;
-                width: 40px !important;
-                height: 40px !important;
-                border-radius: 50% !important;
-                cursor: pointer !important;
-                font-size: 1rem !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                transition: all 0.3s ease !important;
-                z-index: 10 !important;
-            }
-            
-            .modal-prev-btn {
-                left: -50px !important;
-            }
-            
-            .modal-next-btn {
-                right: -50px !important;
-            }
-            
-            .modal-close-btn:hover,
-            .modal-nav-btn:hover {
-                background: var(--gold) !important;
-                transform: scale(1.1) !important;
-            }
-            
-            .modal-prev-btn:hover {
-                transform: translateY(-50%) scale(1.1) !important;
-            }
-            
-            .modal-next-btn:hover {
-                transform: translateY(-50%) scale(1.1) !important;
-            }
-            
-            /* Styles pour mobile - réduire les boutons */
-            @media (max-width: 768px) {
-                .modal-close-btn {
-                    width: 35px !important;
-                    height: 35px !important;
-                    font-size: 1rem !important;
-                    top: 10px !important;
-                    right: 10px !important;
+            // Clic sur la vignette vidéo
+            item.addEventListener('click', (e) => {
+                // Ne pas déclencher si on clique sur le bouton de lecture
+                if (!e.target.closest('.video-play-btn')) {
+                    openModal(videoItems, index, 'video');
                 }
-                
-                .modal-nav-btn {
-                    width: 35px !important;
-                    height: 35px !important;
-                    font-size: 0.9rem !important;
-                }
-                
-                .modal-prev-btn {
-                    left: 10px !important;
-                }
-                
-                .modal-next-btn {
-                    right: 10px !important;
-                }
-                
-                .modal-prev-btn:hover {
-                    transform: translateY(-50%) scale(1.05) !important;
-                }
-                
-                .modal-next-btn:hover {
-                    transform: translateY(-50%) scale(1.05) !important;
-                }
-                
-                /* Ajuster la position des boutons de navigation */
-                .image-lightbox-modal > div,
-                .video-lightbox-modal > div {
-                    width: 95% !important;
-                }
-                
-                /* Réduire la taille des textes sur mobile */
-                .image-lightbox-modal h3,
-                .video-lightbox-modal h3 {
-                    font-size: 1.2rem !important;
-                }
-                
-                .image-lightbox-modal p,
-                .video-lightbox-modal p {
-                    font-size: 0.9rem !important;
-                }
-                
-                .image-lightbox-modal span,
-                .video-lightbox-modal span {
-                    font-size: 0.75rem !important;
-                    padding: 0.3rem 0.8rem !important;
-                }
-                
-                /* Ajuster la taille maximale de l'image/vidéo */
-                .image-lightbox-modal img {
-                    max-height: 60vh !important;
-                }
-                
-                .video-lightbox-modal div[aspect-ratio] {
-                    max-height: 50vh !important;
-                }
-            }
-            
-            /* Styles pour très petits écrans */
-            @media (max-width: 480px) {
-                .modal-close-btn {
-                    width: 30px !important;
-                    height: 30px !important;
-                    font-size: 0.8rem !important;
-                    top: 5px !important;
-                    right: 5px !important;
-                }
-                
-                .modal-nav-btn {
-                    width: 30px !important;
-                    height: 30px !important;
-                    font-size: 0.8rem !important;
-                }
-                
-                .modal-prev-btn {
-                    left: 5px !important;
-                }
-                
-                .modal-next-btn {
-                    right: 5px !important;
-                }
-                
-                .image-lightbox-modal h3,
-                .video-lightbox-modal h3 {
-                    font-size: 1rem !important;
-                }
-                
-                .image-lightbox-modal p,
-                .video-lightbox-modal p {
-                    font-size: 0.8rem !important;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Nettoyer l'URL quand la page est chargée
-        window.addEventListener('load', function() {
-            if (window.location.hash) {
-                history.replaceState(null, '', window.location.pathname + window.location.search);
+            });
+        });
+
+        // Événements de la modal
+        modalClose.addEventListener('click', closeModal);
+        modalPrev.addEventListener('click', goToPrev);
+        modalNext.addEventListener('click', goToNext);
+
+        // Fermer la modal en cliquant à l'extérieur
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                closeModal();
             }
         });
 
-                // Empêcher la navigation par défaut quand une modale est ouverte
-        (function() {
-            let modalOpen = false;
-            
-            // Surcharger la fonction pushState pour éviter les problèmes
-            const originalPushState = history.pushState;
-            history.pushState = function(state, title, url) {
-                if (!modalOpen) {
-                    originalPushState.call(history, state, title, url);
+        // Navigation au clavier
+        document.addEventListener('keydown', (e) => {
+            if (modalOverlay.classList.contains('active')) {
+                switch (e.key) {
+                    case 'Escape':
+                        closeModal();
+                        break;
+                    case 'ArrowLeft':
+                        goToPrev();
+                        break;
+                    case 'ArrowRight':
+                        goToNext();
+                        break;
                 }
-            };
-            
-            // Surcharger la fonction replaceState
-            const originalReplaceState = history.replaceState;
-            history.replaceState = function(state, title, url) {
-                if (!modalOpen) {
-                    originalReplaceState.call(history, state, title, url);
-                }
-            };
-            
-            // Surveiller l'ouverture/fermeture des modales
-            const originalShowImageLightbox = window.showImageLightbox;
-            const originalShowVideoModal = window.showVideoModal;
-            
-            if (originalShowImageLightbox) {
-                window.showImageLightbox = function(...args) {
-                    modalOpen = true;
-                    return originalShowImageLightbox(...args);
-                };
+            }
+        });
+
+        // Gestion du bouton retour du navigateur
+        window.addEventListener('popstate', (e) => {
+            if (modalOverlay.classList.contains('active')) {
+                // Fermer la modal sans ajouter d'historique supplémentaire
+                e.preventDefault();
+                closeModal();
+            }
+        });
+
+        // Initialisation
+        window.addEventListener('DOMContentLoaded', () => {
+            // Marquer le lien Galerie comme actif
+            const galerieLink = document.querySelector('.nav-menu a[href="galerie.html"]');
+            if (galerieLink) {
+                galerieLink.classList.add('active');
             }
             
-            if (originalShowVideoModal) {
-                window.showVideoModal = function(...args) {
-                    modalOpen = true;
-                    return originalShowVideoModal(...args);
-                };
+            // S'assurer que l'URL est propre au chargement
+            if (window.location.hash === '#modal') {
+                history.replaceState(null, '', window.location.pathname + window.location.search);
             }
-            
-            // Fonction pour réinitialiser quand une modale est fermée
-            window.resetModalState = function() {
-                modalOpen = false;
-                currentModal = null;
-                modalType = null;
-                modalHistoryState = null;
-            };
-            
-            // Exposer les fonctions de fermeture
-            window.closeCurrentModal = function() {
-                if (modalType === 'video') {
-                    // Appeler la fonction de fermeture de vidéo
-                    const videoModal = document.querySelector('.video-lightbox-modal');
-                    if (videoModal) {
-                        const closeBtn = videoModal.querySelector('.modal-close-btn');
-                        if (closeBtn) closeBtn.click();
-                    }
-                } else if (modalType === 'image') {
-                    // Appeler la fonction de fermeture d'image
-                    if (typeof window.closeImageModal === 'function') {
-                        window.closeImageModal();
-                    }
-                }
-                resetModalState();
-            };
-        })();
+        });
     </script>
 </body>
 </html>
