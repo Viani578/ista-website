@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Réutilisez les mêmes variables CSS que index.html */
         :root {
             --primary-red: #DC143C;
             --primary-blue: #1E40AF;
@@ -62,7 +61,7 @@
             padding: 0 2rem;
         }
 
-        /* Navigation - CORRIGÉ pour aligner comme index.html */
+        /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
@@ -117,7 +116,7 @@
             color: var(--dark-navy);
         }
 
-        /* Menu de navigation - CORRIGÉ pour alignement comme index.html */
+        /* Menu de navigation */
         .nav-menu {
             display: flex;
             list-style: none;
@@ -164,13 +163,18 @@
             color: var(--gold);
         }
 
+        .nav-menu a i:not(.fa-chevron-down) {
+            color: var(--primary-blue);
+            transition: var(--transition);
+        }
+
         .nav-menu a i {
             font-size: 1rem;
             width: 20px;
             text-align: left;
         }
 
-        /* Sous-menu - CORRIGÉ pour alignement comme index.html */
+        /* Sous-menu */
         .has-submenu {
             position: relative;
         }
@@ -221,7 +225,7 @@
             text-align: left;
         }
 
-        /* Menu mobile - CORRIGÉ pour alignement comme index.html */
+        /* Menu mobile */
         .mobile-toggle {
             display: none;
             background: none;
@@ -643,7 +647,6 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
-        /* Responsive Design - CORRIGÉ pour alignement mobile comme index.html */
         @media (max-width: 1024px) {
             .galerie-grid {
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -675,7 +678,7 @@
                 display: block;
             }
 
-            /* 3. NAVBAR - CORRIGÉ pour alignement comme index.html */
+            /* 3. NAVBAR */
             .navbar {
                 padding: 0.8rem 0;
             }
@@ -711,7 +714,7 @@
                 padding: 0.3rem;
             }
 
-            /* 4. MENU MOBILE - CORRIGÉ pour alignement comme index.html */
+            /* 4. MENU MOBILE */
             .nav-menu {
                 position: fixed;
                 left: -100%;
@@ -746,7 +749,6 @@
                 gap: 0.5rem;
             }
             
-            /* Correction pour les liens avec sous-menu - comme index.html */
             .has-submenu > a {
                 position: relative;
             }
@@ -764,7 +766,7 @@
                 transform: rotate(180deg);
             }
             
-            /* Sous-menu mobile - comme index.html */
+            /* Sous-menu mobile */
             .submenu {
                 position: static;
                 opacity: 1;
@@ -799,7 +801,6 @@
                 background: rgba(212, 175, 55, 0.1);
             }
             
-            /* Icônes dans le menu mobile - alignées comme index.html */
             .nav-menu a i:first-child {
                 font-size: 1rem;
                 width: 24px;
@@ -907,7 +908,6 @@
                 grid-template-columns: 1fr;
             }
             
-            /* Navigation mobile sur très petits écrans - comme index.html */
             .nav-menu {
                 width: 85%;
             }
@@ -956,14 +956,14 @@
                 <li class="has-submenu">
                     <a href="javascript:void(0)"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
                     <ul class="submenu">
-                        <li><a href="#etude.html"><i class="fas fa-graduation-cap"></i> Visa d'Etude</a></li>
-                        <li><a href="#travail.html"><i class="fas fa-briefcase"></i> Visa de Travail</a></li>
-                        <li><a href="#visiteur.html"><i class="fas fa-plane"></i> Visa Visiteur</a></li>
-                        <li><a href="#residence.html"><i class="fas fa-home"></i> Résidence Permanente</a></li>
-                        <li><a href="#billet.html"><i class="fas fa-ticket-alt"></i> Billets d'avion</a></li>
-                        <li><a href="#logement.html"><i class="fas fa-building"></i> Assistance Logement</a></li>
-                        <li><a href="#sejour.html"><i class="fas fa-id-card"></i> Assistance Titre de Séjour</a></li>
-                        <li><a href="#admissions.html"><i class="fas fa-university"></i> Admissions</a></li>
+                        <li><a href="etude.html"><i class="fas fa-graduation-cap"></i> Visa d'Etude</a></li>
+                        <li><a href="travail.html"><i class="fas fa-briefcase"></i> Visa de Travail</a></li>
+                        <li><a href="visiteur.html"><i class="fas fa-plane"></i> Visa Visiteur</a></li>
+                        <li><a href="residence.html"><i class="fas fa-home"></i> Résidence Permanente</a></li>
+                        <li><a href="billet.html"><i class="fas fa-ticket-alt"></i> Billets d'avion</a></li>
+                        <li><a href="logement.html" class="active"><i class="fas fa-building"></i> Assistance Logement</a></li>
+                        <li><a href="sejour.html"><i class="fas fa-id-card"></i> Assistance Titre de Séjour</a></li>
+                        <li><a href="admissions.html"><i class="fas fa-university"></i> Admissions</a></li>
                         <li><a href="galerie.html"><i class="fas fa-images"></i> Galerie Photo/Video</a></li>
                     </ul>
                 </li>
@@ -1334,7 +1334,6 @@
     </footer>
 
     <script>
-        // Navigation mobile (corrigé)
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
 
@@ -1434,7 +1433,7 @@
         let modalType = null; // 'image' ou 'video'
         let modalHistoryState = null;
         
-        // Gestion du bouton retour du mobile - CORRIGÉ
+        // Gestion du bouton retour du mobile
         window.addEventListener('popstate', function(event) {
             // Si on a une modale ouverte, on la ferme sans naviguer
             if (currentModal) {
