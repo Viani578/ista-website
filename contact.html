@@ -1,1500 +1,3 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISTA - Contact | International Success Travel Agency</title>
-    <meta name="description" content="Contactez ISTA - Agence de voyage internationale spécialisée dans l'immigration et les services de visa. Nous sommes là pour vous aider.">
-    <meta name="keywords" content="contact ISTA, agence immigration, visa, consultation, devis">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Contact ISTA - International Success Travel Agency">
-    <meta property="og:description" content="Contactez nos experts en immigration et visas">
-    <meta property="og:image" content="assets/images/og-image.jpg">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/images/remove.png">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Leaflet CSS pour la carte -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
-    <style>
-        /* Variables et configuration de base */
-        :root {
-            --primary-red: #DC143C;
-            --primary-blue: #1E40AF;
-            --gold: #D4AF37;
-            --dark-navy: #0A1929;
-            --cream: #FAF8F3;
-            --soft-white: #FFFFFF;
-            --text-dark: #1A1A1A;
-            --text-light: #6B7280;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
-            --transition: all 0.3s ease;
-            --border-radius: 12px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Manrope', sans-serif;
-            color: var(--text-dark);
-            background: var(--cream);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Typographie améliorée */
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        h1 { font-size: 3.5rem; }
-        h2 { font-size: 2.5rem; }
-        h3 { font-size: 2rem; }
-        h4 { font-size: 1.5rem; }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            h3 { font-size: 1.5rem; }
-        }
-
-        /* Container pour alignement */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--soft-white);
-            box-shadow: var(--shadow-md);
-            padding: 1rem 0;
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        .navbar.scrolled {
-            padding: 0.7rem 0;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Logo */
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            text-decoration: none;
-        }
-
-        .logo-img {
-            height: 60px;
-            width: auto;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-        }
-
-        .logo-text h1 {
-            font-size: 1.4rem;
-            margin: 0;
-            color: var(--dark-navy);
-        }
-
-        .logo-text p {
-            font-size: 0.65rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.9;
-            margin: 0;
-            color: var(--dark-navy);
-        }
-
-        /* Menu de navigation */
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-menu > li {
-            position: relative;
-        }
-
-        .nav-menu a {
-            color: var(--dark-navy);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 0;
-        }
-
-        .nav-menu > li > a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gold);
-            transition: width 0.3s ease;
-        }
-
-        .nav-menu > li > a:hover::after,
-        .nav-menu > li > a.active::after {
-            width: 100%;
-        }
-
-        .nav-menu > li > a:hover,
-        .nav-menu > li > a.active {
-            color: var(--gold);
-        }
-
-        /* Sous-menu */
-        .has-submenu {
-            position: relative;
-        }
-
-        .submenu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: var(--soft-white);
-            min-width: 250px;
-            padding: 1rem 0;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-lg);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: var(--transition);
-            list-style: none;
-            z-index: 100;
-        }
-
-        .has-submenu:hover .submenu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .submenu li a {
-            padding: 0.75rem 1.5rem;
-            color: var(--text-dark);
-            display: block;
-            transition: var(--transition);
-        }
-
-        .submenu li a:hover {
-            background: var(--cream);
-            color: var(--primary-blue);
-            padding-left: 2rem;
-        }
-
-        /* Menu mobile */
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--dark-navy);
-            cursor: pointer;
-        }
-
-        /* Section Hero Contact */
-        .contact-hero {
-            position: relative;
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
-            padding: 120px 0 60px;
-            overflow: hidden;
-        }
-
-        .contact-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(196, 30, 58, 0.15) 0%, transparent 50%);
-        }
-
-        .contact-hero-content {
-            position: relative;
-            z-index: 2;
-            color: var(--soft-white);
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact-hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--soft-white) 0%, var(--gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .contact-hero p {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-        }
-
-        /* Section Contact Principale */
-        .contact-main-section {
-            padding: 6rem 0;
-            background: var(--cream);
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        /* Informations de contact */
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-        }
-
-        .contact-info-card {
-            background: var(--soft-white);
-            padding: 2.5rem;
-            border-radius: 25px;
-            box-shadow: var(--shadow-md);
-            border: 2px solid rgba(212, 175, 55, 0.1);
-            transition: var(--transition);
-        }
-
-        .contact-info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--gold);
-        }
-
-        .contact-info-card h3 {
-            color: var(--dark-navy);
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .contact-info-card h3 i {
-            color: var(--gold);
-            font-size: 1.3rem;
-        }
-
-        .info-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .info-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            color: var(--text-dark);
-        }
-
-        .info-list li i {
-            color: var(--primary-blue);
-            margin-top: 0.2rem;
-            font-size: 1.1rem;
-        }
-
-        .info-list strong {
-            font-weight: 600;
-            color: var(--dark-navy);
-        }
-
-        /* Horaires */
-        .hours-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .hours-list li {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .hours-list li:last-child {
-            border-bottom: none;
-        }
-
-        .hours-list .day {
-            font-weight: 600;
-            color: var(--dark-navy);
-        }
-
-        .hours-list .time {
-            color: var(--text-light);
-        }
-
-        .hours-list .closed {
-            color: var(--primary-red);
-            font-weight: 600;
-        }
-
-        /* Réseaux sociaux */
-        .social-contact {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-contact a {
-            width: 45px;
-            height: 45px;
-            background: var(--dark-navy);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--soft-white);
-            transition: var(--transition);
-            font-size: 1.1rem;
-        }
-
-        .social-contact a:hover {
-            background: var(--gold);
-            color: var(--dark-navy);
-            transform: translateY(-3px);
-        }
-
-        /* Formulaire de contact */
-        .contact-form-container {
-            background: var(--soft-white);
-            padding: 3rem;
-            border-radius: 25px;
-            box-shadow: var(--shadow-lg);
-            border: 2px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .contact-form-container h2 {
-            color: var(--dark-navy);
-            margin-bottom: 0.5rem;
-            font-size: 2rem;
-        }
-
-        .contact-form-container > p {
-            color: var(--text-light);
-            margin-bottom: 2.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--dark-navy);
-            font-size: 0.95rem;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            border: 2px solid rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            font-family: 'Manrope', sans-serif;
-            font-size: 1rem;
-            transition: var(--transition);
-            background: var(--cream);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        /* Checkbox RGPD */
-        .rgpd-checkbox {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-        }
-
-        .rgpd-checkbox input {
-            margin-top: 0.3rem;
-            cursor: pointer;
-        }
-
-        .rgpd-checkbox label {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            line-height: 1.5;
-            cursor: pointer;
-        }
-
-        .rgpd-checkbox a {
-            color: var(--primary-blue);
-            text-decoration: none;
-        }
-
-        .rgpd-checkbox a:hover {
-            text-decoration: underline;
-        }
-
-        /* Bouton d'envoi */
-        .submit-btn {
-            width: 100%;
-            padding: 1.25rem;
-            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
-            color: var(--dark-navy);
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
-        }
-
-        .submit-btn:active {
-            transform: translateY(-1px);
-        }
-
-        /* Section Carte */
-        .map-section {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
-        }
-
-        .map-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .map-wrapper {
-            position: relative;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            height: 500px;
-            border: 3px solid var(--gold);
-        }
-
-        #contactMap {
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .map-overlay {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 1.5rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow-md);
-            max-width: 300px;
-        }
-
-        .map-overlay h3 {
-            color: var(--dark-navy);
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
-
-        .map-overlay p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        /* Section FAQ */
-        .faq-section {
-            padding: 6rem 0;
-            background: var(--cream);
-        }
-
-        .faq-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: var(--soft-white);
-            margin-bottom: 1rem;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-
-        .faq-item:hover {
-            box-shadow: var(--shadow-md);
-        }
-
-        .faq-question {
-            padding: 1.5rem 2rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            color: var(--dark-navy);
-            transition: var(--transition);
-        }
-
-        .faq-question:hover {
-            background: rgba(212, 175, 55, 0.05);
-        }
-
-        .faq-question i {
-            color: var(--gold);
-            transition: transform 0.3s ease;
-        }
-
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
-        }
-
-        .faq-answer {
-            padding: 0 2rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .faq-item.active .faq-answer {
-            padding: 0 2rem 2rem 2rem;
-            max-height: 500px;
-        }
-
-        .section-header {
-           text-align: center;
-           max-width: 800px;
-           margin: 0 auto 3rem;
-        }
-
-        .section-header h2 {
-           margin-bottom: 1rem;
-           color: var(--dark-navy);
-        }
-
-        .section-header p {
-           color: var(--text-light);
-           font-size: 1.1rem;
-           line-height: 1.6;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--dark-navy);
-            padding: 4rem 2rem 2rem;
-            color: var(--soft-white);
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-about {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
-
-        .footer-about h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 900;
-        }
-
-        .footer-about .footer-logo {
-            display: block;
-            max-width: 120px;
-            height: auto;
-            margin-bottom: 0.5rem;
-            border-radius: 8px;
-            object-fit: contain;
-        }
-
-        .footer-about p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            width: 45px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--soft-white);
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-        }
-
-        .social-links a:hover {
-            background: var(--gold);
-            color: var(--dark-navy);
-            transform: translateY(-5px);
-        }
-
-        .footer-links h4 {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--gold);
-            padding-left: 0.5rem;
-        }
-
-        .footer-links a i {
-            font-size: 0.8rem;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            
-            .carousel-container {
-                height: 450px;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .mobile-toggle {
-                display: block;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 85px;
-                flex-direction: column;
-                background: var(--soft-white);
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                padding: 2rem 0;
-                gap: 0;
-                box-shadow: var(--shadow-lg);
-                max-height: calc(100vh - 85px);
-                overflow-y: auto;
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .nav-menu > li {
-                width: 100%;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            }
-            
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-            
-            .carousel-container {
-                height: 350px;
-            }
-            
-            .carousel-arrow {
-                width: 45px;
-                height: 45px;
-                font-size: 1.2rem;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .logo-img {
-                height: 50px;
-            }
-        }
-
-        /* Message de confirmation */
-        .confirmation-message {
-            display: none;
-            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-            border: 2px solid #28a745;
-            color: #155724;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            margin-top: 2rem;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .confirmation-message i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #28a745;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .mobile-toggle {
-                display: block;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 85px;
-                flex-direction: column;
-                background: var(--soft-white);
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                padding: 2rem 0;
-                gap: 0;
-                box-shadow: var(--shadow-lg);
-                max-height: calc(100vh - 85px);
-                overflow-y: auto;
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .nav-menu > li {
-                width: 100%;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            }
-            
-            .contact-hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .contact-hero p {
-                font-size: 1.1rem;
-            }
-            
-            .contact-form-container {
-                padding: 2rem;
-            }
-            
-            .map-overlay {
-                position: relative;
-                top: 0;
-                left: 0;
-                max-width: 100%;
-                margin-bottom: 1rem;
-            }
-            
-            .map-wrapper {
-                height: 400px;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .logo-img {
-                height: 50px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .contact-info-card {
-                padding: 1.5rem;
-            }
-            
-            .contact-form-container {
-                padding: 1.5rem;
-            }
-            
-            .map-wrapper {
-                height: 300px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo-section">
-                <img src="assets/images/remove.png" alt="ISTA Logo" class="logo-img">
-                <div class="logo-text">
-                    <h1>ISTA</h1>
-                    <p>International Success Travel Agency</p>
-                </div>
-            </a>
-
-            <button class="mobile-toggle" id="mobileToggle">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
-                <li class="has-submenu">
-                    <a href="index.html#services"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
-                    <ul class="submenu">
-                        <li><a href="index.html#visas">Visa d'Etude</a></li>
-                        <li><a href="index.html#visas">Visa de Travail</a></li>
-                        <li><a href="index.html#visas">Visa Visiteur</a></li>
-                        <li><a href="index.html#immigration">Résidence Permanente</a></li>
-                        <li><a href="index.html#visas">Billets d'avion</a></li>
-                        <li><a href="index.html#traduction">Assistance Logement</a></li>
-                        <li><a href="index.html#traduction">Assistance Titre de Séjour</a></li>
-                        <li><a href="index.html#traduction">Admissions</a></li>
-                        <li><a href="index.html#traduction">Autres Services</a></li>
-                    </ul>
-                </li>
-                <li><a href="index.html#universites"><i class="fas fa-university"></i> Envoyer/Recevoir un colis</a></li>
-                <li><a href="index.html#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
-                <li><a href="index.html#equipe"><i class="fas fa-users"></i> Infos Paiement</a></li>
-                <li><a href="#contact" class="active"><i class="fas fa-envelope"></i> Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Section Hero Contact -->
-    <section class="contact-hero" id="contact">
-        <div class="container contact-hero-content">
-            <h1>Contactez-nous</h1>
-            <p>Notre équipe d'experts est à votre disposition pour répondre à toutes vos questions sur l'immigration, les visas et vos projets à l'étranger.</p>
-        </div>
-    </section>
-
-    <!-- Section Contact Principale -->
-    <section class="contact-main-section">
-        <div class="container contact-container">
-            <!-- Informations de contact -->
-            <div class="contact-info">
-                <div class="contact-info-card">
-                    <h3><i class="fas fa-map-marker-alt"></i> Notre Agence</h3>
-                    <ul class="info-list">
-                        <li>
-                            <i class="fas fa-building"></i>
-                            <div>
-                                <strong>ISTA - International Success Travel Agency de Yaoundé</strong><br>
-                                Sis Madison Essos<br>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-building"></i>
-                            <div>
-                                <strong>ISTA - International Success Travel Agency de Douala</strong><br>
-                                Sis Carrefour Bassong Immeuble Mont Baloua<br>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="contact-info-card">
-                    <h3><i class="fas fa-clock"></i> Horaires d'ouverture</h3>
-                    <ul class="hours-list">
-                        <li>
-                            <span class="day">Lundi - Vendredi</span>
-                            <span class="time">9h00 - 18h00</span>
-                        </li>
-                        <li>
-                            <span class="day">Samedi</span>
-                            <span class="time">10h00 - 16h00</span>
-                        </li>
-                        <li>
-                            <span class="day">Dimanche</span>
-                            <span class="closed">Fermé</span>
-                        </li>
-                    </ul>
-                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">
-                        <i class="fas fa-info-circle"></i> Sur rendez-vous en dehors des heures d'ouverture
-                    </p>
-                </div>
-
-                <div class="contact-info-card">
-                    <h3><i class="fas fa-phone-alt"></i> Nous contacter</h3>
-                    <ul class="info-list">
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <strong>Téléphone</strong><br>
-                                France : (+33) 7 552 07 63 73
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-mobile-alt"></i>
-                            <div>
-                                <strong>Mobile / WhatsApp</strong><br>
-                                Douala : (+237) 6 72 080 166 / 6 91 800 913<br>
-                                Yaoundé : (+237) 6 96 214 773 / 6 94 663 151
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <strong>Email</strong><br>
-                                internationalsuccestravelagenc@gmail.com
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-globe"></i>
-                            <div>
-                                <strong>Site web</strong><br>
-                                www.ista-agency.com
-                            </div>
-                        </li>
-                    </ul>
-                    
-                    <div style="margin-top: 1.5rem;">
-                        <h4 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Suivez-nous</h4>
-                        <div class="social-contact">
-                            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Formulaire de contact -->
-            <div class="contact-form-container">
-                <h2>Envoyez-nous un message</h2>
-                <p>Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.</p>
-                
-                <form id="contactForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="firstName">Prénom *</label>
-                            <input type="text" id="firstName" name="firstName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Nom *</label>
-                            <input type="text" id="lastName" name="lastName" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Téléphone</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="service">Service concerné *</label>
-                        <select id="service" name="service" required>
-                            <option value="">Sélectionnez un service</option>
-                            <option value="visa-etude">Visa d'Étude</option>
-                            <option value="visa-travail">Visa de Travail</option>
-                            <option value="visa-visiteur">Visa Visiteur</option>
-                            <option value="residence-permanente">Résidence Permanente</option>
-                            <option value="regroupement-familial">Regroupement familial</option>
-                            <option value="billets-avion">Billets d'avion</option>
-                            <option value="admission">Admission universitaire</option>
-                            <option value="logement">Assistance Logement</option>
-                            <option value="titre-sejour">Assistance Titre de séjour</option>
-                            <option value="colis">Envoyer/Recevoir un colis</option>
-                            <option value="autre">Autres</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="destination">Destination souhaitée</label>
-                        <select id="destination" name="destination">
-                            <option value="">Sélectionnez une destination</option>
-                            <option value="canada">Canada</option>
-                            <option value="france">France</option>
-                            <option value="belgique">Belgique</option>
-                            <option value="allemagne">Allemagne</option>
-                            <option value="etats-unis">États-Unis</option>
-                            <option value="autres">Autres</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Votre message *</label>
-                        <textarea id="message" name="message" placeholder="Décrivez-nous votre projet ou posez-nous vos questions..." required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="preferredContact">Méthode de contact préférée</label>
-                        <select id="preferredContact" name="preferredContact">
-                            <option value="email">Email</option>
-                            <option value="phone">Téléphone</option>
-                            <option value="whatsapp">WhatsApp</option>
-                        </select>
-                    </div>
-                    
-                    <div class="rgpd-checkbox">
-                        <input type="checkbox" id="rgpd" name="rgpd" required>
-                        <label for="rgpd">
-                            J'accepte que mes données personnelles soient utilisées pour traiter ma demande et je confirme avoir pris connaissance de la 
-                            <a href="#" onclick="event.preventDefault(); alert('Politique de confidentialité affichée');">politique de confidentialité</a>.
-                        </label>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">
-                        <i class="fas fa-paper-plane"></i> Envoyer le message
-                    </button>
-                </form>
-                
-                <div id="confirmationMessage" class="confirmation-message">
-                    <i class="fas fa-check-circle"></i>
-                    <h3>Message envoyé avec succès !</h3>
-                    <p>Merci pour votre message. Notre équipe vous répondra dans les plus brefs délais.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Carte -->
-    <section class="map-section">
-        <div class="map-container">
-            <div class="map-wrapper">
-                <div id="contactMap"></div>
-                <div class="map-overlay">
-                    <h3><i class="fas fa-map-marker-alt"></i> Notre agence à Yaoundé</h3>
-                    <p>Madison Essos</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section FAQ -->
-    <section class="faq-section">
-        <div class="container">
-            <div class="section-header" style="max-width: 800px; margin-bottom: 3rem;">
-                <h2>Questions fréquentes</h2>
-                <p>Retrouvez les réponses aux questions les plus courantes concernant nos services de contact.</p>
-            </div>
-            
-            <div class="faq-container">
-                <!-- FAQ Item 1 -->
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Quel est le délai de réponse après l'envoi du formulaire ?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Nous nous engageons à répondre à toutes les demandes dans un délai maximum de 24 heures ouvrées. Pour les demandes urgentes, nous vous recommandons de nous appeler directement au +33 1 23 45 67 89.</p>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 2 -->
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Dois-je prendre rendez-vous pour une consultation ?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Oui, nous vous recommandons de prendre rendez-vous pour une consultation personnalisée. Vous pouvez le faire par téléphone, via notre formulaire de contact ou directement en agence pendant nos heures d'ouverture.</p>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 3 -->
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Quels documents dois-je préparer avant de vous contacter ?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Pour optimiser notre échange, préparez si possible : votre passeport en cours de validité, vos derniers diplômes, votre CV (pour les demandes de travail), et tout document pertinent selon votre projet (relevés bancaires, attestations, etc.).</p>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 4 -->
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Proposez-vous des consultations à distance ?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Oui, nous proposons des consultations par visioconférence (Zoom, Teams, Google Meet) et par téléphone. C'est une solution pratique pour nos clients ne pouvant pas se déplacer ou habitant.</p>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 5 -->
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Quels sont les moyens de paiement acceptés ?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Nous acceptons les cartes bancaires (Visa, Mastercard), les virements bancaires, les chèques et les espèces. Pour les clients internationaux, nous acceptons également les transferts Western Union et MoneyGram.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-about">
-                <img src="assets/images/remove.png" alt="ISTA Logo" class="footer-logo">
-                <h3>ISTA</h3>
-                <p>International Success Travel Agency - Votre partenaire de confiance pour tous vos projets d'immigration.</p>
-                <div class="social-links">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-links">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="visa-etude.html"><i class="fas fa-angle-right"></i> Visa d'Étude</a></li>
-                    <li><a href="visa-travail.html"><i class="fas fa-angle-right"></i> Visa de Travail</a></li>
-                    <li><a href="visa-visiteur.html"><i class="fas fa-angle-right"></i> Visa Visiteur</a></li>
-                    <li><a href="residence-permanente.html"><i class="fas fa-angle-right"></i> Résidence Permanente</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-links">
-                <h4>Contact</h4>
-                <ul>
-                    <li><a href="tel:+237672080166"><i class="fas fa-phone"></i> (+237) 672 080 166</a></li>
-                    <li><a href="tel:+237696214773"><i class="fas fa-phone"></i> (+237) 696 214 773</a></li>
-                    <li><a href="mailto:internationalsuccestravelagence@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-links">
-                <h4>Informations</h4>
-                <ul>
-                    <li><a href="temoignages.html"><i class="fas fa-angle-right"></i> Témoignages</a></li>
-                    <li><a href="paiement.html"><i class="fas fa-angle-right"></i> Paiement</a></li>
-                    <li><a href="colis.html"><i class="fas fa-angle-right"></i> Colis</a></li>
-                    <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2026 ISTA - International Success Travel Agency. Tous droits réservés.</p>
-        </div>
-    </footer>
-
-    <!-- Leaflet JS pour la carte -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-    <script>
-        // Navigation mobile
-        const mobileToggle = document.getElementById('mobileToggle');
-        const navMenu = document.getElementById('navMenu');
-
-        mobileToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            mobileToggle.innerHTML = navMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-
-        // Fermer le menu au clic sur un lien
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Initialisation de la carte
-        function initMap() {
-            // Coordonnées de l'agence ISTA (Champs-Élysées, Paris)
-            const agencyLocation = [48.8707, 2.3044];
-            
-            // Création de la carte
-            const map = L.map('contactMap').setView(agencyLocation, 16);
-            
-            // Ajout du fond de carte
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors',
-                maxZoom: 19,
-            }).addTo(map);
-            
-            // Marqueur personnalisé
-            const goldIcon = L.divIcon({
-                html: '<div style="background: linear-gradient(135deg, var(--gold), #FFD700); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 2px 10px rgba(0,0,0,0.3);"><i class="fas fa-map-marker-alt" style="color: var(--dark-navy); font-size: 1.2rem;"></i></div>',
-                className: 'custom-marker',
-                iconSize: [40, 40],
-                iconAnchor: [20, 40]
-            });
-            
-            // Ajout du marqueur
-            const marker = L.marker(agencyLocation, { icon: goldIcon }).addTo(map);
-            
-            // Popup d'information
-            marker.bindPopup(`
-                <div style="padding: 0.5rem;">
-                    <h3 style="margin: 0 0 0.5rem 0; color: var(--dark-navy);">ISTA Agency</h3>
-                    <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">
-                        <i class="fas fa-map-marker-alt"></i> 123 Avenue des Champs-Élysées<br>
-                        75008 Paris, France
-                    </p>
-                </div>
-            `).openPopup();
-            
-            // Ajuster la carte au redimensionnement
-            map.on('resize', function() {
-                map.invalidateSize();
-            });
-        }
-
-        // Initialiser la carte quand la page est chargée
-        document.addEventListener('DOMContentLoaded', initMap);
-
-        // Gestion du formulaire de contact
-        const contactForm = document.getElementById('contactForm');
-        const confirmationMessage = document.getElementById('confirmationMessage');
-
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Simulation d'envoi du formulaire
-            // Dans un cas réel, vous enverriez les données à un serveur
-            
-            // Afficher le message de confirmation
-            confirmationMessage.style.display = 'block';
-            
-            // Faire défiler jusqu'au message
-            confirmationMessage.scrollIntoView({ behavior: 'smooth' });
-            
-            // Réinitialiser le formulaire après 3 secondes
-            setTimeout(() => {
-                contactForm.reset();
-            }, 3000);
-        });
-
-        // Gestion de la FAQ
-        const faqItems = document.querySelectorAll('.faq-item');
-
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            
-            question.addEventListener('click', () => {
-                // Fermer tous les autres items
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== item && otherItem.classList.contains('active')) {
-                        otherItem.classList.remove('active');
-                    }
-                });
-                
-                // Ouvrir/fermer l'item cliqué
-                item.classList.toggle('active');
-            });
-        });
-
-        // Smooth scroll pour les ancres internes
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                
-                // Ignorer les liens qui ne pointent pas vers un élément spécifique
-                if (href === '#') return;
-                
-                const targetElement = document.querySelector(href);
-                if (targetElement) {
-                    e.preventDefault();
-                    
-                    // Fermer le menu mobile si ouvert
-                    navMenu.classList.remove('active');
-                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                    
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
-=======
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -1677,11 +180,6 @@
         .nav-menu > li > a:hover,
         .nav-menu > li > a.active {
             color: var(--gold);
-        }
-
-        .nav-menu a i:not(.fa-chevron-down) {
-            color: var(--primary-blue);
-            transition: var(--transition);
         }
 
         .nav-menu a i {
@@ -1726,6 +224,7 @@
             gap: 0.75rem;
             transition: var(--transition);
             font-size: 0.85rem;
+            white-space: nowrap;
         }
 
         .submenu li a:hover {
@@ -2319,6 +818,10 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* =========================================== */
+        /* MODIFICATIONS POUR LE MENU MOBILE */
+        /* =========================================== */
         
         @media (max-width: 768px) {
             html, body {
@@ -2333,31 +836,7 @@
                 max-width: 100%;
             }
             
-            h1 {
-                font-size: 2rem !important;
-                line-height: 1.2;
-            }
-            
-            h2 {
-                font-size: 1.7rem !important;
-                line-height: 1.2;
-            }
-            
-            h3 {
-                font-size: 1.4rem !important;
-                line-height: 1.3;
-            }
-            
-            h4 {
-                font-size: 1.2rem !important;
-            }
-            
-            p {
-                font-size: 0.95rem;
-                line-height: 1.5;
-            }
-            
-            /* 3. NAVBAR */
+            /* NAVBAR - LOGO PLUS PETIT ET CENTRÉ */
             .navbar {
                 padding: 0.8rem 0;
             }
@@ -2374,17 +853,17 @@
             }
             
             .logo-img {
-                height: 40px;
+                height: 40px !important;
                 width: auto;
             }
             
             .logo-text h1 {
-                font-size: 1.1rem;
+                font-size: 1.1rem !important;
                 line-height: 1;
             }
             
             .logo-text p {
-                font-size: 0.55rem;
+                font-size: 0.55rem !important;
                 letter-spacing: 1px;
             }
             
@@ -2394,14 +873,14 @@
                 padding: 0.3rem;
             }
             
-            /* 4. MENU MOBILE */
+            /* MENU MOBILE - STYLE SIMILAIRE À INDEX.HTML */
             .nav-menu {
                 position: fixed;
                 left: -100%;
                 top: 70px;
                 flex-direction: column;
                 background: var(--soft-white);
-                width: 100%;
+                width: 85%;
                 text-align: left;
                 transition: 0.3s;
                 padding: 1rem 0;
@@ -2422,12 +901,37 @@
             }
             
             .nav-menu a {
-                padding: 1rem 1.5rem;
-                font-size: 1rem;
-                justify-content: space-between;
+                padding: 12px 15px;
+                font-size: 0.95rem;
+                justify-content: flex-start;
+                gap: 10px;
+                width: 100%;
             }
             
-            .has-submenu .submenu {
+            /* Icône à gauche, texte collé */
+            .nav-menu a i:first-child {
+                font-size: 1rem;
+                width: 22px;
+                text-align: left;
+            }
+            
+            /* Flèche pour sous-menu */
+            .has-submenu > a::after {
+                content: '\f078';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                position: absolute;
+                right: 15px;
+                transition: transform 0.3s ease;
+                font-size: 0.9rem;
+            }
+            
+            .has-submenu.active > a::after {
+                transform: rotate(180deg);
+            }
+            
+            /* Sous-menu mobile */
+            .submenu {
                 position: static;
                 opacity: 1;
                 visibility: visible;
@@ -2437,9 +941,10 @@
                 border-radius: 0;
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height 0.3s ease;
+                transition: max-height 0.5s ease;
                 padding: 0;
                 min-width: 100%;
+                margin-left: 0;
             }
             
             .has-submenu.active .submenu {
@@ -2448,11 +953,25 @@
             }
             
             .submenu li a {
-                padding: 0.8rem 2rem;
-                font-size: 0.9rem;
+                padding: 10px 15px 10px 35px;
+                font-size: 0.85rem;
+                border-left: 3px solid transparent;
+                gap: 10px;
             }
             
-            /* 5. HERO SECTION */
+            .submenu li a i {
+                font-size: 0.8rem;
+                width: 18px;
+                text-align: left;
+            }
+            
+            .submenu li a:hover {
+                border-left: 3px solid var(--gold);
+                background: rgba(212, 175, 55, 0.1);
+                padding-left: 38px;
+            }
+            
+            /* HERO SECTION */
             .contact-hero {
                 min-height: 50vh;
                 padding: 100px 0 40px;
@@ -2469,144 +988,48 @@
                 padding: 0 0.5rem;
             }
             
-            /* 6. CONTACT SECTION */
+            /* CONTACT SECTION */
             .contact-main-section {
-                padding: 2rem 0;
+                padding: 3rem 0;
             }
             
             .contact-container {
                 grid-template-columns: 1fr;
-                gap: 1.2rem;
+                gap: 2rem;
             }
             
             .contact-info {
-                gap: 1rem;
+                gap: 1.5rem;
             }
             
             .contact-info-card {
-                padding: 1.2rem;
-                border-radius: 12px;
-                margin-bottom: 0.5rem;
+                padding: 1.5rem;
+                border-radius: 15px;
             }
             
-            .contact-info-card h3 {
-                font-size: 1.1rem;
-                margin-bottom: 0.8rem;
-                gap: 0.6rem;
-            }
-            
-            .contact-info-card h3 i {
-                font-size: 1rem;
-            }
-            
-            .info-list {
-                gap: 0.6rem;
-            }
-            
-            .info-list li {
-                font-size: 0.85rem;
-                gap: 0.6rem;
-                line-height: 1.4;
-            }
-            
-            .info-list li i {
-                font-size: 0.8rem;
-                margin-top: 0.1rem;
-            }
-            
-            .info-list strong {
-                font-size: 0.87rem;
-            }
-            
-            .hours-list {
-                gap: 0.5rem;
-            }
-            
-            .hours-list li {
-                font-size: 0.85rem;
-                padding: 0.4rem 0;
-            }
-            
-            .social-contact {
-                gap: 0.6rem;
-                margin-top: 0.8rem;
-            }
-            
-            .social-contact a {
-                width: 34px;
-                height: 34px;
-                font-size: 0.9rem;
-            }
-            
+            /* FORMULAIRE */
             .contact-form-container {
-                padding: 1.2rem;
-                border-radius: 12px;
-                margin-top: 0.5rem;
+                padding: 1.5rem;
+                border-radius: 15px;
             }
             
             .contact-form-container h2 {
-                font-size: 1.3rem;
-                margin-bottom: 0.3rem;
-            }
-            
-            .contact-form-container > p {
-                font-size: 0.9rem;
-                margin-bottom: 1.5rem;
-                line-height: 1.4;
-            }
-            
-            .form-group {
-                margin-bottom: 0.8rem;
-            }
-            
-            .form-group label {
-                font-size: 0.85rem;
-                margin-bottom: 0.3rem;
-            }
-            
-            .form-group input,
-            .form-group textarea,
-            .form-group select {
-                padding: 0.7rem 0.9rem;
-                font-size: 0.9rem;
-                border-radius: 10px;
-            }
-            
-            .form-group textarea {
-                min-height: 100px;
+                font-size: 1.5rem;
             }
             
             .form-row {
                 grid-template-columns: 1fr;
-                gap: 0.8rem;
+                gap: 1rem;
             }
             
-            .rgpd-checkbox {
-                gap: 0.5rem;
-                margin-bottom: 1.2rem;
-            }
-            
-            .rgpd-checkbox label {
-                font-size: 0.8rem;
-                line-height: 1.3;
-            }
-            
-            .submit-btn {
-                padding: 0.9rem;
-                font-size: 0.95rem;
-                border-radius: 10px;
-                gap: 0.5rem;
-            }
-            
-            /* 8. CARTE */
+            /* CARTE */
             .map-section {
                 padding: 2rem 0;
             }
             
             .map-wrapper {
-                height: 350px;
+                height: 300px;
                 border-radius: 15px;
-                border: 2px solid var(--gold);
             }
             
             .map-overlay {
@@ -2614,16 +1037,12 @@
                 top: 0;
                 left: 0;
                 max-width: 100%;
-                margin-bottom: 1rem;
+                margin: 1rem;
                 border-radius: 10px;
                 padding: 1rem;
             }
             
-            .map-overlay h3 {
-                font-size: 1.1rem;
-            }
-            
-            /* 9. FAQ */
+            /* FAQ */
             .faq-section {
                 padding: 3rem 0;
             }
@@ -2633,19 +1052,7 @@
                 font-size: 0.95rem;
             }
             
-            .faq-answer {
-                padding: 0 1.2rem;
-            }
-            
-            .faq-item.active .faq-answer {
-                padding: 0 1.2rem 1rem 1.2rem;
-            }
-            
-            .faq-answer p {
-                font-size: 0.9rem;
-            }
-            
-            /* 10. FOOTER */
+            /* FOOTER */
             .footer {
                 padding: 2rem 1rem 1rem;
             }
@@ -2653,76 +1060,23 @@
             .footer-container {
                 grid-template-columns: 1fr;
                 gap: 2rem;
-                margin-bottom: 2rem;
             }
             
-            .footer-about h3 {
-                font-size: 1.6rem;
-            }
-            
-            .footer-about p {
-                font-size: 0.9rem;
-                line-height: 1.6;
-            }
-            
-            .footer-links h4 {
-                font-size: 1.1rem;
-                margin-bottom: 1rem;
-            }
-            
-            .footer-links a {
-                font-size: 0.9rem;
-            }
-            
-            .social-links a {
-                width: 38px;
-                height: 38px;
-                font-size: 1rem;
-            }
-            
-            .footer-bottom {
-                padding: 1.5rem 1rem 0;
-                font-size: 0.85rem;
-            }
-            
-            /* 11. CONFIMATION MESSAGE */
-            .confirmation-message {
-                padding: 1.5rem;
-            }
-            
-            .confirmation-message i {
-                font-size: 2.5rem;
-            }
-            
-            .confirmation-message h3 {
-                font-size: 1.3rem;
-            }
-            
-            .confirmation-message p {
-                font-size: 0.95rem;
-            }
-            
-            /* 12. ÉLÉMENTS GÉNÉRAUX */
-            .section-header {
-                margin-bottom: 2rem;
-            }
+            /* ÉLÉMENTS GÉNÉRAUX */
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.7rem; }
+            h3 { font-size: 1.4rem; }
+            h4 { font-size: 1.2rem; }
             
             .section-header h2 {
-                font-size: 1.8rem !important;
-            }
-            
-            .section-header p {
-                font-size: 1rem;
+                font-size: 1.8rem;
             }
         }
         
+        /* Pour les très petits téléphones */
         @media (max-width: 480px) {
             h1 {
                 font-size: 1.8rem;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
             }
             
             .contact-hero h1 {
@@ -2737,61 +1091,35 @@
                 font-size: 1rem;
             }
             
-            .map-wrapper {
-                height: 300px;
+            .nav-menu a {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .nav-menu a i:first-child {
+                font-size: 0.9rem;
+                width: 20px;
+            }
+            
+            .submenu li a {
+                padding: 8px 15px 8px 35px;
+                font-size: 0.8rem;
             }
             
             .contact-info-card {
-                padding: 1rem;
-            }
-            
-            .contact-form-container {
-                padding: 1rem;
-            }
-            
-            .contact-info-card h3 {
-                font-size: 1rem;
-            }
-            
-            .info-list li {
-                font-size: 0.82rem;
-            }
-            
-            .contact-form-container h2 {
-                font-size: 1.2rem;
-            }
-            
-            .form-group input,
-            .form-group textarea,
-            .form-group select {
-                padding: 0.6rem 0.8rem;
-            }
-            
-            .confirmation-message {
                 padding: 1.2rem;
             }
             
-            .confirmation-message i {
-                font-size: 2.2rem;
+            .contact-form-container {
+                padding: 1.2rem;
             }
             
-            .confirmation-message h3 {
-                font-size: 1.2rem;
+            .map-wrapper {
+                height: 250px;
             }
             
-            .confirmation-message p {
-                font-size: 0.9rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            img, video, iframe, canvas, svg {
-                max-width: 100%;
-                height: auto;
-            }
-            
-            * {
-                max-width: 100%;
+            .footer {
+                padding: 1.5rem 0.8rem 0.8rem;
             }
         }
     </style>
@@ -2813,25 +1141,25 @@
             </button>
 
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="index.html"><i class="fas fa-home"></i>Accueil</a></li>
                 <li class="has-submenu">
-                    <a href="index.html#services"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
+                    <a href="index.html#services"><i class="fas fa-passport"></i>Nos Services<i class="fas fa-chevron-down"></i></a>
                     <ul class="submenu">
-                        <li><a href="etude.html"><i class="fas fa-graduation-cap"></i> Visa d'Etude</a></li>
-                        <li><a href="travail.html"><i class="fas fa-briefcase"></i> Visa de Travail</a></li>
-                        <li><a href="visiteur.html"><i class="fas fa-plane"></i> Visa Visiteur</a></li>
-                        <li><a href="residence.html"><i class="fas fa-home"></i> Résidence Permanente</a></li>
-                        <li><a href="billet.html"><i class="fas fa-ticket-alt"></i> Billets d'avion</a></li>
-                        <li><a href="logement.html" class="active"><i class="fas fa-building"></i> Assistance Logement</a></li>
-                        <li><a href="sejour.html"><i class="fas fa-id-card"></i> Assistance Titre de Séjour</a></li>
-                        <li><a href="admissions.html"><i class="fas fa-university"></i> Admissions</a></li>
-                        <li><a href="galerie.html"><i class="fas fa-images"></i> Galerie Photo/Video</a></li>
+                        <li><a href="#etude.html"><i class="fas fa-graduation-cap"></i>Visa d'Etude</a></li>
+                        <li><a href="#travail.html"><i class="fas fa-briefcase"></i>Visa de Travail</a></li>
+                        <li><a href="#visiteur.html"><i class="fas fa-plane"></i>Visa Visiteur</a></li>
+                        <li><a href="#residence.html"><i class="fas fa-home"></i>Résidence Permanente</a></li>
+                        <li><a href="#billet.html"><i class="fas fa-ticket-alt"></i>Billets d'avion</a></li>
+                        <li><a href="#logement.html"><i class="fas fa-building"></i>Assistance Logement</a></li>
+                        <li><a href="#sejour.html"><i class="fas fa-id-card"></i>Assistance Titre de Séjour</a></li>
+                        <li><a href="#admissions.html"><i class="fas fa-university"></i>Admissions</a></li>
+                        <li><a href="galerie.html"><i class="fas fa-images"></i>Galerie Photo/Video</a></li>
                     </ul>
                 </li>
-                <li><a href="colis.html"><i class="fas fa-university"></i> Envoyer/Recevoir un colis</a></li>
-                <li><a href="index.html#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
-                <li><a href="index.html#equipe"><i class="fas fa-users"></i> Infos Paiement</a></li>
-                <li><a href="#contact" class="active"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="colis.html"><i class="fas fa-university"></i>Envoyer/Recevoir un colis</a></li>
+                <li><a href="index.html#temoignages"><i class="fas fa-star"></i>Témoignages</a></li>
+                <li><a href="index.html#equipe"><i class="fas fa-users"></i>Infos Paiement</a></li>
+                <li><a href="#contact" class="active"><i class="fas fa-envelope"></i>Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -2986,12 +1314,200 @@
                         <label for="destination">Destination souhaitée</label>
                         <select id="destination" name="destination">
                             <option value="">Sélectionnez une destination</option>
-                            <option value="canada">Canada</option>
-                            <option value="france">France</option>
-                            <option value="belgique">Belgique</option>
+                            <option value="afghanistan">Afghanistan</option>
+                            <option value="afrique_sud">Afrique du Sud</option>
+                            <option value="albanie">Albanie</option>
+                            <option value="algerie">Algérie</option>
                             <option value="allemagne">Allemagne</option>
-                            <option value="etats-unis">États-Unis</option>
-                            <option value="autres">Autres</option>
+                            <option value="andorre">Andorre</option>
+                            <option value="angola">Angola</option>
+                            <option value="antigua_et_barbuda">Antigua-et-Barbuda</option>
+                            <option value="arabie_saoudite">Arabie saoudite</option>
+                            <option value="argentine">Argentine</option>
+                            <option value="armenie">Arménie</option>
+                            <option value="australie">Australie</option>
+                            <option value="autriche">Autriche</option>
+                            <option value="azerbaidjan">Azerbaïdjan</option>
+                            <option value="bahamas">Bahamas</option>
+                            <option value="bahrein">Bahreïn</option>
+                            <option value="bangladesh">Bangladesh</option>
+                            <option value="barbade">Barbade</option>
+                            <option value="belgique">Belgique</option>
+                            <option value="belize">Belize</option>
+                            <option value="benin">Bénin</option>
+                            <option value="bhoutan">Bhoutan</option>
+                            <option value="bielorussie">Biélorussie</option>
+                            <option value="birmanie">Birmanie</option>
+                            <option value="bolivie">Bolivie</option>
+                            <option value="bosnie_herzegovine">Bosnie-Herzégovine</option>
+                            <option value="botswana">Botswana</option>
+                            <option value="bresil">Brésil</option>
+                            <option value="brunei">Brunei</option>
+                            <option value="bulgarie">Bulgarie</option>
+                            <option value="burkina_faso">Burkina Faso</option>
+                            <option value="burundi">Burundi</option>
+                            <option value="cambodge">Cambodge</option>
+                            <option value="cameroun">Cameroun</option>
+                            <option value="canada">Canada</option>
+                            <option value="cap_vert">Cap-Vert</option>
+                            <option value="republique_centrafricaine">République centrafricaine</option>
+                            <option value="chili">Chili</option>
+                            <option value="chine">Chine</option>
+                            <option value="chypre">Chypre</option>
+                            <option value="colombie">Colombie</option>
+                            <option value="comores">Comores</option>
+                            <option value="congo">Congo</option>
+                            <option value="congo_rdc">Congo (RDC)</option>
+                            <option value="coree_nord">Corée du Nord</option>
+                            <option value="coree_sud">Corée du Sud</option>
+                            <option value="costa_rica">Costa Rica</option>
+                            <option value="cote_divoire">Côte d'Ivoire</option>
+                            <option value="croatie">Croatie</option>
+                            <option value="cuba">Cuba</option>
+                            <option value="danemark">Danemark</option>
+                            <option value="djibouti">Djibouti</option>
+                            <option value="dominique">Dominique</option>
+                            <option value="egypte">Égypte</option>
+                            <option value="emirats_arabes_unis">Émirats arabes unis</option>
+                            <option value="equateur">Équateur</option>
+                            <option value="erythree">Érythrée</option>
+                            <option value="espagne">Espagne</option>
+                            <option value="estonie">Estonie</option>
+                            <option value="etats_unis">États-Unis</option>
+                            <option value="ethiopie">Éthiopie</option>
+                            <option value="fidji">Fidji</option>
+                            <option value="finlande">Finlande</option>
+                            <option value="france">France</option>
+                            <option value="gabon">Gabon</option>
+                            <option value="gambie">Gambie</option>
+                            <option value="georgie">Géorgie</option>
+                            <option value="ghana">Ghana</option>
+                            <option value="grece">Grèce</option>
+                            <option value="grenade">Grenade</option>
+                            <option value="guatemala">Guatemala</option>
+                            <option value="guinee">Guinée</option>
+                            <option value="guinee_bissau">Guinée-Bissau</option>
+                            <option value="guinee_equatoriale">Guinée équatoriale</option>
+                            <option value="guyana">Guyana</option>
+                            <option value="haiti">Haïti</option>
+                            <option value="honduras">Honduras</option>
+                            <option value="hongrie">Hongrie</option>
+                            <option value="inde">Inde</option>
+                            <option value="indonesie">Indonésie</option>
+                            <option value="irak">Irak</option>
+                            <option value="iran">Iran</option>
+                            <option value="irlande">Irlande</option>
+                            <option value="islande">Islande</option>
+                            <option value="israel">Israël</option>
+                            <option value="italie">Italie</option>
+                            <option value="jamaique">Jamaïque</option>
+                            <option value="japon">Japon</option>
+                            <option value="jordanie">Jordanie</option>
+                            <option value="kazakhstan">Kazakhstan</option>
+                            <option value="kenya">Kenya</option>
+                            <option value="kirghizistan">Kirghizistan</option>
+                            <option value="kiribati">Kiribati</option>
+                            <option value="koweit">Koweït</option>
+                            <option value="laos">Laos</option>
+                            <option value="lesotho">Lesotho</option>
+                            <option value="lettonie">Lettonie</option>
+                            <option value="liban">Liban</option>
+                            <option value="liberia">Libéria</option>
+                            <option value="libye">Libye</option>
+                            <option value="liechtenstein">Liechtenstein</option>
+                            <option value="lituanie">Lituanie</option>
+                            <option value="luxembourg">Luxembourg</option>
+                            <option value="macedoine">Macédoine</option>
+                            <option value="madagascar">Madagascar</option>
+                            <option value="malaisie">Malaisie</option>
+                            <option value="malawi">Malawi</option>
+                            <option value="maldives">Maldives</option>
+                            <option value="mali">Mali</option>
+                            <option value="malte">Malte</option>
+                            <option value="maroc">Maroc</option>
+                            <option value="marshall">Îles Marshall</option>
+                            <option value="maurice">Maurice</option>
+                            <option value="mauritanie">Mauritanie</option>
+                            <option value="mexique">Mexique</option>
+                            <option value="micronesie">Micronésie</option>
+                            <option value="moldavie">Moldavie</option>
+                            <option value="monaco">Monaco</option>
+                            <option value="mongolie">Mongolie</option>
+                            <option value="montenegro">Monténégro</option>
+                            <option value="mozambique">Mozambique</option>
+                            <option value="namibie">Namibie</option>
+                            <option value="nauru">Nauru</option>
+                            <option value="nepal">Népal</option>
+                            <option value="nicaragua">Nicaragua</option>
+                            <option value="niger">Niger</option>
+                            <option value="nigeria">Nigeria</option>
+                            <option value="norvege">Norvège</option>
+                            <option value="nouvelle_zelande">Nouvelle-Zélande</option>
+                            <option value="oman">Oman</option>
+                            <option value="ouganda">Ouganda</option>
+                            <option value="ouzbekistan">Ouzbékistan</option>
+                            <option value="pakistan">Pakistan</option>
+                            <option value="palaos">Palaos</option>
+                            <option value="palestine">Palestine</option>
+                            <option value="panama">Panama</option>
+                            <option value="papouasie_nouvelle_guinee">Papouasie-Nouvelle-Guinée</option>
+                            <option value="paraguay">Paraguay</option>
+                            <option value="pays_bas">Pays-Bas</option>
+                            <option value="perou">Pérou</option>
+                            <option value="philippines">Philippines</option>
+                            <option value="pologne">Pologne</option>
+                            <option value="portugal">Portugal</option>
+                            <option value="qatar">Qatar</option>
+                            <option value="roumanie">Roumanie</option>
+                            <option value="royaume_uni">Royaume-Uni</option>
+                            <option value="russie">Russie</option>
+                            <option value="rwanda">Rwanda</option>
+                            <option value="saint_kitts_et_nevis">Saint-Christophe-et-Niévès</option>
+                            <option value="sainte_lucie">Sainte-Lucie</option>
+                            <option value="saint_vincent_et_grenadines">Saint-Vincent-et-les-Grenadines</option>
+                            <option value="saint_marin">Saint-Marin</option>
+                            <option value="salomon">Îles Salomon</option>
+                            <option value="salvador">Salvador</option>
+                            <option value="samoa">Samoa</option>
+                            <option value="sao_tome_et_principe">Sao Tomé-et-Principe</option>
+                            <option value="senegal">Sénégal</option>
+                            <option value="serbie">Serbie</option>
+                            <option value="seychelles">Seychelles</option>
+                            <option value="sierra_leone">Sierra Leone</option>
+                            <option value="singapour">Singapour</option>
+                            <option value="slovaquie">Slovaquie</option>
+                            <option value="slovenie">Slovénie</option>
+                            <option value="somalie">Somalie</option>
+                            <option value="soudan">Soudan</option>
+                            <option value="soudan_du_sud">Soudan du Sud</option>
+                            <option value="sri_lanka">Sri Lanka</option>
+                            <option value="suède">Suède</option>
+                            <option value="suisse">Suisse</option>
+                            <option value="suriname">Suriname</option>
+                            <option value="swaziland">Swaziland</option>
+                            <option value="syrie">Syrie</option>
+                            <option value="tadjikistan">Tadjikistan</option>
+                            <option value="tanzanie">Tanzanie</option>
+                            <option value="tchad">Tchad</option>
+                            <option value="tchequie">Tchéquie</option>
+                            <option value="thailande">Thaïlande</option>
+                            <option value="timor_oriental">Timor oriental</option>
+                            <option value="togo">Togo</option>
+                            <option value="tonga">Tonga</option>
+                            <option value="trinite_et_tobago">Trinité-et-Tobago</option>
+                            <option value="tunisie">Tunisie</option>
+                            <option value="turkmenistan">Turkménistan</option>
+                            <option value="turquie">Turquie</option>
+                            <option value="tuvalu">Tuvalu</option>
+                            <option value="ukraine">Ukraine</option>
+                            <option value="uruguay">Uruguay</option>
+                            <option value="vanuatu">Vanuatu</option>
+                            <option value="vatican">Vatican</option>
+                            <option value="venezuela">Venezuela</option>
+                            <option value="vietnam">Vietnam</option>
+                            <option value="yemen">Yémen</option>
+                            <option value="zambie">Zambie</option>
+                            <option value="zimbabwe">Zimbabwe</option>
                         </select>
                     </div>
                     
@@ -3060,7 +1576,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Nous nous engageons à répondre à toutes les demandes dans un délai maximum de 24 heures ouvrées. Pour les demandes urgentes, nous vous recommandons de nous appeler directement au +33 1 23 45 67 89.</p>
+                        <p>Nous nous engageons à répondre à toutes les demandes dans un délai maximum de 24 heures ouvrées. Pour les demandes urgentes, nous vous recommandons de nous appeler directement.</p>
                     </div>
                 </div>
 
@@ -3082,7 +1598,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Pour optimiser notre échange, préparez si possible : votre passeport en cours de validité, vos derniers diplômes, votre CV (pour les demandes de travail), et tout document pertinent selon votre projet (relevés bancaires, attestations, etc.).</p>
+                        <p>Pour optimiser notre échange, préparez si possible : votre passeport en cours de validité, vos derniers diplômes, votre CV (pour les demandes de travail), et tout document pertinent selon votre projet.</p>
                     </div>
                 </div>
 
@@ -3093,7 +1609,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Oui, nous proposons des consultations par visioconférence (Zoom, Teams, Google Meet) et par téléphone. C'est une solution pratique pour nos clients ne pouvant pas se déplacer ou habitant.</p>
+                        <p>Oui, nous proposons des consultations par visioconférence et par téléphone. C'est une solution pratique pour nos clients ne pouvant pas se déplacer.</p>
                     </div>
                 </div>
 
@@ -3128,29 +1644,29 @@
             <div class="footer-links">
                 <h4>Services</h4>
                 <ul>
-                    <li><a href="visa-etude.html"><i class="fas fa-angle-right"></i> Visa d'Étude</a></li>
-                    <li><a href="visa-travail.html"><i class="fas fa-angle-right"></i> Visa de Travail</a></li>
-                    <li><a href="visa-visiteur.html"><i class="fas fa-angle-right"></i> Visa Visiteur</a></li>
-                    <li><a href="residence-permanente.html"><i class="fas fa-angle-right"></i> Résidence Permanente</a></li>
+                    <li><a href="visa-etude.html"><i class="fas fa-angle-right"></i>Visa d'Étude</a></li>
+                    <li><a href="visa-travail.html"><i class="fas fa-angle-right"></i>Visa de Travail</a></li>
+                    <li><a href="visa-visiteur.html"><i class="fas fa-angle-right"></i>Visa Visiteur</a></li>
+                    <li><a href="residence-permanente.html"><i class="fas fa-angle-right"></i>Résidence Permanente</a></li>
                 </ul>
             </div>
 
             <div class="footer-links">
                 <h4>Contact</h4>
                 <ul>
-                    <li><a href="tel:+237672080166"><i class="fas fa-phone"></i> (+237) 672 080 166</a></li>
-                    <li><a href="tel:+237696214773"><i class="fas fa-phone"></i> (+237) 696 214 773</a></li>
-                    <li><a href="mailto:internationalsuccestravelagence@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
+                    <li><a href="tel:+237672080166"><i class="fas fa-phone"></i>(+237) 672 080 166</a></li>
+                    <li><a href="tel:+237696214773"><i class="fas fa-phone"></i>(+237) 696 214 773</a></li>
+                    <li><a href="mailto:internationalsuccestravelagence@gmail.com"><i class="fas fa-envelope"></i>Email</a></li>
                 </ul>
             </div>
 
             <div class="footer-links">
                 <h4>Informations</h4>
                 <ul>
-                    <li><a href="temoignages.html"><i class="fas fa-angle-right"></i> Témoignages</a></li>
-                    <li><a href="paiement.html"><i class="fas fa-angle-right"></i> Paiement</a></li>
-                    <li><a href="colis.html"><i class="fas fa-angle-right"></i> Colis</a></li>
-                    <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                    <li><a href="temoignages.html"><i class="fas fa-angle-right"></i>Témoignages</a></li>
+                    <li><a href="paiement.html"><i class="fas fa-angle-right"></i>Paiement</a></li>
+                    <li><a href="colis.html"><i class="fas fa-angle-right"></i>Colis</a></li>
+                    <li><a href="contact.html"><i class="fas fa-angle-right"></i>Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -3347,4 +1863,3 @@
     </script>
 </body>
 </html>
->>>>>>> 7e4114fc0c8c4b7c1d35c2c04eadc9428eb923c1
