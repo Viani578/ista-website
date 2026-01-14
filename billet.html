@@ -516,6 +516,13 @@
             font-size: 0.95rem;
         }
 
+        /* MODIFICATION : Étoiles rouges pour les champs obligatoires */
+        .form-group label.required::after {
+            content: " *";
+            color: var(--primary-red);
+            font-size: 1.1em;
+        }
+
         .form-group input,
         .form-group textarea,
         .form-group select {
@@ -1350,47 +1357,47 @@
                 <form id="billetForm">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="nom">Nom *</label>
+                            <label for="nom" class="required">Nom</label>
                             <input type="text" id="nom" name="nom" required>
                         </div>
                         <div class="form-group">
-                            <label for="prenom">Prénom *</label>
+                            <label for="prenom" class="required">Prénom</label>
                             <input type="text" id="prenom" name="prenom" required>
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="date_naissance">Date de naissance *</label>
+                            <label for="date_naissance" class="required">Date de naissance</label>
                             <input type="date" id="date_naissance" name="date_naissance" required>
                         </div>
                         <div class="form-group">
-                            <label for="passeport">Numéro de passeport *</label>
+                            <label for="passeport" class="required">Numéro de passeport</label>
                             <input type="text" id="passeport" name="passeport" required>
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="telephone">Téléphone *</label>
+                            <label for="telephone" class="required">Téléphone</label>
                             <input type="tel" id="telephone" name="telephone" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email *</label>
+                            <label for="email" class="required">Email</label>
                             <input type="email" id="email" name="email" required>
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="pays_depart">Pays de départ *</label>
+                            <label for="pays_depart" class="required">Pays de départ</label>
                             <div class="select-search-container">
                                 <input type="text" id="pays_depart" name="pays_depart" class="select-search-input" placeholder="Rechercher un pays..." required>
                                 <div class="select-search-options" id="pays_depart_options"></div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="pays_arrivee">Pays d'arrivée *</label>
+                            <label for="pays_arrivee" class="required">Pays d'arrivée</label>
                             <div class="select-search-container">
                                 <input type="text" id="pays_arrivee" name="pays_arrivee" class="select-search-input" placeholder="Rechercher un pays..." required>
                                 <div class="select-search-options" id="pays_arrivee_options"></div>
@@ -1399,7 +1406,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Classe de voyage *</label>
+                        <label for="service" class="required">Classe de voyage</label>
                         <select id="service" name="service" required>
                             <option value="">Sélectionnez un service</option>
                             <option value="economique">Economique</option>
@@ -1410,7 +1417,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Type de voyage *</label>
+                        <label class="required">Type de voyage</label>
                         <div class="radio-group">
                             <div class="radio-option">
                                 <input type="radio" id="aller_simple" name="type_voyage" value="aller_simple" required checked>
@@ -1424,12 +1431,12 @@
                     </div>
                     
                     <div class="form-row">
-                        <div class="form-group" id="date_depart_container" style="display: none;">
-                            <label for="date_depart">Date de départ prévu *</label>
+                        <div class="form-group" id="date_depart_container">
+                            <label for="date_depart" class="required">Date de départ prévu</label>
                             <input type="date" id="date_depart" name="date_depart" required>
                         </div>
                         <div class="form-group" id="date_retour_container" style="display: none;">
-                            <label for="date_retour">Date de retour *</label>
+                            <label for="date_retour" class="required">Date de retour</label>
                             <input type="date" id="date_retour" name="date_retour">
                         </div>
                     </div>
@@ -1443,7 +1450,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="bagages">Bagages (nombre de kilos souhaité) *</label>
+                        <label for="bagages" class="required">Bagages (nombre de kilos souhaité)</label>
                         <div class="select-search-container">
                             <input type="text" id="bagages" name="bagages" class="select-search-input" placeholder="Rechercher un poids..." required>
                             <div class="select-search-options" id="bagages_options"></div>
@@ -1718,21 +1725,53 @@
         const billetForm = document.getElementById('billetForm');
         const confirmationMessage = document.getElementById('confirmationMessage');
         const thankYouNote = document.getElementById('thankYouNote');
+        const dateDepartContainer = document.getElementById('date_depart_container');
         const dateRetourContainer = document.getElementById('date_retour_container');
         const dateRetourInput = document.getElementById('date_retour');
 
-        // Gestion de l'affichage du champ date de retour
-        document.querySelectorAll('input[name="type_voyage"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                if (this.value === 'aller_retour') {
-                    dateRetourContainer.style.display = 'block';
-                    dateRetourInput.required = true;
-                } else {
-                    dateRetourContainer.style.display = 'none';
-                    dateRetourInput.required = false;
-                    dateRetourInput.value = '';
+        // Fonction pour gérer l'affichage des champs de date
+        function toggleDateFields() {
+            const typeVoyage = document.querySelector('input[name="type_voyage"]:checked').value;
+            
+            if (typeVoyage === 'aller_simple') {
+                // Aller simple : afficher seulement la date de départ
+                dateDepartContainer.style.display = 'block';
+                dateRetourContainer.style.display = 'none';
+                dateRetourInput.required = false;
+            } else if (typeVoyage === 'aller_retour') {
+                // Aller-retour : afficher les deux dates
+                dateDepartContainer.style.display = 'block';
+                dateRetourContainer.style.display = 'block';
+                dateRetourInput.required = true;
+                
+                // Remplir automatiquement la date de retour (7 jours après la date de départ)
+                const dateDepartInput = document.getElementById('date_depart');
+                if (dateDepartInput.value) {
+                    const dateDepart = new Date(dateDepartInput.value);
+                    const dateRetour = new Date(dateDepart.getTime() + (7 * 24 * 60 * 60 * 1000)); // +7 jours
+                    const formattedDate = dateRetour.toISOString().split('T')[0];
+                    dateRetourInput.value = formattedDate;
                 }
-            });
+            }
+        }
+
+        // Initialiser l'affichage des champs de date
+        toggleDateFields();
+
+        // Écouter les changements sur les radio buttons
+        document.querySelectorAll('input[name="type_voyage"]').forEach(radio => {
+            radio.addEventListener('change', toggleDateFields);
+        });
+
+        // Remplir automatiquement la date de retour quand la date de départ change
+        document.getElementById('date_depart').addEventListener('change', function() {
+            const typeVoyage = document.querySelector('input[name="type_voyage"]:checked').value;
+            if (typeVoyage === 'aller_retour') {
+                const dateDepart = new Date(this.value);
+                const dateRetour = new Date(dateDepart.getTime() + (7 * 24 * 60 * 60 * 1000)); // +7 jours
+                const formattedDate = dateRetour.toISOString().split('T')[0];
+                dateRetourInput.value = formattedDate;
+            }
         });
 
         // Soumission du formulaire
@@ -1741,19 +1780,15 @@
                 e.preventDefault();
                 
                 // Validation des dates
-                const dateDepart = new Date(document.getElementById('date_depart').value);
-                const dateArrivee = new Date(document.getElementById('date_arrivee').value);
-                
-                if (dateDepart >= dateArrivee) {
-                    alert('La date de départ doit être antérieure à la date d\'arrivée.');
-                    return;
-                }
-                
+                const dateDepartInput = document.getElementById('date_depart');
                 const typeVoyage = document.querySelector('input[name="type_voyage"]:checked').value;
+                
                 if (typeVoyage === 'aller_retour') {
+                    const dateDepart = new Date(dateDepartInput.value);
                     const dateRetour = new Date(dateRetourInput.value);
-                    if (dateRetour <= dateArrivee) {
-                        alert('La date de retour doit être postérieure à la date d\'arrivée.');
+                    
+                    if (dateRetour <= dateDepart) {
+                        alert('La date de retour doit être postérieure à la date de départ.');
                         return;
                     }
                 }
@@ -1768,14 +1803,19 @@
                 // Réinitialiser le formulaire après 3 secondes
                 setTimeout(() => {
                     billetForm.reset();
-                    dateRetourContainer.style.display = 'none';
-                    dateRetourInput.required = false;
+                    toggleDateFields(); // Réinitialiser l'affichage des champs de date
                     
                     // Réinitialiser les champs de recherche
                     document.getElementById('pays_depart').value = '';
                     document.getElementById('pays_arrivee').value = '';
                     document.getElementById('compagnie_aerienne').value = '';
                     document.getElementById('bagages').value = '';
+                    
+                    // Masquer les messages de confirmation
+                    setTimeout(() => {
+                        confirmationMessage.style.display = 'none';
+                        thankYouNote.style.display = 'none';
+                    }, 5000);
                 }, 3000);
             });
         }
@@ -1830,17 +1870,6 @@
             section.style.transform = 'translateY(20px)';
             section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             observer.observe(section);
-        });
-
-        // Remplir automatiquement la date de retour si c'est un aller-retour
-        document.getElementById('date_depart').addEventListener('change', function() {
-            const typeVoyage = document.querySelector('input[name="type_voyage"]:checked').value;
-            if (typeVoyage === 'aller_retour') {
-                const dateDepart = new Date(this.value);
-                const dateRetour = new Date(dateDepart.getTime() + (7 * 24 * 60 * 60 * 1000)); // +7 jours
-                const formattedDate = dateRetour.toISOString().split('T')[0];
-                dateRetourInput.value = formattedDate;
-            }
         });
     </script>
 </body>
