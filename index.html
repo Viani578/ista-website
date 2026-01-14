@@ -81,7 +81,7 @@
             width: 100%;
         }
 
-        /* Navigation */
+        /* Navigation - CORRIGÉ pour aligner comme galerie.html */
         .navbar {
             position: fixed;
             top: 0;
@@ -102,6 +102,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         /* Logo */
@@ -133,7 +136,7 @@
             color: var(--dark-navy);
         }
 
-        /* Menu de navigation */
+        /* Menu de navigation - CORRIGÉ pour alignement comme galerie.html */
         .nav-menu {
             display: flex;
             list-style: none;
@@ -156,6 +159,7 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 0;
+            white-space: nowrap;
         }
 
         .nav-menu > li > a::after {
@@ -179,13 +183,24 @@
             color: var(--gold);
         }
 
+        /* MODIFICATION: Icônes du menu en couleur sauf gold */
+        .nav-menu a i:not(.fa-chevron-down) {
+            color: var(--primary-blue);
+            transition: var(--transition);
+        }
+
+        .nav-menu > li > a:hover i:not(.fa-chevron-down),
+        .nav-menu > li > a.active i:not(.fa-chevron-down) {
+            color: var(--gold);
+        }
+
         .nav-menu a i {
             font-size: 1rem;
             width: 20px;
-            text-align: center;
+            text-align: left;
         }
 
-        /* Sous-menu */
+        /* Sous-menu - CORRIGÉ pour alignement comme galerie.html */
         .has-submenu {
             position: relative;
         }
@@ -226,16 +241,20 @@
         .submenu li a:hover {
             background: var(--cream);
             color: var(--primary-blue);
-            padding-left: 2rem;
+            padding-left: 1.5rem;
         }
 
         .submenu li a i {
             font-size: 0.9rem;
             width: 18px;
+            color: var(--primary-blue);
+        }
+
+        .submenu li a:hover i {
             color: var(--gold);
         }
 
-        /* Menu mobile */
+        /* Menu mobile - CORRIGÉ pour alignement comme galerie.html */
         .mobile-toggle {
             display: none;
             background: none;
@@ -243,18 +262,18 @@
             font-size: 1.5rem;
             color: var(--dark-navy);
             cursor: pointer;
+            padding: 0.5rem;
         }
 
         /* Section Hero */
         .hero {
             position: relative;
-            min-height: 120vh;
+            min-height: 60vh;
             display: flex;
             align-items: center;
             background: linear-gradient(135deg, #1E293B 0%, #2563EB 60%, #60A5FA 100%);
             overflow: hidden;
-            margin-top: 55px;
-            padding: 150px 0 60px;
+            padding: 120px 0 60px;
         }
 
         .hero-overlay {
@@ -1131,9 +1150,10 @@
             gap: 1.5rem;
         }
 
+        /* MODIFICATION: Agrandir légèrement le cercle de la photo */
         .testimonial-avatar {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             overflow: hidden;
             border: 3px solid var(--gold);
@@ -1362,6 +1382,7 @@
             font-size: 0.95rem;
         }
 
+        /* MODIFICATION: Réduire la taille des flèches de l'équipe */
         .team-arrow {
             position: absolute;
             top: 50%;
@@ -1369,10 +1390,10 @@
             background: var(--gold);
             color: var(--dark-navy);
             border: none;
-            width: 45px;
-            height: 45px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
-            font-size: 1.2rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
@@ -1388,11 +1409,11 @@
         }
 
         .team-arrow.prev {
-            left: -60px;
+            left: -50px;
         }
 
         .team-arrow.next {
-            right: -60px;
+            right: -50px;
         }
 
         .team-dots {
@@ -1614,7 +1635,7 @@
             }
         }
 
-        /* Responsive Design */
+        /* Responsive Design - CORRIGÉ pour alignement mobile comme galerie.html */
         @media (max-width: 1024px) {
             .hero-content {
                 grid-template-columns: 1fr;
@@ -1634,39 +1655,31 @@
             }
         }
 
-        /* ===========================================
-           STYLES POUR MOBILE (max-width: 768px)
-           =========================================== */
         @media (max-width: 768px) {
-            /* Empêcher le défilement horizontal */
             body, html {
                 overflow-x: hidden;
                 max-width: 100%;
                 position: relative;
             }
             
-            /* Correction pour éviter que le hero soit caché par la navbar */
             .hero {
-                padding: 120px 0 60px;
-                min-height: auto;
+                min-height: 50vh;
+                padding: 100px 0 40px;
             }
             
-            /* Container centré */
             .container {
                 padding: 0 1rem;
                 max-width: 100%;
                 overflow-x: hidden;
             }
             
-            /* ==================== NAVBAR MOBILE ==================== */
-            /* 3. NAVBAR */
+            /* 3. NAVBAR - CORRIGÉ pour alignement comme galerie.html */
             .navbar {
                 padding: 0.8rem 0;
             }
             
             .nav-container {
-                justify-content: space-between;
-                align-items: center;
+                padding: 0 1rem;
                 width: 100%;
             }
             
@@ -1695,8 +1708,8 @@
                 font-size: 1.2rem;
                 padding: 0.3rem;
             }
-            
-            /* 4. MENU MOBILE (IDENTIQUE À CONTACT.HTML) */
+
+            /* 4. MENU MOBILE - CORRIGÉ pour alignement comme galerie.html */
             .nav-menu {
                 position: fixed;
                 left: -100%;
@@ -1726,10 +1739,31 @@
             .nav-menu a {
                 padding: 1rem 1.5rem;
                 font-size: 1rem;
-                justify-content: space-between;
+                justify-content: flex-start;
+                width: 100%;
+                gap: 0.5rem;
             }
             
-            .has-submenu .submenu {
+            /* Correction pour les liens avec sous-menu - comme galerie.html */
+            .has-submenu > a {
+                position: relative;
+            }
+            
+            .has-submenu > a::after {
+                content: '\f078';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                position: absolute;
+                right: 1.5rem;
+                transition: transform 0.3s ease;
+            }
+            
+            .has-submenu.active > a::after {
+                transform: rotate(180deg);
+            }
+            
+            /* Sous-menu mobile - comme galerie.html */
+            .submenu {
                 position: static;
                 opacity: 1;
                 visibility: visible;
@@ -1739,9 +1773,10 @@
                 border-radius: 0;
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height 0.3s ease;
+                transition: max-height 0.5s ease;
                 padding: 0;
                 min-width: 100%;
+                margin-left: 0;
             }
             
             .has-submenu.active .submenu {
@@ -1752,9 +1787,36 @@
             .submenu li a {
                 padding: 0.8rem 2rem;
                 font-size: 0.9rem;
+                border-left: 3px solid transparent;
+                justify-content: flex-start;
+                gap: 0.75rem;
+            }
+            
+            .submenu li a:hover {
+                border-left: 3px solid var(--gold);
+                background: rgba(212, 175, 55, 0.1);
+            }
+            
+            /* Icônes dans le menu mobile - alignées comme galerie.html */
+            .nav-menu a i:first-child {
+                font-size: 1rem;
+                width: 24px;
+                text-align: left;
+            }
+            
+            .submenu li a i {
+                font-size: 0.9rem;
+                width: 20px;
+                text-align: left;
             }
             
             /* ==================== HERO SECTION ==================== */
+            
+            .hero {
+                min-height: 50vh;
+                padding: 100px 0 40px;
+            }
+
             .hero-text h1 {
                 font-size: 2rem;
                 text-align: center;
@@ -1987,9 +2049,10 @@
                 padding-left: 1rem;
             }
             
+            /* MODIFICATION RESPONSIVE: Ajuster la taille de l'avatar */
             .testimonial-avatar {
-                width: 60px;
-                height: 60px;
+                width: 70px;
+                height: 70px;
             }
             
             .author-info h4 {
@@ -2026,10 +2089,11 @@
                 font-size: 1.3rem;
             }
             
+            /* MODIFICATION RESPONSIVE: Réduire les flèches en mobile */
             .team-arrow {
-                width: 45px;
-                height: 45px;
-                font-size: 1.2rem;
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
             }
             
             .team-arrow.prev {
@@ -2222,7 +2286,7 @@
                 font-size: 0.7rem;
             }
             
-            /* Navigation mobile sur très petits écrans */
+            /* Navigation mobile sur très petits écrans - comme galerie.html */
             .nav-menu {
                 width: 85%;
             }
@@ -2240,11 +2304,26 @@
             .nav-menu a i:first-child {
                 font-size: 1rem;
                 width: 22px;
+                text-align: left;
             }
             
             .submenu li a i {
                 font-size: 0.8rem;
                 width: 18px;
+                text-align: left;
+            }
+            
+            /* MODIFICATION TRÈS PETITS ÉCRANS: Ajustement avatar */
+            .testimonial-avatar {
+                width: 65px;
+                height: 65px;
+            }
+            
+            /* MODIFICATION TRÈS PETITS ÉCRANS: Flèches équipe */
+            .team-arrow {
+                width: 28px;
+                height: 28px;
+                font-size: 0.8rem;
             }
         }
 
@@ -2253,7 +2332,7 @@
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="container nav-container">
+        <div class="nav-container">
             <a href="index.html" class="logo-section">
                 <img src="assets/images/remove.png" alt="ISTA Logo" class="logo-img">
                 <div class="logo-text">
@@ -2267,7 +2346,8 @@
             </button>
 
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <!-- MODIFICATION: Ajout de la classe active pour le lien Accueil -->
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Accueil</a></li>
                 <li class="has-submenu">
                     <a href="index.html#services"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
                     <ul class="submenu">
@@ -2285,11 +2365,12 @@
                 <li><a href="colis.html"><i class="fas fa-university"></i> Envoyer/Recevoir un colis</a></li>
                 <li><a href="index.html#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
                 <li><a href="index.html#equipe"><i class="fas fa-users"></i> Infos Paiement</a></li>
-                <li><a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
         </div>
     </nav>
 
+    <!-- Le reste du code HTML reste inchangé... -->
     <!-- Section Hero -->
     <section class="hero" id="accueil">
         <div class="hero-overlay"></div>
@@ -3217,46 +3298,56 @@
     </footer>
 
     <script>
+        // Le script JavaScript reste inchangé...
         // ==================== NAVIGATION MOBILE ====================
+
+        // Navigation mobile (corrigé)
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
-        const submenuToggles = document.querySelectorAll('.has-submenu > a');
 
         mobileToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             mobileToggle.innerHTML = navMenu.classList.contains('active') 
                 ? '<i class="fas fa-times"></i>' 
                 : '<i class="fas fa-bars"></i>';
-            
-            // Fermer tous les sous-menus quand le menu principal se ferme
-            if (!navMenu.classList.contains('active')) {
-                document.querySelectorAll('.has-submenu').forEach(item => {
-                    item.classList.remove('active');
-                });
-            }
         });
 
-        // Gestion des sous-menus sur mobile
-        submenuToggles.forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
+        // Gestion des sous-menus en mobile
+        const hasSubmenuItems = document.querySelectorAll('.has-submenu > a');
+        
+        hasSubmenuItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                // En mobile seulement
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
-                    const parent = this.parentElement;
+                    const parent = item.parentElement;
+                    
+                    // Fermer les autres sous-menus
+                    document.querySelectorAll('.has-submenu.active').forEach(activeItem => {
+                        if (activeItem !== parent) {
+                            activeItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Basculer le sous-menu courant
                     parent.classList.toggle('active');
                 }
             });
         });
 
-        // Fermer le menu au clic sur un lien (sauf les liens qui ouvrent des sous-menus)
-        document.querySelectorAll('.nav-menu a:not(.has-submenu > a)').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                
-                // Fermer tous les sous-menus
-                document.querySelectorAll('.has-submenu').forEach(item => {
-                    item.classList.remove('active');
-                });
+        // Fermer le menu au clic sur un lien (sauf ceux avec sous-menus)
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Si ce n'est pas un lien de sous-menu en mobile
+                if (window.innerWidth <= 768 && !link.parentElement.classList.contains('has-submenu')) {
+                    navMenu.classList.remove('active');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Fermer tous les sous-menus
+                    document.querySelectorAll('.has-submenu').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                }
             });
         });
 
