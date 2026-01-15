@@ -2334,42 +2334,42 @@
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-    <div class="container nav-container">
-        <a href="index.html" class="logo-section">
-            <img src="assets/images/remove.png" alt="ISTA Logo" class="logo-img">
-            <div class="logo-text">
-                <h1>ISTA</h1>
-                <p>International Succes Travel Agency</p>
-            </div>
-        </a>
+        <div class="nav-container">
+            <a href="index.html" class="logo-section">
+                <img src="assets/images/remove.png" alt="ISTA Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1>ISTA</h1>
+                    <p>International Succes Travel Agency</p>
+                </div>
+            </a>
 
-        <button class="mobile-toggle" id="mobileToggle">
-            <i class="fas fa-bars"></i>
-        </button>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
 
-        <ul class="nav-menu" id="navMenu">
-            <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
-            <li class="has-submenu">
-                <a href="#" class="submenu-trigger"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
-                <ul class="submenu">
-                    <li><a href="etude.html"><i class="fas fa-graduation-cap"></i> Visa d'Etude</a></li>
-                    <li><a href="travail.html"><i class="fas fa-briefcase"></i> Visa de Travail</a></li>
-                    <li><a href="visiteur.html"><i class="fas fa-plane"></i> Visa Visiteur</a></li>
-                    <li><a href="residence.html"><i class="fas fa-home"></i> Résidence Permanente</a></li>
-                    <li><a href="billet.html" class="active"><i class="fas fa-ticket-alt"></i> Billets d'avion</a></li>
-                    <li><a href="logement.html"><i class="fas fa-building"></i> Assistance Logement</a></li>
-                    <li><a href="sejour.html"><i class="fas fa-id-card"></i> Assistance Titre de Séjour</a></li>
-                    <li><a href="admissions.html"><i class="fas fa-university"></i> Admissions</a></li>
-                    <li><a href="galerie.html"><i class="fas fa-images"></i> Galerie Photo/Video</a></li>
-                </ul>
-            </li>
-            <li><a href="colis.html"><i class="fas fa-box"></i> Envoyer/Recevoir un colis</a></li>
-            <li><a href="index.html#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
-            <li><a href="paiement.html"><i class="fas fa-credit-card"></i> Infos Paiement</a></li>
-            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-        </ul>
-    </div>
-</nav>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Accueil</a></li>
+                <li class="has-submenu">
+                    <a href="index.html#services"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="etude.html"><i class="fas fa-graduation-cap"></i> Visa d'Etude</a></li>
+                        <li><a href="travail.html"><i class="fas fa-briefcase"></i> Visa de Travail</a></li>
+                        <li><a href="visiteur.html"><i class="fas fa-plane"></i> Visa Visiteur</a></li>
+                        <li><a href="residence.html"><i class="fas fa-home"></i> Résidence Permanente</a></li>
+                        <li><a href="billet.html"><i class="fas fa-ticket-alt"></i> Billets d'avion</a></li>
+                        <li><a href="logement.html" class="active"><i class="fas fa-building"></i> Assistance Logement</a></li>
+                        <li><a href="sejour.html"><i class="fas fa-id-card"></i> Assistance Titre de Séjour</a></li>
+                        <li><a href="admissions.html"><i class="fas fa-university"></i> Admissions</a></li>
+                        <li><a href="galerie.html"><i class="fas fa-images"></i> Galerie Photo/Video</a></li>
+                    </ul>
+                </li>
+                <li><a href="colis.html"><i class="fas fa-university"></i> Envoyer/Recevoir un colis</a></li>
+                <li><a href="index.html#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
+                <li><a href="paiement.html"><i class="fas fa-credit-card"></i> Infos Paiement</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <!-- Section Hero -->
     <section class="hero" id="accueil">
@@ -3300,55 +3300,54 @@
 
     <script>
         // ==================== NAVIGATION MOBILE ====================
-            // Gestion de la navigation mobile
-    const mobileToggle = document.getElementById('mobileToggle');
-    const navMenu = document.getElementById('navMenu');
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
 
-    mobileToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        mobileToggle.innerHTML = navMenu.classList.contains('active') 
-            ? '<i class="fas fa-times"></i>' 
-            : '<i class="fas fa-bars"></i>';
-    });
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileToggle.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
 
-    // Gestion des sous-menus en mobile
-    const hasSubmenuItems = document.querySelectorAll('.has-submenu > a');
+        // Gestion des sous-menus en mobile
+        const hasSubmenuItems = document.querySelectorAll('.has-submenu > a');
         
-    hasSubmenuItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-            // En mobile seulement
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                const parent = item.parentElement;
-                
-                // Fermer les autres sous-menus
-                document.querySelectorAll('.has-submenu.active').forEach(activeItem => {
-                    if (activeItem !== parent) {
-                        activeItem.classList.remove('active');
-                    }
-                });
-                
-                // Basculer le sous-menu courant
-                parent.classList.toggle('active');
-            }
+        hasSubmenuItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                // En mobile seulement
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = item.parentElement;
+                    
+                    // Fermer les autres sous-menus
+                    document.querySelectorAll('.has-submenu.active').forEach(activeItem => {
+                        if (activeItem !== parent) {
+                            activeItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Basculer le sous-menu courant
+                    parent.classList.toggle('active');
+                }
+            });
         });
-    });
 
-    // Fermer le menu au clic sur un lien (sauf ceux avec sous-menus)
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            // Si ce n'est pas un lien de sous-menu en mobile
-            if (window.innerWidth <= 768 && !link.parentElement.classList.contains('has-submenu')) {
-                navMenu.classList.remove('active');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                
-                // Fermer tous les sous-menus
-                document.querySelectorAll('.has-submenu').forEach(item => {
-                    item.classList.remove('active');
-                });
-            }
+        // Fermer le menu au clic sur un lien (sauf ceux avec sous-menus)
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Si ce n'est pas un lien de sous-menu en mobile
+                if (window.innerWidth <= 768 && !link.parentElement.classList.contains('has-submenu')) {
+                    navMenu.classList.remove('active');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Fermer tous les sous-menus
+                    document.querySelectorAll('.has-submenu').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                }
+            });
         });
-    });
 
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
