@@ -3300,56 +3300,55 @@
 
     <script>
         // ==================== NAVIGATION MOBILE ====================
-        const mobileToggle = document.getElementById('mobileToggle');
-        const navMenu = document.getElementById('navMenu');
+            // Gestion de la navigation mobile
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
 
-        if (mobileToggle) {
-            mobileToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                mobileToggle.innerHTML = navMenu.classList.contains('active') 
-                    ? '<i class="fas fa-times"></i>' 
-                    : '<i class="fas fa-bars"></i>';
-            });
-        }
+    mobileToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        mobileToggle.innerHTML = navMenu.classList.contains('active') 
+            ? '<i class="fas fa-times"></i>' 
+            : '<i class="fas fa-bars"></i>';
+    });
 
-        // Gestion des sous-menus en mobile
-        const hasSubmenuItems = document.querySelectorAll('.has-submenu > a');
-
-        hasSubmenuItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                // En mobile seulement
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    const parent = item.parentElement;
-                    
-                    // Fermer les autres sous-menus
-                    document.querySelectorAll('.has-submenu.active').forEach(activeItem => {
-                        if (activeItem !== parent) {
-                            activeItem.classList.remove('active');
-                        }
-                    });
-                    
-                    // Basculer le sous-menu courant
-                    parent.classList.toggle('active');
-                }
-            });
+    // Gestion des sous-menus en mobile
+    const hasSubmenuItems = document.querySelectorAll('.has-submenu > a');
+        
+    hasSubmenuItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            // En mobile seulement
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const parent = item.parentElement;
+                
+                // Fermer les autres sous-menus
+                document.querySelectorAll('.has-submenu.active').forEach(activeItem => {
+                    if (activeItem !== parent) {
+                        activeItem.classList.remove('active');
+                    }
+                });
+                
+                // Basculer le sous-menu courant
+                parent.classList.toggle('active');
+            }
         });
+    });
 
-        // Fermer le menu au clic sur un lien (sauf ceux avec sous-menus)
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                // Si ce n'est pas un lien de sous-menu en mobile
-                if (window.innerWidth <= 768 && !link.parentElement.classList.contains('has-submenu')) {
-                    navMenu.classList.remove('active');
-                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                    
-                    // Fermer tous les sous-menus
-                    document.querySelectorAll('.has-submenu').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                }
-            });
+    // Fermer le menu au clic sur un lien (sauf ceux avec sous-menus)
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Si ce n'est pas un lien de sous-menu en mobile
+            if (window.innerWidth <= 768 && !link.parentElement.classList.contains('has-submenu')) {
+                navMenu.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                
+                // Fermer tous les sous-menus
+                document.querySelectorAll('.has-submenu').forEach(item => {
+                    item.classList.remove('active');
+                });
+            }
         });
+    });
 
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
