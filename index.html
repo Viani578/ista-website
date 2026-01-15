@@ -2365,7 +2365,7 @@
                 </li>
                 <li><a href="colis.html"><i class="fas fa-university"></i> Envoyer/Recevoir un colis</a></li>
                 <li><a href="index.html#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
-                <li><a href="paiement.html" class="active"><i class="fas fa-credit-card"></i> Infos Paiement</a></li>
+                <li><a href="paiement.html"><i class="fas fa-credit-card"></i> Infos Paiement</a></li>
                 <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
         </div>
@@ -3303,16 +3303,18 @@
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
 
-        mobileToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            mobileToggle.innerHTML = navMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                mobileToggle.innerHTML = navMenu.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+        }
 
         // Gestion des sous-menus en mobile
         const hasSubmenuItems = document.querySelectorAll('.has-submenu > a');
-        
+
         hasSubmenuItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 // En mobile seulement
