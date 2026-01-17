@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* Variables et configuration de base - MÊMES QUE SEJOUR.HTML */
         :root {
             --primary-red: #DC143C;
             --primary-blue: #1E40AF;
@@ -109,34 +110,37 @@
         .logo-section {
             display: flex;
             align-items: center;
-            gap: 1.2rem;
+            gap: 1rem;
             text-decoration: none;
             margin-right: auto;
-            transform: translateX(-15px);
+            transform: translateX(-10px);
         }
 
         .logo-img {
-            height: 50px;
+            height: 45px;
             width: auto;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
 
         .logo-text h1 {
-            font-size: 1.2rem;
+            font-size: 1rem;
             margin: 0;
             color: var(--dark-navy);
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
         .logo-text p {
-            font-size: 0.6rem;
-            letter-spacing: 1.8px;
+            font-size: 0.55rem;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             opacity: 0.9;
             margin: 0;
             color: var(--dark-navy);
+            line-height: 1.2;
         }
 
-        /* Menu de navigation */
+        /* Menu de navigation - MÊME QUE SEJOUR.HTML */
         .nav-menu {
             display: flex;
             list-style: none;
@@ -237,7 +241,6 @@
             gap: 0.75rem;
             transition: var(--transition);
             font-size: 0.85rem;
-            position: relative;
         }
 
         .submenu li a:hover {
@@ -293,10 +296,10 @@
             padding: 0.5rem;
         }
 
-        /* Hero Section Paiement */
+        /* Section Hero Paiement */
         .paiement-hero {
             position: relative;
-            min-height: 50vh;
+            min-height: 60vh;
             display: flex;
             align-items: center;
             background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
@@ -337,186 +340,302 @@
             margin-bottom: 2rem;
         }
 
-        /* Section Paiement */
-        .paiement-section {
-            padding: 6rem 0;
+        /* Section Introduction */
+        .paiement-introduction {
+            padding: 6rem 0 4rem;
             background: var(--cream);
         }
 
-        .paiement-container {
+        .introduction-container {
             max-width: 1000px;
             margin: 0 auto;
+        }
+
+        .introduction-content {
             background: var(--soft-white);
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow-md);
+            border: 2px solid rgba(212, 175, 55, 0.1);
+            position: relative;
             overflow: hidden;
         }
 
-        /* En-tête de la section */
+        .introduction-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--primary-blue));
+        }
+
+        .introduction-content h2 {
+            color: var(--dark-navy);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .introduction-content h2 i {
+            color: var(--gold);
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .introduction-content p {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .introduction-content p::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5em;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        .introduction-stats {
+            display: flex;
+            justify-content: space-around;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .stat-item.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border-left: 4px solid var(--gold);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.2;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: var(--dark-navy);
+            font-weight: 600;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Informations Paiement */
+        .paiement-infos {
+            padding: 4rem 0;
+            background: linear-gradient(180deg, var(--soft-white) 0%, var(--cream) 100%);
+            position: relative;
+        }
+
+        .paiement-infos::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
         .section-header {
             text-align: center;
             max-width: 800px;
-            margin: 0 auto 4rem;
+            margin: 0 auto 5rem;
+            position: relative;
         }
 
         .section-header h2 {
-            color: var(--dark-navy);
             margin-bottom: 1rem;
+            color: var(--dark-navy);
+            font-size: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--gold));
+            border-radius: 2px;
         }
 
         .section-header p {
             color: var(--text-light);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             line-height: 1.6;
         }
 
         .section-badge {
             display: inline-block;
-            padding: 0.5rem 1.5rem;
+            padding: 0.75rem 2rem;
             background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
             color: var(--dark-navy);
             border-radius: 50px;
-            font-size: 0.85rem;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Contenu Paiement */
-        .paiement-content {
-            padding: 3rem;
-        }
-
-        .info-card {
-            background: var(--soft-white);
-            border-radius: 15px;
-            padding: 2.5rem;
             margin-bottom: 2rem;
-            border: 2px solid rgba(212, 175, 55, 0.2);
-            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Section Virement Bancaire */
+        .virement-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
             position: relative;
             overflow: hidden;
         }
 
-        .info-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--gold);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
-        }
-
-        .info-card::before {
+        .virement-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--gold), #FFD700);
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(220, 20, 60, 0.1) 0%, transparent 40%);
         }
 
-        .info-card h3 {
-            color: var(--dark-navy);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .info-card h3 i {
-            color: var(--gold);
-            font-size: 1.5rem;
-        }
-
-        .info-card p {
-            color: var(--text-dark);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-            font-size: 1.05rem;
-        }
-
-        .info-card ul {
-            list-style: none;
-            margin: 1.5rem 0;
-        }
-
-        .info-card ul li {
-            padding: 0.75rem 0;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .info-card ul li:last-child {
-            border-bottom: none;
-        }
-
-        .info-card ul li i {
-            color: var(--gold);
-            font-size: 1rem;
-            min-width: 25px;
-        }
-
-        /* Alertes importantes */
-        .alert-box {
-            background: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(255, 235, 238, 1) 100%);
-            border-left: 5px solid var(--primary-red);
-            padding: 2rem;
-            border-radius: 10px;
-            margin: 2rem 0;
+        .section-header-white {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem;
             position: relative;
-            overflow: hidden;
+            z-index: 1;
         }
 
-        .alert-box::before {
-            content: '⚠️';
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 2rem;
-            opacity: 0.1;
-        }
-
-        .alert-box h4 {
-            color: var(--primary-red);
+        .section-header-white h2 {
+            color: var(--soft-white);
             margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-size: 3rem;
+            position: relative;
+            display: inline-block;
         }
 
-        .alert-box h4 i {
-            color: var(--primary-red);
+        .section-header-white h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--soft-white));
+            border-radius: 2px;
         }
 
-        /* Section Banque */
-        .bank-details {
-            background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%);
-            border-radius: 15px;
-            padding: 2.5rem;
-            margin: 2rem 0;
-            border: 2px solid rgba(30, 64, 175, 0.1);
+        .section-header-white p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
         }
 
-        .bank-details h3 {
-            color: var(--primary-blue);
-            margin-bottom: 1.5rem;
+        .bank-info-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .bank-info-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bank-info-card h3 {
+            color: var(--dark-navy);
+            margin-bottom: 2rem;
             display: flex;
             align-items: center;
             gap: 1rem;
+            font-size: 1.8rem;
         }
 
-        .bank-details h3 i {
-            color: var(--primary-blue);
+        .bank-info-card h3 i {
+            color: var(--gold);
+            font-size: 1.6rem;
+        }
+
+        .bank-details {
+            margin: 2rem 0;
         }
 
         .detail-row {
             display: flex;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(30, 64, 175, 0.1);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .detail-row:last-child {
@@ -528,117 +647,393 @@
         .detail-label {
             font-weight: 600;
             color: var(--dark-navy);
-            min-width: 200px;
+            min-width: 180px;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+            font-size: 1.05rem;
         }
 
         .detail-label i {
             color: var(--primary-blue);
             width: 20px;
+            text-align: center;
         }
 
         .detail-value {
             color: var(--text-dark);
-            font-size: 1.05rem;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
-        /* Section Modes de Paiement */
-        .payment-methods {
-            margin: 3rem 0;
+        /* Section Modes de Paiement - STYLE SEJOUR.HTML */
+        .methodes-section {
+            padding: 6rem 0;
+            background: var(--cream);
         }
 
-        .method-grid {
+        .methodes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
         }
 
-        .method-card {
-            background: var(--soft-white);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            border: 2px solid rgba(212, 175, 55, 0.1);
-            transition: var(--transition);
-        }
-
-        .method-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--gold);
+        .methode-card {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--soft-white) 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
             box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            text-align: center;
         }
 
-        .method-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+        .methode-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .methode-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--gold));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .methode-card.animated::before {
+            transform: scaleX(1);
+        }
+
+        .methode-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold);
+        }
+
+        .methode-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
-            font-size: 1.8rem;
-            color: var(--dark-navy);
+            font-size: 2rem;
+            color: var(--soft-white);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
         }
 
-        .method-card h4 {
+        .methode-card:hover .methode-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--gold), #FFD700);
+        }
+
+        .methode-card h3 {
             color: var(--dark-navy);
             margin-bottom: 1rem;
+            font-size: 1.5rem;
+            min-height: 3.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
         }
 
-        .method-card p {
+        .methode-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .methode-card:hover h3::after {
+            width: 100px;
+        }
+
+        .methode-card p {
             color: var(--text-light);
-            font-size: 0.95rem;
+            line-height: 1.8;
+            flex-grow: 1;
         }
 
-        /* Section Confirmation */
-        .confirmation-section {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
-            border-radius: 15px;
-            padding: 2.5rem;
-            margin-top: 3rem;
-            text-align: center;
-            border: 2px dashed var(--gold);
+        /* Section Alertes - NOUVELLE SECTION */
+        .alertes-section {
+            padding: 6rem 0;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--soft-white) 100%);
+            position: relative;
         }
 
-        .confirmation-section h3 {
-            color: var(--dark-navy);
+        .alertes-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .alerte-card {
+            background: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(255, 235, 238, 1) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            border-left: 5px solid var(--primary-red);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            margin-bottom: 2rem;
+        }
+
+        .alerte-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .alerte-card::before {
+            content: '⚠️';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 3rem;
+            opacity: 0.1;
+        }
+
+        .alerte-card h3 {
+            color: var(--primary-red);
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 1rem;
+            font-size: 1.8rem;
         }
 
-        .confirmation-section h3 i {
-            color: var(--gold);
+        .alerte-card h3 i {
+            color: var(--primary-red);
+            font-size: 1.6rem;
         }
 
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 1.5rem;
+        .alerte-card p {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
         }
 
-        .contact-item {
+        .alerte-card strong {
+            color: var(--primary-red);
+        }
+
+        .email-highlight {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+            font-weight: 700;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: var(--soft-white);
+            border-radius: 10px;
+            border: 2px solid var(--gold);
+        }
+
+        /* Section Confirmation - NOUVELLE SECTION */
+        .confirmation-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .confirmation-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .confirmation-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            border: 2px dashed var(--gold);
+        }
+
+        .confirmation-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .confirmation-card h3 {
+            color: var(--dark-navy);
+            margin-bottom: 2rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .confirmation-card h3 i {
+            color: var(--gold);
+            font-size: 1.6rem;
+        }
+
+        .contact-liste {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .contact-liste li {
+            padding: 1rem;
             color: var(--text-dark);
-            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            background: var(--cream);
+            border-radius: 10px;
+            transition: all 0.3s ease;
         }
 
-        .contact-item i {
+        .contact-liste li:hover {
+            background: var(--gold);
+            color: var(--dark-navy);
+            transform: translateX(5px);
+        }
+
+        .contact-liste li i {
             color: var(--primary-blue);
-            width: 25px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
         }
 
-        /* Footer */
+        .contact-liste li:hover i {
+            color: var(--dark-navy);
+            transform: scale(1.2);
+        }
+
+        /* Section Message Final - NOUVELLE SECTION */
+        .message-section {
+            padding: 6rem 0;
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .message-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(255, 253, 245, 1) 100%);
+            padding: 4rem;
+            border-radius: 25px;
+            border: 3px solid var(--gold);
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .message-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .message-card::before {
+            content: '❤️';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 2rem;
+            opacity: 0.2;
+        }
+
+        .message-card::after {
+            content: '⭐';
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            opacity: 0.2;
+        }
+
+        .message-card h3 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .message-card h3 i {
+            color: var(--gold);
+            margin-right: 1rem;
+        }
+
+        .message-card p {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .devise {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+            color: var(--dark-navy);
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .signature {
+            font-style: italic;
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            margin-top: 2rem;
+            font-weight: 700;
+        }
+
+        .signature span {
+            color: var(--gold);
+        }
+
+        /* Footer - MÊME QUE SEJOUR.HTML */
         .footer {
             background: var(--dark-navy);
             padding: 4rem 2rem 2rem;
@@ -704,13 +1099,25 @@
         .social-links a:hover {
             background: var(--gold);
             color: var(--dark-navy);
-            transform: translateY(-5px);
+            transform: translateY(-5px) rotate(360deg);
         }
 
         .footer-links h4 {
             font-size: 1.25rem;
             margin-bottom: 1.5rem;
             font-weight: 700;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--gold);
         }
 
         .footer-links ul {
@@ -746,7 +1153,7 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
-        /* Responsive Styles */
+        /* RESPONSIVE DESIGN AMÉLIORÉ */
         @media (max-width: 768px) {
             html, body {
                 overflow-x: hidden;
@@ -768,6 +1175,7 @@
             h2 {
                 font-size: 1.7rem;
                 line-height: 1.2;
+                margin-bottom: 0.5rem;
             }
             
             h3 {
@@ -779,12 +1187,52 @@
                 font-size: 1.2rem;
             }
             
+            .section-header h2,
+            .section-header-white h2 {
+                font-size: 1.8rem;
+                line-height: 1.2;
+                margin-bottom: 0.5rem;
+            }
+            
+            .section-header h2::after,
+            .section-header-white h2::after {
+                width: 50px;
+                height: 2px;
+                bottom: -5px;
+            }
+            
+            .introduction-content h2,
+            .bank-info-card h3,
+            .alerte-card h3,
+            .confirmation-card h3,
+            .message-card h3 {
+                font-size: 1.5rem;
+                line-height: 1.2;
+                margin-bottom: 1rem;
+            }
+            
+            .methode-card h3 {
+                font-size: 1.3rem;
+                line-height: 1.3;
+                min-height: auto;
+            }
+            
             p {
                 font-size: 0.95rem;
                 line-height: 1.5;
             }
             
-            /* Navbar */
+            .section-header,
+            .section-header-white {
+                margin-bottom: 3rem;
+            }
+            
+            /* Stat number mobile */
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            /* Navbar améliorée */
             .navbar {
                 padding: 0.8rem 0;
             }
@@ -807,12 +1255,12 @@
             }
             
             .logo-text h1 {
-                font-size: 0.9rem;
+                font-size: 0.9rem !important;
                 line-height: 1;
             }
             
             .logo-text p {
-                font-size: 0.5rem;
+                font-size: 0.5rem !important;
                 letter-spacing: 1px;
             }
             
@@ -827,7 +1275,7 @@
                 padding: 0.3rem;
             }
 
-            /* Menu mobile */
+            /* Menu mobile amélioré */
             .nav-menu {
                 position: fixed;
                 left: -100%;
@@ -836,7 +1284,7 @@
                 background: var(--soft-white);
                 width: 100%;
                 text-align: left;
-                transition: 0.3s;
+                transition: 0.3s ease;
                 padding: 1rem 0;
                 gap: 0;
                 box-shadow: var(--shadow-lg);
@@ -873,13 +1321,14 @@
                 position: absolute;
                 right: 1.5rem;
                 transition: transform 0.3s ease;
+                font-size: 0.9rem;
             }
             
             .has-submenu.active > a::after {
                 transform: rotate(180deg);
             }
             
-            /* Sous-menu */
+            /* Sous-menu amélioré */
             .submenu {
                 position: static;
                 opacity: 1;
@@ -909,35 +1358,22 @@
                 gap: 0.75rem;
             }
             
-            .submenu li a:hover {
-                border-left: 3px solid var(--gold);
-                background: rgba(212, 175, 55, 0.1);
-            }
-            
-            /* CORRECTION : Lien actif dans le sous-menu en mobile */
+            .submenu li a:hover,
             .submenu li a.active {
                 border-left: 3px solid var(--gold);
                 background: rgba(212, 175, 55, 0.1);
             }
             
-            /* CORRECTION : Pour le lien "Nos Services" quand un sous-lien est actif en mobile */
-            .has-submenu.active-parent > a {
-                color: var(--gold);
-            }
-            
-            .has-submenu.active-parent > a i:not(.fa-chevron-down) {
-                color: var(--gold);
-            }
-            
-            /* Hero Section */
+            /* Hero Section améliorée */
             .paiement-hero {
-                min-height: 40vh;
+                min-height: 50vh;
                 padding: 100px 0 40px;
             }
             
             .paiement-hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.2rem !important;
                 margin-bottom: 1rem;
+                padding: 0 0.5rem;
             }
             
             .paiement-hero p {
@@ -946,35 +1382,138 @@
                 padding: 0 0.5rem;
             }
             
-            /* Paiement Section */
-            .paiement-section {
+            /* Introduction améliorée */
+            .paiement-introduction {
                 padding: 3rem 0;
             }
             
-            .paiement-content {
+            .introduction-content {
                 padding: 1.5rem;
+                border-radius: 15px;
             }
             
-            .info-card {
+            .introduction-stats {
+                gap: 1rem;
+                margin: 2rem 0;
+            }
+            
+            .stat-item {
+                min-width: 120px;
+            }
+            
+            .stat-number {
+                font-size: 2rem !important;
+            }
+            
+            .highlight-box {
+                padding: 1rem;
+                margin: 1.5rem 0;
+            }
+            
+            /* Section Paiement Infos améliorée */
+            .paiement-infos {
+                padding: 3rem 0;
+            }
+            
+            .section-badge {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.8rem;
+            }
+            
+            /* Virement Section améliorée */
+            .virement-section {
+                padding: 3rem 0;
+            }
+            
+            .bank-info-card {
                 padding: 1.5rem;
+                border-radius: 15px;
             }
             
             .detail-row {
                 flex-direction: column;
                 gap: 0.5rem;
+                margin-bottom: 1rem;
+                padding-bottom: 1rem;
             }
             
             .detail-label {
                 min-width: auto;
+                font-size: 0.95rem;
             }
             
-            .method-grid {
+            .detail-value {
+                font-size: 1rem;
+                padding-left: 1.5rem;
+            }
+            
+            /* Methodes Section améliorée */
+            .methodes-section {
+                padding: 3rem 0;
+            }
+            
+            .methodes-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             
-            .bank-details,
-            .confirmation-section {
+            .methode-card {
                 padding: 1.5rem;
+            }
+            
+            .methode-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            /* Alertes Section améliorée */
+            .alertes-section {
+                padding: 3rem 0;
+            }
+            
+            .alerte-card {
+                padding: 1.5rem;
+            }
+            
+            .email-highlight {
+                font-size: 1rem;
+                padding: 0.8rem;
+            }
+            
+            /* Confirmation Section améliorée */
+            .confirmation-section {
+                padding: 3rem 0;
+            }
+            
+            .confirmation-card {
+                padding: 1.5rem;
+            }
+            
+            .contact-liste li {
+                padding: 0.8rem;
+                font-size: 0.95rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+            
+            /* Message Section améliorée */
+            .message-section {
+                padding: 3rem 0;
+            }
+            
+            .message-card {
+                padding: 1.5rem;
+            }
+            
+            .devise {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .signature {
+                font-size: 1.1rem;
             }
             
             /* Footer */
@@ -985,23 +1524,70 @@
             .footer-container {
                 grid-template-columns: 1fr;
                 gap: 2rem;
-                margin-bottom: 3rem;
+                margin-bottom: 2rem;
+            }
+            
+            .footer-about h3 {
+                font-size: 1.6rem;
+            }
+            
+            .footer-about p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+            
+            .footer-links h4 {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .footer-links a {
+                font-size: 0.9rem;
+            }
+            
+            .social-links a {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
             }
             
             .footer-bottom {
-                padding-top: 2rem;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-                color: rgba(255, 255, 255, 0.5);
+                padding: 1.5rem 1rem 0;
+                font-size: 0.85rem;
+            }
+            
+            /* Améliorations supplémentaires */
+            .section-header p,
+            .section-header-white p {
+                font-size: 1rem;
+                padding: 0 0.5rem;
+            }
+            
+            .bank-info-card p,
+            .alerte-card p,
+            .confirmation-card p,
+            .message-card p {
+                font-size: 0.95rem;
+                line-height: 1.6;
             }
         }
         
         @media (max-width: 480px) {
             .paiement-hero h1 {
-                font-size: 1.9rem;
+                font-size: 1.9rem !important;
             }
             
-            .section-header h2 {
-                font-size: 1.8rem;
+            .section-header h2,
+            .section-header-white h2 {
+                font-size: 1.6rem !important;
+            }
+            
+            .stat-item {
+                min-width: 100px;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem !important;
             }
             
             .nav-menu {
@@ -1018,28 +1604,90 @@
                 font-size: 0.85rem;
             }
             
-            .nav-menu a i:first-child {
-                font-size: 1rem;
-                width: 22px;
-                text-align: left;
+            .logo-img {
+                height: 40px;
             }
             
-            .submenu li a i {
-                font-size: 0.8rem;
-                width: 18px;
-                text-align: left;
+            .logo-text h1 {
+                font-size: 1.1rem !important;
+            }
+            
+            .methode-card,
+            .alerte-card,
+            .confirmation-card,
+            .message-card {
+                padding: 1.2rem;
+            }
+            
+            .methode-icon {
+                width: 55px;
+                height: 55px;
+                font-size: 1.4rem;
+            }
+            
+            .email-highlight {
+                font-size: 0.9rem;
+                padding: 0.6rem;
+            }
+            
+            .contact-liste li {
+                font-size: 0.9rem;
+                padding: 0.6rem;
+            }
+        }
+        
+        /* Correction des problèmes de largeur */
+        @media (max-width: 768px) {
+            img, video, iframe, canvas, svg {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            * {
+                max-width: 100%;
+            }
+            
+            .container {
+                overflow: hidden;
+            }
+            
+            /* Prévenir le débordement horizontal */
+            body, html {
+                position: relative;
+                overflow-x: hidden;
+                width: 100%;
+            }
+        }
+        
+        /* Support pour les très petits écrans */
+        @media (max-width: 360px) {
+            .container {
+                padding: 0 0.8rem;
+            }
+            
+            .paiement-hero h1 {
+                font-size: 1.7rem !important;
+            }
+            
+            .paiement-hero p {
+                font-size: 1rem;
+            }
+            
+            .stat-item {
+                min-width: 80px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation - MÊME QUE SEJOUR.HTML -->
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo-section">
                 <img src="assets/images/remove.png" alt="ISTA Logo" class="logo-img">
                 <div class="logo-text">
                     <h1>ISTA</h1>
-                    <p>International Succes Travel Agency</p>
+                    <p>International Success Travel Agency</p>
                 </div>
             </a>
 
@@ -1071,149 +1719,211 @@
         </div>
     </nav>
 
-    <!-- Hero Section Paiement -->
-    <section class="paiement-hero" id="paiement">
+    <!-- Section Hero Paiement -->
+    <section class="paiement-hero">
         <div class="container paiement-hero-content">
             <h1>Informations de Paiement</h1>
             <p>Découvrez tous les modes de paiement disponibles pour vos services d'immigration avec ISTA</p>
         </div>
     </section>
 
-    <!-- Section Paiement -->
-    <section class="paiement-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Paiement Sécurisé</span>
-                <h2>Procédures de Paiement</h2>
-                <p>Toutes les informations nécessaires pour effectuer vos paiements en toute sécurité</p>
-            </div>
-
-            <div class="paiement-container">
-                <div class="paiement-content">
-                    <!-- Carte d'introduction -->
-                    <div class="info-card">
-                        <h3><i class="fas fa-info-circle"></i> Introduction</h3>
-                        <p>Vous trouverez ci-dessous toutes les informations concernant les moyens de paiement pour vos frais de dossier.</p>
-                        <p>Après échange avec nos différentes secrétaires, vous avez convenu selon votre situation d'un tarif spécifique.</p>
-                        <p>Veuillez maintenant procéder au paiement de vos frais de dossier.</p>
+    <!-- Section Introduction -->
+    <section class="paiement-introduction">
+        <div class="container introduction-container">
+            <div class="introduction-content">
+                <h2><i class="fas fa-credit-card"></i> Procédures de Paiement</h2>
+                
+                <p>Vous trouverez ci-dessous toutes les informations concernant les moyens de paiement pour vos frais de dossier.</p>
+                
+                <p>Après échange avec nos différentes secrétaires, vous avez convenu selon votre situation d'un tarif spécifique.</p>
+                
+                <div class="introduction-stats">
+                    <div class="stat-item" data-delay="0">
+                        <span class="stat-number" data-target="100">0</span>
+                        <span class="stat-label">Sécurité garantie</span>
                     </div>
-
-                    <!-- Section Virement Bancaire -->
-                    <div class="bank-details">
-                        <h3><i class="fas fa-university"></i> Virement Bancaire</h3>
-                        <p>Pour tous ceux qui veulent s'acquitter des frais par virement bancaire, veuillez effectuer le virement sur le compte suivant :</p>
-                        
-                        <div class="detail-row">
-                            <div class="detail-label">
-                                <i class="fas fa-landmark"></i> Banque :
-                            </div>
-                            <div class="detail-value">
-                                <strong>United Bank for Africa (UBA Cameroun)</strong>
-                            </div>
-                        </div>
-                        
-                        <div class="detail-row">
-                            <div class="detail-label">
-                                <i class="fas fa-credit-card"></i> IBAN :
-                            </div>
-                            <div class="detail-value">
-                                <strong>CM21 10033 05211 11011000458-70</strong>
-                            </div>
-                        </div>
-                        
-                        <div class="detail-row">
-                            <div class="detail-label">
-                                <i class="fas fa-user-tie"></i> Titulaire du compte :
-                            </div>
-                            <div class="detail-value">
-                                <strong>INTERNATIONAL SUCCES TRAVEL AGENCY SARL</strong>
-                            </div>
-                        </div>
+                    <div class="stat-item" data-delay="100">
+                        <span class="stat-number" data-target="4">0</span>
+                        <span class="stat-label">Modes de paiement</span>
                     </div>
-
-                    <!-- Section Modes de Paiement -->
-                    <div class="payment-methods">
-                        <h3><i class="fas fa-money-bill-wave"></i> Modes de Paiement Disponibles</h3>
-                        <p>Nous offrons plusieurs options de paiement pour s'adapter à votre situation :</p>
-                        
-                        <div class="method-grid">
-                            <div class="method-card">
-                                <div class="method-icon">
-                                    <i class="fas fa-lock"></i>
-                                </div>
-                                <h4>Compte bloqué</h4>
-                                <p>Sécurisez votre dossier avec un compte bloqué</p>
-                            </div>
-                            
-                            <div class="method-card">
-                                <div class="method-icon">
-                                    <i class="fas fa-calendar-alt"></i>
-                                </div>
-                                <h4>Paiement en tranches</h4>
-                                <p>Étalez vos paiements selon un échéancier convenu</p>
-                            </div>
-                            
-                            <div class="method-card">
-                                <div class="method-icon">
-                                    <i class="fas fa-home"></i>
-                                </div>
-                                <h4>Biens matériels</h4>
-                                <p>Terrains, voiture, maison, etc.</p>
-                            </div>
-                            
-                            <div class="method-card">
-                                <div class="method-icon">
-                                    <i class="fas fa-percentage"></i>
-                                </div>
-                                <h4>Versement total</h4>
-                                <p>Réduction considérable pour paiement complet</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Alerte Importante -->
-                    <div class="alert-box">
-                        <h4><i class="fas fa-exclamation-triangle"></i> IMPORTANT</h4>
-                        <p><strong>Il est important de noter qu'après avoir effectué votre paiement, veuillez nous envoyer un mail de confirmation à l'adresse :</strong></p>
-                        <p style="text-align: center; font-size: 1.2rem; margin: 1rem 0;">
-                            <strong>internationalsuccestravelagenc@gmail.com</strong>
-                        </p>
-                        <p><strong>OU via WhatsApp</strong> afin que nous puissions rapidement valider votre paiement.</p>
-                    </div>
-
-                    <!-- Avertissement -->
-                    <div class="info-card" style="border-color: var(--primary-red);">
-                        <h3 style="color: var(--primary-red);"><i class="fas fa-ban"></i> AVERTISSEMENT</h3>
-                        <p><strong>🚨 🚨 🚨 Aucun paiement effectué en dehors de ceux cités ci-dessus ne sera pris en compte !!!</strong></p>
-                    </div>
-
-                    <!-- Section Confirmation -->
-                    <div class="confirmation-section">
-                        <h3><i class="fas fa-paper-plane"></i> Confirmation de Paiement</h3>
-                        <p>Une fois votre paiement effectué, contactez-nous immédiatement pour confirmation :</p>
-                        
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <i class="fas fa-envelope"></i>
-                                <span>Email : internationalsuccestravelagenc@gmail.com</span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fab fa-whatsapp"></i>
-                                <span>WhatsApp : (+237) 672 080 166 / 696 214 773</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Message de remerciement -->
-                    <div class="info-card" style="text-align: center; border-color: var(--gold);">
-                        <h3 style="color: var(--gold);"><i class="fas fa-heart"></i> Merci de votre confiance</h3>
-                        <p><strong>L'excellence notre seul langage</strong></p>
-                        <p style="font-style: italic; color: var(--gold); margin: 1rem 0;">
-                            🌹 PTS 🌹 C'est du rêve à la réalité, il suffit d'y croire
-                        </p>
-                        <p><strong>Notre devise :</strong> Fiabilité, Rapidité, Succès</p>
+                    <div class="stat-item" data-delay="200">
+                        <span class="stat-number" data-target="24">0</span>
+                        <span class="stat-label">Support rapide</span>
                     </div>
                 </div>
+                
+                <div class="highlight-box">
+                    <p>Veuillez maintenant procéder au paiement de vos frais de dossier selon les instructions ci-dessous.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Informations Paiement -->
+    <section class="paiement-infos">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Paiement Sécurisé</span></br></br>
+                <h2>Informations Générales</h2>
+                <p>Toutes les informations nécessaires pour effectuer vos paiements en toute sécurité</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Virement Bancaire -->
+    <section class="virement-section">
+        <div class="container">
+            <div class="section-header-white">
+                <h2>Virement Bancaire</h2>
+                <p>Pour tous ceux qui veulent s'acquitter des frais par virement bancaire</p>
+            </div>
+            
+            <div class="bank-info-card" data-delay="0">
+                <h3><i class="fas fa-university"></i> Détails du compte bancaire</h3>
+                <p>Veuillez effectuer le virement sur le compte suivant :</p>
+                
+                <div class="bank-details">
+                    <div class="detail-row">
+                        <div class="detail-label">
+                            <i class="fas fa-landmark"></i> Banque :
+                        </div>
+                        <div class="detail-value">
+                            <strong>United Bank for Africa (UBA Cameroun)</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-row">
+                        <div class="detail-label">
+                            <i class="fas fa-credit-card"></i> IBAN :
+                        </div>
+                        <div class="detail-value">
+                            <strong>CM21 10033 05211 11011000458-70</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-row">
+                        <div class="detail-label">
+                            <i class="fas fa-user-tie"></i> Titulaire du compte :
+                        </div>
+                        <div class="detail-value">
+                            <strong>INTERNATIONAL SUCCES TRAVEL AGENCY SARL</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Modes de Paiement -->
+    <section class="methodes-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Modes de Paiement Disponibles</h2>
+                <p>Nous offrons plusieurs options de paiement pour s'adapter à votre situation</p>
+            </div>
+            
+            <div class="methodes-grid">
+                <div class="methode-card" data-delay="0">
+                    <div class="methode-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Compte bloqué</h3>
+                    <p>Sécurisez votre dossier avec un compte bloqué pour garantir votre démarche d'immigration.</p>
+                </div>
+                
+                <div class="methode-card" data-delay="100">
+                    <div class="methode-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Paiement en tranches</h3>
+                    <p>Étalez vos paiements selon un échéancier convenu avec nos conseillers pour plus de flexibilité.</p>
+                </div>
+                
+                <div class="methode-card" data-delay="200">
+                    <div class="methode-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Biens matériels</h3>
+                    <p>Terrains, voiture, maison, etc. Évaluez vos biens pour faciliter votre investissement.</p>
+                </div>
+                
+                <div class="methode-card" data-delay="300">
+                    <div class="methode-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h3>Versement total</h3>
+                    <p>Bénéficiez d'une réduction considérable pour un paiement complet de vos frais de dossier.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Alertes -->
+    <section class="alertes-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Informations Importantes</h2>
+                <p>Lisez attentivement ces informations cruciales concernant vos paiements</p>
+            </div>
+            
+            <div class="alerte-card" data-delay="0">
+                <h3><i class="fas fa-exclamation-triangle"></i> IMPORTANT</h3>
+                <p><strong>Il est important de noter qu'après avoir effectué votre paiement, veuillez nous envoyer un mail de confirmation ou un message via WhatsApp</strong> sur les coordonnées ci-dessous afin que nous puissions rapidement valider votre paiement.</p></br></br>
+                <h3 style="color: var(--primary-red);"><i class="fas fa-ban"></i> AVERTISSEMENT</h3>
+                <p><strong>🚨 🚨 🚨 Aucun paiement effectué en dehors de ceux cités ci-dessus ne sera pris en compte !!!</strong></p>
+                <p>Pour votre sécurité et la traçabilité de vos transactions, utilisez exclusivement les méthodes de paiement officielles présentées sur cette page.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Confirmation -->
+    <section class="confirmation-section">
+        <div class="container">
+            <div class="section-header-white">
+                <h2>Confirmation de Paiement</h2>
+                <p>Une fois votre paiement effectué, contactez-nous immédiatement pour confirmation</p>
+            </div>
+            
+            <div class="confirmation-card" data-delay="0">
+                <h3><i class="fas fa-paper-plane"></i> Coordonnées de Contact</h3>
+                <p>Pour confirmer votre paiement, contactez-nous via :</p>
+                
+                <ul class="contact-liste">
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>Email : internationalsuccestravelagenc@gmail.com</span>
+                    </li>
+                    <li>
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp : +1 (438) 518-5935</span>
+                    </li>
+                    <li>
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp : (+33) 752 076 373</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Message Final -->
+    <section class="message-section">
+        <div class="container">
+            <div class="message-card" data-delay="0">
+                <h3><i class="fas fa-heart"></i> Merci de votre confiance</h3>
+                <p><strong>L'excellence notre seul langage</strong></p>
+                
+                <div class="devise">
+                    Fiabilité, Rapidité, Succès
+                </div>
+                
+                <p style="font-style: italic; color: var(--gold); margin: 2rem 0; font-size: 1.2rem;">
+                    Avec 🌹 ISTA 🌹 Voyager devient une évidence
+                </p>
+                
+                <p class="signature">
+                    <span>ISTA</span> - International Succes Travel Agency
+                </p>
             </div>
         </div>
     </section>
@@ -1235,10 +1945,10 @@
             <div class="footer-links">
                 <h4>Services</h4>
                 <ul>
-                    <li><a href="visa-etude.html"><i class="fas fa-angle-right"></i> Visa d'Étude</a></li>
-                    <li><a href="visa-travail.html"><i class="fas fa-angle-right"></i> Visa de Travail</a></li>
-                    <li><a href="visa-visiteur.html"><i class="fas fa-angle-right"></i> Visa Visiteur</a></li>
-                    <li><a href="residence-permanente.html"><i class="fas fa-angle-right"></i> Résidence Permanente</a></li>
+                    <li><a href="etude.html"><i class="fas fa-angle-right"></i> Visa d'Étude</a></li>
+                    <li><a href="travail.html"><i class="fas fa-angle-right"></i> Visa de Travail</a></li>
+                    <li><a href="visiteur.html"><i class="fas fa-angle-right"></i> Visa Visiteur</a></li>
+                    <li><a href="residence.html"><i class="fas fa-angle-right"></i> Résidence Permanente</a></li>
                 </ul>
             </div>
 
@@ -1248,15 +1958,15 @@
                     <li><a href="tel:+237657421659"><i class="fas fa-phone"></i> (+237) 657 421 659</a></li>
                     <li><a href="tel:+1(438)5245277"><i class="fas fa-phone"></i> +1 (438) 524-5277</a></li>
                     <li><a href="tel:+33657421659"><i class="fas fa-phone"></i> (+33) 6 57 42 16 59</a></li>
-                    <li><a href="mailto:internationalsuccestravelagence@gmail.com"><i class="fas fa-envelope"></i>internationalsuccestravelagence@gmail.com</a></li>
+                    <li><a href="mailto:internationalsuccestravelagenc@gmail.com"><i class="fas fa-envelope"></i>internationalsuccestravelagenc@gmail.com</a></li>
                 </ul>
             </div>
 
             <div class="footer-links">
                 <h4>Informations</h4>
                 <ul>
-                    <li><a href="temoignages.html"><i class="fas fa-angle-right"></i> Témoignages</a></li>
-                    <li><a href="paiement.html"><i class="fas fa-angle-right"></i> Paiement</a></li>
+                    <li><a href="index.html#temoignages"><i class="fas fa-angle-right"></i> Témoignages</a></li>
+                    <li><a href="paiement.html" class="active"><i class="fas fa-angle-right"></i> Paiement</a></li>
                     <li><a href="colis.html"><i class="fas fa-angle-right"></i> Colis</a></li>
                     <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
                 </ul>
@@ -1269,11 +1979,9 @@
     </footer>
 
     <script>
-        // Navigation mobile
+        // MÊME SCRIPT QUE SEJOUR.HTML
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
-        const hasSubmenu = document.querySelector('.has-submenu');
-        const submenuTrigger = document.querySelector('.submenu-trigger');
 
         mobileToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
@@ -1331,61 +2039,110 @@
             }
         });
 
-        // Gestion du lien actif pour "Infos Paiement"
-        document.addEventListener('DOMContentLoaded', () => {
-            const currentPage = window.location.pathname;
-            if (currentPage.includes('paiement.html')) {
-                // S'assurer que le lien Paiement a la classe active
-                const paiementLink = document.querySelector('.nav-menu a[href="paiement.html"]');
-                if (paiementLink) {
-                    paiementLink.classList.add('active');
-                }
+        // Smooth scroll pour les ancres internes
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
                 
-                // Pour le lien correspondant dans le footer
-                const footerPaiementLink = document.querySelector('.footer-links a[href="paiement.html"]');
-                if (footerPaiementLink) {
-                    footerPaiementLink.classList.add('active');
-                }
+                if (href === '#' || href === '#!') return;
                 
-                // Pour le desktop, on garde "Infos Paiement" en or
-                if (window.innerWidth > 768) {
-                    const paiementNavItem = document.querySelector('.nav-menu a[href="paiement.html"]').parentElement;
-                    if (paiementNavItem) {
-                        paiementNavItem.classList.add('active');
-                    }
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    // Fermer le menu mobile si ouvert
+                    navMenu.classList.remove('active');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Fermer tous les sous-menus
+                    document.querySelectorAll('.has-submenu.active').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Scroll vers la cible
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
                 }
-            }
+            });
         });
 
-        // Animation pour les cartes lors du défilement
-        function animateCardsOnScroll() {
-            const cards = document.querySelectorAll('.info-card, .method-card, .bank-details, .confirmation-section');
-            
-            cards.forEach(card => {
-                const cardPosition = card.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.2;
+        // Animation automatique au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const delay = entry.target.dataset.delay || 0;
+                    
+                    setTimeout(() => {
+                        entry.target.classList.add('animated');
+                        
+                        // Animation des nombres pour les stats
+                        if (entry.target.classList.contains('stat-item')) {
+                            const statNumber = entry.target.querySelector('.stat-number');
+                            if (statNumber && statNumber.dataset.target) {
+                                const targetValue = parseInt(statNumber.dataset.target);
+                                let currentValue = 0;
+                                const increment = targetValue / 30;
+                                const timer = setInterval(() => {
+                                    currentValue += increment;
+                                    if (currentValue >= targetValue) {
+                                        statNumber.textContent = targetValue;
+                                        clearInterval(timer);
+                                    } else {
+                                        statNumber.textContent = Math.floor(currentValue);
+                                    }
+                                }, 40);
+                            }
+                        }
+                    }, parseInt(delay));
+                }
+            });
+        }, observerOptions);
+
+        // Observer tous les éléments à animer
+        document.querySelectorAll('.bank-info-card, .methode-card, .alerte-card, .confirmation-card, .message-card, .stat-item').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Animation initiale pour les éléments visibles au chargement
+        function checkInitialVisibility() {
+            document.querySelectorAll('.bank-info-card, .methode-card, .alerte-card, .confirmation-card, .message-card, .stat-item').forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
                 
-                if (cardPosition < screenPosition) {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
+                if (rect.top < windowHeight - 100) {
+                    const delay = element.dataset.delay || 0;
+                    setTimeout(() => {
+                        element.classList.add('animated');
+                    }, parseInt(delay));
                 }
             });
         }
 
-        // Initialiser l'animation
-        document.querySelectorAll('.info-card, .method-card, .bank-details, .confirmation-section').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        });
+        // Vérifier la visibilité initiale au chargement
+        window.addEventListener('load', checkInitialVisibility);
+        // Vérifier aussi après un court délai pour s'assurer que tout est chargé
+        setTimeout(checkInitialVisibility, 500);
 
-        // Démarrer l'animation au chargement
-        window.addEventListener('load', () => {
-            setTimeout(animateCardsOnScroll, 300);
-        });
+        // Amélioration pour les très petits écrans
+        function adjustForSmallScreens() {
+            if (window.innerWidth <= 360) {
+                // Ajustements spécifiques pour très petits écrans
+                document.querySelectorAll('.container').forEach(container => {
+                    container.style.padding = '0 0.5rem';
+                });
+            }
+        }
 
-        // Continuer l'animation au défilement
-        window.addEventListener('scroll', animateCardsOnScroll);
+        // Appliquer les ajustements au chargement et au redimensionnement
+        window.addEventListener('load', adjustForSmallScreens);
+        window.addEventListener('resize', adjustForSmallScreens);
     </script>
 </body>
 </html>
