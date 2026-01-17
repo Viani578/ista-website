@@ -1,0 +1,2122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISTA - Assistance Admissions Scolaires | International Success Travel Agency</title>
+    <meta name="description" content="ISTA - Services complets d'assistance aux admissions scolaires. Évaluation de profil, préparation aux examens, rédaction de lettres de motivation, et plus encore.">
+    <meta name="keywords" content="admission scolaire, assistance éducative, préparation aux examens, lettre de motivation, entretien d'admission, conseils éducatifs">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ISTA - Assistance Admissions Scolaires">
+    <meta property="og:description" content="Services professionnels d'assistance aux admissions scolaires pour maximiser vos chances d'admission">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/remove.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Variables et configuration de base */
+        :root {
+            --primary-red: #DC143C;
+            --primary-blue: #1E40AF;
+            --gold: #D4AF37;
+            --dark-navy: #0A1929;
+            --cream: #FAF8F3;
+            --soft-white: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --text-light: #6B7280;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+            --transition: all 0.3s ease;
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            color: var(--text-dark);
+            background: var(--cream);
+            overflow-x: hidden;
+            line-height: 1.6;
+            width: 100%;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 2rem; }
+        h4 { font-size: 1.5rem; }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--soft-white);
+            box-shadow: var(--shadow-md);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 0.7rem 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Logo - TAILLE RÉDUITE */
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            margin-right: auto;
+            transform: translateX(-10px);
+        }
+
+        .logo-img {
+            height: 45px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .logo-text h1 {
+            font-size: 1rem;
+            margin: 0;
+            color: var(--dark-navy);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text p {
+            font-size: 0.55rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin: 0;
+            color: var(--dark-navy);
+            line-height: 1.2;
+        }
+
+        /* Menu de navigation */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+            align-items: center;
+            margin-left: auto;
+            transform: translateX(15px);
+        }
+
+        .nav-menu > li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            color: var(--dark-navy);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            white-space: nowrap;
+        }
+
+        .nav-menu > li > a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu > li > a:hover::after,
+        .nav-menu > li > a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu > li > a:hover,
+        .nav-menu > li > a.active {
+            color: var(--gold);
+        }
+
+        .nav-menu a i:not(.fa-chevron-down) {
+            color: var(--primary-blue);
+            transition: var(--transition);
+        }
+
+        .nav-menu > li > a:hover i:not(.fa-chevron-down),
+        .nav-menu > li > a.active i:not(.fa-chevron-down) {
+            color: var(--gold);
+        }
+
+        .nav-menu a i {
+            font-size: 1rem;
+            width: 20px;
+            text-align: left;
+        }
+
+        /* Sous-menu */
+        .has-submenu {
+            position: relative;
+        }
+
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--soft-white);
+            min-width: 250px;
+            padding: 1rem 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            list-style: none;
+            z-index: 100;
+        }
+
+        .has-submenu:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .submenu li a {
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: var(--transition);
+            font-size: 0.85rem;
+        }
+
+        .submenu li a:hover {
+            background: var(--cream);
+            color: var(--primary-blue);
+            padding-left: 1.5rem;
+        }
+
+        .submenu li a i {
+            font-size: 0.9rem;
+            width: 18px;
+            color: var(--primary-blue);
+        }
+
+        .submenu li a:hover i {
+            color: var(--gold);
+        }
+
+        /* Lien actif dans le sous-menu */
+        .submenu li a.active {
+            color: var(--gold);
+            font-weight: 600;
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 3px solid var(--gold);
+            padding-left: 1.5rem;
+        }
+
+        .submenu li a.active i {
+            color: var(--gold);
+        }
+
+        /* Pour le lien "Nos Services" quand un sous-lien est actif */
+        .has-submenu.active-parent > a {
+            color: var(--gold);
+        }
+
+        .has-submenu.active-parent > a i:not(.fa-chevron-down) {
+            color: var(--gold);
+        }
+
+        .has-submenu.active-parent > a::after {
+            width: 100%;
+        }
+
+        /* Menu mobile */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-navy);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Section Hero Admissions */
+        .admissions-hero {
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
+            padding: 120px 0 60px;
+            overflow: hidden;
+        }
+
+        .admissions-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(196, 30, 58, 0.15) 0%, transparent 50%);
+        }
+
+        .admissions-hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--soft-white);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .admissions-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--soft-white) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .admissions-hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+
+        /* Section Introduction - Améliorée */
+        .admissions-introduction {
+            padding: 6rem 0 4rem;
+            background: var(--cream);
+        }
+
+        .introduction-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .introduction-content {
+            background: var(--soft-white);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow-md);
+            border: 2px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .introduction-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--primary-blue));
+        }
+
+        .introduction-content h2 {
+            color: var(--dark-navy);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .introduction-content h2 i {
+            color: var(--gold);
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .introduction-content p {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .introduction-content p::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5em;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        .introduction-stats {
+            display: flex;
+            justify-content: space-around;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .stat-item.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border-left: 4px solid var(--gold);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.2;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: var(--dark-navy);
+            font-weight: 600;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Services Détail - Améliorée */
+        .services-detail {
+            padding: 4rem 0;
+            background: linear-gradient(180deg, var(--soft-white) 0%, var(--cream) 100%);
+            position: relative;
+        }
+
+        .services-detail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-detail-card {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--soft-white) 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .service-detail-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-detail-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--gold));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-detail-card.animated::before {
+            transform: scaleX(1);
+        }
+
+        .service-detail-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: var(--soft-white);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+
+        .service-detail-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--gold), #FFD700);
+        }
+
+        .service-detail-card h3 {
+            color: var(--dark-navy);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            min-height: 3.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .service-detail-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .service-detail-card:hover h3::after {
+            width: 100%;
+        }
+
+        .service-detail-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        .service-detail-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .service-detail-list li {
+            padding: 0.5rem 0;
+            color: var(--text-dark);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-detail-list li:hover {
+            color: var(--primary-blue);
+            transform: translateX(5px);
+        }
+
+        .service-detail-list li i {
+            color: var(--gold);
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-detail-list li:hover i {
+            color: var(--primary-blue);
+            transform: scale(1.2);
+        }
+
+        /* Section Pourquoi Choisir ISTA - Améliorée */
+        .why-ista {
+            padding: 6rem 0;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--soft-white) 100%);
+        }
+
+        .why-ista-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .why-ista-card {
+            background: var(--soft-white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .why-ista-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .why-ista-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--primary-blue));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        .why-ista-card.animated::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .why-ista-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold);
+        }
+
+        .why-ista-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--dark-navy);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .why-ista-card:hover .why-ista-icon {
+            transform: scale(1.1) rotate(-5deg);
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            color: var(--soft-white);
+        }
+
+        .why-ista-card h3 {
+            color: var(--dark-navy);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .why-ista-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .why-ista-card:hover h3::after {
+            width: 100px;
+        }
+
+        .why-ista-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem;
+            position: relative;
+        }
+
+        .section-header h2 {
+            margin-bottom: 1rem;
+            color: var(--dark-navy);
+            font-size: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--gold));
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Section Documents Requis */
+        .documents-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .documents-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(220, 20, 60, 0.1) 0%, transparent 40%);
+        }
+
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .document-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .document-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .document-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: var(--gold);
+            background: var(--soft-white);
+        }
+
+        .document-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: var(--dark-navy);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .document-card:hover .document-icon {
+            transform: scale(1.1) rotate(360deg);
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            color: var(--soft-white);
+        }
+
+        .document-card h3 {
+            color: var(--dark-navy);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .document-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .document-card:hover h3::after {
+            width: 80px;
+        }
+
+        .document-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .document-list {
+            list-style: none;
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+
+        .document-list li {
+            padding: 0.5rem 0;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .document-list li i {
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+
+        .document-list li.required {
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .document-list li.facultative {
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .section-header-white {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header-white h2 {
+            color: var(--soft-white);
+            margin-bottom: 1rem;
+            font-size: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header-white h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--soft-white));
+            border-radius: 2px;
+        }
+
+        .section-header-white p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+        }
+
+        /* Section Informations Requises */
+        .informations-section {
+            padding: 6rem 0;
+            background: var(--cream);
+        }
+
+        .informations-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .informations-content {
+            background: var(--soft-white);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow-md);
+            border: 2px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .informations-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+            border-radius: 0 25px 0 0;
+        }
+
+        .informations-content h2 {
+            color: var(--dark-navy);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 2rem;
+        }
+
+        .informations-content h2 i {
+            color: var(--gold);
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--gold) 0%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .informations-content p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .info-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .info-list li {
+            padding: 1rem 1.5rem;
+            margin-bottom: 0.75rem;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .info-list li:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateX(5px);
+        }
+
+        .info-list li strong {
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .info-list li i {
+            color: var(--gold);
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        /* Bouton WhatsApp */
+        .whatsapp-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            background: #25D366;
+            color: var(--soft-white);
+            padding: 1.25rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-top: 2rem;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+
+        .whatsapp-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .whatsapp-button:hover::before {
+            left: 100%;
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-button i {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-button:hover i {
+            transform: scale(1.2);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-navy);
+            padding: 4rem 2rem 2rem;
+            color: var(--soft-white);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .footer-about h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .footer-about .footer-logo {
+            display: block;
+            max-width: 120px;
+            height: auto;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--soft-white);
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--dark-navy);
+            transform: translateY(-5px) rotate(360deg);
+        }
+
+        .footer-links h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 0.5rem;
+        }
+
+        .footer-links a i {
+            font-size: 0.8rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Styles responsifs */
+        @media (max-width: 768px) {
+            html, body {
+                overflow-x: hidden;
+                max-width: 100vw;
+                position: relative;
+            }
+            
+            .container {
+                padding: 0 1rem;
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
+                line-height: 1.2;
+                margin-bottom: 0.5rem;
+            }
+            
+            h3 {
+                font-size: 1.4rem;
+                line-height: 1.3;
+            }
+            
+            h4 {
+                font-size: 1.2rem;
+            }
+            
+            .section-header h2,
+            .section-header-white h2 {
+                font-size: 1.8rem;
+                line-height: 1.2;
+                margin-bottom: 0.5rem;
+            }
+            
+            .section-header h2::after,
+            .section-header-white h2::after {
+                width: 50px;
+                height: 2px;
+                bottom: -5px;
+            }
+            
+            .introduction-content h2,
+            .informations-content h2 {
+                font-size: 1.5rem;
+                line-height: 1.2;
+                margin-bottom: 1rem;
+            }
+            
+            .service-detail-card h3,
+            .why-ista-card h3,
+            .document-card h3 {
+                font-size: 1.3rem;
+                line-height: 1.3;
+                min-height: auto;
+            }
+            
+            p {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+            
+            .section-header,
+            .section-header-white {
+                margin-bottom: 3rem;
+            }
+            
+            /* Stat number mobile */
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            /* Navbar */
+            .navbar {
+                padding: 0.8rem 0;
+            }
+            
+            .nav-container {
+                padding: 0 1rem;
+                width: 100%;
+            }
+            
+            .logo-section {
+                gap: 0.8rem;
+                align-items: center;
+                transform: translateX(0);
+                margin-right: 0;
+            }
+            
+            .logo-img {
+                height: 35px;
+                width: auto;
+            }
+            
+            .logo-text h1 {
+                font-size: 0.9rem !important;
+                line-height: 1;
+            }
+            
+            .logo-text p {
+                font-size: 0.5rem !important;
+                letter-spacing: 1px;
+            }
+            
+            .nav-menu {
+                transform: translateX(0);
+                margin-left: 0;
+            }
+            
+            .mobile-toggle {
+                display: block;
+                font-size: 1.2rem;
+                padding: 0.3rem;
+            }
+
+            /* Menu mobile - CORRIGÉ POUR LA COULEUR */
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: var(--soft-white);
+                width: 100%;
+                text-align: left;
+                transition: 0.3s;
+                padding: 1rem 0;
+                gap: 0;
+                box-shadow: var(--shadow-lg);
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu > li {
+                width: 100%;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-menu a {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                justify-content: flex-start;
+                width: 100%;
+                gap: 0.5rem;
+                color: var(--dark-navy) !important; /* Force la couleur initiale */
+            }
+            
+            /* CORRECTION : Suppression des effets hover permanents en mobile */
+            .nav-menu > li > a:hover,
+            .nav-menu > li > a.active {
+                color: var(--dark-navy) !important; /* Couleur initiale en mobile */
+            }
+            
+            /* CORRECTION : Suppression de la ligne d'or en hover sur mobile */
+            .nav-menu > li > a::after {
+                display: none !important; /* Cache la ligne d'or en mobile */
+            }
+            
+            /* CORRECTION : Icônes en couleur initiale en mobile */
+            .nav-menu a i:not(.fa-chevron-down) {
+                color: var(--primary-blue) !important; /* Couleur initiale */
+            }
+            
+            .has-submenu > a {
+                position: relative;
+            }
+            
+            .has-submenu > a::after {
+                content: '\f078';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                position: absolute;
+                right: 1.5rem;
+                transition: transform 0.3s ease;
+                color: var(--dark-navy) !important; /* Couleur initiale */
+            }
+            
+            .has-submenu.active > a::after {
+                transform: rotate(180deg);
+                color: var(--gold) !important; /* Couleur or quand actif */
+            }
+            
+            /* CORRECTION : Couleur du lien "Nos Services" quand actif en mobile */
+            .has-submenu.active > a,
+            .has-submenu.active > a i:not(.fa-chevron-down) {
+                color: var(--gold) !important; /* Seulement quand actif */
+            }
+            
+            /* Sous-menu */
+            .submenu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: var(--cream);
+                border-radius: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+                padding: 0;
+                min-width: 100%;
+                margin-left: 0;
+            }
+            
+            .has-submenu.active .submenu {
+                max-height: 500px;
+                padding: 0.5rem 0;
+            }
+            
+            .submenu li a {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+                border-left: 3px solid transparent;
+                justify-content: flex-start;
+                gap: 0.75rem;
+                color: var(--text-dark) !important; /* Couleur initiale */
+            }
+            
+            .submenu li a:hover {
+                border-left: 3px solid var(--gold);
+                background: rgba(212, 175, 55, 0.1);
+                color: var(--primary-blue) !important; /* Couleur au survol */
+            }
+            
+            /* CORRECTION : Lien actif dans sous-menu en mobile */
+            .submenu li a.active {
+                color: var(--gold) !important; /* Seulement quand actif */
+                font-weight: 600;
+                background: rgba(212, 175, 55, 0.1);
+                border-left: 3px solid var(--gold);
+                padding-left: 1.5rem;
+            }
+            
+            /* CORRECTION : Icône du lien actif */
+            .submenu li a.active i {
+                color: var(--gold) !important; /* Seulement quand actif */
+            }
+            
+            /* Hero Section */
+            .admissions-hero {
+                min-height: 50vh;
+                padding: 100px 0 40px;
+            }
+            
+            .admissions-hero h1 {
+                font-size: 2.2rem !important;
+                margin-bottom: 1rem;
+            }
+            
+            .admissions-hero p {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+                padding: 0 0.5rem;
+            }
+            
+            /* Introduction */
+            .admissions-introduction {
+                padding: 3rem 0;
+            }
+            
+            .introduction-content {
+                padding: 1.5rem;
+                border-radius: 15px;
+            }
+            
+            .introduction-stats {
+                gap: 1rem;
+                margin: 2rem 0;
+            }
+            
+            .stat-item {
+                min-width: 120px;
+            }
+            
+            .stat-number {
+                font-size: 2rem !important;
+            }
+            
+            .highlight-box {
+                padding: 1rem;
+                margin: 1.5rem 0;
+            }
+            
+            /* Services Detail */
+            .services-detail {
+                padding: 3rem 0;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .service-detail-card {
+                padding: 1.5rem;
+            }
+            
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            /* Why ISTA */
+            .why-ista {
+                padding: 3rem 0;
+            }
+            
+            .why-ista-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .why-ista-card {
+                padding: 1.5rem;
+            }
+            
+            .why-ista-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            /* Documents Section */
+            .documents-section {
+                padding: 3rem 0;
+            }
+            
+            .documents-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .document-card {
+                padding: 1.5rem;
+            }
+            
+            .document-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            /* Informations Section */
+            .informations-section {
+                padding: 3rem 0;
+            }
+            
+            .informations-content {
+                padding: 1.5rem;
+            }
+            
+            .whatsapp-button {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                width: 100%;
+            }
+            
+            /* Footer */
+            .footer {
+                padding: 2rem 1rem 1rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .footer-bottom {
+                padding: 1.5rem 1rem 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .admissions-hero h1 {
+                font-size: 1.9rem !important;
+            }
+            
+            .btn-primary, .btn-secondary, .whatsapp-button {
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .stat-item {
+                min-width: 100px;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-section">
+                <img src="assets/images/remove.png" alt="ISTA Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1>ISTA</h1>
+                    <p>International Success Travel Agency</p>
+                </div>
+            </a>
+
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li class="has-submenu">
+                    <a href="#" class="submenu-trigger"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="etude.html"><i class="fas fa-graduation-cap"></i> Visa d'Etude</a></li>
+                        <li><a href="travail.html"><i class="fas fa-briefcase"></i> Visa de Travail</a></li>
+                        <li><a href="visiteur.html"><i class="fas fa-plane"></i> Visa Visiteur</a></li>
+                        <li><a href="residence.html"><i class="fas fa-home"></i> Résidence Permanente</a></li>
+                        <li><a href="billet.html"><i class="fas fa-ticket-alt"></i> Billets d'avion</a></li>
+                        <li><a href="logement.html"><i class="fas fa-building"></i> Assistance Logement</a></li>
+                        <li><a href="sejour.html"><i class="fas fa-id-card"></i> Assistance Titre de Séjour</a></li>
+                        <li><a href="admissions.html" class="active"><i class="fas fa-university"></i> Admissions</a></li>
+                        <li><a href="galerie.html"><i class="fas fa-images"></i> Galerie Photo/Video</a></li>
+                    </ul>
+                </li>
+                <li><a href="colis.html"><i class="fas fa-box"></i> Envoyer/Recevoir un colis</a></li>
+                <li><a href="index.html#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
+                <li><a href="paiement.html"><i class="fas fa-credit-card"></i> Infos Paiement</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Section Hero Admissions -->
+    <section class="admissions-hero">
+        <div class="container admissions-hero-content">
+            <h1>Assistance Admissions Scolaires</h1>
+            <p>Maximisez vos chances d'admission dans les écoles de votre choix avec notre expertise et accompagnement personnalisé</p>
+        </div>
+    </section>
+
+    <!-- Section Introduction -->
+    <section class="admissions-introduction">
+        <div class="container introduction-container">
+            <div class="introduction-content">
+                <h2><i class="fas fa-university"></i> Assistance aux Admissions Scolaires</h2>
+                
+                <p>Notre société est spécialisée dans l'aide à l'admission dans les écoles pour les étudiants et les parents qui cherchent à maximiser leurs chances d'être admis dans les écoles de leur choix.</p>
+                
+                <p>Nous disposons d'une équipe expérimentée de conseillers en admission qui sont à l'écoute de vos besoins et travaillent avec vous pour élaborer une stratégie d'admission réussie.</p>
+                
+                <div class="introduction-stats">
+                    <div class="stat-item" data-delay="0">
+                        <span class="stat-number" data-target="100">0</span><span>%</span>
+                        <span class="stat-label">Admission garantie</span>
+                    </div>
+                    <div class="stat-item" data-delay="100">
+                        <span class="stat-number" data-target="10">0</span>
+                        <span class="stat-label">Années d'expérience</span>
+                    </div>
+                    <div class="stat-item" data-delay="200">
+                        <span class="stat-number" data-target="500">0</span>
+                        <span class="stat-label">Étudiants admis</span>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <p>Nous vous accompagnons à chaque étape du processus d'admission pour garantir votre réussite académique.</p>
+                </div>
+                
+                <p>Si vous cherchez une aide professionnelle et efficace pour maximiser vos chances d'être admis dans les écoles de votre choix, n'hésitez pas à faire appel à notre société.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Services Détail -->
+    <section class="services-detail">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nos Services d'Admission</h2>
+                <p>Découvrez notre gamme complète de services pour optimiser vos chances d'admission</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-detail-card" data-delay="0">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Évaluation de Profil</h3>
+                    <p>Nous évaluons votre profil académique, vos réalisations, vos compétences et vos intérêts pour vous aider à choisir les écoles qui vous conviennent le mieux.</p>
+                    <ul class="service-detail-list">
+                        <li><i class="fas fa-check"></i> Analyse approfondie de votre dossier</li>
+                        <li><i class="fas fa-check"></i> Recommandations personnalisées</li>
+                        <li><i class="fas fa-check"></i> Plan de développement académique</li>
+                    </ul>
+                </div>
+                
+                <div class="service-detail-card" data-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Préparation aux Examens</h3>
+                    <p>Nous vous aidons à vous préparer aux examens d'admission, tels que le SAT, l'ACT, le GMAT, le GRE, et autres tests requis.</p>
+                    <ul class="service-detail-list">
+                        <li><i class="fas fa-check"></i> Plan de révision personnalisé</li>
+                        <li><i class="fas fa-check"></i> Tests pratiques corrigés</li>
+                        <li><i class="fas fa-check"></i> Techniques de gestion du temps</li>
+                    </ul>
+                </div>
+                
+                <div class="service-detail-card" data-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Rédaction de Documents</h3>
+                    <p>Nous vous aidons à rédiger des lettres de motivation et des CV professionnels pour augmenter vos chances d'être sélectionné.</p>
+                    <ul class="service-detail-list">
+                        <li><i class="fas fa-check"></i> Lettres de motivation percutantes</li>
+                        <li><i class="fas fa-check"></i> CV adaptés aux exigences scolaires</li>
+                        <li><i class="fas fa-check"></i> Correction et optimisation</li>
+                    </ul>
+                </div>
+                
+                <div class="service-detail-card" data-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Préparation aux Entretiens</h3>
+                    <p>Nous vous préparons aux entretiens d'admission en vous donnant des conseils et en vous aidant à vous entraîner à répondre aux questions fréquentes.</p>
+                    <ul class="service-detail-list">
+                        <li><i class="fas fa-check"></i> Simulations d'entretiens</li>
+                        <li><i class="fas fa-check"></i> Techniques de communication</li>
+                        <li><i class="fas fa-check"></i> Gestion du stress</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Pourquoi Choisir ISTA -->
+    <section class="why-ista">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pourquoi Choisir ISTA ?</h2>
+                <p>Notre expertise fait la différence dans votre parcours d'admission</p>
+            </div>
+            
+            <div class="why-ista-container">
+                <div class="why-ista-card" data-delay="0">
+                    <div class="why-ista-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Conseils sur les Programmes</h3>
+                    <p>Nous vous conseillons sur les programmes d'études offerts par les écoles pour choisir celui qui convient le mieux à vos intérêts et objectifs de carrière.</p>
+                </div>
+                
+                <div class="why-ista-card" data-delay="100">
+                    <div class="why-ista-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Assistance Administrative</h3>
+                    <p>Nous vous assistons dans toutes les démarches administratives liées à l'admission, y compris la demande de bourses d'études, la demande de visas, etc.</p>
+                </div>
+                
+                <div class="why-ista-card" data-delay="200">
+                    <div class="why-ista-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Tarifs Adaptés</h3>
+                    <p>Nos tarifs varient en fonction des services que vous choisissez. Nous proposons des forfaits et des tarifs horaires adaptés à votre budget.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Documents Requis -->
+    <section class="documents-section">
+        <div class="container">
+            <div class="section-header section-header-white">
+                <h2>Documents à Fournir</h2>
+                <p>Préparez votre dossier d'admission avec notre liste complète des documents requis</p>
+            </div>
+            
+            <div class="documents-grid">
+                <div class="document-card" data-delay="0">
+                    <div class="document-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h3>Documents d'Identité</h3>
+                    <ul class="document-list">
+                        <li class="required"><i class="fas fa-check-circle"></i> Carte nationale d'identité</li>
+                        <li class="required"><i class="fas fa-check-circle"></i> Passeport (si disponible)</li>
+                        <li class="required"><i class="fas fa-check-circle"></i> Photo d'identité récente</li>
+                    </ul>
+                </div>
+                
+                <div class="document-card" data-delay="100">
+                    <div class="document-icon">
+                        <i class="fas fa-file-certificate"></i>
+                    </div>
+                    <h3>Documents Académiques</h3>
+                    <ul class="document-list">
+                        <li class="required"><i class="fas fa-check-circle"></i> Relevé de notes du bac</li>
+                        <li class="required"><i class="fas fa-check-circle"></i> Diplôme du baccalauréat</li>
+                        <li class="required"><i class="fas fa-check-circle"></i> Dernier diplôme obtenu</li>
+                        <li class="required"><i class="fas fa-check-circle"></i> Relevés de notes des 3 dernières années</li>
+                    </ul>
+                </div>
+                
+                <div class="document-card" data-delay="200">
+                    <div class="document-icon">
+                        <i class="fas fa-file-signature"></i>
+                    </div>
+                    <h3>Documents Complémentaires</h3>
+                    <ul class="document-list">
+                        <li class="facultative"><i class="fas fa-file-alt"></i> CV (facultatif)</li>
+                        <li class="facultative"><i class="fas fa-envelope"></i> Lettre de motivation (facultative)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Informations Requises -->
+    <section class="informations-section">
+        <div class="container informations-container">
+            <div class="informations-content">
+                <h2><i class="fas fa-info-circle"></i> Informations Requises pour votre Demande</h2>
+                <p>Pour traiter efficacement votre demande d'admission, nous avons besoin des informations suivantes :</p>
+                
+                <ul class="info-list">
+                    <li><i class="fas fa-globe-americas"></i> <strong>0 -</strong> Votre pays de destination</li>
+                    <li><i class="fas fa-map-marker-alt"></i> <strong>1 -</strong> Votre ville, adresse et code postal de résidence</li>
+                    <li><i class="fas fa-phone"></i> <strong>2 -</strong> Numéro de téléphone et adresse email</li>
+                    <li><i class="fas fa-school"></i> <strong>3 -</strong> Dernier établissement fréquenté</li>
+                    <li><i class="fas fa-home"></i> <strong>4 -</strong> Pays de résidence actuel</li>
+                    <li><i class="fas fa-brain"></i> <strong>5 -</strong> Niveau intellectuel (dernier diplôme obtenu)</li>
+                </ul>
+                
+                <p class="highlight-box" style="margin: 2rem 0; padding: 1rem; background: rgba(212, 175, 55, 0.1); border-radius: 8px; border-left: 4px solid var(--gold);">
+                    <i class="fas fa-star" style="color: var(--gold); margin-right: 0.5rem;"></i>
+                    <strong>NB : Admission 100% garantie</strong> - Notre expertise et notre réseau nous permettent de garantir votre admission dans l'établissement de votre choix.
+                </p>
+                
+                <button class="whatsapp-button" id="whatsappButton">
+                    <i class="fab fa-whatsapp"></i> Envoyer vos informations par WhatsApp
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-about">
+                <img src="assets/images/remove.png" alt="ISTA Logo" class="footer-logo">
+                <h3>ISTA</h3>
+                <p>International Success Travel Agency - Votre partenaire de confiance pour tous vos projets d'admission scolaire.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="visa-etude.html"><i class="fas fa-angle-right"></i> Visa d'Étude</a></li>
+                    <li><a href="visa-travail.html"><i class="fas fa-angle-right"></i> Visa de Travail</a></li>
+                    <li><a href="visa-visiteur.html"><i class="fas fa-angle-right"></i> Visa Visiteur</a></li>
+                    <li><a href="residence-permanente.html"><i class="fas fa-angle-right"></i> Résidence Permanente</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:+237657421659"><i class="fas fa-phone"></i> (+237) 657 421 659</a></li>
+                    <li><a href="tel:+1(438)5245277"><i class="fas fa-phone"></i> +1 (438) 524-5277</a></li>
+                    <li><a href="tel:+33657421659"><i class="fas fa-phone"></i> (+33) 6 57 42 16 59</a></li>
+                    <li><a href="mailto:internationalsuccestravelagenc@gmail.com"><i class="fas fa-envelope"></i>internationalsuccestravelagenc@gmail.com</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Informations</h4>
+                <ul>
+                    <li><a href="temoignages.html"><i class="fas fa-angle-right"></i> Témoignages</a></li>
+                    <li><a href="paiement.html"><i class="fas fa-angle-right"></i> Paiement</a></li>
+                    <li><a href="colis.html"><i class="fas fa-angle-right"></i> Colis</a></li>
+                    <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 ISTA - International Success Travel Agency. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileToggle.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Gestion des sous-menus en mobile
+        const hasSubmenuItems = document.querySelectorAll('.has-submenu > a');
+        
+        hasSubmenuItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                // En mobile seulement
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = item.parentElement;
+                    
+                    // Fermer les autres sous-menus
+                    document.querySelectorAll('.has-submenu.active').forEach(activeItem => {
+                        if (activeItem !== parent) {
+                            activeItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Basculer le sous-menu courant
+                    parent.classList.toggle('active');
+                    
+                    // CORRECTION : Réinitialiser la couleur quand on ferme le sous-menu
+                    if (!parent.classList.contains('active')) {
+                        // Réinitialiser la couleur du lien
+                        item.style.color = '';
+                        item.querySelector('i').style.color = '';
+                    }
+                }
+            });
+        });
+
+        // Fermer le menu au clic sur un lien (sauf ceux avec sous-menus)
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Si ce n'est pas un lien de sous-menu en mobile
+                if (window.innerWidth <= 768 && !link.parentElement.classList.contains('has-submenu')) {
+                    navMenu.classList.remove('active');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Fermer tous les sous-menus et réinitialiser les couleurs
+                    document.querySelectorAll('.has-submenu').forEach(item => {
+                        item.classList.remove('active');
+                        // Réinitialiser la couleur du lien principal
+                        const mainLink = item.querySelector('a');
+                        if (mainLink) {
+                            mainLink.style.color = '';
+                            const icon = mainLink.querySelector('i:not(.fa-chevron-down)');
+                            if (icon) icon.style.color = '';
+                        }
+                    });
+                }
+            });
+        });
+
+        // Fermer le menu en cliquant à l'extérieur
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                const isClickInsideNav = navMenu.contains(e.target) || mobileToggle.contains(e.target);
+                
+                if (!isClickInsideNav && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Fermer tous les sous-menus et réinitialiser les couleurs
+                    document.querySelectorAll('.has-submenu').forEach(item => {
+                        item.classList.remove('active');
+                        // Réinitialiser la couleur du lien principal
+                        const mainLink = item.querySelector('a');
+                        if (mainLink) {
+                            mainLink.style.color = '';
+                            const icon = mainLink.querySelector('i:not(.fa-chevron-down)');
+                            if (icon) icon.style.color = '';
+                        }
+                    });
+                }
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll pour les ancres internes
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                if (href === '#' || href === '#!') return;
+                
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    // Fermer le menu mobile si ouvert
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('active');
+                        mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                        
+                        // Fermer tous les sous-menus et réinitialiser les couleurs
+                        document.querySelectorAll('.has-submenu').forEach(item => {
+                            item.classList.remove('active');
+                            // Réinitialiser la couleur du lien principal
+                            const mainLink = item.querySelector('a');
+                            if (mainLink) {
+                                mainLink.style.color = '';
+                                const icon = mainLink.querySelector('i:not(.fa-chevron-down)');
+                                if (icon) icon.style.color = '';
+                            }
+                        });
+                    }
+                    
+                    // Scroll vers la cible
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation automatique au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const delay = entry.target.dataset.delay || 0;
+                    
+                    setTimeout(() => {
+                        entry.target.classList.add('animated');
+                        
+                        // Animation des nombres pour les stats
+                        if (entry.target.classList.contains('stat-item') || entry.target.classList.contains('stat-card')) {
+                            const statNumber = entry.target.querySelector('.stat-number');
+                            if (statNumber && statNumber.dataset.target) {
+                                const targetValue = parseInt(statNumber.dataset.target);
+                                const hasPlus = statNumber.textContent.includes('+');
+                                const hasPercent = statNumber.textContent.includes('%');
+                                let currentValue = 0;
+                                const increment = targetValue / 30;
+                                const timer = setInterval(() => {
+                                    currentValue += increment;
+                                    if (currentValue >= targetValue) {
+                                        statNumber.textContent = targetValue + 
+                                            (hasPercent ? '%' : '') + 
+                                            (hasPlus ? '+' : '');
+                                        clearInterval(timer);
+                                    } else {
+                                        const displayValue = hasPercent ? 
+                                            Math.floor(currentValue) + '%' : 
+                                            Math.floor(currentValue);
+                                        statNumber.textContent = displayValue;
+                                    }
+                                }, 40);
+                            }
+                        }
+                    }, parseInt(delay));
+                }
+            });
+        }, observerOptions);
+
+        // Observer tous les éléments à animer
+        document.querySelectorAll('.service-detail-card, .why-ista-card, .document-card, .stat-item').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Gestion du bouton WhatsApp pour envoyer les informations
+        document.getElementById('whatsappButton').addEventListener('click', function() {
+            // Message pré-rempli avec les informations requises
+            const whatsappMessage = `Bonjour ISTA,\n\nJe souhaite une assistance pour mon admission scolaire. Voici mes informations :\n\n0 - Pays de destination : [À compléter]\n1 - Ville, adresse, code postal : [À compléter]\n2 - Téléphone et email : [À compléter]\n3 - Dernier établissement fréquenté : [À compléter]\n4 - Pays de résidence : [À compléter]\n5 - Niveau intellectuel : [À compléter]\n\nJe joins également les documents requis :\n- Carte d'identité/passeport\n- Photo d'identité\n- Relevé de notes du bac\n- Diplôme du bac\n- Dernier diplôme obtenu\n- Relevés de notes des 3 dernières années\n- CV (facultatif)\n- Lettre de motivation (facultative)\n\nMerci de me recontacter pour la suite.`;
+            
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            window.open(`https://wa.me/237672080166?text=${encodedMessage}`, '_blank');
+        });
+
+        // Animation initiale pour les éléments visibles au chargement
+        function checkInitialVisibility() {
+            document.querySelectorAll('.service-detail-card, .why-ista-card, .document-card, .stat-item').forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                if (rect.top < windowHeight - 100) {
+                    const delay = element.dataset.delay || 0;
+                    setTimeout(() => {
+                        element.classList.add('animated');
+                    }, parseInt(delay));
+                }
+            });
+        }
+
+        // Vérifier la visibilité initiale au chargement
+        window.addEventListener('load', checkInitialVisibility);
+        // Vérifier aussi après un court délai pour s'assurer que tout est chargé
+        setTimeout(checkInitialVisibility, 500);
+    </script>
+</body>
+</html>
