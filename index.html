@@ -268,6 +268,46 @@
             padding: 0.5rem;
         }
 
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animation au scroll pour les sections */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animation pour les cartes */
+        .destination-card,
+        .service-card,
+        .why-card,
+        .process-step {
+            transition: all 0.4s ease;
+        }
+
+        .destination-card:hover,
+        .service-card:hover,
+        .why-card:hover,
+        .process-step:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
         /* Section Hero */
         .hero {
             position: relative;
@@ -605,97 +645,6 @@
         }
 
         /* Section Destinations */
-        .destinations {
-            padding: 8rem 2rem;
-            background: linear-gradient(135deg, var(--dark-navy) 0%, #1a0b2e 50%, #0c1b2e 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .destinations::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 70% 50%, rgba(196, 30, 58, 0.08) 0%, transparent 50%);
-        }
-
-        .destinations .section-header h2,
-        .destinations .section-badge {
-            color: var(--soft-white);
-        }
-
-        .destinations .section-header p {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .destinations-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .destinations-tabs {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 4rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #d7cfd37b);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            color: var(--dark-navy);
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            font-family: 'Manrope', sans-serif;
-        }
-
-        .tab-btn:hover,
-        .tab-btn.active {
-            background: var(--gold);
-            color: var(--dark-navy);
-            border-color: var(--gold);
-            transform: translateY(-2px);
-        }
-
-        .destinations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .destination-card {
-            background: linear-gradient(180deg, rgba(10,25,41,0.92) 0%, rgba(24,48,88,0.75) 100%);
-            backdrop-filter: blur(6px);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(212, 175, 55, 0.18);
-            box-shadow: 0 12px 30px rgba(10,25,41,0.55);
-            transition: all 0.4s ease;
-            text-align: center;
-            color: var(--soft-white);
-        }
-
-        .destination-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            background: linear-gradient(180deg, rgba(212,175,55,0.12) 0%, rgba(24,48,88,0.92) 100%);
-            border: 1px solid rgba(212,175,55,0.28);
-            box-shadow: 0 18px 50px rgba(212,175,55,0.08), 0 8px 30px rgba(0,0,0,0.5);
-        }
-
-        /* Apply same color theme as .process-section to destinations when using .destinations-section */
         .destinations-section {
             padding: 8rem 2rem;
             background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
@@ -723,21 +672,50 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
-        .destinations-section .tab-btn {
+        .destinations-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .destinations-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
             background: rgba(255,255,255,0.06);
             border: 2px solid rgba(255,255,255,0.12);
             color: var(--soft-white);
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-family: 'Manrope', sans-serif;
         }
 
-        .destinations-section .tab-btn:hover,
-        .destinations-section .tab-btn.active {
+        .tab-btn:hover,
+        .tab-btn.active {
             background: var(--gold);
             color: var(--dark-navy);
             border-color: var(--gold);
             transform: translateY(-2px);
         }
 
-        .destinations-section .destination-card {
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .destination-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             padding: 2rem;
@@ -749,7 +727,7 @@
             color: var(--soft-white);
         }
 
-        .destinations-section .destination-card:hover {
+        .destination-card:hover {
             transform: translateY(-10px);
             background: rgba(255,255,255,0.08);
             border: 1px solid rgba(255,255,255,0.14);
@@ -785,6 +763,15 @@
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .type-badge:hover {
+            background: linear-gradient(135deg, var(--gold), #FFD700);
+            color: var(--dark-navy);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
         }
 
         /* Pourquoi nous choisir */
@@ -1384,7 +1371,6 @@
             font-size: 0.95rem;
         }
 
-        /* MODIFICATION */
         .team-arrow {
             position: absolute;
             top: 50%;
@@ -1487,23 +1473,6 @@
 
         .logo-slide:hover img {
             filter: grayscale(0%);
-        }
-
-        /* Processus */
-        .process-section {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
-        }
-
-        .process-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .process-section h2,
-        .process-section .section-badge {
-            color: var(--soft-white);
         }
 
         /* Footer */
@@ -1614,30 +1583,7 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Responsive Design - CORRIGÉ pour alignement mobile comme galerie.html */
+        /* RESPONSIVE DESIGN */
         @media (max-width: 1024px) {
             .hero-content {
                 grid-template-columns: 1fr;
@@ -1675,7 +1621,7 @@
                 overflow-x: hidden;
             }
             
-            /* 3. NAVBAR */
+            /* 1. NAVBAR FIXE */
             .navbar {
                 padding: 0.8rem 0;
             }
@@ -1718,7 +1664,7 @@
                 padding: 0.3rem;
             }
 
-            /* 4. MENU MOBILE */
+            /* 2. MENU */
             .nav-menu {
                 position: fixed;
                 left: -100%;
@@ -1817,8 +1763,7 @@
                 text-align: left;
             }
             
-            /* ==================== HERO SECTION ==================== */
-            
+            /* 3. HERO SECTION */
             .hero {
                 min-height: 50vh;
                 padding: 100px 0 40px;
@@ -1875,7 +1820,7 @@
                 height: 6px;
             }
             
-            /* ==================== SECTIONS GÉNÉRALES ==================== */
+            /* 4. SECTIONS GÉNÉRALES */
             section {
                 padding: 3rem 0;
             }
@@ -1894,7 +1839,7 @@
                 padding: 0.4rem 1rem;
             }
             
-            /* ==================== SERVICES ==================== */
+            /* 5. SERVICES */
             .services-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -1928,9 +1873,8 @@
                 min-width: 18px;
             }
             
-            /* ==================== DESTINATIONS ==================== */
-            .destinations-section, 
-            .destinations {
+            /* 6. DESTINATIONS */
+            .destinations-section {
                 padding: 3rem 1rem;
             }
             
@@ -1970,7 +1914,7 @@
                 padding: 0.3rem 0.7rem;
             }
             
-            /* ==================== POURQUOI NOUS CHOISIR ==================== */
+            /* 7. POURQUOI NOUS CHOISIR */
             .why-choose-container {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -1991,7 +1935,7 @@
                 font-size: 1.2rem;
             }
             
-            /* ==================== PROCESSUS ==================== */
+            /* 8. PROCESSUS */
             .process-container {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -2026,7 +1970,7 @@
                 min-width: 18px;
             }
             
-            /* ==================== UNIVERSITÉS ==================== */
+            /* 9. UNIVERSITÉS */
             .logo-slide {
                 width: 180px;
                 height: 100px;
@@ -2034,7 +1978,7 @@
                 padding: 1rem;
             }
             
-            /* ==================== STATISTIQUES ==================== */
+            /* 10. STATISTIQUES */
             .stats-container {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem;
@@ -2045,7 +1989,7 @@
                 font-size: 2.5rem;
             }
             
-            /* ==================== TÉMOIGNAGES ==================== */
+            /* 11. TÉMOIGNAGES */
             .testimonial-card {
                 padding: 1.5rem;
                 flex: 0 0 100%;
@@ -2075,7 +2019,7 @@
                 font-size: 0.9rem;
             }
             
-            /* ==================== ÉQUIPE ==================== */
+            /* 12. ÉQUIPE */
             .team-carousel-container {
                 max-width: 100%;
                 padding: 0 1rem;
@@ -2109,7 +2053,7 @@
                 right: 10px;
             }
             
-            /* ==================== FOOTER ==================== */
+            /* 13. FOOTER */
             .footer {
                 padding: 2rem 1rem 1rem;
             }
@@ -2153,7 +2097,7 @@
                 font-size: 0.85rem;
             }
             
-            /* ==================== NOTE DU PROCESSUS ==================== */
+            /* 14. NOTE DU PROCESSUS */
             .process-notice-container {
                 padding: 0 1rem;
                 margin: 1rem auto 2rem;
@@ -2168,47 +2112,6 @@
             .process-list li i {
                 font-size: 0.9rem;
                 min-width: 18px;
-            }
-            
-            /* ==================== CORRECTIONS DE LARGEUR ==================== */
-            .hero-content,
-            .hero-visual,
-            .carousel-container,
-            .services-grid,
-            .destinations-container,
-            .why-choose-container,
-            .process-container,
-            .stats-container,
-            .testimonials-container,
-            .team-carousel-container,
-            .footer-container {
-                width: 100%;
-                max-width: 100%;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .hero-text,
-            .hero-buttons,
-            .service-content,
-            .destination-card,
-            .why-card,
-            .process-step,
-            .testimonial-card,
-            .team-member {
-                width: 100%;
-                overflow-wrap: break-word;
-                word-wrap: break-word;
-            }
-            
-            img:not(.logo-img):not(.footer-logo) {
-                max-width: 100%;
-                height: auto;
-                display: block;
-            }
-            
-            .testimonials-track {
-                gap: 1rem;
             }
         }
 
@@ -2290,7 +2193,7 @@
                 font-size: 0.7rem;
             }
             
-            /* Navigation mobile sur très petits écrans - comme galerie.html */
+            /* Navigation mobile sur très petits écrans */
             .nav-menu {
                 width: 85%;
             }
@@ -2328,7 +2231,6 @@
                 font-size: 0.8rem;
             }
         }
-
     </style>
 </head>
 <body>
@@ -2350,20 +2252,20 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" class="active"><i class="fas fa-home"></i> Accueil</a></li>
                 <li class="has-submenu">
-                    <a href="index.html#services"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="submenu-trigger"><i class="fas fa-passport"></i> Nos Services <i class="fas fa-chevron-down"></i></a>
                     <ul class="submenu">
                         <li><a href="etude.html"><i class="fas fa-graduation-cap"></i> Visa d'Etude</a></li>
                         <li><a href="travail.html"><i class="fas fa-briefcase"></i> Visa de Travail</a></li>
                         <li><a href="visiteur.html"><i class="fas fa-plane"></i> Visa Visiteur</a></li>
                         <li><a href="residence.html"><i class="fas fa-home"></i> Résidence Permanente</a></li>
                         <li><a href="billet.html"><i class="fas fa-ticket-alt"></i> Billets d'avion</a></li>
-                        <li><a href="logement.html" class="active"><i class="fas fa-building"></i> Assistance Logement</a></li>
+                        <li><a href="logement.html"><i class="fas fa-building"></i> Assistance Logement</a></li>
                         <li><a href="sejour.html"><i class="fas fa-id-card"></i> Assistance Titre de Séjour</a></li>
                         <li><a href="admissions.html"><i class="fas fa-university"></i> Admissions</a></li>
                         <li><a href="galerie.html"><i class="fas fa-images"></i> Galerie Photo/Video</a></li>
                     </ul>
                 </li>
-                <li><a href="colis.html"><i class="fas fa-university"></i> Envoyer/Recevoir un colis</a></li>
+                <li><a href="colis.html"><i class="fas fa-box"></i> Envoyer/Recevoir un colis</a></li>
                 <li><a href="index.html#temoignages"><i class="fas fa-star"></i> Témoignages</a></li>
                 <li><a href="paiement.html"><i class="fas fa-credit-card"></i> Infos Paiement</a></li>
                 <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
@@ -2568,206 +2470,228 @@
             </div>
             
             <div class="destinations-container">
-            <div class="destinations-tabs">
-                <button class="tab-btn active" data-region="all">Tous les Pays</button>
-                <button class="tab-btn" data-region="europe">Europe</button>
-                <button class="tab-btn" data-region="americas">Amériques</button>
-                <button class="tab-btn" data-region="others">Autres</button>
-            </div>
-
-            <div class="destinations-grid">
-                <div class="destination-card" data-region="americas">
-                    <span class="country-flag">🇨🇦</span>
-                    <h3>Canada</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Travail</span>
-                        <span class="type-badge">Résidence Permanente</span>
-                        <span class="type-badge">Visiteur</span>
-                    </div>
+                <div class="destinations-tabs">
+                    <button class="tab-btn active" data-region="all">Tous les Pays</button>
+                    <button class="tab-btn" data-region="europe">Europe</button>
+                    <button class="tab-btn" data-region="americas">Amériques</button>
+                    <button class="tab-btn" data-region="others">Autres</button>
                 </div>
 
-                <div class="destination-card" data-region="europe">
-                    <span class="country-flag">🇫🇷</span>
-                    <h3>France</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Travail</span>
-                        <span class="type-badge">Visiteur</span>
-                        <span class="type-badge">Express</span>
+                <div class="destinations-grid">
+                    <!-- Canada -->
+                    <div class="destination-card" data-region="americas">
+                        <span class="country-flag">🇨🇦</span>
+                        <h3>Canada</h3>
+                        <div class="destination-types">
+                            <a href="canada-etude.html" class="type-badge">Étude</a>
+                            <a href="canada-travail.html" class="type-badge">Travail</a>
+                            <a href="canada-residence.html" class="type-badge">Résidence Permanente</a>
+                            <a href="canada-visiteur.html" class="type-badge">Visiteur</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="europe">
-                    <span class="country-flag">🇧🇪</span>
-                    <h3>Belgique</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Travail</span>
-                        <span class="type-badge">Regroupement Familial</span>
+                    <!-- France -->
+                    <div class="destination-card" data-region="europe">
+                        <span class="country-flag">🇫🇷</span>
+                        <h3>France</h3>
+                        <div class="destination-types">
+                            <a href="france-etude.html" class="type-badge">Étude</a>
+                            <a href="france-travail.html" class="type-badge">Travail</a>
+                            <a href="france-visiteur.html" class="type-badge">Visiteur</a>
+                            <a href="france-express.html" class="type-badge">Express</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="europe">
-                    <span class="country-flag">🇩🇪</span>
-                    <h3>Allemagne</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Travail</span>
-                        <span class="type-badge">Visiteur</span>
+                    <!-- Belgique -->
+                    <div class="destination-card" data-region="europe">
+                        <span class="country-flag">🇧🇪</span>
+                        <h3>Belgique</h3>
+                        <div class="destination-types">
+                            <a href="belgique-etude.html" class="type-badge">Étude</a>
+                            <a href="belgique-travail.html" class="type-badge">Travail</a>
+                            <a href="belgique-regroupement.html" class="type-badge">Regroupement Familial</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="europe">
-                    <span class="country-flag">🇮🇹</span>
-                    <h3>Italie</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Travail</span>
-                        <span class="type-badge">Visiteur</span>
+                    <!-- Allemagne -->
+                    <div class="destination-card" data-region="europe">
+                        <span class="country-flag">🇩🇪</span>
+                        <h3>Allemagne</h3>
+                        <div class="destination-types">
+                            <a href="allemagne-etude.html" class="type-badge">Étude</a>
+                            <a href="allemagne-travail.html" class="type-badge">Travail</a>
+                            <a href="allemagne-visiteur.html" class="type-badge">Visiteur</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="europe">
-                    <span class="country-flag">🇪🇸</span>
-                    <h3>Espagne</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Travail</span>
+                    <!-- Italie -->
+                    <div class="destination-card" data-region="europe">
+                        <span class="country-flag">🇮🇹</span>
+                        <h3>Italie</h3>
+                        <div class="destination-types">
+                            <a href="italie-etude.html" class="type-badge">Étude</a>
+                            <a href="italie-travail.html" class="type-badge">Travail</a>
+                            <a href="italie-visiteur.html" class="type-badge">Visiteur</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="europe">
-                    <span class="country-flag">🇭🇷</span>
-                    <h3>Croatie</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Travail</span>
+                    <!-- Espagne -->
+                    <div class="destination-card" data-region="europe">
+                        <span class="country-flag">🇪🇸</span>
+                        <h3>Espagne</h3>
+                        <div class="destination-types">
+                            <a href="espagne-etude.html" class="type-badge">Étude</a>
+                            <a href="espagne-travail.html" class="type-badge">Travail</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="europe">
-                    <span class="country-flag">🇫🇮</span>
-                    <h3>Finlande</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Travail</span>
+                    <!-- Croatie -->
+                    <div class="destination-card" data-region="europe">
+                        <span class="country-flag">🇭🇷</span>
+                        <h3>Croatie</h3>
+                        <div class="destination-types">
+                            <a href="croatie-etude.html" class="type-badge">Étude</a>
+                            <a href="croatie-travail.html" class="type-badge">Travail</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="europe">
-                    <span class="country-flag">🇭🇺</span>
-                    <h3>Hongrie</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Travail</span>
+                    <!-- Finlande -->
+                    <div class="destination-card" data-region="europe">
+                        <span class="country-flag">🇫🇮</span>
+                        <h3>Finlande</h3>
+                        <div class="destination-types">
+                            <a href="finlande-etude.html" class="type-badge">Étude</a>
+                            <a href="finlande-travail.html" class="type-badge">Travail</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="europe">
-                    <span class="country-flag">🇱🇺</span>
-                    <h3>Luxembourg</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Travail</span>
+                    <!-- Hongrie -->
+                    <div class="destination-card" data-region="europe">
+                        <span class="country-flag">🇭🇺</span>
+                        <h3>Hongrie</h3>
+                        <div class="destination-types">
+                            <a href="hongrie-etude.html" class="type-badge">Étude</a>
+                            <a href="hongrie-travail.html" class="type-badge">Travail</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="europe">
-                    <span class="country-flag">🇲🇹</span>
-                    <h3>Malte</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Travail</span>
+                    <!-- Luxembourg -->
+                    <div class="destination-card" data-region="europe">
+                        <span class="country-flag">🇱🇺</span>
+                        <h3>Luxembourg</h3>
+                        <div class="destination-types">
+                            <a href="luxembourg-etude.html" class="type-badge">Étude</a>
+                            <a href="luxembourg-travail.html" class="type-badge">Travail</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="europe">
-                    <span class="country-flag">🇵🇱</span>
-                    <h3>Pologne</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Travail</span>
+                    <!-- Malte -->
+                    <div class="destination-card" data-region="europe">
+                        <span class="country-flag">🇲🇹</span>
+                        <h3>Malte</h3>
+                        <div class="destination-types">
+                            <a href="malte-etude.html" class="type-badge">Étude</a>
+                            <a href="malte-travail.html" class="type-badge">Travail</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="europe">
-                    <span class="country-flag">🇷🇸</span>
-                    <h3>Serbie</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Travail</span>
+                    <!-- Pologne -->
+                    <div class="destination-card" data-region="europe">
+                        <span class="country-flag">🇵🇱</span>
+                        <h3>Pologne</h3>
+                        <div class="destination-types">
+                            <a href="pologne-etude.html" class="type-badge">Étude</a>
+                            <a href="pologne-travail.html" class="type-badge">Travail</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="europe">
-                    <span class="country-flag">🇸🇰</span>
-                    <h3>Slovaquie</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Travail</span>
+                    <!-- Serbie -->
+                    <div class="destination-card" data-region="europe">
+                        <span class="country-flag">🇷🇸</span>
+                        <h3>Serbie</h3>
+                        <div class="destination-types">
+                            <a href="serbie-etude.html" class="type-badge">Étude</a>
+                            <a href="serbie-travail.html" class="type-badge">Travail</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="europe">
-                    <span class="country-flag">🇦🇱</span>
-                    <h3>Albanie</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Travail</span>
+                    <!-- Slovaquie -->
+                    <div class="destination-card" data-region="europe">
+                        <span class="country-flag">🇸🇰</span>
+                        <h3>Slovaquie</h3>
+                        <div class="destination-types">
+                            <a href="slovaquie-etude.html" class="type-badge">Étude</a>
+                            <a href="slovaquie-travail.html" class="type-badge">Travail</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="americas">
-                    <span class="country-flag">🇺🇸</span>
-                    <h3>États-Unis</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Visiteur</span>
+                    <!-- Albanie -->
+                    <div class="destination-card" data-region="europe">
+                        <span class="country-flag">🇦🇱</span>
+                        <h3>Albanie</h3>
+                        <div class="destination-types">
+                            <a href="albanie-etude.html" class="type-badge">Étude</a>
+                            <a href="albanie-travail.html" class="type-badge">Travail</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="others">
-                    <span class="country-flag">🇹🇷</span>
-                    <h3>Turquie</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Visiteur</span>
+                    <!-- États-Unis -->
+                    <div class="destination-card" data-region="americas">
+                        <span class="country-flag">🇺🇸</span>
+                        <h3>États-Unis</h3>
+                        <div class="destination-types">
+                            <a href="usa-etude.html" class="type-badge">Étude</a>
+                            <a href="usa-visiteur.html" class="type-badge">Visiteur</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="others">
-                    <span class="country-flag">🇦🇺</span>
-                    <h3>Australie</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Travail</span>
+                    <!-- Turquie -->
+                    <div class="destination-card" data-region="others">
+                        <span class="country-flag">🇹🇷</span>
+                        <h3>Turquie</h3>
+                        <div class="destination-types">
+                            <a href="turquie-etude.html" class="type-badge">Étude</a>
+                            <a href="turquie-visiteur.html" class="type-badge">Visiteur</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="others">
-                    <span class="country-flag">🇷🇺</span>
-                    <h3>Russie</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Étude</span>
-                        <span class="type-badge">Travail</span>
-                        <span class="type-badge">Visiteur</span>
+                    <!-- Australie -->
+                    <div class="destination-card" data-region="others">
+                        <span class="country-flag">🇦🇺</span>
+                        <h3>Australie</h3>
+                        <div class="destination-types">
+                            <a href="australie-travail.html" class="type-badge">Travail</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="europe">
-                    <span class="country-flag">🇮🇪</span>
-                    <h3>Irlande</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Travail</span>
+                    <!-- Russie -->
+                    <div class="destination-card" data-region="others">
+                        <span class="country-flag">🇷🇺</span>
+                        <h3>Russie</h3>
+                        <div class="destination-types">
+                            <a href="russie-etude.html" class="type-badge">Étude</a>
+                            <a href="russie-travail.html" class="type-badge">Travail</a>
+                            <a href="russie-visiteur.html" class="type-badge">Visiteur</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="destination-card" data-region="others">
-                    <span class="country-flag">🇨🇳</span>
-                    <h3>Chine</h3>
-                    <div class="destination-types">
-                        <span class="type-badge">Visiteur</span>
-                        <span class="type-badge">Travail</span>
+                    <!-- Irlande -->
+                    <div class="destination-card" data-region="europe">
+                        <span class="country-flag">🇮🇪</span>
+                        <h3>Irlande</h3>
+                        <div class="destination-types">
+                            <a href="irlande-travail.html" class="type-badge">Travail</a>
+                        </div>
+                    </div>
+
+                    <!-- Chine -->
+                    <div class="destination-card" data-region="others">
+                        <span class="country-flag">🇨🇳</span>
+                        <h3>Chine</h3>
+                        <div class="destination-types">
+                            <a href="chine-visiteur.html" class="type-badge">Visiteur</a>
+                            <a href="chine-travail.html" class="type-badge">Travail</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -3278,7 +3202,7 @@
                     <li><a href="tel:+237657421659"><i class="fas fa-phone"></i> (+237) 657 421 659</a></li>
                     <li><a href="tel:+1(438)5245277"><i class="fas fa-phone"></i> +1 (438) 524-5277</a></li>
                     <li><a href="tel:+33657421659"><i class="fas fa-phone"></i> (+33) 6 57 42 16 59</a></li>
-                    <li><a href="mailto:internationalsuccestravelagence@gmail.com"><i class="fas fa-envelope"></i>internationalsuccestravelagence@gmail.com</a></li>
+                    <li><a href="mailto:internationalsuccestravelagenc@gmail.com"><i class="fas fa-envelope"></i>internationalsuccestravelagenc@gmail.com</a></li>
                 </ul>
             </div>
 
@@ -3310,7 +3234,7 @@
                 : '<i class="fas fa-bars"></i>';
         });
 
-        // Gestion des sous-menus en mobile
+        // Gestion des sous-menus en mobile (comme colis.html)
         const hasSubmenuItems = document.querySelectorAll('.has-submenu > a');
         
         hasSubmenuItems.forEach(item => {
@@ -3357,6 +3281,25 @@
             } else {
                 navbar.classList.remove('scrolled');
             }
+        });
+
+        // ==================== ANIMATIONS AU SCROLL ====================
+        // Observer pour les animations au scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Observer les sections et cartes
+        document.querySelectorAll('.service-card, .destination-card, .why-card, .process-step, .testimonial-card').forEach(element => {
+            element.classList.add('fade-in');
+            observer.observe(element);
         });
 
         // ==================== CAROUSEL HERO ====================
@@ -3410,36 +3353,6 @@
             });
         }
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                
-                // Ignorer les liens qui ne pointent pas vers un élément spécifique
-                if (href === '#' || href === '#!') return;
-                
-                const targetElement = document.querySelector(href);
-                if (targetElement) {
-                    e.preventDefault();
-                    
-                    // Fermer le menu mobile si ouvert
-                    navMenu.classList.remove('active');
-                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                    
-                    // Fermer tous les sous-menus
-                    document.querySelectorAll('.has-submenu').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                    
-                    // Scroll vers la cible
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
         // ==================== DESTINATIONS TABS ====================
         (function() {
             const tabButtons = document.querySelectorAll('.destinations-tabs .tab-btn');
@@ -3449,8 +3362,13 @@
                 destinationCards.forEach(card => {
                     if (region === 'all' || card.dataset.region === region) {
                         card.style.display = '';
+                        // Ajouter un délai pour l'animation
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, 100);
                     } else {
                         card.style.display = 'none';
+                        card.classList.remove('visible');
                     }
                 });
             }
@@ -3675,6 +3593,37 @@
                 }
             });
         })();
+
+        // ==================== SMOOTH SCROLL ====================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                if (href === '#' || href === '#!') return;
+                
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    // Fermer le menu mobile si ouvert
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('active');
+                        mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                        
+                        // Fermer tous les sous-menus
+                        document.querySelectorAll('.has-submenu').forEach(item => {
+                            item.classList.remove('active');
+                        });
+                    }
+                    
+                    // Scroll vers la cible
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
